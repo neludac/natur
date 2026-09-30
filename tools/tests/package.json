@@ -1,0 +1,13 @@
+{
+  "name": "natur-e2e",
+  "private": true,
+  "description": "Teste end-to-end pentru magazinul Natur.MD",
+  "scripts": {
+    "test": "node e2e.js",
+    "test:shop": "node shop.js",
+    "cleanup": "cd ../.. && ddev wp eval-file tools/tests/cleanup.php"
+  },
+  "dependencies": {
+    "playwright-core": "^1.63.0"
+  }
+}

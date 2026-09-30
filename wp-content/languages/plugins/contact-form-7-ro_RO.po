@@ -1,0 +1,1713 @@
+# Translation of Plugins - Contact Form 7 - Stable (latest release) in Romanian
+# This file is distributed under the same license as the Plugins - Contact Form 7 - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2026-04-20 12:39:31+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n == 1) ? 0 : ((n == 0 || n % 100 >= 2 && n % 100 <= 19) ? 1 : 2);\n"
+"X-Generator: GlotPress/4.0.3\n"
+"Language: ro\n"
+"Project-Id-Version: Plugins - Contact Form 7 - Stable (latest release)\n"
+
+#. translators: %s: URL to the Really Simple CAPTCHA plugin page
+#: modules/really-simple-captcha.php:36
+msgid "<strong>Warning:</strong> The <a href=\"%s\">Really Simple CAPTCHA</a> plugin is not active."
+msgstr "<strong>Avertizare:</strong> modulul <a href=\"%s\">Really Simple CAPTCHA</a> nu este activ."
+
+#. translators: %s: URL to support page about integration with external APIs
+#: admin/admin.php:586
+msgid "You can expand the possibilities of your contact forms by integrating them with external services. For details, see <a href=\"%s\">Integration with external APIs</a>."
+msgstr "Poți să extinzi posibilitățile formularelor tale de contact integrându-le cu servicii externe. Pentru detalii, consultă <a href=\"%s\">Integrare cu API-uri externe</a>."
+
+#. translators: %s: URL to support page about the additional settings editor
+#: admin/includes/editor.php:520
+msgid "You can add customization code snippets here. For details, see <a href=\"%s\">Additional settings</a>."
+msgstr "Poți să adaugi personalizarea fragmentelor de cod aici. Pentru detalii, consultă <a href=\"%s\">Setări suplimentare</a>."
+
+#. translators: %s: URL to support page about the messages editor
+#: admin/includes/editor.php:459
+msgid "You can edit messages used in various situations here. For details, see <a href=\"%s\">Editing messages</a>."
+msgstr "Poți să editezi mesajele folosite în diverse situații aici. Pentru detalii, consultă <a href=\"%s\">Editarea mesajelor</a>."
+
+#. translators: %s: URL to support page about the email template
+#: admin/includes/editor.php:207
+msgid "You can edit the email template here. For details, see <a href=\"%s\">Setting up mail</a>."
+msgstr "Poți să editezi șablonul de emailuri aici. Pentru detalii, consultă <a href=\"%s\">Configurarea emailurilor</a>."
+
+#. translators: %s: URL to support page about the form template
+#: admin/includes/editor.php:86
+msgid "You can edit the form template here. For details, see <a href=\"%s\">Editing form template</a>."
+msgstr "Poți să editezi șablonul de formulare aici. Pentru detalii, consultă <a href=\"%s\">Editarea șablonului de formulare</a>."
+
+#: admin/includes/editor.php:37
+msgid "Contact form editor tabs"
+msgstr "File editor formulare de contact"
+
+#. Author URI of the plugin
+#: wp-contact-form-7.php
+msgid "https://github.com/rocklobster-in/"
+msgstr "https://github.com/rocklobster-in/"
+
+#. Author of the plugin
+#: wp-contact-form-7.php
+msgid "Rock Lobster Inc."
+msgstr "Rock Lobster Inc."
+
+#. translators: %s: Search query.
+#: admin/admin.php:467
+msgid "Search results for: <strong>%s</strong>"
+msgstr "Rezultate de căutare pentru: <strong>%s</strong>"
+
+#: modules/turnstile/turnstile.php:179
+msgid "Turnstile validation failed."
+msgstr "Validarea Turnstile a eșuat."
+
+#: modules/turnstile/turnstile.php:174
+msgid "Turnstile token is empty."
+msgstr "Tokenul Turnstile este gol."
+
+#: modules/turnstile/service.php:292
+msgid "Turnstile is active on this site."
+msgstr "Turnstile este activ pe acest site."
+
+#: modules/turnstile/service.php:280
+msgid "Cloudflare Turnstile integration"
+msgstr "Integrare Cloudflare Turnstile"
+
+#: modules/turnstile/service.php:269
+msgid "Turnstile is Cloudflare&#8217;s smart CAPTCHA alternative, which confirms web visitors are real and blocks unwanted bots without slowing down web experiences for real users."
+msgstr "Turnstile este alternativa inteligentă CAPTCHA oferită de Cloudflare care confirmă că vizitatorii web sunt reali și blochează boții nedoriți fără a încetini experiențele pe web pentru utilizatorii reali."
+
+#: modules/recaptcha/service.php:262 modules/stripe/service.php:146
+#: modules/turnstile/service.php:239
+msgid "<strong>Error:</strong> Invalid key values."
+msgstr "<strong>Eroare</strong>: valorile pentru cheie nu sunt valide."
+
+#: modules/turnstile/service.php:40
+msgid "Turnstile"
+msgstr "Turnstile"
+
+#: modules/constant-contact/constant-contact.php:136
+msgid "The Constant Contact integration has been removed."
+msgstr "Integrarea Constant Contact a fost înlăturată."
+
+#: modules/constant-contact/constant-contact.php:113
+msgid "API configuration cleared."
+msgstr "Am șters configurarea API."
+
+#. translators: %s: JSON-formatted array of disallowed HTML
+#: includes/html-formatter.php:470
+msgid "HTML Disallowance: %s"
+msgstr "Nu permite HTML: %s"
+
+#. translators: %s: Invalid HTML tag name
+#: includes/html-formatter.php:426
+msgid "Invalid tag name (%s) is specified."
+msgstr "Este specificat un nume tag (%s) care nu este valid."
+
+#: includes/filesystem.php:66
+msgid "Could not access filesystem."
+msgstr "Nu am putut să accesez sistemul de fișiere."
+
+#: includes/contact-form-template.php:168
+msgid "Sender&#8217;s message failed to send"
+msgstr "Mesajul expeditorului a eșuat la trimitere"
+
+#: admin/includes/welcome-panel.php:66 admin/includes/welcome-panel.php:140
+#: modules/turnstile/service.php:279
+msgid "https://contactform7.com/turnstile-integration/"
+msgstr "https://contactform7.com/turnstile-integration/"
+
+#: admin/admin.php:741
+msgid "Contact Form 7 has completed the <a href=\"https://contactform7.com/2025/01/08/complete-removal-of-constant-contact-integration/\">removal of the Constant Contact integration</a>. We recommend <a href=\"https://contactform7.com/sendinblue-integration/\">Brevo</a> as an alternative."
+msgstr "Contact Form 7 a finalizat <a href=\"https://contactform7.com/2025/01/08/complete-removal-of-constant-contact-integration/\">înlăturarea integrării Constant Contact</a>. Recomandăm <a href=\"https://contactform7.com/sendinblue-integration/\">Brevo</a> ca o alternativă."
+
+#: admin/admin.php:51 admin/admin.php:52 admin/admin.php:453
+#: admin/edit-contact-form.php:41 admin/edit-contact-form.php:54
+msgid "Add Contact Form"
+msgstr "Adaugă formular de contact"
+
+#: modules/stripe/stripe.php:181
+msgid "Invalid Stripe Payment Intent ID detected."
+msgstr "Am detectat un ID intenție de plată Stripe care nu este valid."
+
+#: admin/includes/welcome-panel.php:90
+msgid "https://contactform7.com/contributing/"
+msgstr "https://contactform7.com/contributing/"
+
+#: admin/includes/welcome-panel.php:86
+msgid "It is hard to continue to maintain this plugin without support from users like you."
+msgstr "Este greu să continuăm să menținem acest modul fără sprijin din partea utilizatorilor."
+
+#: modules/textarea.php:150
+msgid "Text area"
+msgstr "Zonă text"
+
+#: modules/text.php:246
+msgid "Telephone number field"
+msgstr "Câmp număr de telefon"
+
+#: modules/text.php:240
+msgid "URL field"
+msgstr "Câmp URL"
+
+#: modules/text.php:234
+msgid "Email address field"
+msgstr "Câmp adresă de email"
+
+#: modules/select.php:237
+msgid "Drop-down menu"
+msgstr "Meniu derulant"
+
+#: modules/quiz.php:283
+msgid "The capital of Brazil? | Rio"
+msgstr "Capitala Braziliei? | Rio"
+
+#: modules/file.php:243
+msgid "File size limit"
+msgstr "Limită dimensiune pentru fișiere"
+
+#: modules/file.php:151
+msgid "File uploading field"
+msgstr "Câmp încărcare fișier"
+
+#: modules/date.php:192
+msgid "Generates a form-tag for a <a href=\"https://contactform7.com/date-field/\">date input field</a>."
+msgstr "Generează un form-tag pentru a <a href=\"https://contactform7.com/date-field/\">câmpul intrare date</a>."
+
+#: modules/checkbox.php:371
+msgid "Radio buttons"
+msgstr "Butoane radio"
+
+#: modules/checkbox.php:366
+msgid "Checkboxes"
+msgstr "Bife"
+
+#: modules/acceptance.php:328
+msgid "Put the condition for consent here."
+msgstr "Pune aici condiția pentru consimțământ."
+
+#: admin/includes/tag-generator.php:270
+msgid "This checkbox is optional."
+msgstr "Această bifă este opțională."
+
+#: admin/includes/tag-generator.php:542
+msgid "Use the first item as a label."
+msgstr "Folosește primul element ca etichetă."
+
+#: admin/includes/tag-generator.php:523
+msgid ""
+"Option 1\n"
+"Option 2\n"
+"Option 3"
+msgstr ""
+"Prima opțiune\n"
+"A 2-a opțiune\n"
+"A 3-a opțiune"
+
+#: admin/includes/tag-generator.php:508
+msgid "One item per line."
+msgstr "Un element per rând."
+
+#: admin/includes/tag-generator.php:498
+msgid "Selectable values"
+msgstr "Valori selectabile"
+
+#: admin/includes/tag-generator.php:472
+msgid "Use this text as the placeholder."
+msgstr "Folosește acest text ca substituent."
+
+#: admin/includes/tag-generator.php:376 modules/text.php:302
+#: modules/textarea.php:197
+msgid "Length"
+msgstr "Lungime"
+
+#: admin/includes/tag-generator.php:322
+msgid "This field expects the submitter telephone number."
+msgstr "Acest câmp așteaptă numărul de telefon al expeditorului."
+
+#: admin/includes/tag-generator.php:319
+msgid "This field expects the submitter URL."
+msgstr "Acest câmp așteaptă URL-ul expeditorului."
+
+#: admin/includes/tag-generator.php:311
+msgid "This field expects the submitter email."
+msgstr "Acest câmp așteaptă emailul expeditorului."
+
+#: admin/includes/tag-generator.php:303
+msgid "This field expects the submitter name."
+msgstr "Acest câmp așteaptă numele expeditorului."
+
+#: admin/includes/tag-generator.php:289
+msgid "Field name"
+msgstr "Nume câmp"
+
+#: admin/includes/tag-generator.php:252
+msgid "This is a required field."
+msgstr "Acesta este un câmp obligatoriu."
+
+#: admin/includes/tag-generator.php:137
+msgid "Close"
+msgstr "Închide"
+
+#: admin/includes/tag-generator.php:132
+msgid "Close this dialog box"
+msgstr "Închide această casetă de dialog"
+
+#: modules/checkbox.php:219
+msgid "Too many items are selected."
+msgstr "Sunt selectate prea multe elemente."
+
+#: includes/contact-form.php:572
+msgid "Invalid action URL is detected."
+msgstr "Am detectat un URL de acțiune care nu este valid."
+
+#: modules/constant-contact/constant-contact.php:135
+msgid "https://contactform7.com/2024/02/02/we-end-the-constant-contact-integration/"
+msgstr "https://contactform7.com/2024/02/02/we-end-the-constant-contact-integration/"
+
+#: modules/checkbox.php:300 modules/select.php:213
+msgid "Undefined value was submitted through this field."
+msgstr "A fost trimisă o valoare nedefinită prin acest câmp."
+
+#: includes/rest-api.php:364
+msgid "There is no valid unit tag."
+msgstr "Nu există nicio etichetă validă pentru unitate."
+
+#: modules/sendinblue/contact-form-properties.php:98
+#: modules/sendinblue/service.php:177
+msgid "Brevo integration"
+msgstr "Integrare Brevo"
+
+#. translators: 1: blog name, 2: blog URL
+#: includes/contact-form-template.php:111
+msgid "This email is a receipt for your contact form submission on our website (%1$s %2$s) in which your email address was used. If that was not you, please ignore this message."
+msgstr "Acest email, în care a fost folosită adresa ta de e-mail, conține chitanța pentru trimiterea formularului tău de contact pe site-ul nostru web (%1$s %2$s). Dacă nu ai fost tu, te rog să ignori acest mesaj."
+
+#. translators: 1: blog name, 2: blog URL
+#: includes/contact-form-template.php:77
+msgid "This is a notification that a contact form was submitted on your website (%1$s %2$s)."
+msgstr "Aceasta este o notificare că a fost trimis un formular de contact la site-ul tău (%1$s %2$s)."
+
+#: includes/config-validator/mail.php:234
+#: includes/config-validator/mail.php:324
+msgid "Unsafe email config is used without sufficient protection."
+msgstr "Folosești o configurare nesigură pentru emailuri, fără protecție suficientă."
+
+#: includes/config-validator/validator.php:239
+msgid "Configuration error is detected."
+msgstr "Am detectat o eroare de configurare."
+
+#: modules/sendinblue/service.php:189
+msgid "Brevo is active on this site."
+msgstr "Brevo este activ pe acest site."
+
+#: modules/sendinblue/contact-form-properties.php:110
+#: modules/sendinblue/contact-form-properties.php:405
+#: modules/sendinblue/service.php:30
+msgid "Brevo"
+msgstr "Brevo"
+
+#: includes/contact-form-functions.php:271
+msgid "Contact form not found."
+msgstr "Nu am găsit formularul de contact."
+
+#: includes/contact-form-functions.php:270 includes/contact-form.php:571
+#: includes/js/index.js:1
+msgid "Error:"
+msgstr "Eroare:"
+
+#: includes/block-editor/block.json
+msgctxt "block keyword"
+msgid "form"
+msgstr "formular"
+
+#: includes/block-editor/block.json
+msgctxt "block description"
+msgid "Insert a contact form you have created with Contact Form 7."
+msgstr "Inserează un formular de contact pe care l-ai creat cu Formular de contact 7."
+
+#: includes/block-editor/block.json
+msgctxt "block title"
+msgid "Contact Form 7"
+msgstr "Formular de contact 7"
+
+#: modules/select.php:84
+msgid "&#8212;Please choose an option&#8212;"
+msgstr "- Te rog alege o opțiune -"
+
+#: modules/akismet/service.php:77
+msgid "Akismet is active on this site."
+msgstr "Akismet este activ pe acest site."
+
+#: modules/akismet/service.php:54
+msgid "CAPTCHAs are designed to distinguish spambots from humans, and are therefore helpless against human spammers. In contrast to CAPTCHAs, Akismet checks form submissions against the global database of spam; this means Akismet is a comprehensive solution against spam. This is why we consider Akismet to be the centerpiece of the spam prevention strategy."
+msgstr "Sistemele CAPTCHA sunt concepute ca să distingă spamboții de oameni și, prin urmare, sunt neputincioase împotriva spammerilor umani. Spre deosebire de CAPTCHA, Akismet verifică trimiterile de formulare în baza de date globală creată pentru spam; aceasta înseamnă că Akismet este o soluție complexă și comprehensivă împotriva spam-ului. Acesta este motivul pentru care considerăm că Akismet este motorul strategiei de prevenire a spamului."
+
+#: modules/akismet/akismet.php:305
+msgid "Learn how your data is processed."
+msgstr "Află cum sunt procesate datele tale."
+
+#: modules/akismet/akismet.php:302
+msgid "This form uses Akismet to reduce spam."
+msgstr "Acest formular folosește Akismet ca să reducă spamul."
+
+#: includes/contact-form.php:645
+msgid "Contact form"
+msgstr "Formular de contact"
+
+#: includes/config-validator/form.php:81
+msgid "Uploadable file size exceeds PHP&#8217;s maximum acceptable size."
+msgstr "Dimensiunea fișierului încărcabil depășește dimensiunea maximă acceptabilă pentru PHP."
+
+#: includes/config-validator/form.php:69
+msgid "Colons are used in form-tag names."
+msgstr "Sunt folosite două puncte în numele tag-urilor de formular."
+
+#: modules/text.php:195
+msgid "Please enter a telephone number."
+msgstr "Te rog să introduci un număr de telefon."
+
+#: modules/text.php:188
+msgid "Please enter a URL."
+msgstr "Te rog să introduci un URL."
+
+#: modules/text.php:181
+msgid "Please enter an email address."
+msgstr "Te rog să introduci o adresă de email."
+
+#: modules/number.php:187
+msgid "This field has a too large number."
+msgstr "Acest câmp are un număr prea mare."
+
+#: modules/number.php:182
+msgid "This field has a too small number."
+msgstr "Acest câmp are un număr prea mic."
+
+#: modules/number.php:177
+msgid "Please enter a number."
+msgstr "Te rog să introduci un număr."
+
+#: modules/date.php:168
+msgid "This field has a too late date."
+msgstr "Acest câmp are o dată peste limita ulterioară."
+
+#: modules/date.php:163
+msgid "This field has a too early date."
+msgstr "Acest câmp are o dată peste limita anterioară."
+
+#: modules/date.php:158
+msgid "Please enter a date in YYYY-MM-DD format."
+msgstr "Te rog să introduci o dată în formatul YYYY-MM-DD."
+
+#: includes/rest-api.php:338
+msgid "The request payload format is not supported."
+msgstr "Formatul pentru încărcarea cererii nu este acceptat."
+
+#. translators: 1: WordPress hook name, 2: version number
+#: includes/functions.php:537
+msgid "Hook %1$s is <strong>deprecated</strong> since Contact Form 7 version %2$s with no alternative available."
+msgstr "Cârligul %1$s este considerat <strong>învechit</strong> începând cu versiunea %2$s pentru Formular de contact și nu sunt disponibile alte alternative."
+
+#: includes/file.php:116
+msgid "The uploaded file is too large."
+msgstr "Fișierul încărcat este prea mare."
+
+#: includes/contact-form-template.php:199
+msgid "This field has a too short input."
+msgstr "Acest câmp are o intrare prea scurtă."
+
+#: includes/contact-form-template.php:194
+msgid "This field has a too long input."
+msgstr "Acest câmp are o intrare prea lungă."
+
+#: includes/contact-form-template.php:189
+msgid "Please fill out this field."
+msgstr "Te rog să completezi acest câmp."
+
+#. translators: 1: PHP function name, 2: version number, 3: alternative
+#. function name
+#: includes/functions.php:493
+msgid "Function %1$s is <strong>deprecated</strong> since Contact Form 7 version %2$s! Use %3$s instead."
+msgstr "Funcția %1$s este <strong>considerată învechită</strong> începând cu versiunea %2$s a modulului Formular de contact 7! Folosește în locul ei %3$s."
+
+#: includes/integration.php:25
+msgid "Spam protection"
+msgstr "Protecție anti-spam"
+
+#. translators: Developer debugging message. 1: PHP function name, 2:
+#. Explanatory message, 3: Contact Form 7 version number.
+#: includes/functions.php:577
+msgid "Function %1$s was called incorrectly. %2$s %3$s"
+msgstr "Funcția %1$s a fost apelată incorect. %2$s %3$s"
+
+#. translators: 1: blog name, 2: confirmation link
+#: modules/sendinblue/doi.php:84
+msgid ""
+"Hello,\n"
+"\n"
+"This is a confirmation email sent from %1$s.\n"
+"\n"
+"We have received your submission to our web form, according to which you have allowed us to add you to our contact list. But, the process has not yet been completed. To complete it, please click the following link.\n"
+"\n"
+"%2$s\n"
+"\n"
+"If it was not your intention, or if you have no idea why you received this message, please do not click on the link, and ignore this message. We will never collect or use your personal data without your clear consent.\n"
+"\n"
+"Sincerely,\n"
+"%1$s"
+msgstr ""
+"Bună,\n"
+"\n"
+"Acesta este un email de confirmare trimis de la %1$s.\n"
+"\n"
+"Am primit trimiterea ta pentru formularul nostru web prin care ne-ai permis să te adăugăm în lista noastră de contacte. Dar procesul nu este încă finalizat. Pentru a-l finaliza, te rog dă clic pe această legătură.\n"
+"\n"
+"%2$s\n"
+"\n"
+"Dacă nu ai intenționat asta sau nu știi de ce ai primit acest mesaj, te rog nu da clic pe legătură și ignoră acest mesaj. Nu vom colecta sau folosi niciodată datele tale cu caracter personal fără consimțământul tău explicit.\n"
+"\n"
+"Cu stimă,\n"
+"%1$s"
+
+#. translators: %s: blog name
+#: modules/sendinblue/doi.php:78
+msgid "Opt-in confirmation from %s"
+msgstr "Confirmare de înscriere de la %s"
+
+#: modules/stripe/stripe.php:380
+msgid "Complete payment"
+msgstr "Finalizează plata"
+
+#: modules/stripe/stripe.php:365
+msgid "Proceed to checkout"
+msgstr "Continuă cu finalizarea comenzii"
+
+#: modules/stripe/stripe.php:249
+msgid "Payment is required. Please pay by credit card."
+msgstr "Plata este obligatorie. Te rog plătește cu un card de credit."
+
+#: includes/integration.php:27
+msgid "Payments"
+msgstr "Plăți"
+
+#: modules/stripe/service.php:252
+msgid "Publishable Key"
+msgstr "Cheie publicabilă"
+
+#: modules/stripe/service.php:225
+msgid "Stripe is not available on this site. It requires an HTTPS-enabled site."
+msgstr "Stripe nu poate fi folosit pe acest site. Site-ul trebuie să aibă activat HTTPS."
+
+#: modules/stripe/service.php:196
+msgid "Stripe is active on this site."
+msgstr "Stripe este activ pe acest site."
+
+#: modules/stripe/service.php:184
+msgid "Stripe integration"
+msgstr "Integrare cu Stripe"
+
+#: modules/stripe/service.php:173
+msgid "Stripe is a simple and powerful way to accept payments online. Stripe has no setup fees, no monthly fees, and no hidden costs. Millions of businesses rely on Stripe&#8217;s software tools to accept payments securely and expand globally."
+msgstr "Stripe este un mod simplu și puternic de a accepta plăți online. Stripe nu percepe taxe pentru configurare, nici taxe lunare și nu are costuri ascunse. Milioane de companii se bazează pe instrumentele software oferite de Stripe pentru a accepta plăți în siguranță și pentru a-și extinde afacerile la nivel global."
+
+#. translators: 1: first name, 2: last name
+#: modules/sendinblue/sendinblue.php:114
+msgctxt "personal name"
+msgid "%1$s %2$s"
+msgstr "%1$s %2$s"
+
+#: includes/rest-api.php:517
+msgid "Unique identifier for the contact form."
+msgstr "Identificator unic pentru formularul de contact."
+
+#: includes/config-validator/form.php:57
+msgid "Dots are used in form-tag names."
+msgstr "Sunt folosite puncte în numele tag-urilor de formular."
+
+#: admin/includes/welcome-panel.php:276
+msgid "Show welcome panel"
+msgstr "Arată panoul de bun venit"
+
+#: admin/includes/welcome-panel.php:273
+msgid "Welcome panel"
+msgstr "Panou de bun venit"
+
+#: modules/stripe/service.php:38
+msgid "Stripe"
+msgstr "Stripe"
+
+#: admin/includes/welcome-panel.php:141 modules/stripe/service.php:183
+msgid "https://contactform7.com/stripe-integration/"
+msgstr "https://contactform7.com/stripe-integration/"
+
+#. translators: %s: URL to support page about the Brevo integration
+#: admin/includes/welcome-panel.php:134
+msgid "Your contact forms will become more powerful and versatile by integrating them with external APIs. With CRM and email marketing services, you can build your own contact lists (<a href=\"%s\">Brevo</a>)."
+msgstr "Formularele tale de contact vor deveni mai puternice și mai versatile prin integrarea lor cu API-uri externe. Cu serviciile CMR și marketing prin emailuri, îți poți crea propriile liste de contacte (<a href=\"%s\">Brevo</a>)."
+
+#: admin/includes/welcome-panel.php:127
+msgid "You have strong allies to back you up."
+msgstr "Ai aliați puternici care te sprijină."
+
+#: admin/admin.php:587
+msgid "https://contactform7.com/integration-with-external-apis/"
+msgstr "https://contactform7.com/integration-with-external-apis/"
+
+#: admin/admin.php:65 admin/admin.php:576
+msgid "Integration with External API"
+msgstr "Integrare cu API extern"
+
+#: modules/sendinblue/contact-form-properties.php:374
+msgid "Manage your email templates"
+msgstr "Administrează-ți șabloanele de email"
+
+#: modules/sendinblue/contact-form-properties.php:357
+msgid "You have no active email template yet."
+msgstr "Nu ai încă un șablon de email activ."
+
+#: modules/sendinblue/contact-form-properties.php:335
+msgid "&mdash; Select &mdash;"
+msgstr "- selectează -"
+
+#: modules/sendinblue/contact-form-properties.php:320
+msgid "Select an email template:"
+msgstr "Selectează un șablon de email:"
+
+#: modules/sendinblue/contact-form-properties.php:299
+msgid "Send a welcome email to new contacts"
+msgstr "Trimite un email de bun venit când ai contacte noi"
+
+#: modules/sendinblue/contact-form-properties.php:269
+#: modules/sendinblue/contact-form-properties.php:281
+msgid "Welcome email"
+msgstr "Email pentru Bine ai venit"
+
+#: modules/sendinblue/contact-form-properties.php:246
+#: modules/sendinblue/contact-form-properties.php:384
+msgid "(opens in a new tab)"
+msgstr "(se deschide într-o filă nouă)"
+
+#: modules/sendinblue/contact-form-properties.php:236
+msgid "Manage your contact lists"
+msgstr "Administrează-ți listele cu contacte"
+
+#: modules/sendinblue/contact-form-properties.php:219
+msgid "You have no contact list yet."
+msgstr "Nu ai încă o listă cu contacte."
+
+#: modules/sendinblue/contact-form-properties.php:188
+msgid "Select lists to which contacts are added:"
+msgstr "Selectează listele în care se adaugă contacte:"
+
+#: modules/sendinblue/contact-form-properties.php:169
+msgid "Add form submitters to your contact lists"
+msgstr "Adaugă expeditorii formularelor în listele tale cu contacte"
+
+#: modules/sendinblue/contact-form-properties.php:139
+#: modules/sendinblue/contact-form-properties.php:151
+msgid "Contact lists"
+msgstr "Liste cu contacte"
+
+#. translators: %s: link labeled 'Brevo integration'
+#: modules/sendinblue/contact-form-properties.php:94
+msgid "You can set up the Brevo integration here. For details, see %s."
+msgstr "Poți să inițializezi aici integrarea Brevo. Pentru detalii, vezi %s."
+
+#: modules/sendinblue/service.php:251
+msgid "Save changes"
+msgstr "Salvează modificările"
+
+#: modules/sendinblue/service.php:247
+msgctxt "API keys"
+msgid "Remove key"
+msgstr "Înlătură cheia"
+
+#: modules/sendinblue/service.php:226
+msgid "API key"
+msgstr "Cheie API"
+
+#: modules/recaptcha/service.php:331 modules/sendinblue/service.php:208
+#: modules/stripe/service.php:215 modules/turnstile/service.php:311
+msgid "Setup integration"
+msgstr "Inițializează integrarea"
+
+#: admin/includes/welcome-panel.php:135
+#: modules/sendinblue/contact-form-properties.php:97
+#: modules/sendinblue/service.php:176
+msgid "https://contactform7.com/sendinblue-integration/"
+msgstr "https://contactform7.com/sendinblue-integration/"
+
+#: modules/sendinblue/service.php:166
+msgid "Store and organize your contacts while protecting user privacy on Brevo, the leading CRM & email marketing platform in Europe. Brevo offers unlimited contacts and advanced marketing features."
+msgstr "Cu Brevo, cea mai importantă platformă CRM și de marketing prin email din Europa, îți stochezi și organizezi contactele și, în același timp, protejezi confidențialitatea utilizatorilor. Brevo oferă un număr nelimitat de contacte și funcționalități avansate de marketing."
+
+#: modules/sendinblue/service.php:128
+msgid "You have not been authenticated. Make sure the provided API key is correct."
+msgstr "Nu te-ai autentificat. Asigură-te că cheia API furnizată este corectă."
+
+#: includes/mail.php:314
+msgid "Failed to attach a file. The total file size exceeds the limit of 25 megabytes."
+msgstr "Atașarea unui fișier a eșuat. Dimensiunea totală a fișierului depășește limita de 25 megaocteți."
+
+#. translators: %s: Attachment file path.
+#: includes/mail.php:294
+msgid "Failed to attach a file. %s is not a readable file."
+msgstr "Atașarea unui fișier a eșuat. %s nu este un fișier care poate fi citit."
+
+#. translators: %s: Attachment file path.
+#: includes/mail.php:280
+msgid "Failed to attach a file. %s is not in the allowed directory."
+msgstr "Atașarea unui fișier a eșuat. %s nu este în directorul permis."
+
+#: includes/contact-form-template.php:42
+msgid "Submit"
+msgstr "Trimite"
+
+#: includes/contact-form-template.php:37
+msgid "(optional)"
+msgstr "(opțional)"
+
+#. translators: %s: comma separated list of disallowed words
+#: modules/disallowed-list.php:36
+msgid "Disallowed words (%s) are used."
+msgstr "Sunt folosite cuvinte nepermise (%s)."
+
+#: modules/disallowed-list.php:32
+msgid "Disallowed words are used."
+msgstr "Sunt folosite cuvinte nepermise."
+
+#. translators: %s: Contact Form 7 version number.
+#: includes/functions.php:568
+msgid "(This message was added in Contact Form 7 version %s.)"
+msgstr "(Acest mesaj a fost adăugat în Formular de contact 7 versiunea %s.)"
+
+#: includes/special-mail-tags.php:22 includes/special-mail-tags.php:104
+#: includes/special-mail-tags.php:170 includes/special-mail-tags.php:239
+#: modules/flamingo.php:310
+msgid "The fourth parameter ($mail_tag) must be an instance of the WPCF7_MailTag class."
+msgstr "Al patrulea parametru ($mail_tag) trebuie să fie o instanță a clasei WPCF7_MailTag."
+
+#. translators: time format, see https://www.php.net/date
+#: admin/includes/class-contact-forms-list-table.php:236
+msgid "g:i a"
+msgstr "G:i"
+
+#. translators: 1: date, 2: time
+#: admin/includes/class-contact-forms-list-table.php:232
+msgid "%1$s at %2$s"
+msgstr "%1$s la %2$s"
+
+#: modules/sendinblue/service.php:127 modules/sendinblue/service.php:138
+msgid "Error"
+msgstr "Eroare"
+
+#: includes/config-validator/mail.php:437
+msgid "The total size of attachment files is too large."
+msgstr "Dimensiunea totală a fișierelor cu atașamente este prea mare."
+
+#: includes/config-validator/form.php:45
+msgid "Unavailable HTML elements are used in the form template."
+msgstr "În șablonul formularului sunt folosite elemente HTML indisponibile."
+
+#: modules/recaptcha/service.php:312
+msgid "reCAPTCHA is active on this site."
+msgstr "reCAPTCHA este activ pe acest site."
+
+#: modules/recaptcha/recaptcha.php:148
+msgid "reCAPTCHA response token is empty."
+msgstr "Tokenul de răspuns reCAPTCHA este gol."
+
+#: includes/submission.php:660
+msgid "Submitted nonce is invalid."
+msgstr "Nunicul trimis este invalid."
+
+#: includes/submission.php:651
+msgid "User-Agent string is unnaturally short."
+msgstr "Șirul User-Agent este nefiresc de scurt."
+
+#. translators: 1: value of reCAPTCHA score 2: value of reCAPTCHA threshold
+#: modules/recaptcha/recaptcha.php:155
+msgid "reCAPTCHA score (%1$.2f) is lower than the threshold (%2$.2f)."
+msgstr "Punctajul reCAPTCHA (%1$.2f) este mai mic decât pragul (%2$.2f)."
+
+#: modules/akismet/akismet.php:84
+msgid "Akismet returns a spam response."
+msgstr "Akismet returnează un răspuns spam."
+
+#. translators: 1: response code, 2: message, 3: body, 4: URL
+#: includes/functions.php:621
+msgid "HTTP Response: %1$s %2$s %3$s from %4$s"
+msgstr "Răspuns HTTP: %1$s %2$s %3$s din %4$s"
+
+#: modules/recaptcha/service.php:397 modules/stripe/service.php:294
+#: modules/turnstile/service.php:376
+msgid "Save Changes"
+msgstr "Salvează modificările"
+
+#: modules/recaptcha/service.php:289
+msgid "reCAPTCHA protects you against spam and other types of automated abuse. With Contact Form 7&#8217;s reCAPTCHA integration module, you can block abusive form submissions by spam bots."
+msgstr "reCAPTCHA te protejează automat împotriva spamului și altor tipuri de abuz. Cu extensia de integrare reCAPTCHA a modulului Contact Form 7, poți să blochezi trimiterile abuzive de formulare făcute de boții de spam."
+
+#: modules/recaptcha/recaptcha.php:255 modules/recaptcha/service.php:300
+msgid "reCAPTCHA (v3)"
+msgstr "reCAPTCHA (v3)"
+
+#. translators: %s: link labeled 'reCAPTCHA (v3)'
+#: modules/recaptcha/recaptcha.php:252
+msgid "API keys for reCAPTCHA v3 are different from those for v2; keys for v2 do not work with the v3 API. You need to register your sites again to get new keys for v3. For details, see %s."
+msgstr "Cheile API pentru reCAPTCHA v3 sunt diferite de cele pentru v2; cheile pentru v2 nu funcționează cu versiunea 3 de API. Trebuie să îți înregistrezi site-urile din nou pentru a obține chei noi pentru v3. Pentru detalii, vezi %s."
+
+#: modules/constant-contact/constant-contact.php:206
+#: modules/recaptcha/service.php:392 modules/stripe/service.php:290
+#: modules/turnstile/service.php:372
+msgctxt "API keys"
+msgid "Remove Keys"
+msgstr "Înlătură cheile"
+
+#: modules/constant-contact/constant-contact.php:191
+msgid "App Secret"
+msgstr "Secret aplicație"
+
+#: modules/constant-contact/constant-contact.php:169
+msgid "API Key"
+msgstr "Cheie API"
+
+#: modules/constant-contact/constant-contact.php:56
+msgid "Constant Contact"
+msgstr "Constant Contact"
+
+#: includes/integration.php:26
+msgid "Email marketing"
+msgstr "Marketing prin emailuri"
+
+#: includes/config-validator/mail.php:423
+msgid "It is not allowed to use files outside the wp-content directory."
+msgstr "Nu ai voie să folosești fișiere în afara directorului wp-content."
+
+#: admin/edit-contact-form.php:386
+msgid "Professional services"
+msgstr "Servicii profesionale"
+
+#: admin/edit-contact-form.php:385
+msgid "https://contactform7.com/custom-development/"
+msgstr "https://contactform7.com/custom-development/"
+
+#: admin/edit-contact-form.php:377
+msgid "Support forums"
+msgstr "Forumuri pentru suport"
+
+#: admin/edit-contact-form.php:376
+msgid "https://wordpress.org/support/plugin/contact-form-7/"
+msgstr "https://wordpress.org/support/plugin/contact-form-7/"
+
+#: admin/edit-contact-form.php:354
+msgid "Here are some available options to help solve your problems."
+msgstr "Iată câteva opțiuni disponibile pentru a te ajuta să-ți rezolvi problemele."
+
+#: admin/edit-contact-form.php:342
+msgid "Do you need help?"
+msgstr "Ai nevoie de ajutor?"
+
+#: modules/acceptance.php:320
+msgid "Condition"
+msgstr "Condiție"
+
+#. translators: 1: 'Consented' or 'Not consented', 2: conditions
+#: modules/acceptance.php:240
+msgctxt "mail output for acceptance checkboxes"
+msgid "%1$s: %2$s"
+msgstr "%1$s: %2$s"
+
+#: modules/acceptance.php:224
+msgid "Not consented"
+msgstr "Neacceptat"
+
+#: modules/acceptance.php:222
+msgid "Consented"
+msgstr "Acceptat"
+
+#: includes/submission.php:120
+msgid "Sending mail has been aborted."
+msgstr "Trimiterea emailurilor a fost întreruptă."
+
+#: admin/includes/editor.php:460
+msgid "https://contactform7.com/editing-messages/"
+msgstr "https://contactform7.com/editing-messages/"
+
+#: admin/includes/editor.php:87
+msgid "https://contactform7.com/editing-form-template/"
+msgstr "https://contactform7.com/editing-form-template/"
+
+#: includes/contact-form.php:546 includes/contact-form.php:1069
+msgid "This contact form is available only for logged in users."
+msgstr "Acest formular de contact este disponibil numai pentru utilizatorii autentificați."
+
+#: includes/config-validator/additional-settings.php:19
+msgid "Deprecated settings are used."
+msgstr "Sunt folosite setări învechite."
+
+#: includes/rest-api.php:323
+msgid "There was an error deleting the contact form."
+msgstr "A fost o eroare la ștergerea formularul de contact."
+
+#: includes/rest-api.php:66 includes/rest-api.php:82 includes/rest-api.php:98
+msgid "You are not allowed to access the requested contact form."
+msgstr "Nu ai voie să accesezi formularul de contact cerut."
+
+#: includes/rest-api.php:245 includes/rest-api.php:267
+#: includes/rest-api.php:314 includes/rest-api.php:353
+#: includes/rest-api.php:425 includes/rest-api.php:444
+msgid "The requested contact form was not found."
+msgstr "Formularul de contact cerut nu a fost găsit."
+
+#: includes/rest-api.php:44
+msgid "You are not allowed to create a contact form."
+msgstr "Nu ai voie să creezi un formular de contact."
+
+#: includes/rest-api.php:197
+msgid "Cannot create existing contact form."
+msgstr "Nu pot crea formularul de contact existent."
+
+#: includes/rest-api.php:30
+msgid "You are not allowed to access contact forms."
+msgstr "Nu ai voie să accesezi formulare de contact."
+
+#: includes/config-validator/mail.php:409
+msgid "Attachment file does not exist at %path%."
+msgstr "Fișierul atașament nu există la %path%."
+
+#: includes/config-validator/mail.php:310
+msgid "Invalid mailbox syntax is used in the %name% field."
+msgstr "Este folosită o sintaxă invalidă pentru căsuța poștală în câmpul %name%."
+
+#. translators: %names%: a list of form control names
+#: includes/config-validator/form.php:32
+msgid "Unavailable names (%names%) are used for form controls."
+msgstr "Sunt folosite nume indisponibile (%names%) pentru comenzile formularului."
+
+#: includes/config-validator/mail.php:297
+msgid "There are invalid mail header fields."
+msgstr "Există câmpuri invalide pentru antet email."
+
+#: includes/config-validator/messages.php:29
+msgid "HTML tags are used in a message."
+msgstr "Sunt folosite taguri HTML într-un mesaj."
+
+#: includes/config-validator/mail.php:198
+msgid "Sender email address does not belong to the site domain."
+msgstr "Adresa de email a expeditorului nu aparține domeniului de site."
+
+#: includes/config-validator/mail.php:180
+#: includes/config-validator/mail.php:217
+msgid "Invalid mailbox syntax is used."
+msgstr "Este folosită o sintaxă invalidă pentru căsuța poștală"
+
+#: includes/config-validator/mail.php:160
+#: includes/config-validator/mail.php:344
+msgid "There is a possible empty field."
+msgstr "Există un posibil câmp gol."
+
+#. translators: %s: number of errors detected
+#: admin/includes/class-contact-forms-list-table.php:131
+msgid "%s configuration error detected"
+msgid_plural "%s configuration errors detected"
+msgstr[0] "o eroare de configurare detectată"
+msgstr[1] "%s erori de configurare detectate"
+msgstr[2] "%s de erori de configurare detectate"
+
+#: admin/admin.php:643 includes/rest-api.php:209 includes/rest-api.php:278
+msgid "There was an error saving the contact form."
+msgstr "A fost o eroare la salvarea formularul de contact."
+
+#. translators: 1: WordPress hook name, 2: version number, 3: alternative hook
+#. name
+#: includes/functions.php:525
+msgid "Hook %1$s is <strong>deprecated</strong> since Contact Form 7 version %2$s! Use %3$s instead."
+msgstr "Cârligul %1$s este <strong>considerat învechit</strong> începând cu versiunea %2$s a modulului Formular de contact 7! Folosește în locul lui %3$s."
+
+#. translators: %s: URL to support page about the Flamingo plugin
+#: admin/includes/welcome-panel.php:112
+msgid "Install a message storage plugin before this happens to you. <a href=\"%s\">Flamingo</a> saves all messages through contact forms into the database. Flamingo is a free WordPress plugin created by the same author as Contact Form 7."
+msgstr "Instalează un modul de stocare a mesajelor înainte să ți se întâmple asta. <a href=\"%s\">Flamingo</a> salvează în baza de date toate mesajele trimise prin formulare de contact. Flamingo este un modul WordPress gratuit creat tot de autorul modulului Formular de contact 7."
+
+#: admin/includes/welcome-panel.php:109
+msgid "Contact Form 7 does not store submitted messages anywhere. Therefore, you may lose important messages forever if your mail server has issues or you make a mistake in mail configuration."
+msgstr "Formular de contact 7 nu stochează nicăieri mesajele trimise. Prin urmare, poți să pierzi mesaje importante pentru totdeauna dacă serverul serviciului tău de email are probleme sau faci o greșeală în configurarea corespondenței."
+
+#: admin/includes/welcome-panel.php:104
+msgid "Before you cry over spilt mail&#8230;"
+msgstr "Înainte de a regreta în zadar&#8230;"
+
+#: admin/includes/welcome-panel.php:67
+msgid "https://contactform7.com/comment-blacklist/"
+msgstr "https://contactform7.com/comment-blacklist/"
+
+#: admin/includes/welcome-panel.php:61
+msgid "Spammers target everything; your contact forms are not an exception. Before you get spammed, protect your contact forms with the powerful anti-spam features Contact Form 7 provides."
+msgstr "Mesajele spam vizează tot; formularele tale de contact nu sunt o excepție. Înainte de a primi mesaje spam, protejează-ți formularele de contact cu funcționalitățile puternice anti-spam oferite de Formular de contact 7."
+
+#: admin/includes/welcome-panel.php:56
+msgid "Getting spammed? You have protection."
+msgstr "Primești mesaje spam? Ai protecție."
+
+#: includes/config-validator/form.php:16
+msgid "Multiple form controls are in a single label element."
+msgstr "Mai multe comenzi ale formularului sunt plasate într-un singur element de etichetă."
+
+#: admin/includes/config-validator.php:175
+msgid "FAQ about Configuration Validator"
+msgstr "ÎPF despre Validatorul configurării"
+
+#: admin/includes/config-validator.php:174
+msgid "https://contactform7.com/configuration-validator-faq/"
+msgstr "https://contactform7.com/configuration-validator-faq/"
+
+#: modules/quiz.php:181
+msgid "The answer to the quiz is incorrect."
+msgstr "Răspunsul la chestionar este incorect."
+
+#: includes/file.php:121
+msgid "There was an error uploading the file."
+msgstr "A apărut o eroare la încărcarea fișierului."
+
+#: includes/file.php:111
+msgid "You are not allowed to upload files of this type."
+msgstr "Nu-ți este permis să încarci fișiere de acest tip."
+
+#: includes/file.php:106
+msgid "There was an unknown error uploading the file."
+msgstr "A apărut o eroare necunoscută la încărcarea fișierului."
+
+#: includes/contact-form-template.php:184
+msgid "You must accept the terms and conditions before sending your message."
+msgstr "Trebuie să accepți termenii și condițiile înainte de a trimite mesajul."
+
+#: includes/contact-form-template.php:174
+msgid "One or more fields have an error. Please check and try again."
+msgstr "Unul sau mai multe câmpuri au o eroare. Te rog să verifici și să încerci din nou."
+
+#: includes/contact-form-template.php:169
+#: includes/contact-form-template.php:179
+msgid "There was an error trying to send your message. Please try again later."
+msgstr "A apărut o eroare la încercarea de a trimite mesajul. Te rog să încerci din nou mai târziu."
+
+#: includes/contact-form-template.php:164
+msgid "Thank you for your message. It has been sent."
+msgstr "Îți mulțumesc pentru mesaj. A fost trimis."
+
+#. translators: 1: blog name, 2: [your-subject]
+#: includes/contact-form-template.php:52 includes/contact-form-template.php:96
+msgctxt "mail subject"
+msgid "%1$s \"%2$s\""
+msgstr "%1$s \"%2$s\""
+
+#: admin/includes/config-validator.php:47
+msgid "Misconfiguration leads to mail delivery failure or other troubles. Validate your contact forms now."
+msgstr "Configurarea incorectă conduce la eșec în expedierea unui email sau la alte probleme. Validează acum formularele de contact."
+
+#: admin/includes/config-validator.php:53
+msgid "Validate Contact Form 7 Configuration"
+msgstr "Validează configurarea pentru Formular de contact 7"
+
+#: includes/config-validator/validator.php:56
+msgid "https://contactform7.com/configuration-errors/"
+msgstr "https://contactform7.com/configuration-errors/"
+
+#: admin/admin.php:661
+msgid "Configuration validation completed. No invalid contact form was found."
+msgstr "Validarea configurării s-a finalizată. Nu a fost găsit niciun formular de contact invalid."
+
+#. translators: %s: number of contact forms
+#: admin/admin.php:653
+msgid "Configuration validation completed. %s invalid contact form was found."
+msgid_plural "Configuration validation completed. %s invalid contact forms were found."
+msgstr[0] "Validarea configurării s-a finalizat. A fost găsit un formular de contact invalid."
+msgstr[1] "Validarea configurării s-a finalizat. Au fost găsite %s formulare de contact invalide."
+msgstr[2] "Validarea configurării s-a finalizat. Au fost găsite %s de formulare de contact invalide."
+
+#: admin/includes/config-validator.php:142
+msgid "Validate Configuration"
+msgstr "Validează configurarea"
+
+#. translators: %s: number of contact forms
+#: admin/includes/config-validator.php:118
+msgid "Validate %s contact form now"
+msgid_plural "Validate %s contact forms now"
+msgstr[0] "Validează acum %s formular de contact"
+msgstr[1] "Validează acum %s formulare de contact"
+msgstr[2] "Validează acum %s de formulare de contact"
+
+#: admin/includes/config-validator.php:75
+msgid "You are not allowed to validate configuration."
+msgstr "Nu-ți este permis să validezi configurarea."
+
+#: modules/recaptcha/recaptcha.php:254 modules/recaptcha/service.php:299
+msgid "https://contactform7.com/recaptcha/"
+msgstr "https://contactform7.com/recaptcha/"
+
+#: modules/recaptcha/service.php:368 modules/stripe/service.php:269
+#: modules/turnstile/service.php:351
+msgid "Secret Key"
+msgstr "Cheie secretă"
+
+#: modules/recaptcha/service.php:351 modules/turnstile/service.php:334
+msgid "Site Key"
+msgstr "Cheie site"
+
+#: modules/recaptcha/service.php:269 modules/sendinblue/service.php:147
+#: modules/stripe/service.php:153 modules/turnstile/service.php:246
+msgid "Settings saved."
+msgstr "Am salvat setările."
+
+#: modules/sendinblue/service.php:139
+msgid "Invalid key values."
+msgstr "Valorile invalide pentru cheie."
+
+#: modules/recaptcha/service.php:29
+msgid "reCAPTCHA"
+msgstr "reCAPTCHA"
+
+#. Description of the plugin
+#: wp-contact-form-7.php
+msgid "Just another contact form plugin. Simple but flexible."
+msgstr "Doar un alt modul de formular de contact. Simplu, dar flexibil."
+
+#. Plugin URI of the plugin
+#: wp-contact-form-7.php
+msgid "https://contactform7.com/"
+msgstr "https://contactform7.com/"
+
+#. translators: title of your first contact form. %d: number fixed to '1'
+#: load.php:195
+msgid "Contact form %d"
+msgstr "Formular de contact %d"
+
+#: modules/textarea.php:141
+msgid "text area"
+msgstr "zonă text"
+
+#: modules/akismet/service.php:22
+msgid "Akismet"
+msgstr "Akismet"
+
+#: modules/text.php:228
+msgid "Text field"
+msgstr "Câmp text"
+
+#: modules/text.php:214
+msgid "tel"
+msgstr "telefon"
+
+#: modules/text.php:213
+msgid "URL"
+msgstr "URL"
+
+#: modules/text.php:212
+msgid "email"
+msgstr "email"
+
+#: modules/text.php:211
+msgid "text"
+msgstr "text"
+
+#: modules/text.php:193
+msgid "Telephone number that the sender entered is invalid"
+msgstr "Numărul de telefon pe care l-a introdus expeditorul este invalid"
+
+#: modules/text.php:186
+msgid "URL that the sender entered is invalid"
+msgstr "URL-ul pe care l-a introdus expeditorul este invalid"
+
+#: modules/text.php:179
+msgid "Email address that the sender entered is invalid"
+msgstr "Adresa de email pe care a introdus-o expeditorul este invalidă"
+
+#: modules/submit.php:100
+msgid "Label"
+msgstr "Etichetă"
+
+#: modules/submit.php:56
+msgid "Submit button"
+msgstr "Buton Trimite"
+
+#: modules/submit.php:47
+msgid "submit"
+msgstr "trimite"
+
+#: modules/select.php:228
+msgid "drop-down menu"
+msgstr "meniu vertical"
+
+#: modules/quiz.php:258
+msgid "Questions and answers"
+msgstr "Întrebări și răspunsuri"
+
+#: modules/quiz.php:205
+msgid "Quiz"
+msgstr "Chestionar"
+
+#: modules/quiz.php:196
+msgid "quiz"
+msgstr "chestionar"
+
+#: modules/quiz.php:179
+msgid "Sender does not enter the correct answer to the quiz"
+msgstr "Expeditorul nu introduce răspunsul corect la chestionar."
+
+#: modules/number.php:248
+msgid "Slider"
+msgstr "Carusel"
+
+#: modules/number.php:247
+msgid "Spinbox"
+msgstr "Casetă de increment"
+
+#: modules/number.php:209
+msgid "Number field"
+msgstr "Câmp numeric"
+
+#: modules/number.php:200
+msgid "number"
+msgstr "număr"
+
+#: modules/number.php:186
+msgid "Number is larger than maximum limit"
+msgstr "Numărul este mai mare decât limita maximă"
+
+#: modules/number.php:181
+msgid "Number is smaller than minimum limit"
+msgstr "Numărul este mai mic decât limita minimă"
+
+#: modules/number.php:176
+msgid "Number format that the sender entered is invalid"
+msgstr "Formatul numărului introdus de expeditor este invalid"
+
+#. translators: %s: the path of the temporary folder
+#: includes/file.php:434
+msgid "This contact form has file uploading fields, but the temporary folder for the files (%s) does not exist or is not writable. You can create the folder or change its permission manually."
+msgstr "Acest formular de contact conține câmpuri pentru încărcarea fișierelor, dar dosarul temporar pentru fișiere (%s) nu există sau nu poate fi scris. Poți să creezi dosarul sau să-i modifici manual permisiunile."
+
+#: modules/file.php:205
+msgid "Acceptable file types"
+msgstr "Tipuri de fișiere acceptate"
+
+#: modules/file.php:142
+msgid "file"
+msgstr "fișier"
+
+#: includes/file.php:120
+msgid "Uploading a file fails for PHP error"
+msgstr "Încărcarea unui fișier eșuează din cauza unei erori PHP"
+
+#: includes/file.php:115
+msgid "Uploaded file is too large"
+msgstr "Fișierul încărcat este prea mare"
+
+#: includes/file.php:110
+msgid "Uploaded file is not allowed for file type"
+msgstr "Fișierul încărcat nu este permis ca tip de fișier"
+
+#: includes/file.php:105
+msgid "Uploading a file fails for any reason"
+msgstr "Încărcarea unui fișier eșuează din orice motiv"
+
+#: admin/includes/tag-generator.php:412
+msgid "Max"
+msgstr "Maxim"
+
+#: admin/includes/tag-generator.php:393
+msgid "Min"
+msgstr "Minim"
+
+#: modules/date.php:238 modules/number.php:257
+msgid "Range"
+msgstr "Gamă"
+
+#: admin/includes/tag-generator.php:436
+msgid "Default value"
+msgstr "Valoare implicită"
+
+#: modules/date.php:190
+msgid "Date field"
+msgstr "Câmp dată"
+
+#: modules/date.php:181
+msgid "date"
+msgstr "dată"
+
+#: modules/date.php:167
+msgid "Date is later than maximum limit"
+msgstr "Data este ulterioară limitei maxime"
+
+#: modules/date.php:162
+msgid "Date is earlier than minimum limit"
+msgstr "Data este anterioară limitei minime"
+
+#: modules/date.php:157
+msgid "Date format that the sender entered is invalid"
+msgstr "Formatul pentru dată introdus de expeditor este invalid"
+
+#: admin/includes/tag-generator.php:562
+msgid "Wrap each item with a label element."
+msgstr "Învelește fiecare element cu un element de etichetă."
+
+#: admin/includes/tag-generator.php:219
+msgid "Field type"
+msgstr "Tip de câmp"
+
+#: modules/checkbox.php:352
+msgid "radio buttons"
+msgstr "Butoane radio"
+
+#: modules/checkbox.php:351
+msgid "checkboxes"
+msgstr "bife"
+
+#: modules/really-simple-captcha.php:290
+msgid "This contact form contains CAPTCHA fields, but the necessary libraries (GD and FreeType) are not available on your server."
+msgstr "Acest formular de contact conține câmpuri CAPTCHA, dar bibliotecile necesare (GD și FreeType) nu sunt disponibile pe serverul tău."
+
+#. translators: %s: Path to the temporary folder
+#: modules/really-simple-captcha.php:278
+msgid "This contact form contains CAPTCHA fields, but the temporary folder for the files (%s) does not exist or is not writable. You can create the folder or change its permission manually."
+msgstr "Acest formular de contact conține câmpuri CAPTCHA, dar dosarul temporar pentru fișierele (%s) nu există sau nu este editabil. Poți să creezi dosarul sau să-i modifici manual permisiunile."
+
+#: modules/really-simple-captcha.php:236
+msgid "Your entered code is incorrect."
+msgstr "Codul pe care l-ai introdus este incorect."
+
+#: modules/really-simple-captcha.php:234
+msgid "The code that sender entered does not match the CAPTCHA"
+msgstr "Codul pe care l-a introdus expeditorul nu se potrivește cu CAPTCHA"
+
+#: admin/includes/tag-generator.php:599
+msgid "Insert Tag"
+msgstr "Inserează tagul"
+
+#: admin/includes/tag-generator.php:362
+msgid "Class attribute"
+msgstr "Atribut clasă"
+
+#: admin/includes/tag-generator.php:347
+msgid "ID attribute"
+msgstr "Atribut ID"
+
+#: modules/acceptance.php:266
+msgid "Acceptance checkbox"
+msgstr "Bifă de acceptare"
+
+#: modules/acceptance.php:257
+msgid "acceptance"
+msgstr "acceptare"
+
+#. translators: 1: property name, 2: method name
+#: includes/contact-form.php:233
+msgid "<code>%1$s</code> property of a <code>WPCF7_ContactForm</code> object is <strong>no longer accessible</strong>. Use <code>%2$s</code> method instead."
+msgstr "Proprietatea <code>%1$s</code> a unui obiect <code>WPCF7_ContactForm</code> <strong>nu mai este accesibilă</strong>. Folosește metoda <code>%2$s</code> în schimb."
+
+#: includes/contact-form.php:114 includes/contact-form.php:437
+msgid "Untitled"
+msgstr "Fără titlu"
+
+#: includes/contact-form.php:52
+msgid "Contact Form"
+msgstr "Formular de contact"
+
+#: includes/contact-form-template.php:198
+msgid "There is a field with input that is shorter than the minimum allowed length"
+msgstr "Există un câmp cu o intrare care este mai scurtă decât lungimea minimă permisă"
+
+#: includes/contact-form-template.php:193
+msgid "There is a field with input that is longer than the maximum allowed length"
+msgstr "Există un câmp cu o intrare care este mai mare decât lungimea maximă permisă"
+
+#: includes/contact-form-template.php:188
+msgid "There is a field that the sender must fill in"
+msgstr "Există un câmp pe care expeditorul trebuie să-l completeze"
+
+#: includes/contact-form-template.php:183
+msgid "There are terms that the sender must accept"
+msgstr "Există termeni pe care expeditorul trebuie să-i accepte"
+
+#: includes/contact-form-template.php:178
+msgid "Submission was referred to as spam"
+msgstr "Ceea ce ai trimis a fost considerat spam"
+
+#: includes/contact-form-template.php:173
+msgid "Validation errors occurred"
+msgstr "Au apărut erori de validare"
+
+#: includes/contact-form-template.php:163
+msgid "Sender&#8217;s message was sent successfully"
+msgstr "Mesajul expeditorului a fost trimis cu succes"
+
+#: includes/contact-form-template.php:72 includes/contact-form-template.php:106
+msgid "Message Body:"
+msgstr "Corp mesaj:"
+
+#. translators: %s: [your-subject]
+#: includes/contact-form-template.php:69
+msgid "Subject: %s"
+msgstr "Subiect: %s"
+
+#. translators: %s: [your-name] [your-email]
+#: includes/contact-form-template.php:64
+msgid "From: %s"
+msgstr "De la: %s"
+
+#: modules/submit.php:26
+msgid "Send"
+msgstr "Trimite"
+
+#: includes/contact-form-template.php:41
+msgid "Your message"
+msgstr "Mesajul tău"
+
+#: includes/contact-form-template.php:39
+msgid "Your email"
+msgstr "Adresa ta de email"
+
+#: includes/contact-form-template.php:38
+msgid "Your name"
+msgstr "Numele tău"
+
+#. translators: %s: title of form-tag
+#: admin/includes/tag-generator.php:85
+msgid "Form-tag Generator: %s"
+msgstr "Generator tag de formular: %s"
+
+#: admin/includes/help-tabs.php:97
+msgid "For more information:"
+msgstr "Pentru mai multe informații:"
+
+#: admin/includes/help-tabs.php:89
+msgid "Any information you provide will not be shared with service providers without your authorization."
+msgstr "Nicio informație furnizată de tine nu va fi partajată cu serviciile respective fără autorizația ta."
+
+#: admin/includes/help-tabs.php:88
+msgid "You may need to first sign up for an account with the service that you plan to use. When you do so, you would need to authorize Contact Form 7 to access the service with your account."
+msgstr "Prima dată s-ar putea să fie necesar să-ți faci un cont pentru serviciul pe care intenționezi să-l folosești. Când faci acest lucru, va trebui să autorizezi Formularul de contact 7 să acceseze acel serviciu folosind contul tău."
+
+#: admin/includes/help-tabs.php:87
+msgid "On this screen, you can manage services that are available through Contact Form 7. Using API will allow you to collaborate with any services that are available."
+msgstr "Pe acest ecran, poți administra serviciile care sunt disponibile prin intermediul Formularului de contact 7. Folosirea API îți va permite colaborarea cu serviciile care sunt disponibile."
+
+#: admin/includes/help-tabs.php:85
+msgid "There are also special mail-tags that have specific names, but do not have corresponding form-tags. They are used to represent meta information of form submissions like the submitter&#8217;s IP address or the URL of the page."
+msgstr "De asemenea, există tag-uri de corespondență speciale care au nume specifice, dar nu au tag-uri de formular corespunzătoare. Ele sunt folosite pentru a reprezenta informațiile meta din trimiterile de formulare, cum ar fi adresa IP a expeditorului sau URL-ul paginii."
+
+#: admin/includes/help-tabs.php:84
+msgid "A mail-tag is also a short code enclosed in square brackets that you can use in every Mail and Mail (2) field. A mail-tag represents a user input value through an input field of a corresponding form-tag."
+msgstr "Un tag de corespondență este tot un cod scurt închis între paranteze pătrate pe care-l poți folosi în oricare dintre câmpurile pentru corespondență. Un tag de corespondență reprezintă o valoare de intrare a utilizatorului prin intermediul unui câmp de intrare a unui tag de formular corespunzător."
+
+#: admin/includes/help-tabs.php:82
+msgid "While form-tags have a comparatively complex syntax, you do not need to know the syntax to add form-tags because you can use the straightforward tag generator (<strong>Generate Tag</strong> button on this screen)."
+msgstr "Deși tag-urile de formular au o sintaxă relativ complexă, nu este nevoie să știi sintaxa pentru a adăuga tag-uri de formular, deoarece poți folosi un simplu generator de tag-uri (butonul <strong>Generează tag</strong> de pe acest ecran)."
+
+#: admin/includes/help-tabs.php:81
+msgid "A form-tag is a short code enclosed in square brackets used in a form content. A form-tag generally represents an input field, and its components can be separated into four parts: type, name, options, and values. Contact Form 7 supports several types of form-tags including text fields, number fields, date fields, checkboxes, radio buttons, menus, file-uploading fields, CAPTCHAs, and quiz fields."
+msgstr "Un tag de formular este un cod scurt închis între paranteze pătrate utilizat în conținutul unui formular. În general, un tag de formular reprezintă un câmp de intrare, iar componentele sale pot fi separate în patru părți: tip, nume, opțiuni și valori. Formularul de contact 7 acceptă mai multe tipuri de tag-uri de formular, inclusiv câmpuri pentru text, câmpuri pentru valori numerice, câmpuri pentru dată, bife, butoane radio, meniuri, câmpuri pentru încărcarea de fișiere, CAPTCHA și câmpuri pentru chestionare."
+
+#: admin/includes/help-tabs.php:79
+msgid "<strong>Additional Settings</strong> provides a place where you can customize the behavior of this contact form by adding code snippets."
+msgstr "<strong>Setările suplimentare</strong> asigură un spațiu unde poți personaliza comportamentul acestui formular de contact prin adăugarea unor fragmente de cod."
+
+#: admin/includes/help-tabs.php:78
+msgid "In <strong>Messages</strong>, you can edit various types of messages used for this contact form. These messages are relatively short messages, like a validation error message you see when you leave a required field blank."
+msgstr "În <strong>Mesaje</strong>, poți edita diverse tipuri de mesaje folosite de acest formular de contact. Aceste mesaje sunt relativ scurte, cum ar fi un mesaj de eroare de validare pe care-l vezi când lași un câmp obligatoriu necompletat."
+
+#: admin/includes/help-tabs.php:77
+msgid "<strong>Mail (2)</strong> is an additional mail template that works similar to Mail. Mail (2) is different in that it is sent only when Mail has been sent successfully."
+msgstr "<strong>Corespondență (2)</strong> este un șablon de corespondență suplimentar care funcționează similar cu Corespondență. Corespondență (2) diferă prin faptul că este trimis numai atunci când șablonul Corespondență a fost trimis cu succes."
+
+#: admin/includes/help-tabs.php:76
+msgid "<strong>Mail</strong> manages a mail template (headers and message body) that this contact form will send when users submit it. You can use Contact Form 7&#8217;s mail-tags here."
+msgstr "<strong>Corespondența</strong> gestionează un șablon de corespondență (antete și corp mesaj) pe care acest formular de contact îl va trimite când utilizatorii îl prezintă. Poți folosi aici tagurile de corespondență ale Formularului de contact 7."
+
+#: admin/includes/help-tabs.php:75
+msgid "<strong>Form</strong> is a content of HTML form. You can use arbitrary HTML, which is allowed inside a form element. You can also use Contact Form 7&#8217;s form-tags here."
+msgstr "<strong>Formularul</strong> este un conținut de formular HTML. Poți folosi HTML arbitrar care este permis în interiorul elementului de formular. De asemenea, poți folosi aici tagurile de formular ale Formularului de contact 7."
+
+#: admin/includes/help-tabs.php:74
+msgid "<strong>Title</strong> is the title of a contact form. This title is only used for labeling a contact form, and can be edited."
+msgstr "<strong>Titlu</strong> este titlul formularului de contact. Acest titlu este folosit doar pentru etichetarea formularului de contact și poate fi editat."
+
+#: admin/includes/help-tabs.php:73
+msgid "On this screen, you can edit a contact form. A contact form is comprised of the following components:"
+msgstr "Pe acest ecran, poți edita un formular de contact. Un formular de contact este format din următoarele componente:"
+
+#: admin/includes/help-tabs.php:71
+msgid "<strong>Duplicate</strong> - Clones that contact form. A cloned contact form inherits all content from the original, but has a different ID."
+msgstr "<strong>Duplicare</strong> - Clone ale formularului de contact. Un formular de contact clonat moștenește tot conținutul original, dar are un ID diferit."
+
+#: admin/includes/help-tabs.php:70
+msgid "<strong>Edit</strong> - Navigates to the editing screen for that contact form. You can also reach that screen by clicking on the contact form title."
+msgstr "<strong>Editare</strong> - Navighezi la ecranul de editare a acelui formular de contact. De asemenea, poți ajunge la acel ecran dând clic pe titlul formularului de contact."
+
+#: admin/includes/help-tabs.php:69
+msgid "Hovering over a row in the contact forms list will display action links that allow you to manage your contact form. You can perform the following actions:"
+msgstr "Deasupra unui rând din lista formularelor de contact se vor afișa legăturile de acțiune, care îți  permit să administrezi formularul de contact. Poți să execuți următoarele acțiuni:"
+
+#: admin/includes/help-tabs.php:67
+msgid "On this screen, you can manage contact forms provided by Contact Form 7. You can manage an unlimited number of contact forms. Each contact form has a unique ID and Contact Form 7 shortcode ([contact-form-7 ...]). To insert a contact form into a post or a text widget, insert the shortcode into the target."
+msgstr "Pe acest ecran, poți administra formularele de contact furnizate de Formularul de contact 7. Poți administra un număr nelimitat de formulare de contact. Fiecare formular de contact are un ID unic și un scurtcod ([contact-form-7 ...]). Pentru a introduce un formular de contact într-un articol sau în textul unei piese, introdu scurtcodul în țintă."
+
+#: admin/includes/help-tabs.php:44
+msgid "Mail-tags"
+msgstr "Tag-uri de corespondență"
+
+#: admin/includes/help-tabs.php:38
+msgid "Form-tags"
+msgstr "Tag-uri de formular"
+
+#: admin/includes/help-tabs.php:22
+msgid "Available Actions"
+msgstr "Acțiuni disponibile"
+
+#: admin/includes/help-tabs.php:16 admin/includes/help-tabs.php:32
+#: admin/includes/help-tabs.php:54
+msgid "Overview"
+msgstr "Prezentare generală"
+
+#: admin/includes/editor.php:521
+msgid "https://contactform7.com/additional-settings/"
+msgstr "https://contactform7.com/additional-settings/"
+
+#: admin/includes/editor.php:432
+msgid "File attachments"
+msgstr "Atașamente (fișiere)"
+
+#: admin/includes/editor.php:416
+msgid "Use HTML content type"
+msgstr "Folosește tip de conținut HTML"
+
+#: admin/includes/editor.php:359
+msgid "Message body"
+msgstr "Corp mesaj"
+
+#: admin/includes/editor.php:328
+msgid "Additional headers"
+msgstr "Anteturi suplimentare"
+
+#: admin/includes/editor.php:300 includes/contact-form-template.php:40
+msgid "Subject"
+msgstr "Subiect"
+
+#: admin/includes/editor.php:272
+msgid "From"
+msgstr "De la"
+
+#: admin/includes/editor.php:244
+msgid "To"
+msgstr "La"
+
+#: admin/includes/editor.php:216
+msgid "In the following fields, you can use these mail-tags:"
+msgstr "În câmpurile următoarele, poți să folosești aceste tag-uri de corespondență:"
+
+#: admin/includes/editor.php:193
+msgid "Mail (2) is an additional mail template often used as an autoresponder."
+msgstr "Corespondență (2) este un șablon de corespondență suplimentar adesea folosit ca un program care trimite automat răspunsuri."
+
+#: admin/includes/editor.php:132
+msgid "Use Mail (2)"
+msgstr "Folosește Corespondență (2)"
+
+#: admin/includes/editor.php:131
+msgid "Mail (2)"
+msgstr "Corespondență (2)"
+
+#. translators: date format, see https://www.php.net/date
+#: admin/includes/class-contact-forms-list-table.php:234
+msgid "Y/m/d"
+msgstr "d.m.Y"
+
+#. translators: %s: title of contact form
+#: admin/includes/class-contact-forms-list-table.php:115
+msgid "Edit &#8220;%s&#8221;"
+msgstr "Editează &#8222;%s&#8221;"
+
+#: admin/includes/class-contact-forms-list-table.php:162
+msgid "Edit"
+msgstr "Editează"
+
+#: admin/includes/class-contact-forms-list-table.php:15
+msgid "Date"
+msgstr "Dată"
+
+#: admin/includes/class-contact-forms-list-table.php:14
+msgid "Author"
+msgstr "Autor"
+
+#: admin/includes/class-contact-forms-list-table.php:13
+msgid "Shortcode"
+msgstr "Scurt-cod"
+
+#: admin/includes/class-contact-forms-list-table.php:12
+#: includes/block-editor/index.js:1
+msgid "Title"
+msgstr "Titlu"
+
+#: admin/edit-contact-form.php:442 admin/includes/editor.php:529
+msgid "Additional Settings"
+msgstr "Setări suplimentare"
+
+#. translators: %d: number of additional settings
+#: admin/edit-contact-form.php:439
+msgid "Additional Settings (%d)"
+msgstr "Setări suplimentare (%d)"
+
+#: admin/edit-contact-form.php:419 admin/includes/editor.php:477
+msgid "Messages"
+msgstr "Mesaje"
+
+#: admin/edit-contact-form.php:415 admin/includes/editor.php:140
+msgid "Mail"
+msgstr "Corespondență"
+
+#: admin/edit-contact-form.php:411 admin/includes/editor.php:93
+msgid "Form"
+msgstr "Formular"
+
+#: admin/includes/help-tabs.php:100
+msgid "Support"
+msgstr "Suport"
+
+#: admin/includes/help-tabs.php:100
+msgid "https://contactform7.com/support/"
+msgstr "https://contactform7.com/support/"
+
+#: admin/includes/help-tabs.php:99
+msgid "FAQ"
+msgstr "Întrebări frecvente"
+
+#: admin/edit-contact-form.php:367 admin/includes/help-tabs.php:99
+msgid "https://contactform7.com/faq/"
+msgstr "https://contactform7.com/faq/"
+
+#: admin/includes/help-tabs.php:98
+msgid "Docs"
+msgstr "Documente"
+
+#: admin/edit-contact-form.php:368 admin/includes/help-tabs.php:98
+msgid "https://contactform7.com/docs/"
+msgstr "https://contactform7.com/docs/"
+
+#: admin/edit-contact-form.php:311
+#: admin/includes/class-contact-forms-list-table.php:83
+msgid "Delete"
+msgstr "Șterge"
+
+#: admin/edit-contact-form.php:282
+#: admin/includes/class-contact-forms-list-table.php:180
+msgid "Duplicate"
+msgstr "Fă duplicat"
+
+#: admin/edit-contact-form.php:246
+msgid "Status"
+msgstr "Stare"
+
+#: admin/edit-contact-form.php:205
+msgid "You can also use this old-style shortcode:"
+msgstr "De asemenea, poți folosi acest stil vechi de scurtcod:"
+
+#: admin/edit-contact-form.php:173
+msgid "Copy this shortcode and paste it into your post, page, or text widget content:"
+msgstr "Copiază acest scurtcod și lipește-l în articol, pagină sau în conținutul piesei:"
+
+#: admin/edit-contact-form.php:152 admin/edit-contact-form.php:153
+msgid "Enter title here"
+msgstr "Introdu titlul aici"
+
+#: admin/edit-contact-form.php:14 admin/edit-contact-form.php:272
+msgid "Save"
+msgstr "Salvează"
+
+#: admin/admin.php:727
+msgid "You are not allowed to edit this contact form."
+msgstr "Nu-ți este permis să editezi acest formular de contact."
+
+#: admin/includes/welcome-panel.php:113
+msgid "https://contactform7.com/save-submitted-messages-with-flamingo/"
+msgstr "https://contactform7.com/save-submitted-messages-with-flamingo/"
+
+#: modules/akismet/service.php:65
+msgid "Spam filtering with Akismet"
+msgstr "Filtrare spam cu Akismet"
+
+#: admin/includes/welcome-panel.php:65 modules/akismet/service.php:64
+msgid "https://contactform7.com/spam-filtering-with-akismet/"
+msgstr "https://contactform7.com/spam-filtering-with-akismet/"
+
+#: admin/includes/editor.php:208
+msgid "https://contactform7.com/setting-up-mail/"
+msgstr "https://contactform7.com/setting-up-mail/"
+
+#: admin/includes/welcome-panel.php:81
+msgid "Contact Form 7 needs your support."
+msgstr "Formular de contact 7 are nevoie de sprijinul tău."
+
+#: admin/includes/welcome-panel.php:189
+msgid "Dismiss"
+msgstr "Respinge"
+
+#. translators: 1: version of Contact Form 7, 2: version of WordPress, 3: URL
+#: admin/admin.php:705
+msgid "<strong>Contact Form 7 %1$s requires WordPress %2$s or higher.</strong> Please <a href=\"%3$s\">update WordPress</a> first."
+msgstr "<strong>Formular de contact 7 %1$s necesită WordPress %2$s sau o versiune mai nouă.</strong> În primul rând, te rog <a href=\"%3$s\">actualizează WordPress</a>."
+
+#: admin/admin.php:687
+msgid "Settings"
+msgstr "Setări"
+
+#: admin/admin.php:640
+msgid "Contact form deleted."
+msgstr "Formularul de contact a fost șters."
+
+#: admin/admin.php:638
+msgid "Contact form saved."
+msgstr "Formularul de contact a fost salvat."
+
+#: admin/admin.php:636
+msgid "Contact form created."
+msgstr "Formularul de contact a fost creat."
+
+#: admin/admin.php:503
+msgid "Search Contact Forms"
+msgstr "Căutare formulare de contact"
+
+#: admin/admin.php:349
+msgid "Error in deleting."
+msgstr "Eroare în timpul ștergerii."
+
+#: admin/admin.php:343
+msgid "You are not allowed to delete this item."
+msgstr "Nu ai voie să ștergi acest element."
+
+#: admin/admin.php:245 admin/admin.php:298
+msgid "You are not allowed to edit this item."
+msgstr "Nu ai voie să editezi acest element."
+
+#: admin/admin.php:66
+msgid "Integration"
+msgstr "Integrare"
+
+#: admin/admin.php:41 admin/admin.php:444 includes/contact-form.php:51
+msgid "Contact Forms"
+msgstr "Formulare de contact"
+
+#: admin/admin.php:40 admin/edit-contact-form.php:42
+msgid "Edit Contact Form"
+msgstr "Editare formular de contact"
+
+#: admin/admin.php:30
+msgid "Contact"
+msgstr "Contact"
+
+#. Plugin Name of the plugin
+#: wp-contact-form-7.php admin/admin.php:29 modules/flamingo.php:219
+msgid "Contact Form 7"
+msgstr "Formular de contact 7"

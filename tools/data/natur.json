@@ -1,0 +1,3519 @@
+{
+ "categories": [
+  {
+   "id": 17,
+   "slug": "lactate-molochnye",
+   "name": "Lactate (Молочные)",
+   "parent": 0,
+   "url": "http://natur.md/17-lactate-molochnye",
+   "description": "",
+   "total_on_old_site": 10
+  },
+  {
+   "id": 12,
+   "slug": "carne-myaso",
+   "name": "Carne (Мясо)",
+   "parent": 0,
+   "url": "http://natur.md/12-carne-myaso",
+   "description": "<p>Carne proaspătă de porc, de vită, de pasăre ş.a.</p><p>Свежая свинина, говядина, мясо птицы и т.д.</p>",
+   "total_on_old_site": 15
+  },
+  {
+   "id": 14,
+   "slug": "pasare",
+   "name": "Carne de pasăre",
+   "parent": 12,
+   "url": "http://natur.md/14-pasare",
+   "description": "",
+   "total_on_old_site": 15
+  },
+  {
+   "id": 48,
+   "slug": "pasari-afumate",
+   "name": "Păsări afumate",
+   "parent": 14,
+   "url": "http://natur.md/48-pasari-afumate",
+   "description": "",
+   "total_on_old_site": 1
+  },
+  {
+   "id": 29,
+   "slug": "produse-din-carne",
+   "name": "Produse din carne",
+   "parent": 12,
+   "url": "http://natur.md/29-produse-din-carne",
+   "description": "",
+   "total_on_old_site": 15
+  },
+  {
+   "id": 13,
+   "slug": "carne-de-animale",
+   "name": "Carne de animale",
+   "parent": 12,
+   "url": "http://natur.md/13-carne-de-animale-",
+   "description": "",
+   "total_on_old_site": 13
+  },
+  {
+   "id": 45,
+   "slug": "porc",
+   "name": "Porc",
+   "parent": 13,
+   "url": "http://natur.md/45-porc",
+   "description": "",
+   "total_on_old_site": 9
+  },
+  {
+   "id": 47,
+   "slug": "vita",
+   "name": "Vită",
+   "parent": 13,
+   "url": "http://natur.md/47-vita",
+   "description": "",
+   "total_on_old_site": 3
+  },
+  {
+   "id": 35,
+   "slug": "alte-produse",
+   "name": "Alte produse",
+   "parent": 12,
+   "url": "http://natur.md/35-alte-produse",
+   "description": "",
+   "total_on_old_site": 3
+  },
+  {
+   "id": 102,
+   "slug": "carne-maturata-in-vid",
+   "name": "Carne maturată în vid",
+   "parent": 12,
+   "url": "http://natur.md/102-carne-maturata-in-vid",
+   "description": "",
+   "total_on_old_site": 4
+  },
+  {
+   "id": 103,
+   "slug": "carne-marinata",
+   "name": "Carne marinată",
+   "parent": 12,
+   "url": "http://natur.md/103-carne-marinata",
+   "description": "",
+   "total_on_old_site": 4
+  },
+  {
+   "id": 18,
+   "slug": "oua-yajca",
+   "name": "Ouă (Яйца)",
+   "parent": 0,
+   "url": "http://natur.md/18-oua-yajca",
+   "description": "",
+   "total_on_old_site": 3
+  },
+  {
+   "id": 16,
+   "slug": "fructe-legume",
+   "name": "Fructe şi legume",
+   "parent": 0,
+   "url": "http://natur.md/16-fructe-legume",
+   "description": "",
+   "total_on_old_site": 10
+  },
+  {
+   "id": 90,
+   "slug": "seminte-pentru-germinare",
+   "name": "Seminte pentru germinare",
+   "parent": 16,
+   "url": "http://natur.md/90-seminte-pentru-germinare",
+   "description": "",
+   "total_on_old_site": 10
+  },
+  {
+   "id": 83,
+   "slug": "afumatura-kopchenosti",
+   "name": "Afumătură (Копчености)",
+   "parent": 0,
+   "url": "http://natur.md/83-afumatura-kopchenosti",
+   "description": "",
+   "total_on_old_site": 4
+  },
+  {
+   "id": 69,
+   "slug": "paste-fainoase-pasty",
+   "name": "Paste fainoase (Пасты)",
+   "parent": 0,
+   "url": "http://natur.md/69-paste-fainoase-pasty",
+   "description": "",
+   "total_on_old_site": 5
+  },
+  {
+   "id": 19,
+   "slug": "bauturi-napitki",
+   "name": "Băuturi (Напитки)",
+   "parent": 0,
+   "url": "http://natur.md/19-bauturi-napitki",
+   "description": "",
+   "total_on_old_site": 2
+  },
+  {
+   "id": 43,
+   "slug": "suc-sok",
+   "name": "Suc (Сок)",
+   "parent": 19,
+   "url": "http://natur.md/43-suc-sok",
+   "description": "",
+   "total_on_old_site": 1
+  },
+  {
+   "id": 76,
+   "slug": "conserve",
+   "name": "Conserve",
+   "parent": 0,
+   "url": "http://natur.md/76-conserve",
+   "description": "",
+   "total_on_old_site": 12
+  },
+  {
+   "id": 77,
+   "slug": "din-legume",
+   "name": "Din legume",
+   "parent": 76,
+   "url": "http://natur.md/77-din-legume",
+   "description": "",
+   "total_on_old_site": 2
+  },
+  {
+   "id": 79,
+   "slug": "din-fructe",
+   "name": "Din fructe",
+   "parent": 76,
+   "url": "http://natur.md/79-din-fructe",
+   "description": "",
+   "total_on_old_site": 0
+  },
+  {
+   "id": 80,
+   "slug": "din-carne",
+   "name": "Din carne",
+   "parent": 76,
+   "url": "http://natur.md/80-din-carne",
+   "description": "",
+   "total_on_old_site": 9
+  },
+  {
+   "id": 85,
+   "slug": "din-pete",
+   "name": "Din pește",
+   "parent": 76,
+   "url": "http://natur.md/85-din-pete",
+   "description": "",
+   "total_on_old_site": 0
+  },
+  {
+   "id": 23,
+   "slug": "cereale",
+   "name": "Cereale",
+   "parent": 0,
+   "url": "http://natur.md/23-cereale",
+   "description": "<p>Cereale...",
+   "total_on_old_site": 1
+  },
+  {
+   "id": 42,
+   "slug": "faina",
+   "name": "Făină",
+   "parent": 23,
+   "url": "http://natur.md/42-faina",
+   "description": "",
+   "total_on_old_site": 0
+  },
+  {
+   "id": 72,
+   "slug": "cereale",
+   "name": "Cereale",
+   "parent": 23,
+   "url": "http://natur.md/72-cereale",
+   "description": "<p>Cereale consum direct</p>",
+   "total_on_old_site": 0
+  },
+  {
+   "id": 81,
+   "slug": "adaos-biologic-activ-bad-y",
+   "name": "Adaos biologic activ (БАД-ы)",
+   "parent": 0,
+   "url": "http://natur.md/81-adaos-biologic-activ-bad-y",
+   "description": "",
+   "total_on_old_site": 15
+  },
+  {
+   "id": 67,
+   "slug": "suplimente-alimentare-pisshevye-dobavki",
+   "name": "Suplimente Alimentare (Пищевые добавки)",
+   "parent": 0,
+   "url": "http://natur.md/67-suplimente-alimentare-pisshevye-dobavki",
+   "description": "<p>Suplimente Alimentare</p>",
+   "total_on_old_site": 15
+  },
+  {
+   "id": 71,
+   "slug": "vegan-food",
+   "name": "Vegan Food",
+   "parent": 0,
+   "url": "http://natur.md/71-vegan-food",
+   "description": "",
+   "total_on_old_site": 15
+  },
+  {
+   "id": 73,
+   "slug": "gluten-free",
+   "name": "GLUTEN FREE",
+   "parent": 0,
+   "url": "http://natur.md/73-gluten-free",
+   "description": "",
+   "total_on_old_site": 1
+  },
+  {
+   "id": 49,
+   "slug": "produse-cocos-kokos",
+   "name": "Produse Cocos (Кокос)",
+   "parent": 0,
+   "url": "http://natur.md/49-produse-cocos-kokos",
+   "description": "<p>Produse din cocos</p>",
+   "total_on_old_site": 1
+  },
+  {
+   "id": 50,
+   "slug": "ulei-cocos-maslo-kokos",
+   "name": "Ulei Cocos (Масло Кокос)",
+   "parent": 49,
+   "url": "http://natur.md/50-ulei-cocos-maslo-kokos",
+   "description": "<p>Ulei Cocos</p>",
+   "total_on_old_site": 1
+  },
+  {
+   "id": 51,
+   "slug": "faina-cocos-kokosovaya-muka",
+   "name": "Făină Cocos (Кокосовая мука)",
+   "parent": 49,
+   "url": "http://natur.md/51-faina-cocos-kokosovaya-muka",
+   "description": "<p>Făină Cocos</p>",
+   "total_on_old_site": 0
+  },
+  {
+   "id": 62,
+   "slug": "produse-cosmetice-kosmetika",
+   "name": "Produse cosmetice (Косметика)",
+   "parent": 0,
+   "url": "http://natur.md/62-produse-cosmetice-kosmetika",
+   "description": "",
+   "total_on_old_site": 6
+  },
+  {
+   "id": 52,
+   "slug": "faina-muka",
+   "name": "Făină (Мука)",
+   "parent": 0,
+   "url": "http://natur.md/52-faina-muka",
+   "description": "<p>Făină</p>",
+   "total_on_old_site": 1
+  },
+  {
+   "id": 53,
+   "slug": "faina-cereale-muka-zlakovykh",
+   "name": "Făină cereale (Мука злаковых)",
+   "parent": 52,
+   "url": "http://natur.md/53-faina-cereale-muka-zlakovykh",
+   "description": "<p>Făină cereale</p>",
+   "total_on_old_site": 0
+  },
+  {
+   "id": 54,
+   "slug": "faina-cocos-kokosovaya-muka",
+   "name": "Făină Cocos (Кокосовая мука)",
+   "parent": 52,
+   "url": "http://natur.md/54-faina-cocos-kokosovaya-muka",
+   "description": "<p>Făină Cocos</p>",
+   "total_on_old_site": 0
+  },
+  {
+   "id": 65,
+   "slug": "faina-vegetala-degresata-muka-rastenij-obezzhirennaya",
+   "name": "Făină vegetală degresată (Мука растений, обезжиренная)",
+   "parent": 52,
+   "url": "http://natur.md/65-faina-vegetala-degresata-muka-rastenij-obezzhirennaya",
+   "description": "",
+   "total_on_old_site": 0
+  },
+  {
+   "id": 82,
+   "slug": "utile",
+   "name": "Utile",
+   "parent": 0,
+   "url": "http://natur.md/82-utile",
+   "description": "",
+   "total_on_old_site": 1
+  },
+  {
+   "id": 37,
+   "slug": "nuci-semine",
+   "name": "Nuci, semințe",
+   "parent": 0,
+   "url": "http://natur.md/37-nuci-semine",
+   "description": "",
+   "total_on_old_site": 15
+  },
+  {
+   "id": 55,
+   "slug": "ciuperci",
+   "name": "Ciuperci",
+   "parent": 0,
+   "url": "http://natur.md/55-ciuperci",
+   "description": "",
+   "total_on_old_site": 4
+  },
+  {
+   "id": 93,
+   "slug": "ayurvedice-ayurveda",
+   "name": "Ayurvedice (Аюрведа)",
+   "parent": 0,
+   "url": "http://natur.md/93-ayurvedice-ayurveda-",
+   "description": "",
+   "total_on_old_site": 15
+  },
+  {
+   "id": 97,
+   "slug": "horeca",
+   "name": "HoReCa",
+   "parent": 0,
+   "url": "http://natur.md/97-horeca",
+   "description": "",
+   "total_on_old_site": 15
+  },
+  {
+   "id": 99,
+   "slug": "hrana-animale-de-campanie",
+   "name": "Hrana animale de campanie",
+   "parent": 0,
+   "url": "http://natur.md/99-hrana-animale-de-campanie",
+   "description": "",
+   "total_on_old_site": 1
+  }
+ ],
+ "products": [
+  {
+   "id": 1001,
+   "url": "http://natur.md/lactate-molochnye/1001-burrata-din-lapte-de-bivolia-ferma-cu-origini.html",
+   "name": "Burrata din lapte de Bivoliță Ferma cu Origini",
+   "price": 97.0,
+   "regular_price": 97.0,
+   "unit": "pentru 150 gr",
+   "short": "<p>Burrata din lapte de Bivoliță Ferma cu Origini 150 gr</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5983-thickbox_default/burrata-din-lapte-de-bivolia-ferma-cu-origini.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    17
+   ],
+   "local_images": [
+    "1001-0-burrata-din-lapte-de-bivolia-ferma-cu-origini.jpg"
+   ]
+  },
+  {
+   "id": 1005,
+   "url": "http://natur.md/lactate-molochnye/1005-iaurt-clasic-0-grasime-ferma-cu-origini.html",
+   "name": "Iaurt clasic 0% grăsime Ferma cu Origini",
+   "price": 15.0,
+   "regular_price": 15.0,
+   "unit": "pentru 180 gr",
+   "short": "<p>Iaurt clasic 0% grăsime Ferma cu Origini, 180 gr</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5987-thickbox_default/iaurt-clasic-0-grasime-ferma-cu-origini.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    17
+   ],
+   "local_images": [
+    "1005-0-iaurt-clasic-0-grasime-ferma-cu-origini.jpg"
+   ]
+  },
+  {
+   "id": 999,
+   "url": "http://natur.md/lactate-molochnye/999-branza-proaspata-9-ferma-cu-origini.html",
+   "name": "Brânză proaspătă 9% Ferma cu Origini",
+   "price": 57.0,
+   "regular_price": 57.0,
+   "unit": "pentru 350 gr",
+   "short": "<p>Brânză proaspătă 9% Ferma cu Origini</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5981-thickbox_default/branza-proaspata-9-ferma-cu-origini.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    17
+   ],
+   "local_images": [
+    "999-0-branza-proaspata-9-ferma-cu-origini.jpg"
+   ]
+  },
+  {
+   "id": 556,
+   "url": "http://natur.md/lactate-molochnye/556-unt-ghee.html",
+   "name": "Unt topit GHEE",
+   "price": 460.0,
+   "regular_price": 460.0,
+   "unit": "pentru 720 ml",
+   "short": "<p>Unt topit GHEE, 720 ml, ULEI DE UNT, <strong>PRODUCTIE LIMITATA PENTRU TESTAREA INTERESULUI</strong></p><p><strong>Масло Гхи.</strong></p>",
+   "description": "",
+   "images": [
+    "http://natur.md/4806-thickbox_default/unt-ghee.jpg",
+    "http://natur.md/4807-thickbox_default/unt-ghee.jpg",
+    "http://natur.md/4297-thickbox_default/unt-ghee.jpg",
+    "http://natur.md/4673-thickbox_default/unt-ghee.jpg",
+    "http://natur.md/4672-thickbox_default/unt-ghee.jpg"
+   ],
+   "reviews": [
+    {
+     "author": "Aliona",
+     "rating": 3,
+     "date": "2020-04-14",
+     "text": "Am gustat unt ghee de la vreo 4 producatori, si al vostru e fenomenal! Are un miros mai fine decit untul simplu! E super bun si gustos!"
+    },
+    {
+     "author": "Natur.md",
+     "rating": 3,
+     "date": "2020-02-25",
+     "text": "Pentru Yngvarr - este o eroare de tipar pe eticheta pe care o regretam. Daca va uitati la borcanul procurat o sa vedeti ca el are volumul de 720 de ml, asa cum este specificat si pe site. Etichetele, din pacate au fost printate cu greseala. Cu regret se mai intampla."
+    },
+    {
+     "author": "Yngvarr",
+     "rating": 3,
+     "date": "2020-02-24",
+     "text": "Pe eticheta borcanului este indicat volumul de 580 ml, însă aici pe pagină este indicat `190 lei pentru 720 ml`. Care-i volumul și prețul corect în așa caz?"
+    },
+    {
+     "author": "Aida M",
+     "rating": 3,
+     "date": "2020-01-20",
+     "text": "Calitate extraordinara, recomand!"
+    },
+    {
+     "author": "Violeta",
+     "rating": 3,
+     "date": "2019-03-26",
+     "text": "SUPERB PRODUS !"
+    }
+   ],
+   "in_stock": true,
+   "categories": [
+    17,
+    93
+   ],
+   "local_images": [
+    "556-0-unt-ghee.jpg",
+    "556-1-unt-ghee.jpg",
+    "556-2-unt-ghee.jpg",
+    "556-3-unt-ghee.jpg",
+    "556-4-unt-ghee.jpg"
+   ]
+  },
+  {
+   "id": 1004,
+   "url": "http://natur.md/lactate-molochnye/1004-iurt-de-baut-cu-bifidobacterii-ferma-cu-origini.html",
+   "name": "Iaurt de băut cu bifidobacterii Ferma cu Origini",
+   "price": 28.0,
+   "regular_price": 28.0,
+   "unit": "pentru 330 gr",
+   "short": "<p>Iaurt de băut cu bifidobacterii Ferma cu Origini, 330 gr</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5986-thickbox_default/iurt-de-baut-cu-bifidobacterii-ferma-cu-origini.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    17
+   ],
+   "local_images": [
+    "1004-0-iurt-de-baut-cu-bifidobacterii-ferma-cu-origini.jpg"
+   ]
+  },
+  {
+   "id": 998,
+   "url": "http://natur.md/lactate-molochnye/998-lapte-intergal-ferma-cu-origini.html",
+   "name": "Lapte intergal Ferma cu Origini",
+   "price": 38.0,
+   "regular_price": 38.0,
+   "unit": "pentru 1 litru",
+   "short": "<p>Lapte intergal Ferma cu Origini 3,9-6% grăsime</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5980-thickbox_default/lapte-intergal-ferma-cu-origini.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    17
+   ],
+   "local_images": [
+    "998-0-lapte-intergal-ferma-cu-origini.jpg"
+   ]
+  },
+  {
+   "id": 170,
+   "url": "http://natur.md/porc/170-ceafa-porc.html",
+   "name": "Ceafă porc",
+   "price": 155.0,
+   "regular_price": 155.0,
+   "unit": "pentru Kg",
+   "short": "<p><strong>Шейка свиная</strong></p><p><strong>Доставка только по пятницам.</strong></p><p><strong>Prețul este afișat pentru 1 kg. În realitate, acest produs poate avea 2-2,4 kg, se vinde ”la bucată”. </strong></p><p><strong>Detalii mai jos</strong></p>",
+   "description": "",
+   "images": [
+    "http://natur.md/1031-thickbox_default/ceafa-porc.jpg",
+    "http://natur.md/893-thickbox_default/ceafa-porc.jpg",
+    "http://natur.md/894-thickbox_default/ceafa-porc.jpg",
+    "http://natur.md/895-thickbox_default/ceafa-porc.jpg",
+    "http://natur.md/991-thickbox_default/ceafa-porc.jpg",
+    "http://natur.md/992-thickbox_default/ceafa-porc.jpg",
+    "http://natur.md/1032-thickbox_default/ceafa-porc.jpg",
+    "http://natur.md/1034-thickbox_default/ceafa-porc.jpg",
+    "http://natur.md/1035-thickbox_default/ceafa-porc.jpg",
+    "http://natur.md/1009-thickbox_default/ceafa-porc.jpg",
+    "http://natur.md/1010-thickbox_default/ceafa-porc.jpg",
+    "http://natur.md/1033-thickbox_default/ceafa-porc.jpg"
+   ],
+   "reviews": [
+    {
+     "author": "Marcela",
+     "rating": 3,
+     "date": "2019-06-02",
+     "text": "Foarte gustoasă, fără mirosuri specifice și moale. Mulțumesc, Natur.md"
+    }
+   ],
+   "in_stock": true,
+   "categories": [
+    12,
+    13,
+    45
+   ],
+   "local_images": [
+    "170-0-ceafa-porc.jpg",
+    "170-1-ceafa-porc.jpg",
+    "170-2-ceafa-porc.jpg",
+    "170-3-ceafa-porc.jpg",
+    "170-4-ceafa-porc.jpg",
+    "170-5-ceafa-porc.jpg",
+    "170-6-ceafa-porc.jpg",
+    "170-7-ceafa-porc.jpg",
+    "170-8-ceafa-porc.jpg",
+    "170-9-ceafa-porc.jpg",
+    "170-10-ceafa-porc.jpg",
+    "170-11-ceafa-porc.jpg"
+   ]
+  },
+  {
+   "id": 23,
+   "url": "http://natur.md/pasari-afumate/23-prepelita-intreaga-afumata.html",
+   "name": "Prepeliţă afumată",
+   "price": 80.0,
+   "regular_price": 80.0,
+   "unit": "pentru 1 kg",
+   "short": "<p><strong>Preț per bucată de cca. 200 gr</strong></p><p>Prepelițe afumate 100% natural.</p><p><strong>100% натуральные копченые перепела</strong></p>",
+   "description": "",
+   "images": [
+    "http://natur.md/800-thickbox_default/prepelita-intreaga-afumata.jpg",
+    "http://natur.md/327-thickbox_default/prepelita-intreaga-afumata.jpg",
+    "http://natur.md/477-thickbox_default/prepelita-intreaga-afumata.jpg",
+    "http://natur.md/478-thickbox_default/prepelita-intreaga-afumata.jpg",
+    "http://natur.md/479-thickbox_default/prepelita-intreaga-afumata.jpg",
+    "http://natur.md/480-thickbox_default/prepelita-intreaga-afumata.jpg",
+    "http://natur.md/690-thickbox_default/prepelita-intreaga-afumata.jpg",
+    "http://natur.md/798-thickbox_default/prepelita-intreaga-afumata.jpg",
+    "http://natur.md/1043-thickbox_default/prepelita-intreaga-afumata.jpg",
+    "http://natur.md/801-thickbox_default/prepelita-intreaga-afumata.jpg",
+    "http://natur.md/815-thickbox_default/prepelita-intreaga-afumata.jpg",
+    "http://natur.md/802-thickbox_default/prepelita-intreaga-afumata.jpg",
+    "http://natur.md/1897-thickbox_default/prepelita-intreaga-afumata.jpg"
+   ],
+   "reviews": [
+    {
+     "author": "Catan Lilia",
+     "rating": 3,
+     "date": "2020-03-14",
+     "text": "super de bune"
+    },
+    {
+     "author": "✿ Natur.MD",
+     "rating": 3,
+     "date": "2019-05-21",
+     "text": "Buna ziua, Galina! Avem prepelite neafumate. Vedeti aici prepelite intregi proaspete, pulpe, piept si alte produse de prepelita. http://natur.md/14-pasare"
+    },
+    {
+     "author": "Galina",
+     "rating": 3,
+     "date": "2019-05-20",
+     "text": "Prepelițe neafumate nu vindeți?"
+    },
+    {
+     "author": "Aliona",
+     "rating": 3,
+     "date": "2018-12-18",
+     "text": "Carnea afumata natural e tot mai rar de gasit. Mersi Natur pentru ca gasiti si ne aduceti produse adevarate."
+    },
+    {
+     "author": "Victor",
+     "rating": 3,
+     "date": "2018-08-14",
+     "text": "Wow!"
+    },
+    {
+     "author": "света",
+     "rating": 3,
+     "date": "2018-05-24",
+     "text": "понравились очень! молодцы!!"
+    },
+    {
+     "author": "Aurica Butu",
+     "rating": 3,
+     "date": "2018-05-15",
+     "text": "Crocante si apetisante! Mancare de elita :)!"
+    },
+    {
+     "author": "Aurica",
+     "rating": 3,
+     "date": "2018-05-04",
+     "text": "Sunt recunoscatoare la producatori pentru acest produs! Pentru prima data am dat carnita copilului meu si i-a placut imediat! Prima alegere am facut-o corect!"
+    },
+    {
+     "author": "Victor",
+     "rating": 3,
+     "date": "2018-04-27",
+     "text": "Nu am crezut că voi fi atât de impresionat de acest gust - este incredibil."
+    }
+   ],
+   "in_stock": true,
+   "categories": [
+    12,
+    48,
+    83
+   ],
+   "local_images": [
+    "23-0-prepelita-intreaga-afumata.jpg",
+    "23-1-prepelita-intreaga-afumata.jpg",
+    "23-2-prepelita-intreaga-afumata.jpg",
+    "23-3-prepelita-intreaga-afumata.jpg",
+    "23-4-prepelita-intreaga-afumata.jpg",
+    "23-5-prepelita-intreaga-afumata.jpg",
+    "23-6-prepelita-intreaga-afumata.jpg",
+    "23-7-prepelita-intreaga-afumata.jpg",
+    "23-8-prepelita-intreaga-afumata.jpg",
+    "23-9-prepelita-intreaga-afumata.jpg",
+    "23-10-prepelita-intreaga-afumata.jpg",
+    "23-11-prepelita-intreaga-afumata.jpg",
+    "23-12-prepelita-intreaga-afumata.jpg"
+   ]
+  },
+  {
+   "id": 94,
+   "url": "http://natur.md/produse-din-carne/94-pulpe-de-prepelia.html",
+   "name": "Pulpe de prepeliță",
+   "price": 400.0,
+   "regular_price": 400.0,
+   "unit": "pentru Kg",
+   "short": "<p>Pulpe de prepeliță proaspеtе</p><p><strong>Перепелиные ножки, свежие</strong></p>",
+   "description": "",
+   "images": [
+    "http://natur.md/340-thickbox_default/pulpe-de-prepelia.jpg",
+    "http://natur.md/447-thickbox_default/pulpe-de-prepelia.jpg",
+    "http://natur.md/449-thickbox_default/pulpe-de-prepelia.jpg",
+    "http://natur.md/448-thickbox_default/pulpe-de-prepelia.jpg",
+    "http://natur.md/339-thickbox_default/pulpe-de-prepelia.jpg",
+    "http://natur.md/341-thickbox_default/pulpe-de-prepelia.jpg",
+    "http://natur.md/338-thickbox_default/pulpe-de-prepelia.jpg",
+    "http://natur.md/719-thickbox_default/pulpe-de-prepelia.jpg",
+    "http://natur.md/720-thickbox_default/pulpe-de-prepelia.jpg",
+    "http://natur.md/763-thickbox_default/pulpe-de-prepelia.jpg",
+    "http://natur.md/765-thickbox_default/pulpe-de-prepelia.jpg",
+    "http://natur.md/766-thickbox_default/pulpe-de-prepelia.jpg"
+   ],
+   "reviews": [
+    {
+     "author": "Tatiana",
+     "rating": 3,
+     "date": "2019-06-12",
+     "text": "E un deliciu absolut.Intr-un kg intra la vreo 50.Sunt foarte multumita.Recomand!"
+    },
+    {
+     "author": "Valeriu",
+     "rating": 3,
+     "date": "2018-10-07",
+     "text": "Cea mai buna carne pe care o pot recomanda"
+    }
+   ],
+   "in_stock": true,
+   "categories": [
+    12,
+    14,
+    97
+   ],
+   "local_images": [
+    "94-0-pulpe-de-prepelia.jpg",
+    "94-1-pulpe-de-prepelia.jpg",
+    "94-2-pulpe-de-prepelia.jpg",
+    "94-3-pulpe-de-prepelia.jpg",
+    "94-4-pulpe-de-prepelia.jpg",
+    "94-5-pulpe-de-prepelia.jpg",
+    "94-6-pulpe-de-prepelia.jpg",
+    "94-7-pulpe-de-prepelia.jpg",
+    "94-8-pulpe-de-prepelia.jpg",
+    "94-9-pulpe-de-prepelia.jpg",
+    "94-10-pulpe-de-prepelia.jpg",
+    "94-11-pulpe-de-prepelia.jpg"
+   ]
+  },
+  {
+   "id": 90,
+   "url": "http://natur.md/produse-din-carne/90-carne-inabuita-de-prepelia.html",
+   "name": "Carne înăbușită de prepeliță",
+   "price": 155.0,
+   "regular_price": 155.0,
+   "unit": "pentru 230 gr",
+   "short": "<p>Carne înăbușită de prepeliță, cca 240 gr <strong>TESTARE CERERE</strong></p><p><strong><strong>Перепела тушеные в собственном соку ИЗУЧЕНИЕ СПРОСА</strong></strong></p>",
+   "description": "",
+   "images": [
+    "http://natur.md/4808-thickbox_default/carne-inabuita-de-prepelia.jpg",
+    "http://natur.md/4809-thickbox_default/carne-inabuita-de-prepelia.jpg",
+    "http://natur.md/1094-thickbox_default/carne-inabuita-de-prepelia.jpg",
+    "http://natur.md/3363-thickbox_default/carne-inabuita-de-prepelia.jpg",
+    "http://natur.md/3388-thickbox_default/carne-inabuita-de-prepelia.jpg",
+    "http://natur.md/3389-thickbox_default/carne-inabuita-de-prepelia.jpg"
+   ],
+   "reviews": [
+    {
+     "author": "Ольга",
+     "rating": 3,
+     "date": "2021-11-09",
+     "text": "Беру второй раз, очень нравиться на вкус, чувствуется что действительно мясо перепёлки, радует что на нашем рынке появляются такого качества продукты! Желаю успехов!"
+    },
+    {
+     "author": "Victor",
+     "rating": 3,
+     "date": "2018-09-26",
+     "text": "Wow! Surprins placut de acest gust. Mai rar cand dai de un produs nou si il accepti imediat. Bravo producatorilor"
+    }
+   ],
+   "in_stock": true,
+   "categories": [
+    12,
+    14,
+    76,
+    80
+   ],
+   "local_images": [
+    "90-0-carne-inabuita-de-prepelia.jpg",
+    "90-1-carne-inabuita-de-prepelia.jpg",
+    "90-2-carne-inabuita-de-prepelia.jpg",
+    "90-3-carne-inabuita-de-prepelia.jpg",
+    "90-4-carne-inabuita-de-prepelia.jpg",
+    "90-5-carne-inabuita-de-prepelia.jpg"
+   ]
+  },
+  {
+   "id": 96,
+   "url": "http://natur.md/produse-din-carne/96-piept-pulpe-prepelia.html",
+   "name": "Piept, pulpe prepeliță",
+   "price": 400.0,
+   "regular_price": 400.0,
+   "unit": "pentru Kg",
+   "short": "<p>Piept, pulpe prepeliță</p><p><strong>Грудинка, ножки перепелиные</strong></p>",
+   "description": "",
+   "images": [
+    "http://natur.md/349-thickbox_default/piept-pulpe-prepelia.jpg",
+    "http://natur.md/453-thickbox_default/piept-pulpe-prepelia.jpg",
+    "http://natur.md/454-thickbox_default/piept-pulpe-prepelia.jpg",
+    "http://natur.md/455-thickbox_default/piept-pulpe-prepelia.jpg",
+    "http://natur.md/346-thickbox_default/piept-pulpe-prepelia.jpg",
+    "http://natur.md/348-thickbox_default/piept-pulpe-prepelia.jpg",
+    "http://natur.md/721-thickbox_default/piept-pulpe-prepelia.jpg",
+    "http://natur.md/722-thickbox_default/piept-pulpe-prepelia.jpg"
+   ],
+   "reviews": [
+    {
+     "author": "Oxana",
+     "rating": 3,
+     "date": "2018-05-11",
+     "text": "Cumparat pentru frigarui cu familia. Toti multumiti, gratarul reusit!!"
+    },
+    {
+     "author": "Tatiana",
+     "rating": 5,
+     "date": "2018-05-04",
+     "text": "Incercati pieptul si pulpele de prepelita cu cartofi copti in rola si ciuperci!!! Fantastic."
+    }
+   ],
+   "in_stock": true,
+   "categories": [
+    12,
+    14,
+    29
+   ],
+   "local_images": [
+    "96-0-piept-pulpe-prepelia.jpg",
+    "96-1-piept-pulpe-prepelia.jpg",
+    "96-2-piept-pulpe-prepelia.jpg",
+    "96-3-piept-pulpe-prepelia.jpg",
+    "96-4-piept-pulpe-prepelia.jpg",
+    "96-5-piept-pulpe-prepelia.jpg",
+    "96-6-piept-pulpe-prepelia.jpg",
+    "96-7-piept-pulpe-prepelia.jpg"
+   ]
+  },
+  {
+   "id": 169,
+   "url": "http://natur.md/porc/169-muchi-file-porc.html",
+   "name": "Mușchi file porc",
+   "price": 165.0,
+   "regular_price": 165.0,
+   "unit": "pentru Kg",
+   "short": "<p><strong>Свиная корейка</strong></p><p><strong>Доставка только по пятницам.</strong></p><p><strong>Prețul este afișat pentru 1 kg. În realitate, acest produs poate avea 2,2-2,5 kg, se vinde ”la bucată”. </strong></p><p>Detalii mai jos</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/1016-thickbox_default/muchi-file-porc.jpg",
+    "http://natur.md/890-thickbox_default/muchi-file-porc.jpg",
+    "http://natur.md/891-thickbox_default/muchi-file-porc.jpg",
+    "http://natur.md/892-thickbox_default/muchi-file-porc.jpg",
+    "http://natur.md/999-thickbox_default/muchi-file-porc.jpg",
+    "http://natur.md/1011-thickbox_default/muchi-file-porc.jpg",
+    "http://natur.md/1012-thickbox_default/muchi-file-porc.jpg",
+    "http://natur.md/1013-thickbox_default/muchi-file-porc.jpg",
+    "http://natur.md/1014-thickbox_default/muchi-file-porc.jpg",
+    "http://natur.md/1015-thickbox_default/muchi-file-porc.jpg",
+    "http://natur.md/1017-thickbox_default/muchi-file-porc.jpg",
+    "http://natur.md/3196-thickbox_default/muchi-file-porc.jpg"
+   ],
+   "reviews": [
+    {
+     "author": "Galina B",
+     "rating": 3,
+     "date": "2018-08-09",
+     "text": "Этим мясом довольны."
+    },
+    {
+     "author": "Gh.",
+     "rating": 3,
+     "date": "2018-08-05",
+     "text": "Pe caldura asta zau nu iti e a iesi din casa la cumparaturi. Mersi Natur ca imi aduce produsele acasa. Mersi, mersi!"
+    }
+   ],
+   "in_stock": true,
+   "categories": [
+    12,
+    13
+   ],
+   "local_images": [
+    "169-0-muchi-file-porc.jpg",
+    "169-1-muchi-file-porc.jpg",
+    "169-2-muchi-file-porc.jpg",
+    "169-3-muchi-file-porc.jpg",
+    "169-4-muchi-file-porc.jpg",
+    "169-5-muchi-file-porc.jpg",
+    "169-6-muchi-file-porc.jpg",
+    "169-7-muchi-file-porc.jpg",
+    "169-8-muchi-file-porc.jpg",
+    "169-9-muchi-file-porc.jpg",
+    "169-10-muchi-file-porc.jpg",
+    "169-11-muchi-file-porc.jpg"
+   ]
+  },
+  {
+   "id": 8,
+   "url": "http://natur.md/pasare/8-gaina-de-casa-bio.html",
+   "name": "Carne de găină de casă, congelată",
+   "price": 145.0,
+   "regular_price": 145.0,
+   "unit": "pentru kg",
+   "short": "<p>Găină de casă congelată, întreagă, cca. 1,8-2,8 kg</p><p><strong>Курица домашняя, целая, мороженная. Около 1,8-2,8 кг</strong></p><p><strong>Prețul este afișat pentru 1 kg. În realitate, acest produs poate avea mai mult de 1 kg fiindcă se vinde ”la bucată”. </strong></p>",
+   "description": "",
+   "images": [
+    "http://natur.md/3328-thickbox_default/gaina-de-casa-bio.jpg",
+    "http://natur.md/2626-thickbox_default/gaina-de-casa-bio.jpg",
+    "http://natur.md/2627-thickbox_default/gaina-de-casa-bio.jpg",
+    "http://natur.md/2794-thickbox_default/gaina-de-casa-bio.jpg",
+    "http://natur.md/3177-thickbox_default/gaina-de-casa-bio.jpg",
+    "http://natur.md/3197-thickbox_default/gaina-de-casa-bio.jpg",
+    "http://natur.md/3325-thickbox_default/gaina-de-casa-bio.jpg",
+    "http://natur.md/3326-thickbox_default/gaina-de-casa-bio.jpg",
+    "http://natur.md/3327-thickbox_default/gaina-de-casa-bio.jpg"
+   ],
+   "reviews": [
+    {
+     "author": "Elena Gheorghe",
+     "rating": 3,
+     "date": "2021-01-09",
+     "text": "Bună ziua Aș dorii mai multe detalii le găinile diseară câte kilograme are și cat e prețul te 0754499400"
+    },
+    {
+     "author": "Natalia Topala",
+     "rating": 3,
+     "date": "2019-12-12",
+     "text": "Vreau o găina de cel mult 2kg dacă e posibil dacă nu atunci nu vreau. Mersi. Sa fie de anul acesta va rog. Am copil mic"
+    },
+    {
+     "author": "✿ Natur.MD",
+     "rating": 3,
+     "date": "2018-10-08",
+     "text": "Draga Mariana! Puteti face comanda online aici, chiar pe aceasta pagina sau contactati-ne pe Facebook Messenger sau la telefon: 060 89 30 00 sau 078 44 44 87. Pentru a comanda online, trebuie sa va creati un cont mai intai. Procesul e foarte simplu. Click pe butonul Autentificare de mai sus si urmati instructiunile. Contul se creaza in cateva secunde! Vom fi bucurosi sa va deservim!"
+    },
+    {
+     "author": "Mariana Rotaru",
+     "rating": 3,
+     "date": "2018-10-07",
+     "text": "Doresc o gaina de casa"
+    },
+    {
+     "author": "Dina",
+     "rating": 3,
+     "date": "2018-05-25",
+     "text": "Va asteptam cu nerabdare in fiecare saptamina:) tot ce aduceti are gust de tara, simtim ca mincam ceva adevarat"
+    },
+    {
+     "author": "Doina",
+     "rating": 3,
+     "date": "2018-05-13",
+     "text": "Mersi natur.md pentru carnea de la tara pe care ne-o aduceti in fiecare saptamina. Nu mai vreau carne importata de nustiu pe unde, injectata cu tot felul de hormoni. Mersi si taranilor nostri care mai cresc pasari in conditii naturale."
+    }
+   ],
+   "in_stock": true,
+   "categories": [
+    14
+   ],
+   "local_images": [
+    "8-0-gaina-de-casa-bio.jpg",
+    "8-1-gaina-de-casa-bio.jpg",
+    "8-2-gaina-de-casa-bio.jpg",
+    "8-3-gaina-de-casa-bio.jpg",
+    "8-4-gaina-de-casa-bio.jpg",
+    "8-5-gaina-de-casa-bio.jpg",
+    "8-6-gaina-de-casa-bio.jpg",
+    "8-7-gaina-de-casa-bio.jpg",
+    "8-8-gaina-de-casa-bio.jpg"
+   ]
+  },
+  {
+   "id": 373,
+   "url": "http://natur.md/pasare/373-piept-pui-george-standard.html",
+   "name": "Piept pui, GEORGE STANDARD",
+   "price": 130.0,
+   "regular_price": 130.0,
+   "unit": "pentru 500 gr",
+   "short": "<p>Piept pui, GEORGE STANDARD - pui crescuti in libertate, crescuti fara hormoni, antibiotici, stimulenti</p><p><strong>Livrăm în zilele de MARŢI şi VINERI</strong></p>",
+   "description": "",
+   "images": [
+    "http://natur.md/3166-thickbox_default/piept-pui-george-standard.jpg",
+    "http://natur.md/3259-thickbox_default/piept-pui-george-standard.jpg",
+    "http://natur.md/3260-thickbox_default/piept-pui-george-standard.jpg",
+    "http://natur.md/3271-thickbox_default/piept-pui-george-standard.jpg",
+    "http://natur.md/3272-thickbox_default/piept-pui-george-standard.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    14,
+    29
+   ],
+   "local_images": [
+    "373-0-piept-pui-george-standard.jpg",
+    "373-1-piept-pui-george-standard.jpg",
+    "373-2-piept-pui-george-standard.jpg",
+    "373-3-piept-pui-george-standard.jpg",
+    "373-4-piept-pui-george-standard.jpg"
+   ]
+  },
+  {
+   "id": 153,
+   "url": "http://natur.md/pasare/153-curcan-de-casa.html",
+   "name": "Carne de curcan de casă, congelat",
+   "price": 160.0,
+   "regular_price": 160.0,
+   "unit": "pentru Kg",
+   "short": "<p>Carne de curcan de casă, întreg, cca 6-10 kg</p><p><strong>Индюк, домашний, целый. Около 6-10 кг</strong></p><p><strong><strong>Prețul este afișat pentru 1 kg. În realitate, acest produs poate avea mai mult de 1 kg fiindcă se vinde ”la bucată”. </strong></strong></p>",
+   "description": "",
+   "images": [
+    "http://natur.md/812-thickbox_default/curcan-de-casa.jpg",
+    "http://natur.md/2784-thickbox_default/curcan-de-casa.jpg",
+    "http://natur.md/3178-thickbox_default/curcan-de-casa.jpg",
+    "http://natur.md/5715-thickbox_default/curcan-de-casa.jpg"
+   ],
+   "reviews": [
+    {
+     "author": "Natur.md",
+     "rating": 3,
+     "date": "2021-02-05",
+     "text": "Ion. Vedeti in poze Certificatul Sanitar-Veterinar"
+    },
+    {
+     "author": "Ion",
+     "rating": 3,
+     "date": "2021-01-25",
+     "text": "Buna ziua, as vrea sa postati un certificat sanitar veterinar in baza caruia comercializati carnea de curcan, multumesc anticipat."
+    },
+    {
+     "author": "Людмила",
+     "rating": 3,
+     "date": "2020-03-16",
+     "text": "Пройдет пост, и мы ваши клиенты! Живем рядом совсем)."
+    },
+    {
+     "author": "Angela",
+     "rating": 3,
+     "date": "2018-10-21",
+     "text": "Multumita! Carnea calitativa, livrarea rapida."
+    },
+    {
+     "author": "Catea",
+     "rating": 3,
+     "date": "2018-05-22",
+     "text": "Un curcan sanatos!"
+    }
+   ],
+   "in_stock": true,
+   "categories": [
+    14
+   ],
+   "local_images": [
+    "153-0-curcan-de-casa.jpg",
+    "153-1-curcan-de-casa.jpg",
+    "153-2-curcan-de-casa.jpg",
+    "153-3-curcan-de-casa.jpg"
+   ]
+  },
+  {
+   "id": 374,
+   "url": "http://natur.md/pasare/374-pulpe-de-pui.html",
+   "name": "Pulpe de pui GEORGE STANDARD",
+   "price": 170.0,
+   "regular_price": 170.0,
+   "unit": "pentru 900 gr",
+   "short": "<p>Pulpe de pui, GEORGE STANDARD - pui crescuti in libertate, crescuti fara hormoni, antibiotici, stimulenti</p><p><strong>Livrăm în zilele de MARŢI şi VINERI</strong></p>",
+   "description": "",
+   "images": [
+    "http://natur.md/3165-thickbox_default/pulpe-de-pui.jpg",
+    "http://natur.md/3257-thickbox_default/pulpe-de-pui.jpg",
+    "http://natur.md/3258-thickbox_default/pulpe-de-pui.jpg",
+    "http://natur.md/3269-thickbox_default/pulpe-de-pui.jpg",
+    "http://natur.md/3270-thickbox_default/pulpe-de-pui.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    29
+   ],
+   "local_images": [
+    "374-0-pulpe-de-pui.jpg",
+    "374-1-pulpe-de-pui.jpg",
+    "374-2-pulpe-de-pui.jpg",
+    "374-3-pulpe-de-pui.jpg",
+    "374-4-pulpe-de-pui.jpg"
+   ]
+  },
+  {
+   "id": 377,
+   "url": "http://natur.md/pasare/377-aripi-de-pui-george-standard.html",
+   "name": "Aripi de pui, GEORGE STANDARD",
+   "price": 154.0,
+   "regular_price": 154.0,
+   "unit": "pentru 900 gr",
+   "short": "<p>Aripi de pui, GEORGE STANDARD - pui crescuti in libertate, crescuti fara hormoni, antibiotici, stimulenti</p><p><strong>Livrăm în zilele de MARŢI şi VINERI</strong></p>",
+   "description": "",
+   "images": [
+    "http://natur.md/3162-thickbox_default/aripi-de-pui-george-standard.jpg",
+    "http://natur.md/3251-thickbox_default/aripi-de-pui-george-standard.jpg",
+    "http://natur.md/3252-thickbox_default/aripi-de-pui-george-standard.jpg",
+    "http://natur.md/3263-thickbox_default/aripi-de-pui-george-standard.jpg",
+    "http://natur.md/3264-thickbox_default/aripi-de-pui-george-standard.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    29
+   ],
+   "local_images": [
+    "377-0-aripi-de-pui-george-standard.jpg",
+    "377-1-aripi-de-pui-george-standard.jpg",
+    "377-2-aripi-de-pui-george-standard.jpg",
+    "377-3-aripi-de-pui-george-standard.jpg",
+    "377-4-aripi-de-pui-george-standard.jpg"
+   ]
+  },
+  {
+   "id": 389,
+   "url": "http://natur.md/produse-din-carne/389-muschiult-de-porc-afumat.html",
+   "name": "Muşchiuleţ de porc afumat",
+   "price": 85.0,
+   "regular_price": 85.0,
+   "unit": "pentru kg",
+   "short": "<p>Muşchiuleţ de porc afumat tradiţional, cca 300 gr</p><p><strong>TESTARE CERERE</strong></p>",
+   "description": "",
+   "images": [
+    "http://natur.md/3305-thickbox_default/muschiult-de-porc-afumat.jpg"
+   ],
+   "reviews": [
+    {
+     "author": "vic.surugiu V",
+     "rating": 3,
+     "date": "2021-12-01",
+     "text": "Bun produs."
+    },
+    {
+     "author": "Eleonora",
+     "rating": 3,
+     "date": "2019-03-26",
+     "text": "Oameni! dap aceasta-i gustosenia de pe fata Pamantului.. e asa cum era la bunica la tara pe vremuri.... foarte incantata"
+    }
+   ],
+   "in_stock": true,
+   "categories": [
+    29,
+    45,
+    83
+   ],
+   "local_images": [
+    "389-0-muschiult-de-porc-afumat.jpg"
+   ]
+  },
+  {
+   "id": 93,
+   "url": "http://natur.md/produse-din-carne/93-piept-de-prepelia.html",
+   "name": "Piept de prepeliță",
+   "price": 400.0,
+   "regular_price": 400.0,
+   "unit": "pentru Kg",
+   "short": "<p>Piept de prepeliță, proaspăt, dezosat</p><p><strong>Грудинка перепела, свежая, без костей</strong></p>",
+   "description": "",
+   "images": [
+    "http://natur.md/333-thickbox_default/piept-de-prepelia.jpg",
+    "http://natur.md/444-thickbox_default/piept-de-prepelia.jpg",
+    "http://natur.md/445-thickbox_default/piept-de-prepelia.jpg",
+    "http://natur.md/446-thickbox_default/piept-de-prepelia.jpg",
+    "http://natur.md/334-thickbox_default/piept-de-prepelia.jpg",
+    "http://natur.md/332-thickbox_default/piept-de-prepelia.jpg",
+    "http://natur.md/760-thickbox_default/piept-de-prepelia.jpg",
+    "http://natur.md/761-thickbox_default/piept-de-prepelia.jpg",
+    "http://natur.md/762-thickbox_default/piept-de-prepelia.jpg"
+   ],
+   "reviews": [
+    {
+     "author": "Gh.",
+     "rating": 3,
+     "date": "2018-08-05",
+     "text": "E primul produs adaugat in cosul de cumparaturi de fiecare data"
+    },
+    {
+     "author": "Andrei",
+     "rating": 3,
+     "date": "2018-05-11",
+     "text": "Incercati pieptul de prepelita la gratar cu cartoafe coapte in smantana!! Delicios."
+    }
+   ],
+   "in_stock": true,
+   "categories": [
+    29,
+    97
+   ],
+   "local_images": [
+    "93-0-piept-de-prepelia.jpg",
+    "93-1-piept-de-prepelia.jpg",
+    "93-2-piept-de-prepelia.jpg",
+    "93-3-piept-de-prepelia.jpg",
+    "93-4-piept-de-prepelia.jpg",
+    "93-5-piept-de-prepelia.jpg",
+    "93-6-piept-de-prepelia.jpg",
+    "93-7-piept-de-prepelia.jpg",
+    "93-8-piept-de-prepelia.jpg"
+   ]
+  },
+  {
+   "id": 454,
+   "url": "http://natur.md/vita/454-muchiule-de-vita.html",
+   "name": "Mușchiuleț de vită",
+   "price": 580.0,
+   "regular_price": 580.0,
+   "unit": "pentru 1 Kg",
+   "short": "<p>Mușchiuleț de vit”, bucată, IDT din Bardar” SRL</p><p><strong>Prețul este afișat pentru 1 kg. În realitate, acest produs poate avea mai mult de 1 kg fiindcă se vinde ”la bucată”. </strong></p>",
+   "description": "",
+   "images": [
+    "http://natur.md/3641-thickbox_default/muchiule-de-vita.jpg",
+    "http://natur.md/3647-thickbox_default/muchiule-de-vita.jpg",
+    "http://natur.md/3648-thickbox_default/muchiule-de-vita.jpg",
+    "http://natur.md/3649-thickbox_default/muchiule-de-vita.jpg",
+    "http://natur.md/3650-thickbox_default/muchiule-de-vita.jpg",
+    "http://natur.md/3651-thickbox_default/muchiule-de-vita.jpg",
+    "http://natur.md/3652-thickbox_default/muchiule-de-vita.jpg",
+    "http://natur.md/3653-thickbox_default/muchiule-de-vita.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    13,
+    47
+   ],
+   "local_images": [
+    "454-0-muchiule-de-vita.jpg",
+    "454-1-muchiule-de-vita.jpg",
+    "454-2-muchiule-de-vita.jpg",
+    "454-3-muchiule-de-vita.jpg",
+    "454-4-muchiule-de-vita.jpg",
+    "454-5-muchiule-de-vita.jpg",
+    "454-6-muchiule-de-vita.jpg",
+    "454-7-muchiule-de-vita.jpg"
+   ]
+  },
+  {
+   "id": 949,
+   "url": "http://natur.md/carne-maturata-in-vid/949-fileu-de-porc-marinat-in-vid.html",
+   "name": "File de porc marinat în vid",
+   "price": 175.0,
+   "regular_price": 175.0,
+   "unit": "pentru 1 kg",
+   "short": "<p>File de porc marinat în vid. Marinada: de ceapă. muștar, piper, ulei de floarea soarelui.</p><p>Nu conține sare, aditivi chimici.</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5892-thickbox_default/fileu-de-porc-marinat-in-vid.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    13,
+    102,
+    103
+   ],
+   "local_images": [
+    "949-0-fileu-de-porc-marinat-in-vid.jpg"
+   ]
+  },
+  {
+   "id": 171,
+   "url": "http://natur.md/porc/171-muchiule-porc.html",
+   "name": "Mușchiuleț porc",
+   "price": 170.0,
+   "regular_price": 170.0,
+   "unit": "pentru Kg",
+   "short": "<p><strong>Свиная вырезка</strong></p><p><strong>Д</strong><strong>оставка только по пятницам.</strong></p><p><strong>Prețul este afișat pentru 1 kg. În realitate, acest produs poate avea mai mult de 1 kg fiindcă se vinde ”la bucată”. </strong></p>",
+   "description": "",
+   "images": [
+    "http://natur.md/1069-thickbox_default/muchiule-porc.jpg",
+    "http://natur.md/896-thickbox_default/muchiule-porc.jpg",
+    "http://natur.md/897-thickbox_default/muchiule-porc.jpg",
+    "http://natur.md/898-thickbox_default/muchiule-porc.jpg",
+    "http://natur.md/994-thickbox_default/muchiule-porc.jpg",
+    "http://natur.md/995-thickbox_default/muchiule-porc.jpg",
+    "http://natur.md/1003-thickbox_default/muchiule-porc.jpg",
+    "http://natur.md/1004-thickbox_default/muchiule-porc.jpg",
+    "http://natur.md/1005-thickbox_default/muchiule-porc.jpg",
+    "http://natur.md/1007-thickbox_default/muchiule-porc.jpg",
+    "http://natur.md/1068-thickbox_default/muchiule-porc.jpg",
+    "http://natur.md/1006-thickbox_default/muchiule-porc.jpg"
+   ],
+   "reviews": [
+    {
+     "author": "Tatiana",
+     "rating": 3,
+     "date": "2019-06-12",
+     "text": "Muschiuletul e foarte gustos.Carnea nu lasa apa in tigaie.Multumim natur pentru produse sanatoase!"
+    }
+   ],
+   "in_stock": true,
+   "categories": [
+    13,
+    45
+   ],
+   "local_images": [
+    "171-0-muchiule-porc.jpg",
+    "171-1-muchiule-porc.jpg",
+    "171-2-muchiule-porc.jpg",
+    "171-3-muchiule-porc.jpg",
+    "171-4-muchiule-porc.jpg",
+    "171-5-muchiule-porc.jpg",
+    "171-6-muchiule-porc.jpg",
+    "171-7-muchiule-porc.jpg",
+    "171-8-muchiule-porc.jpg",
+    "171-9-muchiule-porc.jpg",
+    "171-10-muchiule-porc.jpg",
+    "171-11-muchiule-porc.jpg"
+   ]
+  },
+  {
+   "id": 455,
+   "url": "http://natur.md/vita/455-cotletde-vita-fara-os.html",
+   "name": "Cotlet de vită. fără os",
+   "price": 250.0,
+   "regular_price": 250.0,
+   "unit": "pentru 1 Kg",
+   "short": "<p>Cotlet de vită, fără os, bucată, ”IDT din Bardar” SRL</p><p>”Vrăbioara”, ”Antrecot”</p><p><strong>Prețul este afișat pentru 1 kg. În realitate, acest produs poate avea mai mult de 1 kg fiindcă se vinde ”la bucată”. </strong></p>",
+   "description": "",
+   "images": [
+    "http://natur.md/3642-thickbox_default/cotletde-vita-fara-os.jpg",
+    "http://natur.md/3654-thickbox_default/cotletde-vita-fara-os.jpg",
+    "http://natur.md/3655-thickbox_default/cotletde-vita-fara-os.jpg",
+    "http://natur.md/3656-thickbox_default/cotletde-vita-fara-os.jpg",
+    "http://natur.md/3657-thickbox_default/cotletde-vita-fara-os.jpg",
+    "http://natur.md/3658-thickbox_default/cotletde-vita-fara-os.jpg",
+    "http://natur.md/3659-thickbox_default/cotletde-vita-fara-os.jpg",
+    "http://natur.md/3660-thickbox_default/cotletde-vita-fara-os.jpg",
+    "http://natur.md/4443-thickbox_default/cotletde-vita-fara-os.jpg"
+   ],
+   "reviews": [
+    {
+     "author": "Natur.md",
+     "rating": 3,
+     "date": "2021-01-12",
+     "text": "John Burca - nu, carnea nu este BIO, nu cred ca exista carne de vita crescuta local ce ar corespunde criteriilor BIO"
+    },
+    {
+     "author": "John Burca",
+     "rating": 3,
+     "date": "2021-01-09",
+     "text": "Cu ce este hranita vaca, se poate considera carnea bio?"
+    }
+   ],
+   "in_stock": true,
+   "categories": [
+    13,
+    47
+   ],
+   "local_images": [
+    "455-0-cotletde-vita-fara-os.jpg",
+    "455-1-cotletde-vita-fara-os.jpg",
+    "455-2-cotletde-vita-fara-os.jpg",
+    "455-3-cotletde-vita-fara-os.jpg",
+    "455-4-cotletde-vita-fara-os.jpg",
+    "455-5-cotletde-vita-fara-os.jpg",
+    "455-6-cotletde-vita-fara-os.jpg",
+    "455-7-cotletde-vita-fara-os.jpg",
+    "455-8-cotletde-vita-fara-os.jpg"
+   ]
+  },
+  {
+   "id": 403,
+   "url": "http://natur.md/produse-din-carne/403-ceafa-de-porc-afumata-.html",
+   "name": "Ceafă de porc afumată",
+   "price": 80.0,
+   "regular_price": 80.0,
+   "unit": "pentru kg",
+   "short": "<p>Ceafă de porc afumată tradițional, ambalată în vid la cca 300 gr</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/3505-thickbox_default/ceafa-de-porc-afumata-.jpg"
+   ],
+   "reviews": [
+    {
+     "author": "Tudor",
+     "rating": 3,
+     "date": "2019-11-27",
+     "text": "Vreau să încerc!"
+    }
+   ],
+   "in_stock": true,
+   "categories": [
+    45,
+    83
+   ],
+   "local_images": [
+    "403-0-ceafa-de-porc-afumata-.jpg"
+   ]
+  },
+  {
+   "id": 948,
+   "url": "http://natur.md/carne-maturata-in-vid/948-ceafa-de-porc-marinata.html",
+   "name": "Ceafă de porc marinată în vid",
+   "price": 175.0,
+   "regular_price": 175.0,
+   "unit": "pentru 1 kg",
+   "short": "<p>Ceafă de porc marinată în vid. Marinada: de ceapă. muștar, piper, ulei de floarea soarelui.</p><p>Nu conține sare, aditivi chimici.</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5891-thickbox_default/ceafa-de-porc-marinata.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    45,
+    102,
+    103
+   ],
+   "local_images": [
+    "948-0-ceafa-de-porc-marinata.jpg"
+   ]
+  },
+  {
+   "id": 950,
+   "url": "http://natur.md/carne-maturata-in-vid/950-muchiule-de-porc-marinat-in-vid.html",
+   "name": "Mușchiuleț de porc marinat în vid",
+   "price": 185.0,
+   "regular_price": 185.0,
+   "unit": "pentru 1 kg",
+   "short": "<p>Mușchiuleț de porc marinat în vid. Marinada: de ceapă. muștar, piper ulei de floarea soarelui.</p><p>Nu conține sare, aditivi chimici.</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5893-thickbox_default/muchiule-de-porc-marinat-in-vid.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    45,
+    102,
+    103
+   ],
+   "local_images": [
+    "950-0-muchiule-de-porc-marinat-in-vid.jpg"
+   ]
+  },
+  {
+   "id": 805,
+   "url": "http://natur.md/vita/805-steack-vita.html",
+   "name": "Steak vită, maturat în vid minim 14 zile, făfă os",
+   "price": 280.0,
+   "regular_price": 280.0,
+   "unit": "pentru kg",
+   "short": "<p>Steak vită, wet matured, fără costiță. Se vinde la bucata - cca 400-700 gr. <strong>Detalii mai jos.</strong></p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5463-thickbox_default/steack-vita.jpg",
+    "http://natur.md/5461-thickbox_default/steack-vita.jpg",
+    "http://natur.md/5462-thickbox_default/steack-vita.jpg",
+    "http://natur.md/5464-thickbox_default/steack-vita.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    47,
+    102
+   ],
+   "local_images": [
+    "805-0-steack-vita.jpg",
+    "805-1-steack-vita.jpg",
+    "805-2-steack-vita.jpg",
+    "805-3-steack-vita.jpg"
+   ]
+  },
+  {
+   "id": 587,
+   "url": "http://natur.md/din-carne/587-bulion-din-prepelia.html",
+   "name": "Bulion din prepeliță",
+   "price": 55.0,
+   "regular_price": 55.0,
+   "unit": "pentru 500 ml",
+   "short": "<p>Bulion din prepeliță, 500 ml</p><p><strong>TESTARE A CERERII</strong></p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5895-thickbox_default/bulion-din-prepelia.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    35,
+    76,
+    80
+   ],
+   "local_images": [
+    "587-0-bulion-din-prepelia.jpg"
+   ]
+  },
+  {
+   "id": 572,
+   "url": "http://natur.md/din-carne/572-bulion-din-prepelia.html",
+   "name": "Bulion din prepeliță",
+   "price": 90.0,
+   "regular_price": 90.0,
+   "unit": "pentru 1 Litru",
+   "short": "<p>Bulion din prepeliță, 1 litru</p><p><strong>TESTAREA CERERII DE PIAȚĂ</strong></p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5894-thickbox_default/bulion-din-prepelia.jpg",
+    "http://natur.md/4412-thickbox_default/bulion-din-prepelia.jpg",
+    "http://natur.md/4419-thickbox_default/bulion-din-prepelia.jpg"
+   ],
+   "reviews": [
+    {
+     "author": "Яна",
+     "rating": 3,
+     "date": "2019-03-25",
+     "text": "Очень хороший бульон! Буду заказывать постоянно"
+    },
+    {
+     "author": "Valentina",
+     "rating": 3,
+     "date": "2019-03-20",
+     "text": "Recomand cu caldura!! Bulionul e super gustos, merci Natur"
+    }
+   ],
+   "in_stock": true,
+   "categories": [
+    35
+   ],
+   "local_images": [
+    "572-0-bulion-din-prepelia.jpg",
+    "572-1-bulion-din-prepelia.jpg",
+    "572-2-bulion-din-prepelia.jpg"
+   ]
+  },
+  {
+   "id": 772,
+   "url": "http://natur.md/produse-din-carne/772-prepelie-marinate.html",
+   "name": "Prepelițe marinate",
+   "price": 225.0,
+   "regular_price": 225.0,
+   "unit": "pentru 1 kg",
+   "short": "<p>Prepelițe marinate, rețetă originală. cca 500 gr, Marca comercială Darurile Prepeliței </p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5342-thickbox_default/prepelie-marinate.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    35,
+    103
+   ],
+   "local_images": [
+    "772-0-prepelie-marinate.jpg"
+   ]
+  },
+  {
+   "id": 59,
+   "url": "http://natur.md/oua-yajca/59-oua-de-prepelia-fierte-i-decojite.html",
+   "name": "Ouă de prepeliță fierte și decojite",
+   "price": 330.0,
+   "regular_price": 330.0,
+   "unit": "pentru 100 buc",
+   "short": "<p>Ouă de prepeliță fierte și decojite <strong>TESTARE CERERE</strong></p>",
+   "description": "",
+   "images": [
+    "http://natur.md/356-thickbox_default/oua-de-prepelia-fierte-i-decojite.jpg",
+    "http://natur.md/367-thickbox_default/oua-de-prepelia-fierte-i-decojite.jpg",
+    "http://natur.md/357-thickbox_default/oua-de-prepelia-fierte-i-decojite.jpg",
+    "http://natur.md/366-thickbox_default/oua-de-prepelia-fierte-i-decojite.jpg"
+   ],
+   "reviews": [
+    {
+     "author": "Iurie",
+     "rating": 3,
+     "date": "2018-10-30",
+     "text": "Adaug cateva legume si ulei sau maioneza si mancarea e gata. 3 minute :)"
+    }
+   ],
+   "in_stock": true,
+   "categories": [
+    18
+   ],
+   "local_images": [
+    "59-0-oua-de-prepelia-fierte-i-decojite.jpg",
+    "59-1-oua-de-prepelia-fierte-i-decojite.jpg",
+    "59-2-oua-de-prepelia-fierte-i-decojite.jpg",
+    "59-3-oua-de-prepelia-fierte-i-decojite.jpg"
+   ]
+  },
+  {
+   "id": 58,
+   "url": "http://natur.md/oua-yajca/58-oua-de-prepelita.html",
+   "name": "Ouă de prepeliţă",
+   "price": 35.0,
+   "regular_price": 35.0,
+   "unit": "pentru cutie 20 b",
+   "short": "<p>20 de Ouă de prepeliţă proaspete, dietetice.</p><p><strong>Яйца перепелиные, диетические</strong></p>",
+   "description": "",
+   "images": [
+    "http://natur.md/2559-thickbox_default/oua-de-prepelita.jpg",
+    "http://natur.md/438-thickbox_default/oua-de-prepelita.jpg",
+    "http://natur.md/439-thickbox_default/oua-de-prepelita.jpg",
+    "http://natur.md/440-thickbox_default/oua-de-prepelita.jpg",
+    "http://natur.md/475-thickbox_default/oua-de-prepelita.jpg",
+    "http://natur.md/182-thickbox_default/oua-de-prepelita.jpg",
+    "http://natur.md/354-thickbox_default/oua-de-prepelita.jpg",
+    "http://natur.md/2628-thickbox_default/oua-de-prepelita.jpg",
+    "http://natur.md/2807-thickbox_default/oua-de-prepelita.jpg",
+    "http://natur.md/2808-thickbox_default/oua-de-prepelita.jpg"
+   ],
+   "reviews": [
+    {
+     "author": "Cristina",
+     "rating": 3,
+     "date": "2020-03-31",
+     "text": "Sunt bune, ambalate cu grija, au marimea medie/mare. Le consumam dimineata pe stomacul gol, cate 1."
+    },
+    {
+     "author": "DanielaC",
+     "rating": 3,
+     "date": "2019-03-26",
+     "text": "Eu de 18 ani beau oua de prepelita crude dimineata. Cate 3-5 bucati. Cand lea am. Torn de-asupra o lingurita de ulei de samburi de caise sau de armurariu. Am 56. Nu sunt la evidenta nici la o policlinica :). Cred ca Natura a investiti totusi un potential enorm in ceia ce insemna ou."
+    },
+    {
+     "author": "Nika",
+     "rating": 3,
+     "date": "2019-02-05",
+     "text": "Sanatoase si arata perfect in salate!"
+    },
+    {
+     "author": "Valentina",
+     "rating": 3,
+     "date": "2018-05-20",
+     "text": "Mai gustoase decit cele de gaina. Le maninc in special fierte, in salate sau chiar fara nimic, pe post de snacks-uri sanatoase."
+    },
+    {
+     "author": "Alexandru Ursu",
+     "rating": 3,
+     "date": "2018-05-15",
+     "text": "Impresionati am ramas de produs. Am incercat maioneza noastra de casa sa o facem din oua de prepelita ale dvs. A iesit cum zic prichindeii nostrii - niam niam :)."
+    },
+    {
+     "author": "VICTOR GUTU",
+     "rating": 3,
+     "date": "2018-05-14",
+     "text": "CU MULT MAI BUNE CONDITIILE DE PASTRARE LA ACESTE OUA LE AU ACESTI PRODUCATORI. PE LA SUPERMARKETURI, DE 3 ORI AM VAZUT PRODUSE ALTERATE."
+    }
+   ],
+   "in_stock": true,
+   "categories": [
+    18,
+    97
+   ],
+   "local_images": [
+    "58-0-oua-de-prepelita.jpg",
+    "58-1-oua-de-prepelita.jpg",
+    "58-2-oua-de-prepelita.jpg",
+    "58-3-oua-de-prepelita.jpg",
+    "58-4-oua-de-prepelita.jpg",
+    "58-5-oua-de-prepelita.jpg",
+    "58-6-oua-de-prepelita.jpg",
+    "58-7-oua-de-prepelita.jpg",
+    "58-8-oua-de-prepelita.jpg",
+    "58-9-oua-de-prepelita.jpg"
+   ]
+  },
+  {
+   "id": 57,
+   "url": "http://natur.md/oua-yajca/57-oua-de-gaina-de-casa.html",
+   "name": "Ouă de găină de casă",
+   "price": 65.0,
+   "regular_price": 65.0,
+   "unit": "pentru 10 buc",
+   "short": "<p><strong>Яйца куриные, домашние<br></strong></p>",
+   "description": "",
+   "images": [
+    "http://natur.md/875-thickbox_default/oua-de-gaina-de-casa.jpg",
+    "http://natur.md/811-thickbox_default/oua-de-gaina-de-casa.jpg",
+    "http://natur.md/874-thickbox_default/oua-de-gaina-de-casa.jpg",
+    "http://natur.md/2553-thickbox_default/oua-de-gaina-de-casa.jpg",
+    "http://natur.md/3195-thickbox_default/oua-de-gaina-de-casa.jpg"
+   ],
+   "reviews": [
+    {
+     "author": "Mihai Pascal",
+     "rating": 3,
+     "date": "2018-05-15",
+     "text": "Am dorit sa verific si eu daca pretul merita calitatea acestui produs! Dragi consumatori, indrazniti se merita! Si curierul foarte prietenos si servicii de calitate!"
+    },
+    {
+     "author": "Ala Purcariu",
+     "rating": 3,
+     "date": "2018-05-14",
+     "text": "De casa, si naturale! Calitatea o veti observa cand veti decide sa faceti niste ochiuri, fara puf sau sange in aceste oua. Tantii Ioana de la piata trebuie sa-i fie ciuda :)"
+    },
+    {
+     "author": "Vasile Codreanu",
+     "rating": 3,
+     "date": "2018-05-11",
+     "text": "Sanatoase, uitati de ouale fabricate de la piata!"
+    }
+   ],
+   "in_stock": true,
+   "categories": [
+    18
+   ],
+   "local_images": [
+    "57-0-oua-de-gaina-de-casa.jpg",
+    "57-1-oua-de-gaina-de-casa.jpg",
+    "57-2-oua-de-gaina-de-casa.jpg",
+    "57-3-oua-de-gaina-de-casa.jpg",
+    "57-4-oua-de-gaina-de-casa.jpg"
+   ]
+  },
+  {
+   "id": 608,
+   "url": "http://natur.md/seminte-pentru-germinare/608-mixt-semine-pentru-germinare-mix-2-delicios.html",
+   "name": "Mixt semințe pentru germinare MIX 2 DELICIOS",
+   "price": 47.0,
+   "regular_price": 47.0,
+   "unit": "pentru 50 gr",
+   "short": "<p>Mixt semințe pentru germinare MIX 2 DELICIOS, Alfalfa -Trifoi - Brocoli</p><p>Семена для проращивания MIX 2 DELICIOS, Люцерна - Клевер - Брокколи</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/4506-thickbox_default/mixt-semine-pentru-germinare-mix-2-delicios.jpg",
+    "http://natur.md/4504-thickbox_default/mixt-semine-pentru-germinare-mix-2-delicios.jpg",
+    "http://natur.md/4505-thickbox_default/mixt-semine-pentru-germinare-mix-2-delicios.jpg",
+    "http://natur.md/4533-thickbox_default/mixt-semine-pentru-germinare-mix-2-delicios.jpg",
+    "http://natur.md/4534-thickbox_default/mixt-semine-pentru-germinare-mix-2-delicios.jpg",
+    "http://natur.md/4535-thickbox_default/mixt-semine-pentru-germinare-mix-2-delicios.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    16,
+    90,
+    37
+   ],
+   "local_images": [
+    "608-0-mixt-semine-pentru-germinare-mix-2-delicios.jpg",
+    "608-1-mixt-semine-pentru-germinare-mix-2-delicios.jpg",
+    "608-2-mixt-semine-pentru-germinare-mix-2-delicios.jpg",
+    "608-3-mixt-semine-pentru-germinare-mix-2-delicios.jpg",
+    "608-4-mixt-semine-pentru-germinare-mix-2-delicios.jpg",
+    "608-5-mixt-semine-pentru-germinare-mix-2-delicios.jpg"
+   ]
+  },
+  {
+   "id": 633,
+   "url": "http://natur.md/seminte-pentru-germinare/633-mixt-semine-pentru-germinare-mix-5-energizant.html",
+   "name": "Mixt semințe pentru germinare MIX 5 ENERGIZANT",
+   "price": 47.0,
+   "regular_price": 47.0,
+   "unit": "pentru 70 gr",
+   "short": "<p>Mixt semințe pentru germinare MIX 5 ENERGIZANT: Mung - Ridiche Roz - Schinduf</p><p>Семена для проращивания MIX 5 ENERGIZANT: Мунг - Розовый Редис - Фенугрек</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/4708-thickbox_default/mixt-semine-pentru-germinare-mix-5-energizant.jpg",
+    "http://natur.md/4706-thickbox_default/mixt-semine-pentru-germinare-mix-5-energizant.jpg",
+    "http://natur.md/4707-thickbox_default/mixt-semine-pentru-germinare-mix-5-energizant.jpg",
+    "http://natur.md/4702-thickbox_default/mixt-semine-pentru-germinare-mix-5-energizant.jpg",
+    "http://natur.md/4703-thickbox_default/mixt-semine-pentru-germinare-mix-5-energizant.jpg",
+    "http://natur.md/4704-thickbox_default/mixt-semine-pentru-germinare-mix-5-energizant.jpg",
+    "http://natur.md/4705-thickbox_default/mixt-semine-pentru-germinare-mix-5-energizant.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    16,
+    71
+   ],
+   "local_images": [
+    "633-0-mixt-semine-pentru-germinare-mix-5-energizant.jpg",
+    "633-1-mixt-semine-pentru-germinare-mix-5-energizant.jpg",
+    "633-2-mixt-semine-pentru-germinare-mix-5-energizant.jpg",
+    "633-3-mixt-semine-pentru-germinare-mix-5-energizant.jpg",
+    "633-4-mixt-semine-pentru-germinare-mix-5-energizant.jpg",
+    "633-5-mixt-semine-pentru-germinare-mix-5-energizant.jpg",
+    "633-6-mixt-semine-pentru-germinare-mix-5-energizant.jpg"
+   ]
+  },
+  {
+   "id": 609,
+   "url": "http://natur.md/seminte-pentru-germinare/609-mixt-semine-pentru-germinare-mix-1-delicat.html",
+   "name": "Mixt semințe pentru germinare MIX 1 DELICAT",
+   "price": 47.0,
+   "regular_price": 47.0,
+   "unit": "pentru 50 gr",
+   "short": "<p>Mixt semințe pentru germinare MIX 1 DELICAT, Alfalfa -Rucola</p><p>Семена для проращивания MIX 1 DELICAT, Люцерна - Руккола</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/4509-thickbox_default/mixt-semine-pentru-germinare-mix-1-delicat.jpg",
+    "http://natur.md/4507-thickbox_default/mixt-semine-pentru-germinare-mix-1-delicat.jpg",
+    "http://natur.md/4508-thickbox_default/mixt-semine-pentru-germinare-mix-1-delicat.jpg",
+    "http://natur.md/4536-thickbox_default/mixt-semine-pentru-germinare-mix-1-delicat.jpg",
+    "http://natur.md/4537-thickbox_default/mixt-semine-pentru-germinare-mix-1-delicat.jpg",
+    "http://natur.md/4538-thickbox_default/mixt-semine-pentru-germinare-mix-1-delicat.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    16,
+    90
+   ],
+   "local_images": [
+    "609-0-mixt-semine-pentru-germinare-mix-1-delicat.jpg",
+    "609-1-mixt-semine-pentru-germinare-mix-1-delicat.jpg",
+    "609-2-mixt-semine-pentru-germinare-mix-1-delicat.jpg",
+    "609-3-mixt-semine-pentru-germinare-mix-1-delicat.jpg",
+    "609-4-mixt-semine-pentru-germinare-mix-1-delicat.jpg",
+    "609-5-mixt-semine-pentru-germinare-mix-1-delicat.jpg"
+   ]
+  },
+  {
+   "id": 605,
+   "url": "http://natur.md/seminte-pentru-germinare/605-mixt-semine-pentru-germinare-mix-6-savuros.html",
+   "name": "Mixt semințe pentru germinare MIX 6 SAVUROS",
+   "price": 47.0,
+   "regular_price": 47.0,
+   "unit": "pentru 50 gr",
+   "short": "<p>Mixt semințe pentru germinare MIX 6 SAVUROS, Alfaalfa -Trifoi - Ridiche Daicon</p><p>Семена для проращивания MIX 6 SAVUROS, Люцерна - Клевер - Редис Дайкон</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/4497-thickbox_default/mixt-semine-pentru-germinare-mix-6-savuros.jpg",
+    "http://natur.md/4495-thickbox_default/mixt-semine-pentru-germinare-mix-6-savuros.jpg",
+    "http://natur.md/4496-thickbox_default/mixt-semine-pentru-germinare-mix-6-savuros.jpg",
+    "http://natur.md/4521-thickbox_default/mixt-semine-pentru-germinare-mix-6-savuros.jpg",
+    "http://natur.md/4522-thickbox_default/mixt-semine-pentru-germinare-mix-6-savuros.jpg",
+    "http://natur.md/4523-thickbox_default/mixt-semine-pentru-germinare-mix-6-savuros.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    16,
+    71,
+    37
+   ],
+   "local_images": [
+    "605-0-mixt-semine-pentru-germinare-mix-6-savuros.jpg",
+    "605-1-mixt-semine-pentru-germinare-mix-6-savuros.jpg",
+    "605-2-mixt-semine-pentru-germinare-mix-6-savuros.jpg",
+    "605-3-mixt-semine-pentru-germinare-mix-6-savuros.jpg",
+    "605-4-mixt-semine-pentru-germinare-mix-6-savuros.jpg",
+    "605-5-mixt-semine-pentru-germinare-mix-6-savuros.jpg"
+   ]
+  },
+  {
+   "id": 606,
+   "url": "http://natur.md/seminte-pentru-germinare/606-mixt-semine-pentru-germinare-mix-4-detoxifiant.html",
+   "name": "Mixt semințe pentru germinare MIX 4 DETOXIFIANT",
+   "price": 47.0,
+   "regular_price": 47.0,
+   "unit": "pentru 50 gr",
+   "short": "<p>Mixt semințe pentru germinare MIX 4 DETOXIFIANT, Alfalfa -Varza Rosie - Rucola</p><p>Семена для проращивания MIX 4 DETOXIFIANT, Люцерна - Красная Капуста - Руккола</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/4500-thickbox_default/mixt-semine-pentru-germinare-mix-4-detoxifiant.jpg",
+    "http://natur.md/4498-thickbox_default/mixt-semine-pentru-germinare-mix-4-detoxifiant.jpg",
+    "http://natur.md/4499-thickbox_default/mixt-semine-pentru-germinare-mix-4-detoxifiant.jpg",
+    "http://natur.md/4524-thickbox_default/mixt-semine-pentru-germinare-mix-4-detoxifiant.jpg",
+    "http://natur.md/4525-thickbox_default/mixt-semine-pentru-germinare-mix-4-detoxifiant.jpg",
+    "http://natur.md/4526-thickbox_default/mixt-semine-pentru-germinare-mix-4-detoxifiant.jpg",
+    "http://natur.md/4527-thickbox_default/mixt-semine-pentru-germinare-mix-4-detoxifiant.jpg",
+    "http://natur.md/4528-thickbox_default/mixt-semine-pentru-germinare-mix-4-detoxifiant.jpg",
+    "http://natur.md/4529-thickbox_default/mixt-semine-pentru-germinare-mix-4-detoxifiant.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    16,
+    90,
+    71
+   ],
+   "local_images": [
+    "606-0-mixt-semine-pentru-germinare-mix-4-detoxifiant.jpg",
+    "606-1-mixt-semine-pentru-germinare-mix-4-detoxifiant.jpg",
+    "606-2-mixt-semine-pentru-germinare-mix-4-detoxifiant.jpg",
+    "606-3-mixt-semine-pentru-germinare-mix-4-detoxifiant.jpg",
+    "606-4-mixt-semine-pentru-germinare-mix-4-detoxifiant.jpg",
+    "606-5-mixt-semine-pentru-germinare-mix-4-detoxifiant.jpg",
+    "606-6-mixt-semine-pentru-germinare-mix-4-detoxifiant.jpg",
+    "606-7-mixt-semine-pentru-germinare-mix-4-detoxifiant.jpg",
+    "606-8-mixt-semine-pentru-germinare-mix-4-detoxifiant.jpg"
+   ]
+  },
+  {
+   "id": 604,
+   "url": "http://natur.md/seminte-pentru-germinare/604-mixt-semine-pentru-germinare-mix-7-fortifiant.html",
+   "name": "Mixt semințe pentru germinare MIX 7 FORTIFIANT",
+   "price": 47.0,
+   "regular_price": 47.0,
+   "unit": "pentru 50 gr",
+   "short": "<p>Mixt semințe pentru germinare MIX 7 FORTIFIANT, Alfalfa -Trifoi - Ridiche China Rose</p><p>Семена для проращивания MIX 7 FORTIFIANT, Люцерна - Клевер - Редис Китайская Роза</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/4494-thickbox_default/mixt-semine-pentru-germinare-mix-7-fortifiant.jpg",
+    "http://natur.md/4492-thickbox_default/mixt-semine-pentru-germinare-mix-7-fortifiant.jpg",
+    "http://natur.md/4493-thickbox_default/mixt-semine-pentru-germinare-mix-7-fortifiant.jpg",
+    "http://natur.md/4518-thickbox_default/mixt-semine-pentru-germinare-mix-7-fortifiant.jpg",
+    "http://natur.md/4519-thickbox_default/mixt-semine-pentru-germinare-mix-7-fortifiant.jpg",
+    "http://natur.md/4520-thickbox_default/mixt-semine-pentru-germinare-mix-7-fortifiant.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    16,
+    71
+   ],
+   "local_images": [
+    "604-0-mixt-semine-pentru-germinare-mix-7-fortifiant.jpg",
+    "604-1-mixt-semine-pentru-germinare-mix-7-fortifiant.jpg",
+    "604-2-mixt-semine-pentru-germinare-mix-7-fortifiant.jpg",
+    "604-3-mixt-semine-pentru-germinare-mix-7-fortifiant.jpg",
+    "604-4-mixt-semine-pentru-germinare-mix-7-fortifiant.jpg",
+    "604-5-mixt-semine-pentru-germinare-mix-7-fortifiant.jpg"
+   ]
+  },
+  {
+   "id": 602,
+   "url": "http://natur.md/seminte-pentru-germinare/602-mixt-semine-pentru-germinare-mix-9-tonic.html",
+   "name": "Mixt semințe pentru germinare MIX 9 TONIC",
+   "price": 47.0,
+   "regular_price": 47.0,
+   "unit": "pentru 50 gr",
+   "short": "<p>Mixt semințe pentru germinare MIX 9 TONIC, Trifoi - Ridiche Diacon - Ridiche China Rose</p><p>Семена для проращивания MIX 9 TONIC, Клевер - Редис Дайкон - Редис Китайская Роза</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/4487-thickbox_default/mixt-semine-pentru-germinare-mix-9-tonic.jpg",
+    "http://natur.md/4486-thickbox_default/mixt-semine-pentru-germinare-mix-9-tonic.jpg",
+    "http://natur.md/4488-thickbox_default/mixt-semine-pentru-germinare-mix-9-tonic.jpg",
+    "http://natur.md/4512-thickbox_default/mixt-semine-pentru-germinare-mix-9-tonic.jpg",
+    "http://natur.md/4513-thickbox_default/mixt-semine-pentru-germinare-mix-9-tonic.jpg",
+    "http://natur.md/4514-thickbox_default/mixt-semine-pentru-germinare-mix-9-tonic.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    90,
+    37
+   ],
+   "local_images": [
+    "602-0-mixt-semine-pentru-germinare-mix-9-tonic.jpg",
+    "602-1-mixt-semine-pentru-germinare-mix-9-tonic.jpg",
+    "602-2-mixt-semine-pentru-germinare-mix-9-tonic.jpg",
+    "602-3-mixt-semine-pentru-germinare-mix-9-tonic.jpg",
+    "602-4-mixt-semine-pentru-germinare-mix-9-tonic.jpg",
+    "602-5-mixt-semine-pentru-germinare-mix-9-tonic.jpg"
+   ]
+  },
+  {
+   "id": 603,
+   "url": "http://natur.md/seminte-pentru-germinare/603-mixt-semine-pentru-germinare-mix-10-imunitar.html",
+   "name": "Mixt semințe pentru germinare MIX 10 IMUNITAR",
+   "price": 47.0,
+   "regular_price": 47.0,
+   "unit": "pentru 50 gr",
+   "short": "<p>Mixt semințe pentru germinare MIX 10 IMUNITAR, Alfaalfa -Trifoi - Muștar</p><p>Семена для проращивания MIX 10 IMUNITAR, Люцерна - Клевер - Горчица</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/4491-thickbox_default/mixt-semine-pentru-germinare-mix-10-imunitar.jpg",
+    "http://natur.md/4489-thickbox_default/mixt-semine-pentru-germinare-mix-10-imunitar.jpg",
+    "http://natur.md/4490-thickbox_default/mixt-semine-pentru-germinare-mix-10-imunitar.jpg",
+    "http://natur.md/4515-thickbox_default/mixt-semine-pentru-germinare-mix-10-imunitar.jpg",
+    "http://natur.md/4516-thickbox_default/mixt-semine-pentru-germinare-mix-10-imunitar.jpg",
+    "http://natur.md/4517-thickbox_default/mixt-semine-pentru-germinare-mix-10-imunitar.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    90,
+    37
+   ],
+   "local_images": [
+    "603-0-mixt-semine-pentru-germinare-mix-10-imunitar.jpg",
+    "603-1-mixt-semine-pentru-germinare-mix-10-imunitar.jpg",
+    "603-2-mixt-semine-pentru-germinare-mix-10-imunitar.jpg",
+    "603-3-mixt-semine-pentru-germinare-mix-10-imunitar.jpg",
+    "603-4-mixt-semine-pentru-germinare-mix-10-imunitar.jpg",
+    "603-5-mixt-semine-pentru-germinare-mix-10-imunitar.jpg"
+   ]
+  },
+  {
+   "id": 607,
+   "url": "http://natur.md/seminte-pentru-germinare/607-mixt-semine-pentru-germinare-mix-3-vitalizant.html",
+   "name": "Mixt semințe pentru germinare MIX 3 VITALIZANT",
+   "price": 47.0,
+   "regular_price": 47.0,
+   "unit": "pentru 50 gr",
+   "short": "<p>Mixt semințe pentru germinare MIX 3 VITALIZANT, Alfalfa -Brocoli - Rucola</p><p>Семена для проращивания MIX 3 VITALIZANT, Люцерна - Брокколи - Руккола</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/4503-thickbox_default/mixt-semine-pentru-germinare-mix-3-vitalizant.jpg",
+    "http://natur.md/4501-thickbox_default/mixt-semine-pentru-germinare-mix-3-vitalizant.jpg",
+    "http://natur.md/4502-thickbox_default/mixt-semine-pentru-germinare-mix-3-vitalizant.jpg",
+    "http://natur.md/4530-thickbox_default/mixt-semine-pentru-germinare-mix-3-vitalizant.jpg",
+    "http://natur.md/4531-thickbox_default/mixt-semine-pentru-germinare-mix-3-vitalizant.jpg",
+    "http://natur.md/4532-thickbox_default/mixt-semine-pentru-germinare-mix-3-vitalizant.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    90
+   ],
+   "local_images": [
+    "607-0-mixt-semine-pentru-germinare-mix-3-vitalizant.jpg",
+    "607-1-mixt-semine-pentru-germinare-mix-3-vitalizant.jpg",
+    "607-2-mixt-semine-pentru-germinare-mix-3-vitalizant.jpg",
+    "607-3-mixt-semine-pentru-germinare-mix-3-vitalizant.jpg",
+    "607-4-mixt-semine-pentru-germinare-mix-3-vitalizant.jpg",
+    "607-5-mixt-semine-pentru-germinare-mix-3-vitalizant.jpg"
+   ]
+  },
+  {
+   "id": 390,
+   "url": "http://natur.md/produse-din-carne/390-muschi-file-de-porc-afumata.html",
+   "name": "Muşchi file de porc, afumată",
+   "price": 80.0,
+   "regular_price": 80.0,
+   "unit": "pentru kg",
+   "short": "<p>Muşchi file de porc, afumată tradiţional, cca 300 gr</p><p><strong>TESTARE CERERE</strong></p>",
+   "description": "",
+   "images": [
+    "http://natur.md/3304-thickbox_default/muschi-file-de-porc-afumata.jpg",
+    "http://natur.md/4674-thickbox_default/muschi-file-de-porc-afumata.jpg"
+   ],
+   "reviews": [
+    {
+     "author": "Tatiana",
+     "rating": 3,
+     "date": "2019-09-25",
+     "text": "Foarte gustos, nu e imbibat cu nimic, precum cele din comert.Va multumim"
+    },
+    {
+     "author": "Popa Anastasia",
+     "rating": 3,
+     "date": "2019-06-10",
+     "text": "Foarte gustos, muschiuletul! Va multumim ca ne bucurati cu produse naturale si delicioase...Livrare rapida,deservire la nivel si uneori chiar ne bucurati si cu cadouri!"
+    }
+   ],
+   "in_stock": true,
+   "categories": [
+    83
+   ],
+   "local_images": [
+    "390-0-muschi-file-de-porc-afumata.jpg",
+    "390-1-muschi-file-de-porc-afumata.jpg"
+   ]
+  },
+  {
+   "id": 803,
+   "url": "http://natur.md/paste-fainoase-pasty/803-taieei-lai.html",
+   "name": "Tăieței lați",
+   "price": 50.0,
+   "regular_price": 50.0,
+   "unit": "pentru 250 gr",
+   "short": "<p>Tăieței lați, 250 gr, DARURILE PREPELIȚEI</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5455-thickbox_default/taieei-lai.jpg",
+    "http://natur.md/5456-thickbox_default/taieei-lai.jpg",
+    "http://natur.md/5457-thickbox_default/taieei-lai.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    69
+   ],
+   "local_images": [
+    "803-0-taieei-lai.jpg",
+    "803-1-taieei-lai.jpg",
+    "803-2-taieei-lai.jpg"
+   ]
+  },
+  {
+   "id": 104,
+   "url": "http://natur.md/paste-fainoase-pasty/104-taieei-ou-prepelia.html",
+   "name": "Tăieței ou prepeliță",
+   "price": 170.0,
+   "regular_price": 170.0,
+   "unit": "pentru 1 kg",
+   "short": "<p>Tăieței cu ou de prepeliță ambalați la 1 kg</p><p><strong>Лапша домашняя с перепелиным яйцом</strong></p>",
+   "description": "",
+   "images": [
+    "http://natur.md/236-thickbox_default/taieei-ou-prepelia.jpg",
+    "http://natur.md/458-thickbox_default/taieei-ou-prepelia.jpg",
+    "http://natur.md/459-thickbox_default/taieei-ou-prepelia.jpg",
+    "http://natur.md/317-thickbox_default/taieei-ou-prepelia.jpg",
+    "http://natur.md/3190-thickbox_default/taieei-ou-prepelia.jpg"
+   ],
+   "reviews": [
+    {
+     "author": "Vicu",
+     "rating": 3,
+     "date": "2018-09-03",
+     "text": "Taieteii sunt asa de buni, ca pot fi mancati chiar si cu unt simplu. Plus la asta si se fierb usor! Mii greu sa ma intorc la alte paste fainoase"
+    },
+    {
+     "author": "Vicu",
+     "rating": 3,
+     "date": "2018-09-03",
+     "text": "Taieteii sunt asa de buni, ca pot fi mancati chiar si cu unt simplu. Plus la asta si se fierb usor! Mii greu sa ma intorc la alte paste fainoase"
+    },
+    {
+     "author": "Ninna",
+     "rating": 3,
+     "date": "2018-08-14",
+     "text": "Ador si aluatul si taieteii din ou de prepelita. AU un gust mai bogat decit aluatul obisnuit."
+    },
+    {
+     "author": "Gh.",
+     "rating": 3,
+     "date": "2018-08-05",
+     "text": "Taiatei fierti apoi prajiti cu legume, plus cascaval adaugat la urma. Ador!"
+    },
+    {
+     "author": "Doina",
+     "rating": 3,
+     "date": "2018-05-26",
+     "text": "Copiilor mei plac foarte mult acesti taietei. Mie imi plac in primul rand ca se prepara foarte repede :)"
+    },
+    {
+     "author": "Foarte buni, recomand",
+     "rating": 3,
+     "date": "2018-05-22",
+     "text": "Vika"
+    },
+    {
+     "author": "Mihai Pascal",
+     "rating": 3,
+     "date": "2018-05-15",
+     "text": "Cumparam inainte cutii cu taitei de prepelita. Am trecut sa cumpar deja in kg nu cutii ;) Super!"
+    },
+    {
+     "author": "Otilia Vant",
+     "rating": 3,
+     "date": "2018-05-14",
+     "text": "Vecina mea v-a recomandat! Am incercat si eu produsele dvs., desigur taiteii au fost o prima varianta. NU am gresit din prima incercare cu produsul. Zeama din taitei, taitei cu nuca si miere, taitei cu nuca si scortisoara.. deliciu pur si simplu."
+    },
+    {
+     "author": "Алла",
+     "rating": 3,
+     "date": "2018-05-12",
+     "text": "Покупайте!! через 4 дня в нашем доме ничего не остаётся."
+    }
+   ],
+   "in_stock": true,
+   "categories": [
+    69
+   ],
+   "local_images": [
+    "104-0-taieei-ou-prepelia.jpg",
+    "104-1-taieei-ou-prepelia.jpg",
+    "104-2-taieei-ou-prepelia.jpg",
+    "104-3-taieei-ou-prepelia.jpg",
+    "104-4-taieei-ou-prepelia.jpg"
+   ]
+  },
+  {
+   "id": 98,
+   "url": "http://natur.md/paste-fainoase-pasty/98-aluat-colunai-cu-ou-de-prepelia.html",
+   "name": "Folii de aluat din ouă de prepeliță pentru colțunași",
+   "price": 75.0,
+   "regular_price": 75.0,
+   "unit": "pentru 400 gr",
+   "short": "<p>Folii de aluat <strong>PROASPĂT</strong> din ouă de prepeliță pentru colțunași și lasagna.</p><p><strong>Тесто из перепелинных яиц для вареников, пельменей, лазаньи</strong><br><br></p>",
+   "description": "",
+   "images": [
+    "http://natur.md/3183-thickbox_default/aluat-colunai-cu-ou-de-prepelia.jpg",
+    "http://natur.md/456-thickbox_default/aluat-colunai-cu-ou-de-prepelia.jpg",
+    "http://natur.md/457-thickbox_default/aluat-colunai-cu-ou-de-prepelia.jpg",
+    "http://natur.md/699-thickbox_default/aluat-colunai-cu-ou-de-prepelia.jpg",
+    "http://natur.md/701-thickbox_default/aluat-colunai-cu-ou-de-prepelia.jpg",
+    "http://natur.md/361-thickbox_default/aluat-colunai-cu-ou-de-prepelia.jpg",
+    "http://natur.md/700-thickbox_default/aluat-colunai-cu-ou-de-prepelia.jpg",
+    "http://natur.md/696-thickbox_default/aluat-colunai-cu-ou-de-prepelia.jpg",
+    "http://natur.md/698-thickbox_default/aluat-colunai-cu-ou-de-prepelia.jpg",
+    "http://natur.md/362-thickbox_default/aluat-colunai-cu-ou-de-prepelia.jpg",
+    "http://natur.md/2362-thickbox_default/aluat-colunai-cu-ou-de-prepelia.jpg",
+    "http://natur.md/3148-thickbox_default/aluat-colunai-cu-ou-de-prepelia.jpg",
+    "http://natur.md/3182-thickbox_default/aluat-colunai-cu-ou-de-prepelia.jpg",
+    "http://natur.md/3185-thickbox_default/aluat-colunai-cu-ou-de-prepelia.jpg",
+    "http://natur.md/3186-thickbox_default/aluat-colunai-cu-ou-de-prepelia.jpg"
+   ],
+   "reviews": [
+    {
+     "author": "Nika",
+     "rating": 3,
+     "date": "2019-02-05",
+     "text": "Foarte multumita de aluat! Gustul e perfect. Complet diferit de gustul coltunasilor inghetati."
+    },
+    {
+     "author": "Olga Nicolov",
+     "rating": 3,
+     "date": "2018-05-24",
+     "text": "Vazut foarte multa reclama pe pagina de facebook, vreau si eu doua pachete."
+    },
+    {
+     "author": "Mihaela",
+     "rating": 3,
+     "date": "2018-05-21",
+     "text": "Vreau si eu sa incerc acest aluat. Recenziile sunt bune, cumpar si eu doi pachete sper sa aveti dreptate :D"
+    },
+    {
+     "author": "LA",
+     "rating": 3,
+     "date": "2018-05-20",
+     "text": "Nustiu cum il prepara, dar e un aluat extraordinar. Foarte foarte delicat. Cumpar in fiecare saptamana cite 2 pachete, il folosesc la coltunasi sau lazania. Rezultatul e peste asteptari. Recomand."
+    },
+    {
+     "author": "Ecaterina Ojogul",
+     "rating": 3,
+     "date": "2018-05-18",
+     "text": "Aluatul e finut sau tare?"
+    },
+    {
+     "author": "Aliona Cojocari",
+     "rating": 3,
+     "date": "2018-05-15",
+     "text": "Fiica mea este peste hotare si ne permitem sa intretinem un mod sanatos de viata! Ii trimit in pachete acest aluat sa-si satisfaca cerintele de gurman :) Calitativ! Pentru cei care o sa inceapa sa zica ca aluatul nu va rezista in transport, ea invata foarte aproape de Moldova :))))"
+    },
+    {
+     "author": "Constantin Calin",
+     "rating": 3,
+     "date": "2018-05-14",
+     "text": "Ca la mama acasa! Renuntam la produsele alimentare din magazine. Ca bucatar cu un stagiu de 10 ani recomand aluatul acesta cu incredere."
+    },
+    {
+     "author": "Victor",
+     "rating": 5,
+     "date": "2018-05-07",
+     "text": "Si acest produs este unui care ne economiste o groaza de timp, dar si ne permite sa ne mancam ca la mama acasa - in jumatate de ora toata familia hranita si cu mutritele fericite, satisfacute si pline de smantana."
+    }
+   ],
+   "in_stock": true,
+   "categories": [
+    69
+   ],
+   "local_images": [
+    "98-0-aluat-colunai-cu-ou-de-prepelia.jpg",
+    "98-1-aluat-colunai-cu-ou-de-prepelia.jpg",
+    "98-2-aluat-colunai-cu-ou-de-prepelia.jpg",
+    "98-3-aluat-colunai-cu-ou-de-prepelia.jpg",
+    "98-4-aluat-colunai-cu-ou-de-prepelia.jpg",
+    "98-5-aluat-colunai-cu-ou-de-prepelia.jpg",
+    "98-6-aluat-colunai-cu-ou-de-prepelia.jpg",
+    "98-7-aluat-colunai-cu-ou-de-prepelia.jpg",
+    "98-8-aluat-colunai-cu-ou-de-prepelia.jpg",
+    "98-9-aluat-colunai-cu-ou-de-prepelia.jpg",
+    "98-10-aluat-colunai-cu-ou-de-prepelia.jpg",
+    "98-11-aluat-colunai-cu-ou-de-prepelia.jpg",
+    "98-12-aluat-colunai-cu-ou-de-prepelia.jpg",
+    "98-13-aluat-colunai-cu-ou-de-prepelia.jpg",
+    "98-14-aluat-colunai-cu-ou-de-prepelia.jpg"
+   ]
+  },
+  {
+   "id": 1006,
+   "url": "http://natur.md/paste-fainoase-pasty/1006-paste-gri-cu-oua-de-prepelia-naturmd.html",
+   "name": "Paste GRIȘ cu ouă de prepeliță, Natur.md",
+   "price": 55.0,
+   "regular_price": 55.0,
+   "unit": "pentru 250 gr",
+   "short": "<p>Paste GRIȘ cu ouă de prepeliță, 250 gr</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5988-thickbox_default/paste-gri-cu-oua-de-prepelia-naturmd.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    69
+   ],
+   "local_images": [
+    "1006-0-paste-gri-cu-oua-de-prepelia-naturmd.jpg"
+   ]
+  },
+  {
+   "id": 25,
+   "url": "http://natur.md/paste-fainoase-pasty/25-taietei-cu-ou-de-prepelia.html",
+   "name": "Tăieţei ou prepeliță",
+   "price": 60.0,
+   "regular_price": 60.0,
+   "unit": "pentru 300 gr",
+   "short": "<p>Tăieței de casă cu ou de prepeliță</p><p><strong>Лапша домашняя с перепелиным яйцом</strong></p>",
+   "description": "",
+   "images": [
+    "http://natur.md/3187-thickbox_default/taietei-cu-ou-de-prepelia.jpg",
+    "http://natur.md/304-thickbox_default/taietei-cu-ou-de-prepelia.jpg",
+    "http://natur.md/407-thickbox_default/taietei-cu-ou-de-prepelia.jpg",
+    "http://natur.md/406-thickbox_default/taietei-cu-ou-de-prepelia.jpg",
+    "http://natur.md/390-thickbox_default/taietei-cu-ou-de-prepelia.jpg",
+    "http://natur.md/2793-thickbox_default/taietei-cu-ou-de-prepelia.jpg",
+    "http://natur.md/3188-thickbox_default/taietei-cu-ou-de-prepelia.jpg",
+    "http://natur.md/3189-thickbox_default/taietei-cu-ou-de-prepelia.jpg",
+    "http://natur.md/3208-thickbox_default/taietei-cu-ou-de-prepelia.jpg",
+    "http://natur.md/3365-thickbox_default/taietei-cu-ou-de-prepelia.jpg"
+   ],
+   "reviews": [
+    {
+     "author": "Larissa",
+     "rating": 3,
+     "date": "2019-03-26",
+     "text": "Acesti taietei fierti un bulion de prepelita de la dvs, de doua saptamani e mancarea mea preferata. Se primeste ceva extraordinar de bun."
+    },
+    {
+     "author": "Natasa",
+     "rating": 3,
+     "date": "2018-05-24",
+     "text": "cumpar de la linella, gustosi!!"
+    },
+    {
+     "author": "Alex",
+     "rating": 3,
+     "date": "2018-05-21",
+     "text": "Gustosi si moi la gust."
+    },
+    {
+     "author": "Alexandrina Stratan",
+     "rating": 3,
+     "date": "2018-05-15",
+     "text": "Cumparati CUMPARATI!"
+    },
+    {
+     "author": "Ира",
+     "rating": 3,
+     "date": "2018-05-15",
+     "text": "Продукт очень хорошый, качественный! Заказала 3!"
+    },
+    {
+     "author": "Oleg Graur",
+     "rating": 3,
+     "date": "2018-05-14",
+     "text": "Se fierb usor, si merg cu orice combinatie de alimente la gust - bolognese, branza, carnita de pui cu ciuperci, cascaval topit etc. Bon Appetit!"
+    },
+    {
+     "author": "Marina Sarbu",
+     "rating": 3,
+     "date": "2018-05-14",
+     "text": "Am incercat combinatia dintre taiteii acestia si casul de oi pe care il vindeti.. E incredibila combinatia! Incercati, aceasta era mancarea mea din copilarie preferata.. amintiri"
+    },
+    {
+     "author": "Aurica Butu",
+     "rating": 3,
+     "date": "2018-05-12",
+     "text": "taitei cu bolognese, gustosi au iesit! Moi la gust, decat pastele care se vand. Am vazut si la Fourchette si Linella, cumparat 5 cutii deodata."
+    },
+    {
+     "author": "Alina Jaman",
+     "rating": 3,
+     "date": "2018-05-11",
+     "text": "Sunt superi! Taitei calitativi, mai gustosi decat cei ce i-am cumparat de la magazine cu ou de gaina! Sincer, producatori sunteti bravo!"
+    },
+    {
+     "author": "Victor",
+     "rating": 5,
+     "date": "2018-05-07",
+     "text": "Salvatorii nostri - de cand am descoperit acesti taietei zeama si-a facut viza de resedinta in frigiderul nostru ;)"
+    },
+    {
+     "author": "Aurel",
+     "rating": 5,
+     "date": "2018-05-04",
+     "text": "Foarte gustosi si apetisanti! Dupa reteta bunicii mele... Am incercat taitei fierti cu prepelita afumata, gust si combinatie perfecta!! Data viitoare voi face la fel adaugand si un vin gustos moldovenesc!"
+    },
+    {
+     "author": "Alexandru",
+     "rating": 5,
+     "date": "2018-05-03",
+     "text": "Am cumparat zilele acestea 2 cutii, am ramas impresionat de calitatea produsului si de gustul taiteilor, facuti ca acasa. Recomand neaparat!"
+    }
+   ],
+   "in_stock": true,
+   "categories": [
+    69,
+    97
+   ],
+   "local_images": [
+    "25-0-taietei-cu-ou-de-prepelia.jpg",
+    "25-1-taietei-cu-ou-de-prepelia.jpg",
+    "25-2-taietei-cu-ou-de-prepelia.jpg",
+    "25-3-taietei-cu-ou-de-prepelia.jpg",
+    "25-4-taietei-cu-ou-de-prepelia.jpg",
+    "25-5-taietei-cu-ou-de-prepelia.jpg",
+    "25-6-taietei-cu-ou-de-prepelia.jpg",
+    "25-7-taietei-cu-ou-de-prepelia.jpg",
+    "25-8-taietei-cu-ou-de-prepelia.jpg",
+    "25-9-taietei-cu-ou-de-prepelia.jpg"
+   ]
+  },
+  {
+   "id": 951,
+   "url": "http://natur.md/ayurvedice-ayurveda-/951-suc-aloevera-plus-india.html",
+   "name": "Suc Aloevera PLUS, India",
+   "price": 400.0,
+   "regular_price": 400.0,
+   "unit": "pentru 500 ml",
+   "short": "<p>Suc Aloevera PLUS, India</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5896-thickbox_default/suc-aloevera-plus-india.jpg",
+    "http://natur.md/5900-thickbox_default/suc-aloevera-plus-india.jpg",
+    "http://natur.md/5897-thickbox_default/suc-aloevera-plus-india.jpg",
+    "http://natur.md/5898-thickbox_default/suc-aloevera-plus-india.jpg",
+    "http://natur.md/5899-thickbox_default/suc-aloevera-plus-india.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    19,
+    43,
+    67
+   ],
+   "local_images": [
+    "951-0-suc-aloevera-plus-india.jpg",
+    "951-1-suc-aloevera-plus-india.jpg",
+    "951-2-suc-aloevera-plus-india.jpg",
+    "951-3-suc-aloevera-plus-india.jpg",
+    "951-4-suc-aloevera-plus-india.jpg"
+   ]
+  },
+  {
+   "id": 179,
+   "url": "http://natur.md/apa-voda/179-apa-minerala-plata.html",
+   "name": "Apă minerală plată 6buc x 2litri",
+   "price": 120.0,
+   "regular_price": 120.0,
+   "unit": "pentru Bax",
+   "short": "<p>Apă minerală plată - IZVORUL MINUNILOR, <strong>6 buc x 2 litri</strong></p><strong>Минеральная вода, без газов</strong>",
+   "description": "",
+   "images": [
+    "http://natur.md/2801-thickbox_default/apa-minerala-plata.jpg",
+    "http://natur.md/1098-thickbox_default/apa-minerala-plata.jpg",
+    "http://natur.md/2380-thickbox_default/apa-minerala-plata.jpg",
+    "http://natur.md/2802-thickbox_default/apa-minerala-plata.jpg",
+    "http://natur.md/2803-thickbox_default/apa-minerala-plata.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    19
+   ],
+   "local_images": [
+    "179-0-apa-minerala-plata.jpg",
+    "179-1-apa-minerala-plata.jpg",
+    "179-2-apa-minerala-plata.jpg",
+    "179-3-apa-minerala-plata.jpg",
+    "179-4-apa-minerala-plata.jpg"
+   ]
+  },
+  {
+   "id": 775,
+   "url": "http://natur.md/din-legume/775-castravei-murai-tradiional.html",
+   "name": "Castraveți MURAȚI TRADIȚIONAL",
+   "price": 120.0,
+   "regular_price": 120.0,
+   "unit": "pentru cas 2 kg",
+   "short": "<p>Castraveți MURAȚI TRADIȚIONAL, soiul Rodnicioc, cca 1 kg</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5358-thickbox_default/castravei-murai-tradiional.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    76,
+    77
+   ],
+   "local_images": [
+    "775-0-castravei-murai-tradiional.jpg"
+   ]
+  },
+  {
+   "id": 983,
+   "url": "http://natur.md/din-carne/983-ceafa-de-porc-afumata-cu-linte-roie.html",
+   "name": "Ceafa de porc afumată cu linte roșie",
+   "price": 90.0,
+   "regular_price": 90.0,
+   "unit": "pentru 430 gr",
+   "short": "<p>Ceafa de porc afumată cu linte roșie, 430 gr. Produs Natur.md. Ceafa de porc de casă afumată tradițional, in fum.</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5954-thickbox_default/ceafa-de-porc-afumata-cu-linte-roie.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    76,
+    80
+   ],
+   "local_images": [
+    "983-0-ceafa-de-porc-afumata-cu-linte-roie.jpg"
+   ]
+  },
+  {
+   "id": 91,
+   "url": "http://natur.md/produse-din-carne/91-pateu-prepelia.html",
+   "name": "Pate prepeliță",
+   "price": 170.0,
+   "regular_price": 170.0,
+   "unit": "pentru 230 gr",
+   "short": "<p>Pate din măruntaie de prepeliță. </p><p><strong>Паштет из потрошков перепела. </strong></p>",
+   "description": "",
+   "images": [
+    "http://natur.md/4802-thickbox_default/pateu-prepelia.jpg",
+    "http://natur.md/4803-thickbox_default/pateu-prepelia.jpg",
+    "http://natur.md/215-thickbox_default/pateu-prepelia.jpg",
+    "http://natur.md/3299-thickbox_default/pateu-prepelia.jpg",
+    "http://natur.md/3362-thickbox_default/pateu-prepelia.jpg",
+    "http://natur.md/3385-thickbox_default/pateu-prepelia.jpg",
+    "http://natur.md/3386-thickbox_default/pateu-prepelia.jpg",
+    "http://natur.md/3387-thickbox_default/pateu-prepelia.jpg",
+    "http://natur.md/4625-thickbox_default/pateu-prepelia.jpg"
+   ],
+   "reviews": [
+    {
+     "author": "Victoria B",
+     "rating": 3,
+     "date": "2021-12-01",
+     "text": "Pateu extraordinar! Ca la mama ) delicat și plin de savoare. Copiii îl adora"
+    },
+    {
+     "author": "Ana C",
+     "rating": 3,
+     "date": "2020-04-23",
+     "text": "Din pacate nu mi-a placut deloc acest pateu. L-am comandat pentru ca era foarte laudat. E uscat ca consistenta deci nu se unge pe paine si e foarte greu de digerat simti toate maruntaiele din el. Mai bine faci singura acest pateu, stii sigur ce pui acolo."
+    },
+    {
+     "author": "✿ Natur.MD",
+     "rating": 3,
+     "date": "2018-11-14",
+     "text": "Draga Corina, Pateul contine urmatoarele ingrediente: maruntaie de prepelita, ceapa, morcov, sare, piper, grasime de prepelita. E 100% natural si super delicios!"
+    },
+    {
+     "author": "Corina",
+     "rating": 3,
+     "date": "2018-11-12",
+     "text": "Buna ziua, a-și putea va rog sa văd undeva Ingredientele acestui pateu ?"
+    },
+    {
+     "author": "Grigore F.",
+     "rating": 3,
+     "date": "2018-09-03",
+     "text": "Sotia mea le mananca indata. Daca dimineata vede ca avem pateu, pana revin de la serviciu deja totul e mancat. Cumparam cate 4 borcanase deodata."
+    },
+    {
+     "author": "Daniela Gore",
+     "rating": 3,
+     "date": "2018-05-15",
+     "text": "Super la gust, pur si simplu excelent!"
+    },
+    {
+     "author": "Rodica",
+     "rating": 3,
+     "date": "2018-05-14",
+     "text": "Am incercat si noi pe paine, un strat unt de vaci, un strat pateu de prepelita. Combinatie e foarte buna! Mic dejun asigurat :)"
+    }
+   ],
+   "in_stock": true,
+   "categories": [
+    76
+   ],
+   "local_images": [
+    "91-0-pateu-prepelia.jpg",
+    "91-1-pateu-prepelia.jpg",
+    "91-2-pateu-prepelia.jpg",
+    "91-3-pateu-prepelia.jpg",
+    "91-4-pateu-prepelia.jpg",
+    "91-5-pateu-prepelia.jpg",
+    "91-6-pateu-prepelia.jpg",
+    "91-7-pateu-prepelia.jpg",
+    "91-8-pateu-prepelia.jpg"
+   ]
+  },
+  {
+   "id": 984,
+   "url": "http://natur.md/din-carne/984-prepelia-afumata-cu-linte-roie.html",
+   "name": "Prepeliță afumată cu linte roșie",
+   "price": 90.0,
+   "regular_price": 90.0,
+   "unit": "pentru 430 gr",
+   "short": "<p>Prepeliță afumată tradițional cu linte roșie, 430 gr. </p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5955-thickbox_default/prepelia-afumata-cu-linte-roie.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    76
+   ],
+   "local_images": [
+    "984-0-prepelia-afumata-cu-linte-roie.jpg"
+   ]
+  },
+  {
+   "id": 982,
+   "url": "http://natur.md/din-legume/982-ardei-iui-in-oet-de-mere-i-miere-naturmd.html",
+   "name": "Ardei iuți în oțet de mere și miere, Natur.md",
+   "price": 60.0,
+   "regular_price": 60.0,
+   "unit": "pentru 130 gr",
+   "short": "<p>Ardei iuți în oțet de mere și miere, Natur.md, 130 gr</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5953-thickbox_default/ardei-iui-in-oet-de-mere-i-miere-naturmd.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    77
+   ],
+   "local_images": [
+    "982-0-ardei-iui-in-oet-de-mere-i-miere-naturmd.jpg"
+   ]
+  },
+  {
+   "id": 976,
+   "url": "http://natur.md/din-carne/976-pipote-inabuite-de-prepelia.html",
+   "name": "Pipote înăbușite de prepeliță",
+   "price": 80.0,
+   "regular_price": 80.0,
+   "unit": "pentru 230 gr",
+   "short": "<p>Pipote înăbușite de prepeliță, 230 gr, Darurile Prepeliței, SRL</p><p>Un gust neașteptat de plăcut și o textură fină pune acest produs inedit în rând cu delicatesele din carnea de prepeliță</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5947-thickbox_default/pipote-inabuite-de-prepelia.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    80
+   ],
+   "local_images": [
+    "976-0-pipote-inabuite-de-prepelia.jpg"
+   ]
+  },
+  {
+   "id": 997,
+   "url": "http://natur.md/din-carne/997-sos-bolonez-din-prepelia.html",
+   "name": "SOS BOLONEZ DIN PREPELIȚĂ",
+   "price": 125.0,
+   "regular_price": 125.0,
+   "unit": "pentru 230 gr",
+   "short": "<p>Sos bolonez cu carne de prepeliță: o experiență culinară unică și rafinată.</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5979-thickbox_default/sos-bolonez-din-prepelia.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    80
+   ],
+   "local_images": [
+    "997-0-sos-bolonez-din-prepelia.jpg"
+   ]
+  },
+  {
+   "id": 1007,
+   "url": "http://natur.md/din-carne/1007-chiftelue-din-pipept-de-prepelia-in-sos.html",
+   "name": "Chifteluțe din pipept de prepeliță în sos",
+   "price": 155.0,
+   "regular_price": 155.0,
+   "unit": "pentru 430 gr",
+   "short": "<p>Chifteluțe din pipept de prepeliță în sos, 430 gr, Natur.md</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5989-thickbox_default/chiftelue-din-pipept-de-prepelia-in-sos.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    80
+   ],
+   "local_images": [
+    "1007-0-chiftelue-din-pipept-de-prepelia-in-sos.jpg"
+   ]
+  },
+  {
+   "id": 601,
+   "url": "http://natur.md/utile/601-germinator.html",
+   "name": "Germinator",
+   "price": 110.0,
+   "regular_price": 110.0,
+   "unit": "pentru buc",
+   "short": "<p>Germinator pentu creșterea de germeni și microplante (microgreens)</p><p>Проращиватель для проращивания семян </p>",
+   "description": "",
+   "images": [
+    "http://natur.md/4484-thickbox_default/germinator.jpg",
+    "http://natur.md/4481-thickbox_default/germinator.jpg",
+    "http://natur.md/4479-thickbox_default/germinator.jpg",
+    "http://natur.md/4480-thickbox_default/germinator.jpg",
+    "http://natur.md/4482-thickbox_default/germinator.jpg",
+    "http://natur.md/4483-thickbox_default/germinator.jpg",
+    "http://natur.md/4485-thickbox_default/germinator.jpg",
+    "http://natur.md/4510-thickbox_default/germinator.jpg",
+    "http://natur.md/4511-thickbox_default/germinator.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    23,
+    71,
+    82
+   ],
+   "local_images": [
+    "601-0-germinator.jpg",
+    "601-1-germinator.jpg",
+    "601-2-germinator.jpg",
+    "601-3-germinator.jpg",
+    "601-4-germinator.jpg",
+    "601-5-germinator.jpg",
+    "601-6-germinator.jpg",
+    "601-7-germinator.jpg",
+    "601-8-germinator.jpg"
+   ]
+  },
+  {
+   "id": 697,
+   "url": "http://natur.md/adaos-biologic-activ-bad-y/697-phytosil-kido-fit-sirop.html",
+   "name": "PHYTOSIL KIDO-FIT, sirop",
+   "price": 150.0,
+   "regular_price": 150.0,
+   "unit": "pentru 200 ml",
+   "short": "<p>PHYTOSIL KIDO-FIT, sirop, 200 ml</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5045-thickbox_default/phytosil-kido-fit-sirop.jpg",
+    "http://natur.md/5043-thickbox_default/phytosil-kido-fit-sirop.jpg",
+    "http://natur.md/5044-thickbox_default/phytosil-kido-fit-sirop.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    81,
+    67
+   ],
+   "local_images": [
+    "697-0-phytosil-kido-fit-sirop.jpg",
+    "697-1-phytosil-kido-fit-sirop.jpg",
+    "697-2-phytosil-kido-fit-sirop.jpg"
+   ]
+  },
+  {
+   "id": 696,
+   "url": "http://natur.md/adaos-biologic-activ-bad-y/696-phytosil-livo-fit-sirop.html",
+   "name": "PHYTOSIL LIVO-FIT, sirop",
+   "price": 150.0,
+   "regular_price": 150.0,
+   "unit": "pentru 200 ml",
+   "short": "<p>PHYTOSIL LIVO-FIT, sirop, 200 ml</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5041-thickbox_default/phytosil-livo-fit-sirop.jpg",
+    "http://natur.md/5042-thickbox_default/phytosil-livo-fit-sirop.jpg",
+    "http://natur.md/5040-thickbox_default/phytosil-livo-fit-sirop.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    81,
+    93
+   ],
+   "local_images": [
+    "696-0-phytosil-livo-fit-sirop.jpg",
+    "696-1-phytosil-livo-fit-sirop.jpg",
+    "696-2-phytosil-livo-fit-sirop.jpg"
+   ]
+  },
+  {
+   "id": 692,
+   "url": "http://natur.md/adaos-biologic-activ-bad-y/692-ulei-chimen-negru.html",
+   "name": "ULEI CHIMEN NEGRU",
+   "price": 180.0,
+   "regular_price": 180.0,
+   "unit": "pentru 100 ml",
+   "short": "<p>ULEI CHIMEN NEGRU, presat la rece, 100 ml, India</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5030-thickbox_default/ulei-chimen-negru.jpg",
+    "http://natur.md/5029-thickbox_default/ulei-chimen-negru.jpg",
+    "http://natur.md/5028-thickbox_default/ulei-chimen-negru.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    81,
+    67,
+    93
+   ],
+   "local_images": [
+    "692-0-ulei-chimen-negru.jpg",
+    "692-1-ulei-chimen-negru.jpg",
+    "692-2-ulei-chimen-negru.jpg"
+   ]
+  },
+  {
+   "id": 693,
+   "url": "http://natur.md/adaos-biologic-activ-bad-y/693-plantic-anty-worms.html",
+   "name": "PLANTIC ANTY WORMS",
+   "price": 200.0,
+   "regular_price": 200.0,
+   "unit": "pentru 200 ml",
+   "short": "<p>PLANTIC ANTY WORMS, sirop contra paraziților intestinali, 200 ml</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5033-thickbox_default/plantic-anty-worms.jpg",
+    "http://natur.md/5031-thickbox_default/plantic-anty-worms.jpg",
+    "http://natur.md/5032-thickbox_default/plantic-anty-worms.jpg"
+   ],
+   "reviews": [],
+   "in_stock": false,
+   "categories": [
+    81,
+    93
+   ],
+   "local_images": [
+    "693-0-plantic-anty-worms.jpg",
+    "693-1-plantic-anty-worms.jpg",
+    "693-2-plantic-anty-worms.jpg"
+   ]
+  },
+  {
+   "id": 959,
+   "url": "http://natur.md/produse-cosmetice-kosmetika/959-argint-coloidal-cu-pulverizator.html",
+   "name": "ARGINT COLOIDAL cu pulverizator",
+   "price": 126.0,
+   "regular_price": 126.0,
+   "unit": "pentru 100 ml",
+   "short": "<p>ARGINT COLOIDAL cu pulverizator STEAUA DIVINA, România.</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5920-thickbox_default/argint-coloidal-cu-pulverizator.jpg",
+    "http://natur.md/5921-thickbox_default/argint-coloidal-cu-pulverizator.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    81,
+    62
+   ],
+   "local_images": [
+    "959-0-argint-coloidal-cu-pulverizator.jpg",
+    "959-1-argint-coloidal-cu-pulverizator.jpg"
+   ]
+  },
+  {
+   "id": 682,
+   "url": "http://natur.md/adaos-biologic-activ-bad-y/682-papaya-plus-capsule.html",
+   "name": "PLANTIC PAPAYA PLUS, capsule",
+   "price": 250.0,
+   "regular_price": 250.0,
+   "unit": "pentru 100 caps",
+   "short": "<p>PLANTIC PAPAYA PLUS, capsule n 10x10 (îmbunătățește funcțiile sistemului digestiv)</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5010-thickbox_default/papaya-plus-capsule.jpg",
+    "http://natur.md/5008-thickbox_default/papaya-plus-capsule.jpg",
+    "http://natur.md/5009-thickbox_default/papaya-plus-capsule.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    81
+   ],
+   "local_images": [
+    "682-0-papaya-plus-capsule.jpg",
+    "682-1-papaya-plus-capsule.jpg",
+    "682-2-papaya-plus-capsule.jpg"
+   ]
+  },
+  {
+   "id": 971,
+   "url": "http://natur.md/suplimente-alimentare-pisshevye-dobavki/971-set-slabire-nr-2-naturmd.html",
+   "name": "Set slabire Nr 2, Natur.md",
+   "price": 161.0,
+   "regular_price": 161.0,
+   "unit": "pentru set",
+   "short": "<p>Set slabire Nr 2, Natur.md, Oțet de mere și miere plus Miere de albine de POLIFLORĂ</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5942-thickbox_default/set-slabire-nr-2-naturmd.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    67
+   ],
+   "local_images": [
+    "971-0-set-slabire-nr-2-naturmd.jpg"
+   ]
+  },
+  {
+   "id": 680,
+   "url": "http://natur.md/adaos-biologic-activ-bad-y/680-plantic-ortho-care-capsule.html",
+   "name": "PLANTIC Ortho Care, capsule",
+   "price": 250.0,
+   "regular_price": 250.0,
+   "unit": "pentru 100 caps",
+   "short": "<p>PLANTIC Ortho Care, capsule n 10x10 (pentru ajutor rapid în dureri)</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5005-thickbox_default/plantic-ortho-care-capsule.jpg",
+    "http://natur.md/5003-thickbox_default/plantic-ortho-care-capsule.jpg",
+    "http://natur.md/5004-thickbox_default/plantic-ortho-care-capsule.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    67
+   ],
+   "local_images": [
+    "680-0-plantic-ortho-care-capsule.jpg",
+    "680-1-plantic-ortho-care-capsule.jpg",
+    "680-2-plantic-ortho-care-capsule.jpg"
+   ]
+  },
+  {
+   "id": 681,
+   "url": "http://natur.md/adaos-biologic-activ-bad-y/681-plantic-curcumin-plus-capsule.html",
+   "name": "PLANTIC Curcumin Plus, capsule",
+   "price": 225.0,
+   "regular_price": 225.0,
+   "unit": "pentru 30 caps",
+   "short": "<p>PLANTIC Curcumin Plus, capsule n 3x10, (pentru îmbunătățirea funcțiilor sistemului gastrointestinal și întărirea imunității)</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5006-thickbox_default/plantic-curcumin-plus-capsule.jpg",
+    "http://natur.md/5007-thickbox_default/plantic-curcumin-plus-capsule.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    67
+   ],
+   "local_images": [
+    "681-0-plantic-curcumin-plus-capsule.jpg",
+    "681-1-plantic-curcumin-plus-capsule.jpg"
+   ]
+  },
+  {
+   "id": 721,
+   "url": "http://natur.md/ciuperci/721-ciuperci-hribi-porcini-uscate-bucai.html",
+   "name": "Ciuperci Hribi (Porcini), Uscate, Bucăți",
+   "price": 165.0,
+   "regular_price": 165.0,
+   "unit": "pentru 50 gr",
+   "short": "<p>Ciuperci Hribi (Porcini), Uscate, Bucăți, 50 gr</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5150-thickbox_default/ciuperci-hribi-porcini-uscate-bucai.jpg",
+    "http://natur.md/5152-thickbox_default/ciuperci-hribi-porcini-uscate-bucai.jpg",
+    "http://natur.md/5151-thickbox_default/ciuperci-hribi-porcini-uscate-bucai.jpg",
+    "http://natur.md/5149-thickbox_default/ciuperci-hribi-porcini-uscate-bucai.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    71,
+    55
+   ],
+   "local_images": [
+    "721-0-ciuperci-hribi-porcini-uscate-bucai.jpg",
+    "721-1-ciuperci-hribi-porcini-uscate-bucai.jpg",
+    "721-2-ciuperci-hribi-porcini-uscate-bucai.jpg",
+    "721-3-ciuperci-hribi-porcini-uscate-bucai.jpg"
+   ]
+  },
+  {
+   "id": 710,
+   "url": "http://natur.md/gluten-free/710-faina-de-naut.html",
+   "name": "Făină de năut",
+   "price": 42.0,
+   "regular_price": 42.0,
+   "unit": "pentru 500 gr",
+   "short": "<p>Făină de năut, 500 gr, fără gluten</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5106-thickbox_default/faina-de-naut.jpg",
+    "http://natur.md/5107-thickbox_default/faina-de-naut.jpg",
+    "http://natur.md/5108-thickbox_default/faina-de-naut.jpg",
+    "http://natur.md/5105-thickbox_default/faina-de-naut.jpg"
+   ],
+   "reviews": [],
+   "in_stock": false,
+   "categories": [
+    73,
+    52
+   ],
+   "local_images": [
+    "710-0-faina-de-naut.jpg",
+    "710-1-faina-de-naut.jpg",
+    "710-2-faina-de-naut.jpg",
+    "710-3-faina-de-naut.jpg"
+   ]
+  },
+  {
+   "id": 896,
+   "url": "http://natur.md/produse-cocos-kokos/896-ulei-cocos-rafinat-deodorat-malaysia.html",
+   "name": "Ulei COCOS, Rafinat, Deodorat, Malaysia",
+   "price": 135.0,
+   "regular_price": 135.0,
+   "unit": "pentru 320 ml",
+   "short": "<p>Ulei COCOS, Rafinat, Deodorat, Malaysia, 330 ml</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5730-thickbox_default/ulei-cocos-rafinat-deodorat-malaysia.jpg",
+    "http://natur.md/5731-thickbox_default/ulei-cocos-rafinat-deodorat-malaysia.jpg",
+    "http://natur.md/5732-thickbox_default/ulei-cocos-rafinat-deodorat-malaysia.jpg",
+    "http://natur.md/5733-thickbox_default/ulei-cocos-rafinat-deodorat-malaysia.jpg",
+    "http://natur.md/5812-thickbox_default/ulei-cocos-rafinat-deodorat-malaysia.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    49,
+    50
+   ],
+   "local_images": [
+    "896-0-ulei-cocos-rafinat-deodorat-malaysia.jpg",
+    "896-1-ulei-cocos-rafinat-deodorat-malaysia.jpg",
+    "896-2-ulei-cocos-rafinat-deodorat-malaysia.jpg",
+    "896-3-ulei-cocos-rafinat-deodorat-malaysia.jpg",
+    "896-4-ulei-cocos-rafinat-deodorat-malaysia.jpg"
+   ]
+  },
+  {
+   "id": 963,
+   "url": "http://natur.md/produse-cosmetice-kosmetika/963-super-potena.html",
+   "name": "Superpotent",
+   "price": 174.0,
+   "regular_price": 174.0,
+   "unit": "pentru 100 ml",
+   "short": "<p>Superpotent ulei masaj 100 ml ulei natural de masaj pentru stimularea erecţiei</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5929-thickbox_default/super-potena.jpg",
+    "http://natur.md/5930-thickbox_default/super-potena.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    62
+   ],
+   "local_images": [
+    "963-0-super-potena.jpg",
+    "963-1-super-potena.jpg"
+   ]
+  },
+  {
+   "id": 962,
+   "url": "http://natur.md/produse-cosmetice-kosmetika/962-crema-aur-argint.html",
+   "name": "Cremă de față cu Aur și Argint",
+   "price": 214.0,
+   "regular_price": 214.0,
+   "unit": "pentru 75 ml",
+   "short": "<p>Cremă de față cu Aur și Argint pentru ten normal 75 ml</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5926-thickbox_default/crema-aur-argint.jpg",
+    "http://natur.md/5927-thickbox_default/crema-aur-argint.jpg",
+    "http://natur.md/5928-thickbox_default/crema-aur-argint.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    62
+   ],
+   "local_images": [
+    "962-0-crema-aur-argint.jpg",
+    "962-1-crema-aur-argint.jpg",
+    "962-2-crema-aur-argint.jpg"
+   ]
+  },
+  {
+   "id": 961,
+   "url": "http://natur.md/produse-cosmetice-kosmetika/961-crema-pentru-corp.html",
+   "name": "Crema pentru corp",
+   "price": 198.0,
+   "regular_price": 198.0,
+   "unit": "pentru 250 ml",
+   "short": "<p>Cremă de corp cu portocale dulci şi unt de shea, 250 ml</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5924-thickbox_default/crema-pentru-corp.jpg",
+    "http://natur.md/5925-thickbox_default/crema-pentru-corp.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    62
+   ],
+   "local_images": [
+    "961-0-crema-pentru-corp.jpg",
+    "961-1-crema-pentru-corp.jpg"
+   ]
+  },
+  {
+   "id": 965,
+   "url": "http://natur.md/produse-cosmetice-kosmetika/965-pasta-de-dini-gennadent-herbal-spumanta-vivanatura.html",
+   "name": "Pasta de dinți GennaDent Herbal spumantă, VIVANATURA",
+   "price": 113.0,
+   "regular_price": 113.0,
+   "unit": "pentru 80 gr",
+   "short": "<p>GennaDent Herbal – pasta de dinti 100% naturala spumanta cu argila si Aloe<br>Vera, 80 ml<br><br></p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5933-thickbox_default/pasta-de-dini-gennadent-herbal-spumanta-vivanatura.jpg",
+    "http://natur.md/5934-thickbox_default/pasta-de-dini-gennadent-herbal-spumanta-vivanatura.jpg",
+    "http://natur.md/5935-thickbox_default/pasta-de-dini-gennadent-herbal-spumanta-vivanatura.jpg",
+    "http://natur.md/5936-thickbox_default/pasta-de-dini-gennadent-herbal-spumanta-vivanatura.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    62
+   ],
+   "local_images": [
+    "965-0-pasta-de-dini-gennadent-herbal-spumanta-vivanatura.jpg",
+    "965-1-pasta-de-dini-gennadent-herbal-spumanta-vivanatura.jpg",
+    "965-2-pasta-de-dini-gennadent-herbal-spumanta-vivanatura.jpg",
+    "965-3-pasta-de-dini-gennadent-herbal-spumanta-vivanatura.jpg"
+   ]
+  },
+  {
+   "id": 964,
+   "url": "http://natur.md/produse-cosmetice-kosmetika/964-praf-de-dini.html",
+   "name": "Praf de dinți",
+   "price": 206.0,
+   "regular_price": 206.0,
+   "unit": "pentru 75 gr",
+   "short": "<p><strong><em>Praf de dinți 100% natural cu argilă, plante și zeolit, 75g</em></strong></p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5931-thickbox_default/praf-de-dini.jpg",
+    "http://natur.md/5932-thickbox_default/praf-de-dini.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    62
+   ],
+   "local_images": [
+    "964-0-praf-de-dini.jpg",
+    "964-1-praf-de-dini.jpg"
+   ]
+  },
+  {
+   "id": 738,
+   "url": "http://natur.md/nuci-semine/738-ridiche-daicon-semine-pentru-microplante.html",
+   "name": "RIDICHE DAICON, Semințe pentru microplante",
+   "price": 50.0,
+   "regular_price": 50.0,
+   "unit": "pentru 50 gr",
+   "short": "<p>RIDICHE DAICON, Semințe pentru microplante, 50 gr</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5195-thickbox_default/ridiche-daicon-semine-pentru-microplante.jpg",
+    "http://natur.md/5196-thickbox_default/ridiche-daicon-semine-pentru-microplante.jpg"
+   ],
+   "reviews": [
+    {
+     "author": "isushristos69",
+     "rating": 3,
+     "date": "2020-05-30",
+     "text": "Din toate semintele care le-am cumparat pt germinare am experimentat timp indelungat, in apa, in pamant. Acestea sunt cele mai roditoare si gustoase, toate semintele iesa din pamant si peste 25 zile, fara conditii speciale am scos o roada enorma si au iesit absolut toate semintele din pamant, salata era foarte gustoasa, nu am sa cumpar niciodata altele pt a le sadi in ghiveci."
+    }
+   ],
+   "in_stock": true,
+   "categories": [
+    37
+   ],
+   "local_images": [
+    "738-0-ridiche-daicon-semine-pentru-microplante.jpg",
+    "738-1-ridiche-daicon-semine-pentru-microplante.jpg"
+   ]
+  },
+  {
+   "id": 898,
+   "url": "http://natur.md/nuci-semine/898-mixt-semine-pentru-germinare-mix-13-afrodiziac.html",
+   "name": "Mixt semințe pentru germinare MIX 13 AFRODIZIAC",
+   "price": 47.0,
+   "regular_price": 47.0,
+   "unit": "pentru 50 gr",
+   "short": "<p>Mixt semințe pentru germinare MIX 13 AFRODIZIAC</p><p>Varză Chinezească-Brocoli-Trifoi-Rucola</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5739-thickbox_default/mixt-semine-pentru-germinare-mix-13-afrodiziac.jpg",
+    "http://natur.md/5738-thickbox_default/mixt-semine-pentru-germinare-mix-13-afrodiziac.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    37
+   ],
+   "local_images": [
+    "898-0-mixt-semine-pentru-germinare-mix-13-afrodiziac.jpg",
+    "898-1-mixt-semine-pentru-germinare-mix-13-afrodiziac.jpg"
+   ]
+  },
+  {
+   "id": 954,
+   "url": "http://natur.md/ciuperci/954-opeata-marinai-ucraina.html",
+   "name": "Ghebe marinați, Ucraina",
+   "price": 125.0,
+   "regular_price": 125.0,
+   "unit": "pentru 500 ml",
+   "short": "<p>Ghebe marinați, Ucraina</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5907-thickbox_default/opeata-marinai-ucraina.jpg",
+    "http://natur.md/5908-thickbox_default/opeata-marinai-ucraina.jpg",
+    "http://natur.md/5909-thickbox_default/opeata-marinai-ucraina.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    55
+   ],
+   "local_images": [
+    "954-0-opeata-marinai-ucraina.jpg",
+    "954-1-opeata-marinai-ucraina.jpg",
+    "954-2-opeata-marinai-ucraina.jpg"
+   ]
+  },
+  {
+   "id": 952,
+   "url": "http://natur.md/ciuperci/952-hribi-marinai-ucraina.html",
+   "name": "Hribi (porcini) marinați, Ucraina",
+   "price": 380.0,
+   "regular_price": 380.0,
+   "unit": "pentru 500 ml",
+   "short": "<p>Hribi de pădure, marinați, 500 ml</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5901-thickbox_default/hribi-marinai-ucraina.jpg",
+    "http://natur.md/5902-thickbox_default/hribi-marinai-ucraina.jpg",
+    "http://natur.md/5903-thickbox_default/hribi-marinai-ucraina.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    55
+   ],
+   "local_images": [
+    "952-0-hribi-marinai-ucraina.jpg",
+    "952-1-hribi-marinai-ucraina.jpg",
+    "952-2-hribi-marinai-ucraina.jpg"
+   ]
+  },
+  {
+   "id": 953,
+   "url": "http://natur.md/ciuperci/953-masleata-marinai-ucraina.html",
+   "name": "Ciuperci Vacute Marinate, Ucraina",
+   "price": 190.0,
+   "regular_price": 190.0,
+   "unit": "pentru 500ml",
+   "short": "<p>Ciuperci Vacute Marinate, Ucraina 500 ml</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5904-thickbox_default/masleata-marinai-ucraina.jpg",
+    "http://natur.md/5905-thickbox_default/masleata-marinai-ucraina.jpg",
+    "http://natur.md/5906-thickbox_default/masleata-marinai-ucraina.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    55
+   ],
+   "local_images": [
+    "953-0-masleata-marinai-ucraina.jpg",
+    "953-1-masleata-marinai-ucraina.jpg",
+    "953-2-masleata-marinai-ucraina.jpg"
+   ]
+  },
+  {
+   "id": 678,
+   "url": "http://natur.md/adaos-biologic-activ-bad-y/678-phytosil-livo-fit-capsule-.html",
+   "name": "PHYTOSIL Livo-Fit, capsule",
+   "price": 250.0,
+   "regular_price": 250.0,
+   "unit": "pentru 100 caps",
+   "short": "<p>PHYTOSIL Livo-Fit, capsule N 10x10 (pentru sănătatea și buna funcționalitate a ficatului)</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/4999-thickbox_default/phytosil-livo-fit-capsule-.jpg",
+    "http://natur.md/4997-thickbox_default/phytosil-livo-fit-capsule-.jpg",
+    "http://natur.md/4998-thickbox_default/phytosil-livo-fit-capsule-.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    93
+   ],
+   "local_images": [
+    "678-0-phytosil-livo-fit-capsule-.jpg",
+    "678-1-phytosil-livo-fit-capsule-.jpg",
+    "678-2-phytosil-livo-fit-capsule-.jpg"
+   ]
+  },
+  {
+   "id": 677,
+   "url": "http://natur.md/adaos-biologic-activ-bad-y/677-phytosil-kido-fit-capsule.html",
+   "name": "PHYTOSIL Kido-Fit, capsule",
+   "price": 250.0,
+   "regular_price": 250.0,
+   "unit": "pentru 100 caps",
+   "short": "<p>PHYTOSIL Kido-Fit, capsule N 10x10 (pentru sănătatea și buna funcționalitate a rinichilor)</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/4996-thickbox_default/phytosil-kido-fit-capsule.jpg",
+    "http://natur.md/4994-thickbox_default/phytosil-kido-fit-capsule.jpg",
+    "http://natur.md/4995-thickbox_default/phytosil-kido-fit-capsule.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    93
+   ],
+   "local_images": [
+    "677-0-phytosil-kido-fit-capsule.jpg",
+    "677-1-phytosil-kido-fit-capsule.jpg",
+    "677-2-phytosil-kido-fit-capsule.jpg"
+   ]
+  },
+  {
+   "id": 20,
+   "url": "http://natur.md/pasare/20-prepelita-intreaga-cruda.html",
+   "name": "Carne de prepeliță",
+   "price": 180.0,
+   "regular_price": 180.0,
+   "unit": "pentru kg",
+   "short": "<p>Prepelițe refrigerate</p><p><strong>Перепела свежие</strong></p>",
+   "description": "",
+   "images": [
+    "http://natur.md/734-thickbox_default/prepelita-intreaga-cruda.jpg",
+    "http://natur.md/435-thickbox_default/prepelita-intreaga-cruda.jpg",
+    "http://natur.md/436-thickbox_default/prepelita-intreaga-cruda.jpg",
+    "http://natur.md/437-thickbox_default/prepelita-intreaga-cruda.jpg",
+    "http://natur.md/733-thickbox_default/prepelita-intreaga-cruda.jpg",
+    "http://natur.md/352-thickbox_default/prepelita-intreaga-cruda.jpg",
+    "http://natur.md/689-thickbox_default/prepelita-intreaga-cruda.jpg",
+    "http://natur.md/3367-thickbox_default/prepelita-intreaga-cruda.jpg",
+    "http://natur.md/3180-thickbox_default/prepelita-intreaga-cruda.jpg",
+    "http://natur.md/3366-thickbox_default/prepelita-intreaga-cruda.jpg"
+   ],
+   "reviews": [
+    {
+     "author": "* Natur.MD",
+     "rating": 3,
+     "date": "2021-03-08",
+     "text": "Draga Iulita, Puteti face comanda online aici, chiar pe aceasta pagina sau contactati-ne pe Facebook Messenger sau la telefon: 060 89 30 00. Pentru a comanda online, trebuie sa va creati un cont mai intai. Procesul e foarte simplu. Click pe butonul Autentificare de mai sus si urmati instructiunile. Contul se creaza in cateva secunde. Vom fi bucurosi sa va deservim!"
+    },
+    {
+     "author": "Iulita.",
+     "rating": 3,
+     "date": "2021-03-06",
+     "text": "Bună ziua. As vrea și eu carne de prepeliță vre-o 2 kg. Și ouă dacă aveți tot de prepeliță vre-o 100."
+    },
+    {
+     "author": "* Natur.MD",
+     "rating": 3,
+     "date": "2020-02-08",
+     "text": "Buna ziua, Tatiana! Vedeti conditiile de plata si livrare la acest link http://natur.md/content/1-conditii Multa sanatate!"
+    },
+    {
+     "author": "Tatiana",
+     "rating": 3,
+     "date": "2020-02-07",
+     "text": "Vreau sa cumpăr . E cu livrare la domiciliu? Mulțumesc!"
+    },
+    {
+     "author": "Sandu",
+     "rating": 3,
+     "date": "2018-05-21",
+     "text": "Natur.MD unde le cresteti? Le cresteti bine!"
+    },
+    {
+     "author": "Catalina Bubuioc",
+     "rating": 3,
+     "date": "2018-05-15",
+     "text": "Recent am facut cumparaturile la dvs., sfatui urmatoarea reteta alea Natur - carne de prepelita prajita (inmuieta in faina din seminte de in, oua de gaina) prajita in ulei de miez de nuca. E INCREDIBIL! Se serveste cu Mozzarella fresca si bine-apreciatii taitei de prepelita, un pic sarati. Natur.MD imi satisface poftele."
+    },
+    {
+     "author": "Sabina",
+     "rating": 3,
+     "date": "2018-05-14",
+     "text": "Cumparat 2 kg de carne de prepelita, sincer am ramas foarte impresionata de calitatea produsului. La un moment dat stateam cu fiica si ghiceam oare cu ce le hraniti :) Am incercat parjoale din carnea aceasta de prepelita! Nu o sa regretati, adio mancare conservata."
+    }
+   ],
+   "in_stock": true,
+   "categories": [
+    97
+   ],
+   "local_images": [
+    "20-0-prepelita-intreaga-cruda.jpg",
+    "20-1-prepelita-intreaga-cruda.jpg",
+    "20-2-prepelita-intreaga-cruda.jpg",
+    "20-3-prepelita-intreaga-cruda.jpg",
+    "20-4-prepelita-intreaga-cruda.jpg",
+    "20-5-prepelita-intreaga-cruda.jpg",
+    "20-6-prepelita-intreaga-cruda.jpg",
+    "20-7-prepelita-intreaga-cruda.jpg",
+    "20-8-prepelita-intreaga-cruda.jpg",
+    "20-9-prepelita-intreaga-cruda.jpg"
+   ]
+  },
+  {
+   "id": 95,
+   "url": "http://natur.md/produse-din-carne/95-carcase-prepelia.html",
+   "name": "Carcase prepeliță",
+   "price": 75.0,
+   "regular_price": 75.0,
+   "unit": "pentru kg",
+   "short": "<p>Carcase de prepeliță cu sau fără aripi.</p><p><strong>Суповый набор, перепелиный. </strong></p>",
+   "description": "",
+   "images": [
+    "http://natur.md/1085-thickbox_default/carcase-prepelia.jpg",
+    "http://natur.md/450-thickbox_default/carcase-prepelia.jpg",
+    "http://natur.md/451-thickbox_default/carcase-prepelia.jpg",
+    "http://natur.md/452-thickbox_default/carcase-prepelia.jpg",
+    "http://natur.md/1086-thickbox_default/carcase-prepelia.jpg",
+    "http://natur.md/1087-thickbox_default/carcase-prepelia.jpg",
+    "http://natur.md/1150-thickbox_default/carcase-prepelia.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    97
+   ],
+   "local_images": [
+    "95-0-carcase-prepelia.jpg",
+    "95-1-carcase-prepelia.jpg",
+    "95-2-carcase-prepelia.jpg",
+    "95-3-carcase-prepelia.jpg",
+    "95-4-carcase-prepelia.jpg",
+    "95-5-carcase-prepelia.jpg",
+    "95-6-carcase-prepelia.jpg"
+   ]
+  },
+  {
+   "id": 836,
+   "url": "http://natur.md/hrana-animale-de-campanie/836-hrana-pisici-tocatura-din-preplia-.html",
+   "name": "Hrană PISICI - Tocătură din prepeliță",
+   "price": 50.0,
+   "regular_price": 50.0,
+   "unit": "pentru 430 gr",
+   "short": "<p>Hrană PISICI - Tocătură din prepeliță, 430 gr. STERILIZAT</p>",
+   "description": "",
+   "images": [
+    "http://natur.md/5884-thickbox_default/hrana-pisici-tocatura-din-preplia-.jpg",
+    "http://natur.md/5559-thickbox_default/hrana-pisici-tocatura-din-preplia-.jpg",
+    "http://natur.md/5560-thickbox_default/hrana-pisici-tocatura-din-preplia-.jpg",
+    "http://natur.md/5561-thickbox_default/hrana-pisici-tocatura-din-preplia-.jpg"
+   ],
+   "reviews": [],
+   "in_stock": true,
+   "categories": [
+    99
+   ],
+   "local_images": [
+    "836-0-hrana-pisici-tocatura-din-preplia-.jpg",
+    "836-1-hrana-pisici-tocatura-din-preplia-.jpg",
+    "836-2-hrana-pisici-tocatura-din-preplia-.jpg",
+    "836-3-hrana-pisici-tocatura-din-preplia-.jpg"
+   ]
+  }
+ ],
+ "cms": [
+  {
+   "url": "http://natur.md/content/1-conditii",
+   "title": "Plata",
+   "html": "Condiţiile de plată şi livrare a produselor comandate<p>Natur.MD este o prezentare de produse NATURALE selectate de la cei mai buni gospodari de la țară și mici producători.</p>Plata<p>Pentru cumpărături în sumă de peste 500 lei, livrarea este gratuită. Pentru cumpărături în sumă de până la 500 lei, livrarea e contra plată - 50 lei. Achitarea comenzii se face în momentul primirii coletului de la agentul de livrare sau producător. </p>Livrarea<p>Timpul de livrare al produselor cumpărate de pe site-ul nostru este între 1 şi 48 de ore, în funcție de produs, din momentul confirmarii telefonice a comenzii primite. La moment livrăm în raza mun. Chișinău, dar vedeți mai jos în ce condiții livrăm și în afara mun. Chișinău.</p>Comenzi din afara mun. Chișinău<p>Comenzile din afara mun. Chișinău se expediază prin intermediul Poșta Moldovei, cu condiția că produsele comandate nu sunt perisabile.</p>Recepţia produselor<p>La receptia produselor, dacă observaţi că produsele nu corespund comenzii dvs., le puteţi refuza iar noi vom lua ulterior măsurile care se impun.<br><br>Recepţia produselor reprezintă acceptul clientului că produsele au ajuns în stare bună şi corespund cantitativ şi calitativ cu comanda efectuată, proces care are loc în momentul achitării comenzii către agentul de livrare.</p>Telefon pentru comenzi<p>060 89 30 00</p><p>Comandă online</p><p>Pentru a cumpăra online de pe Natur.MD, mai întâi trebuie să vă creați un cont. E simplu. Durează un minut.</p><p>Vă puteți înregistra cu contul dvs. Facebook SAU să creați un cont prin urmatorii pași simpli: introduceți la pagina ✿ AUTENTIFICARE ✿ (1) un e-mail la care să vă trimitem confirmarea și detaliile comenzii, (2) un nume de utilizator, (3) o parolă, (4) adresa la care să vă livrăm produsele și (5) un telefon de contact.</p><p>SAU puteți alege să faceți comanda pe Facebook Messenger sau la telefon: 060 89 30 00. Vom fi bucuroși să vă deservim!</p><p><strong>Dacă aveți întrebări, contacți-ne pe Facebook Messenger , e-mail contact@natur.md sau la telefon: 060 89 30 00.</strong></p>Условия оплаты и доставки заказанных товаров<p>Natur.MD - это сайт-презентация НАТУРАЛЬНЫХ продуктов, от лучших отечественных фермеров и малых производителей.</p>Оплата<p>Покупки на сумму свыше 500 леев доставляются бесплатно. Для покупок до 500 леев, доставка - 50 леев. Оплата заказа производится при получении.</p>Доставка<p>Время доставки продуктов, приобретенных на нашем сайте, составляет от 1 до 48 часов, в зависимости от списка продуктов, с момента подтверждения получения заказа. Сейчас мы осуществляем доставку только в муниципии Кишинэу. С условиями отправок за пределами Кишинэу можно ознакомиться ниже.</p>Заказы, полученные не из муниципия Кишинэу<p>Заказы, полученные не из муниципия Кишинэу, могут быть отправленны посредством \"Пошта Молдовей\" если не содержат скоропортящиеся продукты.</p>Получение и прием товаров<p>При получении товаров, если вы обнаружите, что товары не соответствуют вашему заказу, вы можете отклонить их, и мы предпримем соответствующие необходимые действия. Прием продуктов - это признание клиентом того, что продукты были доставлены в хорошем состоянии количественно и качественно и соответствуют заказу. Оплата заказа является подтверждением согласия клиента с качеством и количеством.</p>Телефон для заказов<p>060 89 30 00</p>Онлайн заказы<p>Для оформления онлайн заказа на Natur.MD, сначала необходимо создать на нашем сайте аккаунт. Все достаточно просто. Это займет около 1 минуты.</p><p>Вы можете зарегистрироваться на Natur.MD используя свой facebook аккаунт или создать на Natur.MD новый аккаунт, выполнив следующие простые действия: введите в ✿ AUTENTIFICARE ✿ (1) электронную почту, чтобы получать подтверждения и детали заказов; (2) имя пользователя; ( 3) пароль; (4) адрес, по которому вы желаете получить заказ; и (5) номер вашего телефона.</p><p>ИЛИ вы можете разместить заказ на Facebook Messenger или по телефону: 060 89 30 00.</p><p><strong>Если у вас есть какие-либо вопросы, пожалуйста, свяжитесь с нами через Facebook Messenger , e-mail contact@natur.md или позвоните по телефону: 060 89 30 00.</strong></p> <br>"
+  },
+  {
+   "url": "http://natur.md/content/2-povestea-noastra",
+   "title": "✿ POVESTEA NOASTRĂ ✿",
+   "html": "✿ POVESTEA NOASTRĂ ✿<p>Dvs. știți din ce se produc lactatele ieftine și carnea ”frumoasă” dar plină de antibiotice, steroizi și hormoni?</p><p>Noi ne-am informat! Și ne-am șocat! După ce am aflat mai multe din culisele producerii industriale a mâncării, am hotărât – gata, începem să consumăm mâncare naturală! Așa s-a născut ideea Natur.MD, din dorința de a avea un loc unde putem găsi produse veritabile, fără amplificatori de gusturi, fără adaosuri chimice, fără E-uri.</p><p>Dorim să mâncăm o bucățică de carne adevărată, să bem un pahar de lapte adevărat. Vrem unt, dar nu margarină! Știm că și dvs. sunteți ca noi, dar dacă încă nu – veți fi cu siguranță!</p><p>Nouă ne pasă de sănătatea noastră și a copiilor noștri! Echipa Natur.MD selectează de la gospodarii din Moldova produse naturale, verificate, calitative și le aduce aici, pentru toți cei ce înțeleg că ceea ce mâncăm la fiecare masă ori ne îmbunătățește sănătatea ori o distruge, nu există neutru.</p><p>Noi spunem NU alimentelor toxice! Noi spunem DA produselor naturale, crescute cu grijă, produse cu mult drag, așa ca pentru propria familie!</p><p><strong>Bine ați venit în familia Natur.MD!</strong></p><p>Jim Rohn spunea: \"Ai grijă de corpul tău, pentru că este singurul loc unde va trebui să trăieşti.\" Bine spus!</p><p>Mai jos sunt câteva link-uri cu informații care ar fi bine sa le citească cât mai multă lume. Vorbiți cu familia, prietenii, vecinii pe aceste subiecte. Informați-vă mai mult despre ceea ce consumați.</p><p><strong>ȘTIRE 1: </strong>Grasimi hidrogenate in loc de branza</p><p><strong>ȘTIRE 2: </strong> Pericolul din carnea de pui din magazine. Medic: avem tot mai multe cazuri de pubertate precoce înainte de vârsta de un an</p><p><strong>ȘTIRE 3: </strong> Dezvăluiri ŞOCANTE despre hormonii de creştere din carnea albă</p><p><strong>ȘTIRE 4: </strong> Substanţele periculoase din mezeluri: ce otrăvuri înghiţim zi de zi</p><p><strong>ȘTIRE 5: </strong> Angajat al unei fabrici de mezeluri: \"NICIODATĂ nu o să pun gura pe aşa ceva\". Ce conţin alimentele pe care le mâncăm zilnic</p>✿ POVESTEA NOASTRĂ ✿<p>Знаете ли вы, из чего сделаны дешевые молочные продукты и \"красивое\" мясо полное антибиотиков, стероидов и гормонов?</p><p>Когда мы вникли глубже в суть этого вопроса мы были в шоке! Узнав больше о за-кулисах промышленного производства продуктов питания, мы решили – Все! Хватит! Будем есть только натуральную пищу! Так пришла идея создания Natur.MD - место, где можно было бы найти настоящую еду, без всяких усилителей вкуса, без химических добавок, без вредных Е-добавок.</p><p>Мы хотим есть настоящее мясо, пить настоящее молоко. Мы хотим сливочного масла, а не маргарина! Мы знаем, что вы так-же этого хотите, либо скоро захотите!</p><p>Мы заботимся о нашем здоровье и здоровье наших детей! Команда Natur.MD тщательно выбирает натуральные, сертифицированные, качественные продукты от местных фермерских хозяйств и малых предприятий и предлагает их каждому, кто понимает - то, что мы едим каждый день, либо улучшает наше здоровье или разрушает его, среднего не дано.</p><p>Мы ПРОТИВ вредных продуктов, Мы ЗА натуральные продукты, выращенные в природных условиях как для своей семьи, без нитратов, пестицидов, антибиотиков!</p><p>Добро пожаловать в семью Natur.MD! www.natur.md</p><p>Джим Рон сказал: \"Береги свое тело - ведь это то единственное место, где тебе придется жить\". Хорошо сказано!</p><p>Все наши продукты свежие, здоровые, проверенны и сертифицированы. Мы посещаем каждое хозяйство и производителя, чтобы увидеть своими глазами условия, в которых содержатся животные и птицы, которые будут продаваться в нашем магазине, чтобы увидеть, как создается каждый продукт. <br><br>Качество и натуральность продукции является нашим приоритетом. Мы следим за тем чтобы наши продукты были результатом гуманного подхода и не являются результатом жестокости по отношению к животным или эксплуатации социально незашищенных людей, попавших в неблагоприятные условия. <br><br>Срок доставки товаров между 1 и 48 часов. Оплата производится при получении заказа. Доставка бесплатная, минимальная сумма покупки - 400 лей. <br><br> Заказы, полученные не из муниципия Кишинэу, могут быть отправленны посредством \"Пошта Молдовей\" если не содержат скоропортящиеся продукты. <br><br>Заказать онлайн наши товары можно здесь http://natur.md/ либо через Facebook Messenger или по телефону: 060 89 30 00.</p> <br>"
+  }
+ ],
+ "footer": {
+  "lines": [
+   "initiativa privata la moment",
+   "Telefon: 060 89 30 00",
+   "E-mail: contact@natur.md"
+  ]
+ }
+}

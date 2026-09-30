@@ -1,0 +1,162 @@
+/* Natur – Video & 360° */
+.natur-media,
+.natur-embed {
+	--npm-accent: var(--ast-global-color-0, #3f7d3a);
+	--npm-ink: #1f2a1d;
+	--npm-line: rgba(31, 42, 29, .12);
+	--npm-bg: #f6f5f0;
+}
+
+.natur-media [hidden],
+.natur-embed [hidden] { display: none !important; }
+
+/* Învelișul preia locul galeriei WooCommerce în coloana stângă. */
+.woocommerce div.product .natur-media,
+.woocommerce-page div.product .natur-media {
+	float: left;
+	width: 48%;
+	margin-bottom: 2em;
+	position: relative;
+}
+.woocommerce div.product .natur-media div.images,
+.woocommerce-page div.product .natur-media div.images {
+	float: none !important;
+	width: 100% !important;
+	margin-bottom: 0 !important;
+}
+
+.natur-media__stage {
+	position: relative;
+	aspect-ratio: 1 / 1;
+	background: var(--npm-bg);
+	border-radius: 6px;
+	overflow: hidden;
+}
+.natur-media__panel { position: absolute; inset: 0; }
+
+.natur-media__switch {
+	position: absolute;
+	top: 14px;
+	left: 14px;
+	z-index: 9;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	max-width: calc(100% - 80px);
+}
+.natur-media__btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 7px 12px;
+	border: 1px solid var(--npm-line);
+	border-radius: 999px;
+	background: rgba(255, 255, 255, .94);
+	box-shadow: 0 1px 4px rgba(0, 0, 0, .15);
+	color: var(--npm-ink);
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1.2;
+	cursor: pointer;
+	transition: background .15s, color .15s, border-color .15s;
+}
+.natur-media__btn:hover,
+.natur-media__btn:focus-visible { border-color: var(--npm-accent); color: var(--npm-accent); background: #fff; }
+.natur-media__btn.is-active { background: var(--npm-accent); border-color: var(--npm-accent); color: #fff; }
+
+/* ---- Video ---- */
+.natur-video { position: absolute; inset: 0; display: flex; flex-direction: column; background: #000; }
+.natur-video__item { flex: 1; position: relative; }
+.natur-video__item iframe,
+.natur-video__item video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #000; object-fit: contain; }
+.natur-video__list { display: flex; gap: 6px; padding: 8px; background: #111; flex-wrap: wrap; }
+.natur-video__pick { background: #2a2a2a; color: #fff; border: 0; border-radius: 4px; padding: 6px 10px; font-size: 13px; cursor: pointer; }
+.natur-video__pick.is-active { background: var(--npm-accent); }
+
+.natur-embed--video { position: relative; aspect-ratio: 16 / 9; }
+
+/* ---- 360° ---- */
+.natur-spin {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	aspect-ratio: 1 / 1;
+	background: #fff;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: pan-y;
+	cursor: grab;
+	outline: none;
+	overflow: hidden;
+}
+.natur-media__panel .natur-spin { aspect-ratio: auto; }
+.natur-spin.is-dragging { cursor: grabbing; }
+.natur-spin:focus-visible { box-shadow: inset 0 0 0 2px var(--npm-accent); }
+.natur-spin__img { width: 100%; height: 100%; object-fit: contain; display: block; pointer-events: none; }
+.natur-spin:fullscreen { background: #fff; }
+
+.natur-spin__progress {
+	position: absolute; left: 20%; right: 20%; top: 50%;
+	height: 4px; border-radius: 2px; background: rgba(0, 0, 0, .1);
+	opacity: 0; transition: opacity .2s;
+}
+.natur-spin__progress span { display: block; height: 100%; width: 0; background: var(--npm-accent); border-radius: 2px; transition: width .15s; }
+.natur-spin.is-loading .natur-spin__progress { opacity: 1; }
+.natur-spin.is-loading .natur-spin__img { opacity: .35; }
+
+.natur-spin__hint {
+	position: absolute; left: 50%; bottom: 70px; transform: translateX(-50%);
+	display: inline-flex; align-items: center; gap: 6px;
+	padding: 6px 12px; border-radius: 999px;
+	background: rgba(255, 255, 255, .92); color: var(--npm-ink);
+	font-size: 13px; box-shadow: 0 1px 4px rgba(0, 0, 0, .12);
+	pointer-events: none; opacity: 0; transition: opacity .3s;
+	white-space: nowrap;
+}
+.natur-spin.is-ready:not(.was-used) .natur-spin__hint { opacity: 1; }
+
+.natur-spin__controls {
+	position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%);
+	display: flex; gap: 4px; padding: 4px;
+	background: rgba(255, 255, 255, .92); border-radius: 999px;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, .12);
+}
+.natur-spin__controls button {
+	width: 36px; height: 36px; padding: 0;
+	display: inline-flex; align-items: center; justify-content: center;
+	border: 0; border-radius: 50%; background: transparent; color: var(--npm-ink); cursor: pointer;
+}
+.natur-spin__controls button:hover,
+.natur-spin__controls button:focus-visible { background: var(--npm-accent); color: #fff; }
+.natur-spin [data-act="play"] .natur-icon--pause { display: none; }
+.natur-spin.is-playing [data-act="play"] .natur-icon--pause { display: block; }
+.natur-spin.is-playing [data-act="play"] .natur-icon--play { display: none; }
+
+/* ---- Insigne în listări ---- */
+.woocommerce ul.products li.product,
+.woocommerce-page ul.products li.product { position: relative; }
+.natur-badges {
+	position: absolute; right: 10px; top: 10px; z-index: 5;
+	display: flex; flex-direction: column; align-items: flex-end; gap: 4px;
+	pointer-events: none;
+}
+.natur-badge {
+	display: inline-flex; align-items: center; gap: 3px;
+	padding: 3px 8px; border-radius: 999px;
+	background: rgba(255, 255, 255, .95); color: #1f2a1d;
+	font-size: 11px; font-weight: 700; letter-spacing: .02em; line-height: 1.4;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, .15);
+}
+.natur-badge .natur-icon { width: 11px; height: 11px; }
+.natur-badge--360 { background: var(--ast-global-color-0, #3f7d3a); color: #fff; }
+
+@media (max-width: 921px) {
+	.woocommerce div.product .natur-media,
+	.woocommerce-page div.product .natur-media { float: none; width: 100%; }
+}
+
+@media (max-width: 544px) {
+	.natur-media__switch { top: 10px; left: 10px; gap: 4px; }
+	.natur-media__btn { padding: 5px 9px; font-size: 12px; gap: 4px; }
+	.natur-media__btn .natur-icon { width: 14px; height: 14px; }
+}
