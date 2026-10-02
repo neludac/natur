@@ -15,6 +15,7 @@ $phone    = '060 89 30 00';
 $phone_l  = '+37360893000';
 $email    = 'contact@natur.md';
 $fb       = 'https://www.facebook.com/natur.md';
+$ig       = 'https://www.instagram.com/natur.md/';
 
 /* ================================================================ Helpers */
 
@@ -154,6 +155,25 @@ update_option( 'thumbnail_size_h', 300 );
 wp_delete_post( 1, true ); // „Salut, lume!”
 foreach ( get_posts( array( 'post_type' => 'page', 'title' => 'Pagină exemplu', 'post_status' => 'any', 'fields' => 'ids' ) ) as $sample_id ) {
 	wp_delete_post( $sample_id, true );
+}
+
+// Datele de contact folosite de temă (antet, subsol, pagina produsului)
+update_option(
+	'natur_contact',
+	array(
+		'phone'     => $phone,
+		'phone_raw' => $phone_l,
+		'email'     => $email,
+		'facebook'  => $fb,
+		'messenger' => 'https://m.me/natur.md',
+		'instagram' => $ig,
+		'area'      => 'mun. Chișinău, Republica Moldova',
+	)
+);
+
+// Tema „natur” (copil Astra): antet, subsol, carduri și pagini proprii. theme_mod-urile de mai jos se salvează pentru ea.
+if ( wp_get_theme( 'natur' )->exists() && 'natur' !== get_stylesheet() ) {
+	switch_theme( 'natur' );
 }
 
 // Logo & iconiță
@@ -371,45 +391,36 @@ $delivery = $p( 'Natur.MD este o prezentare de produse NATURALE, selectate de la
 	)
 	. $p( "Pentru întrebări ne puteți scrie la <a href=\"mailto:$email\">$email</a> sau suna la <a href=\"tel:$phone_l\">$phone</a>." );
 
-// Formular de contact (Contact Form 7)
-$form_id = (int) get_option( 'natur_contact_form_id' );
-if ( ! $form_id || ! get_post( $form_id ) ) {
-	$form_id = wp_insert_post( array( 'post_type' => 'wpcf7_contact_form', 'post_status' => 'publish', 'post_title' => 'Formular contact' ) );
-	update_option( 'natur_contact_form_id', $form_id );
+// Pagina Contact fără formular: formularul Contact Form 7 creat anterior se șterge, iar modulul se dezactivează.
+require_once ABSPATH . 'wp-admin/includes/plugin.php';
+$old_form = (int) get_option( 'natur_contact_form_id' );
+if ( $old_form && 'wpcf7_contact_form' === get_post_type( $old_form ) ) {
+	wp_delete_post( $old_form, true );
 }
-update_post_meta(
-	$form_id,
-	'_form',
-	"<label>Numele dvs. *\n    [text* your-name autocomplete:name]</label>\n\n<label>E-mail *\n    [email* your-email autocomplete:email]</label>\n\n<label>Telefon\n    [tel your-phone autocomplete:tel]</label>\n\n<label>Mesaj *\n    [textarea* your-message]</label>\n\n[acceptance consent] Sunt de acord cu prelucrarea datelor personale conform <a href=\"/politica-de-confidentialitate/\">Politicii de confidențialitate</a>. [/acceptance]\n\n[submit \"Trimite mesajul\"]"
-);
-update_post_meta(
-	$form_id,
-	'_mail',
-	array(
-		'active'             => true,
-		'subject'            => '[_site_title] Mesaj nou de la [your-name]',
-		'sender'             => '[_site_title] <wordpress@[_site_domain]>',
-		'recipient'          => $email,
-		'body'               => "De la: [your-name] <[your-email]>\nTelefon: [your-phone]\n\n[your-message]\n\n-- \nTrimis de pe [_site_title] ([_site_url])",
-		'additional_headers' => 'Reply-To: [your-email]',
-		'attachments'        => '',
-		'use_html'           => false,
-		'exclude_blank'      => false,
-	)
-);
-update_post_meta( $form_id, '_locale', 'ro_RO' );
-$form_hash = function_exists( 'wpcf7_contact_form' ) && wpcf7_contact_form( $form_id ) ? wpcf7_contact_form( $form_id )->hash() : '';
+delete_option( 'natur_contact_form_id' );
+if ( is_plugin_active( 'contact-form-7/wp-contact-form-7.php' ) ) {
+	deactivate_plugins( 'contact-form-7/wp-contact-form-7.php' );
+}
 
-$contact = "<!-- wp:columns -->\n<div class=\"wp-block-columns\"><!-- wp:column {\"width\":\"40%\"} -->\n<div class=\"wp-block-column\" style=\"flex-basis:40%\">"
-	. $h( 'Date de contact', 3 )
-	. $p( "<strong>Telefon pentru comenzi:</strong><br><a href=\"tel:$phone_l\">$phone</a>" )
-	. $p( "<strong>E-mail:</strong><br><a href=\"mailto:$email\">$email</a>" )
-	. $p( "<strong>Facebook:</strong><br><a href=\"$fb\">facebook.com/natur.md</a>" )
-	. $p( '<strong>Zona de livrare:</strong><br>mun. Chișinău; restul Moldovei prin Poșta Moldovei (produse neperisabile).' )
-	. "</div>\n<!-- /wp:column -->\n\n<!-- wp:column {\"width\":\"60%\"} -->\n<div class=\"wp-block-column\" style=\"flex-basis:60%\">"
-	. $h( 'Scrieți-ne', 3 )
-	. "<!-- wp:shortcode -->\n[contact-form-7 id=\"" . ( $form_hash ? $form_hash : $form_id ) . "\" title=\"Formular contact\"]\n<!-- /wp:shortcode -->\n"
-	. "</div>\n<!-- /wp:column --></div>\n<!-- /wp:columns -->\n";
+// Contact: cardurile temei ([natur_contact]) + întrebări frecvente (blocuri „Detalii”, editabile din pagină).
+$faq = static fn( $q, $a ) => "<!-- wp:details -->\n<details class=\"wp-block-details\"><summary>$q</summary>" . trim( $p( $a ) ) . "</details>\n<!-- /wp:details -->\n\n";
+
+$contact = "<!-- wp:shortcode -->\n[natur_contact]\n<!-- /wp:shortcode -->\n\n"
+	. "<!-- wp:group {\"className\":\"nt-faq\"} -->\n<div class=\"wp-block-group nt-faq\">"
+	. "<!-- wp:group {\"className\":\"nt-faq__intro\"} -->\n<div class=\"wp-block-group nt-faq__intro\">"
+	. "<!-- wp:paragraph {\"className\":\"nt-eyebrow\"} -->\n<p class=\"nt-eyebrow\">Răspunsuri rapide</p>\n<!-- /wp:paragraph -->\n\n"
+	. $h( 'Întrebări pe care le auzim des' )
+	. trim( $p( 'Poate răspunsul e deja aici. Dacă nu — sună-ne sau scrie-ne, ne bucurăm de fiecare întrebare.' ) )
+	. "</div>\n<!-- /wp:group -->\n\n"
+	. "<!-- wp:group {\"className\":\"nt-faq__list\"} -->\n<div class=\"wp-block-group nt-faq__list\">"
+	. $faq( 'Cât costă livrarea?', '<strong>Gratuit</strong> pentru comenzile de la 500 lei și <strong>50 lei</strong> pentru cele sub 500 lei — atât în Chișinău, cât și prin Poșta Moldovei.' )
+	. $faq( 'În cât timp ajunge comanda?', 'În 1–48 de ore, în funcție de produs, din momentul în care confirmăm comanda la telefon.' )
+	. $faq( 'Livrați și în afara Chișinăului?', 'Da, prin Poșta Moldovei, pentru produsele neperisabile. Produsele perisabile — carne, lactate, ouă — le livrăm doar în Chișinău.' )
+	. $faq( 'Cum plătesc?', 'La primirea coletului, în numerar. Nu plătești nimic în avans.' )
+	. $faq( 'Trebuie să-mi fac cont ca să comand?', 'Nu. Adaugi produsele în coș și finalizezi comanda. Contul e opțional — îți păstrează istoricul comenzilor și adresele.' )
+	. $faq( 'Pot comanda la telefon sau pe Messenger?', "Da. Sună la <a href=\"tel:$phone_l\">$phone</a> sau scrie-ne pe <a href=\"https://m.me/natur.md\">Messenger</a> — notăm comanda și stabilim împreună ora livrării." )
+	. $faq( 'Ce fac dacă un produs nu e în regulă?', 'Verifică coletul în prezența curierului: dacă produsele nu corespund comenzii, le poți refuza pe loc, fără costuri. O problemă de calitate descoperită mai târziu ne-o semnalezi în cel mult 24 de ore, cu o fotografie. Detalii în <a href="/politica-de-retur/">Politica de retur</a>.' )
+	. "</div>\n<!-- /wp:group --></div>\n<!-- /wp:group -->\n";
 
 $terms = $p( 'Prezentele condiții reglementează utilizarea site-ului natur.md și plasarea comenzilor prin intermediul acestuia. Prin plasarea unei comenzi confirmați că ați citit și acceptați aceste condiții.' )
 	. $h( '1. Comenzi' )
@@ -445,7 +456,7 @@ $privacy = $p( 'Natur.MD respectă confidențialitatea datelor dumneavoastră ș
 		array(
 			'Datele din comandă: nume, telefon, e-mail, adresa de livrare.',
 			'Datele contului (dacă vă creați cont): istoricul comenzilor și adresele salvate.',
-			'Mesajele trimise prin formularul de contact.',
+			'Mesajele pe care ni le trimiteți prin e-mail sau Messenger.',
 			'Date tehnice: cookie-uri necesare funcționării coșului și sesiunii.',
 		)
 	)
@@ -458,9 +469,9 @@ $privacy = $p( 'Natur.MD respectă confidențialitatea datelor dumneavoastră ș
 
 $pages = array();
 $pages['home']     = natur_page( 'acasa', 'Acasă', '' );
-$pages['about']    = natur_page( 'despre-noi', 'Despre noi', $about );
-$pages['delivery'] = natur_page( 'livrare-si-plata', 'Livrare și plată', $delivery );
-$pages['contact']  = natur_page( 'contact', 'Contact', $contact );
+$pages['about']    = natur_page( 'despre-noi', 'Despre noi', $about, array( 'post_excerpt' => 'Cum a început Natur.MD și de ce alegem doar mâncare adevărată' ) );
+$pages['delivery'] = natur_page( 'livrare-si-plata', 'Livrare și plată', $delivery, array( 'post_excerpt' => 'Livrare în 1–48 de ore, gratuită de la 500 lei. Plătești la primire.' ) );
+$pages['contact']  = natur_page( 'contact', 'Contact', $contact, array( 'post_excerpt' => 'Sună-ne sau scrie-ne — îți răspundem cu drag, ca unui prieten' ) );
 $pages['terms']    = natur_page( 'termeni-si-conditii', 'Termeni și condiții', $terms );
 
 $refund = get_page_by_path( 'refund_returns' );
@@ -471,198 +482,182 @@ $pages['privacy'] = natur_page( 'politica-de-confidentialitate', 'Politica de co
 update_option( 'wp_page_for_privacy_policy', $pages['privacy'] );
 update_option( 'woocommerce_terms_page_id', $pages['terms'] );
 update_option( 'woocommerce_checkout_terms_and_conditions_checkbox_text', 'Am citit și sunt de acord cu [terms]' );
+update_option( 'woocommerce_registration_privacy_policy_text', 'Datele tale personale sunt folosite pentru a-ți gestiona contul și comenzile, conform [privacy_policy].' );
+update_option( 'woocommerce_checkout_privacy_policy_text', 'Datele tale personale sunt folosite doar pentru procesarea și livrarea comenzii, conform [privacy_policy].' );
 
 update_option( 'show_on_front', 'page' );
 update_option( 'page_on_front', $pages['home'] );
 
 /* ============================================================ Pagina principală (Elementor) */
 
-$img = static function ( $sku, $size = 'large' ) {
-	$pid = wc_get_product_id_by_sku( $sku );
-	$id  = $pid ? get_post_thumbnail_id( $pid ) : 0;
-	return array( 'id' => $id, 'url' => $id ? wp_get_attachment_image_url( $id, $size ) : '' );
-};
 $link = static fn( $sku ) => get_permalink( wc_get_product_id_by_sku( $sku ) );
 $shop = wc_get_page_permalink( 'shop' );
 
-$hero_img = $img( 'NM-57', 'full' ); // ouă de casă
-$hero = el_c(
-	array(
-		'content_width'               => 'boxed',
-		'flex_direction'              => 'column',
-		'flex_justify_content'        => 'center',
-		'flex_align_items'            => 'flex-start',
-		'min_height'                  => array( 'unit' => 'px', 'size' => 560 ),
-		'min_height_mobile'           => array( 'unit' => 'px', 'size' => 460 ),
-		'flex_gap'                    => array( 'unit' => 'px', 'size' => 20, 'column' => '20', 'row' => '20' ),
-		'padding'                     => el_pad( 80, 20, 80, 20 ),
-		'background_background'       => 'classic',
-		'background_image'            => $hero_img,
-		'background_position'         => 'center center',
-		'background_size'             => 'cover',
-		'background_overlay_background' => 'gradient',
-		'background_overlay_color'    => 'rgba(20,28,10,0.88)',
-		'background_overlay_color_b'  => 'rgba(20,28,10,0.25)',
-		'background_overlay_gradient_angle' => array( 'unit' => 'deg', 'size' => 90 ),
-		'background_overlay_opacity'  => array( 'unit' => 'px', 'size' => 1 ),
-	),
-	array(
-		el_w( 'heading', array( 'title' => '100% natural · de la gospodari din Moldova', 'header_size' => 'p', 'align' => 'left', 'title_color' => '#8DC732', 'typography_typography' => 'custom', 'typography_font_weight' => '700', 'typography_text_transform' => 'uppercase', 'typography_letter_spacing' => array( 'unit' => 'px', 'size' => 1.5 ), 'typography_font_size' => array( 'unit' => 'px', 'size' => 14 ) ) ),
-		el_heading( 'Mâncare adevărată,<br>direct de la țară', 'h1', 'left', '#FFFFFF', array( 56, 36 ) ),
-		el_text( '<p>Carne de pasăre crescută liber, lactate de fermă, ouă de casă, conserve și semințe pentru germinare — fără aditivi, fără E-uri. Livrare în Chișinău în 1–48 de ore, plata la primire.</p>', 'left', 'rgba(255,255,255,0.88)' ),
-		el_c(
-			array( 'content_width' => 'full', 'flex_direction' => 'row', 'flex_wrap' => 'wrap', 'flex_gap' => array( 'unit' => 'px', 'size' => 12, 'column' => '12', 'row' => '12' ), 'padding' => el_pad( 8, 0, 0, 0 ) ),
-			array( el_button( 'Vezi magazinul', $shop, 'primary', 'left' ), el_button( 'Povestea noastră', get_permalink( $pages['about'] ), 'light', 'left' ) ),
-			true
-		),
-	)
-);
-
-$benefit = static function ( $icon, $title, $text ) {
-	return el_w(
-		'icon-box',
-		array(
-			'selected_icon'     => array( 'value' => $icon, 'library' => 'fa-solid' ),
-			'view'              => 'stacked',
-			'shape'             => 'circle',
-			'position'          => 'top',
-			'title_text'        => $title,
-			'description_text'  => $text,
-			'title_size'        => 'h3',
-			'primary_color'     => '#EEF6E0',
-			'secondary_color'   => '#4E7D14',
-			'icon_size'         => array( 'unit' => 'px', 'size' => 26 ),
-			'icon_padding'      => array( 'unit' => 'px', 'size' => 18 ),
-			'title_color'       => '#1F1D1A',
-			'title_typography_typography' => 'custom',
-			'title_typography_font_size'  => array( 'unit' => 'px', 'size' => 18 ),
-			'title_typography_font_weight' => '700',
-			'_flex_size'        => 'grow',
-			'_element_width'    => 'initial',
-			'_element_custom_width' => array( 'unit' => '%', 'size' => 22 ),
-			'_element_custom_width_tablet' => array( 'unit' => '%', 'size' => 45 ),
-			'_element_custom_width_mobile' => array( 'unit' => '%', 'size' => 100 ),
-		)
-	);
+/*
+ * Secțiunile au clase CSS (nt-*) stilizate de tema „natur”; textele, titlurile și butoanele se editează în Elementor,
+ * iar blocurile dinamice (colaj, categorii, produse, recenzii, cifre) vin din shortcode-urile temei (inc/shortcodes.php).
+ */
+$el_x = static function ( $classes, array $elements, $inner = true, array $extra = array() ) {
+	return el_c( array_merge( array( 'content_width' => 'full', 'css_classes' => trim( 'nt-x ' . $classes ) ), $extra ), $elements, $inner );
 };
-$benefits = el_c(
-	array( 'content_width' => 'boxed', 'flex_direction' => 'row', 'flex_wrap' => 'wrap', 'flex_justify_content' => 'space-between', 'flex_gap' => array( 'unit' => 'px', 'size' => 24, 'column' => '24', 'row' => '24' ), 'padding' => el_pad( 48, 20, 48, 20 ), 'background_background' => 'classic', 'background_color' => '#FFFFFF', 'border_border' => 'solid', 'border_width' => array( 'unit' => 'px', 'top' => '0', 'right' => '0', 'bottom' => '1', 'left' => '0', 'isLinked' => false ), 'border_color' => '#E5E1D6' ),
-	array(
-		$benefit( 'fas fa-leaf', '100% natural', 'Fără conservanți, amplificatori de gust sau E-uri.' ),
-		$benefit( 'fas fa-truck', 'Livrare 1–48 ore', 'În mun. Chișinău, iar în restul țării prin Poșta Moldovei.' ),
-		$benefit( 'fas fa-gift', 'Gratuit de la 500 lei', 'Sub 500 lei, livrarea costă doar 50 lei.' ),
-		$benefit( 'fas fa-hand-holding-usd', 'Plata la primire', 'Verificați produsele și achitați la livrare.' ),
-	)
-);
+$el_h = static fn( $text, $tag, $class ) => el_w( 'heading', array( 'title' => $text, 'header_size' => $tag, '_css_classes' => $class ) );
+$el_t = static fn( $html, $class = 'nt-lead' ) => el_w( 'text-editor', array( 'editor' => $html, '_css_classes' => $class ) );
+$el_sc = static fn( $code, $class = '' ) => el_w( 'shortcode', array( 'shortcode' => $code, '_css_classes' => $class ) );
+$el_btn = static fn( $text, $url, $style ) => el_w( 'button', array( 'text' => $text, 'link' => array( 'url' => $url, 'is_external' => '', 'nofollow' => '' ), '_css_classes' => 'nt-ebtn ' . $style ) );
+$el_head = static function ( $eyebrow, $title, $link = null, $center = false ) use ( $el_x, $el_h, $el_btn ) {
+	$els = array( $el_x( 'nt-sec__titles', array( $el_h( $eyebrow, 'p', 'nt-eyebrow' ), $el_h( $title, 'h2', 'nt-h2' ) ) ) );
+	if ( $link ) {
+		$els[] = $el_btn( $link[0], $link[1], 'nt-ebtn--ghost nt-ebtn--arrow' );
+	}
+	return $el_x( 'nt-sec__head' . ( $center ? ' nt-sec__head--center' : '' ), $els );
+};
 
-$sec_cats = el_section(
+$hero = $el_x(
+	'nt-hero',
 	array(
-		el_heading( 'Categorii', 'h2', 'center', '', array( 36, 28 ) ),
-		el_text( '<p>Produse selectate de la gospodării verificate personal de echipa noastră.</p>' ),
-		el_w( 'shortcode', array( 'shortcode' => '[product_categories number="8" parent="0" columns="4" orderby="count" order="desc" hide_empty="1"]' ) ),
-		el_button( 'Toate categoriile', $shop, 'dark' ),
-	),
-	'#F5F3EC'
-);
-
-$sec_featured = el_section(
-	array(
-		el_heading( 'Recomandate de noi', 'h2', 'center', '', array( 36, 28 ) ),
-		el_text( '<p>Cele mai iubite produse ale clienților Natur.MD.</p>' ),
-		el_w( 'shortcode', array( 'shortcode' => '[products visibility="featured" limit="8" columns="4" orderby="rand"]' ) ),
-	)
-);
-
-$spin = el_c(
-	array( 'content_width' => 'boxed', 'flex_direction' => 'row', 'flex_wrap' => 'wrap', 'flex_align_items' => 'center', 'flex_gap' => array( 'unit' => 'px', 'size' => 48, 'column' => '48', 'row' => '32' ), 'padding' => el_pad( 72, 20, 72, 20 ), 'padding_mobile' => el_pad( 48, 16, 48, 16 ), 'background_background' => 'classic', 'background_color' => '#1F2A14' ),
-	array(
-		el_c(
-			array( 'content_width' => 'full', 'width' => array( 'unit' => '%', 'size' => 45 ), 'width_mobile' => array( 'unit' => '%', 'size' => 100 ), 'flex_direction' => 'column', 'border_radius' => array( 'unit' => 'px', 'top' => '12', 'right' => '12', 'bottom' => '12', 'left' => '12', 'isLinked' => true ), 'overflow' => 'hidden' ),
-			array( el_w( 'natur_product_media', array( 'product_id' => (string) wc_get_product_id_by_sku( 'NM-556' ), 'mode' => '360' ) ) ),
-			true
-		),
-		el_c(
-			array( 'content_width' => 'full', 'flex_size' => 'grow', 'width' => array( 'unit' => '%', 'size' => 48 ), 'width_mobile' => array( 'unit' => '%', 'size' => 100 ), 'flex_direction' => 'column', 'flex_gap' => array( 'unit' => 'px', 'size' => 16, 'column' => '16', 'row' => '16' ) ),
+		$el_x(
+			'nt-hero__in',
 			array(
-				el_w( 'heading', array( 'title' => 'Nou pe Natur.MD', 'header_size' => 'p', 'align' => 'left', 'title_color' => '#8DC732', 'typography_typography' => 'custom', 'typography_font_weight' => '700', 'typography_text_transform' => 'uppercase', 'typography_letter_spacing' => array( 'unit' => 'px', 'size' => 1.5 ), 'typography_font_size' => array( 'unit' => 'px', 'size' => 14 ) ) ),
-				el_heading( 'Priviți produsul din toate unghiurile', 'h2', 'left', '#FFFFFF', array( 36, 28 ) ),
-				el_text( '<p>Paginile produselor au acum prezentare 360° și clipuri video. Trageți imaginea cu mouse-ul sau degetul pentru a roti borcanul și a citi eticheta completă — ingredientele, producătorul și termenul de valabilitate.</p>', 'left', 'rgba(255,255,255,0.85)' ),
-				el_button( 'Vezi Untul topit GHEE', $link( 'NM-556' ), 'primary', 'left' ),
-			),
-			true
+				$el_x(
+					'nt-hero__copy',
+					array(
+						$el_h( '100% natural · de la gospodari din Moldova', 'p', 'nt-hero__badge' ),
+						$el_h( 'Mâncare adevărată, <em>direct de la țară</em>', 'h1', 'nt-hero__title' ),
+						$el_t( '<p>Ouă de casă, lactate de fermă, carne de pasăre crescută liber și conserve ca la bunica — fără aditivi, fără E-uri. Livrăm în Chișinău în 1–48 de ore, iar plata o faci la primire.</p>', 'nt-hero__lead' ),
+						$el_x( 'nt-hero__btns', array( $el_btn( 'Alege produsele', $shop, 'nt-ebtn--dark nt-ebtn--arrow' ), $el_btn( 'Cum funcționează', '#cum-functioneaza', 'nt-ebtn--ghost' ) ) ),
+						$el_sc( '[natur_hero_proof]' ),
+					)
+				),
+				$el_sc( '[natur_hero_art main="NM-57" second="NM-998" third="NM-58" pick="NM-58"]', 'nt-hero__art' ),
+			)
 		),
-	)
-);
-
-$sec_new = el_section(
-	array(
-		el_heading( 'Noutăți în magazin', 'h2', 'center', '', array( 36, 28 ) ),
-		el_text( '<p>Cele mai noi produse de la producătorii noștri.</p>' ),
-		el_w( 'shortcode', array( 'shortcode' => '[products limit="8" columns="4" orderby="id" order="DESC"]' ) ),
-		el_button( 'Vezi toate produsele', $shop, 'dark' ),
 	),
-	'#F5F3EC'
+	false
 );
 
-// Recenzii reale de pe vechiul site
-$reviews = get_comments( array( 'type' => 'review', 'status' => 'approve', 'number' => 200 ) );
-usort( $reviews, static fn( $a, $b ) => strlen( $b->comment_content ) <=> strlen( $a->comment_content ) );
-$testis = array();
-$seen   = array();
-foreach ( $reviews as $r ) {
-	$len = mb_strlen( $r->comment_content );
-	if ( $len > 320 || $len < 60 || isset( $seen[ $r->comment_post_ID ] ) ) {
-		continue;
-	}
-	$seen[ $r->comment_post_ID ] = true;
-	$testis[] = el_w(
-		'testimonial',
-		array(
-			'testimonial_content'   => $r->comment_content,
-			'testimonial_name'      => $r->comment_author,
-			'testimonial_job'       => get_the_title( $r->comment_post_ID ),
-			'testimonial_alignment' => 'left',
-			'testimonial_image'     => array( 'url' => '', 'id' => '' ),
-			'content_typography_typography' => 'custom',
-			'content_typography_font_size'  => array( 'unit' => 'px', 'size' => 17 ),
-			'content_typography_font_style' => 'italic',
-			'content_content_color' => '#4A4540',
-			'name_text_color'       => '#1F1D1A',
-			'job_text_color'        => '#4E7D14',
-			'_background_background' => 'classic',
-			'_background_color'     => '#FFFFFF',
-			'_padding'              => el_pad( 28, 28, 28, 28 ),
-			'_border_border'        => 'solid',
-			'_border_width'         => array( 'unit' => 'px', 'top' => '1', 'right' => '1', 'bottom' => '1', 'left' => '1', 'isLinked' => true ),
-			'_border_color'         => '#E5E1D6',
-			'_border_radius'        => array( 'unit' => 'px', 'top' => '12', 'right' => '12', 'bottom' => '12', 'left' => '12', 'isLinked' => true ),
-			'_flex_size'            => 'grow',
-			'_element_width'        => 'initial',
-			'_element_custom_width' => array( 'unit' => '%', 'size' => 31 ),
-			'_element_custom_width_tablet' => array( 'unit' => '%', 'size' => 100 ),
-		)
+$sec_cats = $el_x(
+	'nt-sec',
+	array(
+		$el_head( 'Ce găsești la noi', 'Bunătăți din Moldova, <em>pe categorii</em>', array( 'Toate produsele', $shop ) ),
+		$el_sc( '[natur_categories number="8"]' ),
+	),
+	false
+);
+
+$sec_how = $el_x(
+	'nt-sec',
+	array(
+		$el_x(
+			'nt-how',
+			array(
+				$el_head( 'Simplu, ca la piață', 'Cum comanzi <em>de la noi</em>', null, true ),
+				$el_sc( '[natur_steps]' ),
+			)
+		),
+	),
+	false,
+	array( '_element_id' => 'cum-functioneaza' )
+);
+
+$sec_products = $el_x(
+	'nt-sec',
+	array(
+		$el_head( 'Alese pentru tine', 'Proaspete <em>pe rafturile noastre</em>', array( 'Tot magazinul', $shop ) ),
+		$el_sc( '[natur_product_tabs limit="8"]' ),
+	),
+	false
+);
+
+$spot = $el_x(
+	'nt-spot',
+	array(
+		$el_x( 'nt-spot__media', array( el_w( 'natur_product_media', array( 'product_id' => (string) wc_get_product_id_by_sku( 'NM-556' ), 'mode' => '360' ) ) ) ),
+		$el_x(
+			'nt-spot__copy',
+			array(
+				$el_h( 'Nou pe Natur.MD', 'p', 'nt-eyebrow' ),
+				$el_h( 'Privește produsul <em>din toate unghiurile</em>', 'h2', 'nt-h2' ),
+				$el_t( '<p>Paginile produselor au acum prezentare 360° și clipuri video. Rotește borcanul cu mouse-ul sau cu degetul și citește eticheta completă — ingredientele, producătorul și termenul de valabilitate.</p>' ),
+				$el_t( '<ul class="nt-checks"><li>Rotire 360° cu degetul sau cu mouse-ul</li><li>Clipuri video cu produsul</li><li>Ecran complet, ca să citești eticheta</li></ul>', 'nt-spot__list' ),
+				$el_btn( 'Vezi Untul topit GHEE', $link( 'NM-556' ), 'nt-ebtn--leaf nt-ebtn--arrow' ),
+			)
+		),
+	),
+	false
+);
+
+/*
+ * Rețete video: cartonașele vin din widgetul temei „Natur: Rețete video” (copertă, titlu, link spre reel, produs).
+ * Coperțile din tools/data/recipes sunt demonstrative; linkurile duc deocamdată la profilul de Instagram.
+ */
+$recipes = array();
+foreach (
+	array(
+		array( 'paste-cu-carne-de-prepelita', "Paste\ncu carne de prepeliță", 'NM-20' ),
+		array( 'supa-din-prepelita', "Supă din prepeliță\npentru zile răcoroase", 'NM-587' ),
+		array( 'prepelita-la-cuptor-cu-legume', "Prepeliță la cuptor\ncu legume", 'NM-772' ),
+		array( 'pate-din-carne-de-prepelita', "Pate din carne de prepeliță\n— ideal la micul dejun", 'NM-91' ),
+	) as [ $slug, $title, $sku ]
+) {
+	$img_id    = natur_upload_once( "$data_dir/recipes/reteta-$slug.jpg", 'Rețetă: ' . str_replace( "\n", ' ', $title ) );
+	$recipes[] = array(
+		'_id'     => natur_eid(),
+		'image'   => array( 'id' => $img_id, 'url' => wp_get_attachment_url( $img_id ) ),
+		'title'   => $title,
+		'link'    => array( 'url' => $ig, 'is_external' => 'on', 'nofollow' => '' ),
+		'product' => (string) wc_get_product_id_by_sku( $sku ),
 	);
-	if ( count( $testis ) === 3 ) {
-		break;
-	}
 }
-$sec_reviews = el_section(
+$sec_recipes = $el_x(
+	'nt-sec nt-recipes-sec',
 	array(
-		el_heading( 'Ce spun clienții', 'h2', 'center', '', array( 36, 28 ) ),
-		el_c( array( 'content_width' => 'full', 'flex_direction' => 'row', 'flex_wrap' => 'wrap', 'flex_align_items' => 'stretch', 'flex_gap' => array( 'unit' => 'px', 'size' => 24, 'column' => '24', 'row' => '24' ), 'padding' => el_pad( 16, 0, 0, 0 ) ), $testis, true ),
-	)
+		$el_x(
+			'nt-sec__head',
+			array(
+				$el_x(
+					'nt-sec__titles',
+					array(
+						$el_h( 'Din bucătăria noastră', 'p', 'nt-eyebrow' ),
+						$el_h( 'Rețete și idei <em>delicioase</em>', 'h2', 'nt-h2' ),
+						$el_t( '<p>Descoperă cum poți găti rapid și gustos cu produsele noastre.</p>' ),
+					)
+				),
+				el_w( 'button', array( 'text' => 'Urmărește-ne pe Instagram', 'link' => array( 'url' => $ig, 'is_external' => 'on', 'nofollow' => '' ), '_css_classes' => 'nt-ebtn nt-ebtn--ghost nt-ebtn--ig' ) ),
+			)
+		),
+		el_w( 'natur_recipes', array( 'items' => $recipes ) ),
+	),
+	false
 );
 
-$cta = el_c(
-	array( 'content_width' => 'boxed', 'flex_direction' => 'column', 'flex_align_items' => 'center', 'flex_gap' => array( 'unit' => 'px', 'size' => 12, 'column' => '12', 'row' => '12' ), 'padding' => el_pad( 64, 20, 64, 20 ), 'background_background' => 'classic', 'background_color' => '#4E7D14' ),
+$sec_story = $el_x(
+	'nt-sec nt-story',
 	array(
-		el_heading( 'Preferați să comandați la telefon?', 'h2', 'center', '#FFFFFF', array( 32, 26 ) ),
-		el_text( '<p>Sunați-ne și vă ajutăm să alegeți produsele potrivite.</p>', 'center', 'rgba(255,255,255,0.9)' ),
-		el_button( '☎ ' . $phone, 'tel:' . $phone_l, 'primary' ),
-	)
+		$el_sc( '[natur_story_art main="NM-170" second="NM-98" third="NM-1004"]' ),
+		$el_x(
+			'nt-story__copy',
+			array(
+				$el_h( 'Povestea noastră', 'p', 'nt-eyebrow' ),
+				$el_h( 'Am început cu grija <em>pentru propria familie</em>', 'h2', 'nt-h2' ),
+				$el_t( '<p>Când am aflat din ce se produc lactatele ieftine și carnea „frumoasă”, am hotărât: gata, doar mâncare adevărată. Așa s-a născut Natur.MD — produse de la gospodari și mici producători, pe care îi vizităm personal ca să vedem cu ochii noștri cum sunt crescute animalele și păsările.</p>' ),
+				$el_sc( '[natur_stats]' ),
+				$el_btn( 'Citește povestea', get_permalink( $pages['about'] ), 'nt-ebtn--dark nt-ebtn--arrow' ),
+			)
+		),
+	),
+	false
 );
 
-$home_data = array( $hero, $benefits, $sec_cats, $sec_featured, $spin, $sec_new, $sec_reviews, $cta );
+$sec_reviews = $el_x(
+	'nt-sec',
+	array(
+		$el_head( 'Vorbesc clienții', 'Ce spun cei care <em>au gustat</em>' ),
+		$el_sc( '[natur_reviews number="10"]' ),
+	),
+	false
+);
+
+$home_data = array( $hero, $sec_cats, $sec_how, $sec_products, $spot, $sec_recipes, $sec_story, $sec_reviews );
 update_post_meta( $pages['home'], '_elementor_edit_mode', 'builder' );
 update_post_meta( $pages['home'], '_elementor_template_type', 'wp-page' );
 update_post_meta( $pages['home'], '_elementor_version', ELEMENTOR_VERSION );
@@ -686,10 +681,10 @@ $kit_id = (int) get_option( 'elementor_active_kit' );
 if ( $kit_id ) {
 	$kit = (array) get_post_meta( $kit_id, '_elementor_page_settings', true );
 	$kit['system_colors'] = array(
-		array( '_id' => 'primary', 'title' => 'Primar', 'color' => '#4E7D14' ),
-		array( '_id' => 'secondary', 'title' => 'Secundar', 'color' => '#8DC732' ),
-		array( '_id' => 'text', 'title' => 'Text', 'color' => '#4A4540' ),
-		array( '_id' => 'accent', 'title' => 'Accent', 'color' => '#8DC732' ),
+		array( '_id' => 'primary', 'title' => 'Pădure', 'color' => '#1F3D2B' ),
+		array( '_id' => 'secondary', 'title' => 'Frunză', 'color' => '#8DC63F' ),
+		array( '_id' => 'text', 'title' => 'Text', 'color' => '#4E5C52' ),
+		array( '_id' => 'accent', 'title' => 'Gălbenuș', 'color' => '#FFC94A' ),
 	);
 	$kit['container_width'] = array( 'unit' => 'px', 'size' => 1240 );
 	$kit['viewport_md']     = 768;
@@ -741,22 +736,23 @@ $astra = (array) get_option( 'astra-settings', array() );
 $astra = array_merge(
 	$astra,
 	array(
-		'global-color-palette'        => array( 'palette' => array( '#4E7D14', '#3D6410', '#1F1D1A', '#4A4540', '#FFFFFF', '#F5F3EC', '#2B2724', '#E5E1D6', '#111111' ) ),
-		'body-font-family'            => "'Nunito Sans', sans-serif",
-		'body-font-weight'            => '400',
-		'body-font-variant'           => '400',
-		'font-size-body'              => array( 'desktop' => 17, 'tablet' => 16, 'mobile' => 16, 'desktop-unit' => 'px', 'tablet-unit' => 'px', 'mobile-unit' => 'px' ),
-		'headings-font-family'        => "'Nunito', sans-serif",
-		'headings-font-weight'        => '800',
-		'headings-font-variant'       => '800',
-		'load-google-fonts-locally'   => true,
-		'preload-local-fonts'         => true,
+		// Paleta temei „natur” (fonturile Fraunces + Manrope sunt încărcate local de temă).
+		'global-color-palette'        => array( 'palette' => array( '#3C6B27', '#1F3D2B', '#1E2B22', '#4E5C52', '#FBF7EF', '#FFFFFF', '#F3ECDD', '#EAE2D2', '#1E2B22' ) ),
+		'body-font-family'            => 'inherit',
+		'body-font-weight'            => 'inherit',
+		'body-font-variant'           => '',
+		'font-size-body'              => array( 'desktop' => 16.5, 'tablet' => 16, 'mobile' => 16, 'desktop-unit' => 'px', 'tablet-unit' => 'px', 'mobile-unit' => 'px' ),
+		'headings-font-family'        => 'inherit',
+		'headings-font-weight'        => 'inherit',
+		'headings-font-variant'       => '',
+		'load-google-fonts-locally'   => false,
+		'preload-local-fonts'         => false,
 		'site-content-width'          => 1240,
 		'site-layout'                 => 'ast-full-width-layout',
 		'site-content-layout'         => 'normal-width-container',
 		'site-sidebar-layout'         => 'no-sidebar',
 		'single-page-sidebar-layout'  => 'no-sidebar',
-		'archive-product-sidebar-layout' => 'left-sidebar',
+		'archive-product-sidebar-layout' => 'no-sidebar',
 		'single-product-sidebar-layout' => 'no-sidebar',
 		'archive-product-ast-content-layout' => 'normal-width-container',
 		'single-product-ast-content-layout' => 'normal-width-container',
@@ -849,7 +845,7 @@ $astra = array_merge(
 		'footer-widget-1-color'       => '#C9D3BC',
 		'footer-widget-1-link-color'  => '#C9D3BC',
 		'footer-widget-1-link-h-color' => '#FFFFFF',
-		'shop-grid'                   => array( 'desktop' => 3, 'tablet' => 3, 'mobile' => 2 ),
+		'shop-grid'                   => array( 'desktop' => 4, 'tablet' => 3, 'mobile' => 2 ),
 		'shop-no-of-products'         => 12,
 		'shop-product-structure'      => array( 'category', 'title', 'ratings', 'price', 'add_cart' ),
 		'shop-add-to-cart-action'     => 'default',
@@ -858,7 +854,7 @@ $astra = array_merge(
 		'single-product-related-display' => true,
 		'single-product-up-sells-display' => true,
 		'woo-enable-free-shipping-progress' => true,
-		'ast-scroll-to-top'            => true,
+		'scroll-to-top-enable'         => false,
 		'button-radius-fields'        => array( 'desktop' => array( 'top' => 999, 'right' => 999, 'bottom' => 999, 'left' => 999 ), 'tablet' => array( 'top' => '', 'right' => '', 'bottom' => '', 'left' => '' ), 'mobile' => array( 'top' => '', 'right' => '', 'bottom' => '', 'left' => '' ), 'desktop-unit' => 'px', 'tablet-unit' => 'px', 'mobile-unit' => 'px' ),
 		'theme-button-padding'        => array( 'desktop' => array( 'top' => 12, 'right' => 24, 'bottom' => 12, 'left' => 24 ), 'tablet' => array( 'top' => '', 'right' => '', 'bottom' => '', 'left' => '' ), 'mobile' => array( 'top' => '', 'right' => '', 'bottom' => '', 'left' => '' ), 'desktop-unit' => 'px', 'tablet-unit' => 'px', 'mobile-unit' => 'px' ),
 	)

@@ -81,7 +81,7 @@ add_action(
 	static function () {
 		wp_add_inline_style(
 			'astra-theme-css',
-			'.natur-soon-badge { background: #F2A900 !important; color: #fff !important; }
+			'.natur-soon-badge:not(.nt-badge) { background: #F2A900 !important; color: #fff !important; }
 .single-product .stock.coming-soon { display: inline-block; padding: .35em .8em; border-radius: 4px; background: #FFF4D6; color: #8A5A00; font-weight: 700; }'
 		);
 	},
@@ -196,4 +196,17 @@ add_filter(
 	},
 	10,
 	2
+);
+
+/* Totalurile comenzii (cont client, e-mailuri): „Rambursare:” în loc de verbul „Rambursează:”. */
+add_filter(
+	'woocommerce_get_order_item_totals',
+	static function ( $rows ) {
+		foreach ( $rows as $key => &$row ) {
+			if ( 0 === strpos( $key, 'refund_' ) ) {
+				$row['label'] = 'Rambursare:';
+			}
+		}
+		return $rows;
+	}
 );

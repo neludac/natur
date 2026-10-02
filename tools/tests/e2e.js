@@ -9,6 +9,8 @@
  */
 const { BASE, ok, section, failures, launch, newPage } = require('./lib');
 
+const text = (s) => (s || '').replace(/\s+/g, ' ').trim();
+
 const ADMIN_USER = process.env.ADMIN_USER || 'admin';
 const ADMIN_PASS = process.env.ADMIN_PASS || '';
 
@@ -19,8 +21,46 @@ async function testHome(b) {
 	ok(r.status() === 200, 'status 200');
 	ok(await p.isVisible('h1'), 'titlul hero vizibil');
 	ok((await p.$$('ul.products li.product')).length >= 8, 'produse recomandate afișate');
-	ok((await p.$$('.product-category')).length >= 4, 'categorii afișate');
+	ok((await p.$$('.nt-cat')).length >= 4, 'categorii afișate');
 	ok(await p.isVisible('.natur-embed .natur-spin'), 'widget 360° pe prima pagină');
+	ok(p.jsErrors.length === 0, 'fără erori JS ' + p.jsErrors.join(' | '));
+	await p.context().close();
+}
+
+async function testTheme(b) {
+	section('Tema: panou categorii, căutare live, coș lateral');
+	const p = await newPage(b);
+	await p.goto(BASE + '/', { waitUntil: 'networkidle' });
+	await p.hover('.nt-nav__item.has-mega > .nt-nav__link');
+	await p.waitForTimeout(500);
+	ok((await p.$$eval('.nt-mega__cat', (els) => els.filter((e) => e.offsetParent).length)) >= 4, 'panoul „Magazin” arată categoriile cu imagini');
+	await p.mouse.move(10, 600);
+
+	await p.keyboard.press('/');
+	await p.keyboard.type('prepel');
+	await p.waitForSelector('.nt-sres a', { timeout: 10000 }).catch(() => null);
+	ok((await p.$$('.nt-sres a')).length > 0, 'căutarea live găsește produse în timp ce scrii');
+	await p.keyboard.press('Escape');
+	await p.waitForTimeout(600);
+	ok(await p.isHidden('#nt-search'), 'Esc închide căutarea');
+
+	const add = p.locator('.nt-ptabs__panel:not([hidden]) .nt-add.ajax_add_to_cart').first();
+	await add.scrollIntoViewIfNeeded();
+	await add.click();
+	await p.waitForSelector('.nt-toast', { timeout: 10000 }).catch(() => null);
+	ok(await p.isVisible('.nt-toast'), 'notificarea „Adăugat în coș” apare');
+	await p.waitForFunction(() => document.querySelector('.nt-cartbtn .nt-cart-count').textContent.trim() === '1', null, { timeout: 10000 }).catch(() => null);
+	ok(text(await p.innerText('.nt-cartbtn .nt-cart-count')) === '1', 'contorul coșului din antet: 1');
+
+	await p.click('.nt-cartbtn');
+	await p.waitForSelector('#nt-cart.is-open .nt-mc__item', { timeout: 10000 }).catch(() => null);
+	ok((await p.$$('#nt-cart .nt-mc__item')).length === 1, 'coșul lateral se deschide cu produsul adăugat');
+	await p.click('#nt-cart [data-nt-mc-qty] button[data-step="1"]');
+	await p.waitForFunction(() => document.querySelector('.nt-cartbtn .nt-cart-count').textContent.trim() === '2', null, { timeout: 15000 }).catch(() => null);
+	ok(text(await p.innerText('#nt-cart .nt-qty__val')) === '2' && text(await p.innerText('.nt-cartbtn .nt-cart-count')) === '2', 'butonul „+” din coșul lateral mărește cantitatea');
+	await p.click('#nt-cart .nt-mc__remove');
+	await p.waitForSelector('#nt-cart .nt-mc__empty', { timeout: 15000 }).catch(() => null);
+	ok(await p.isVisible('#nt-cart .nt-mc__empty'), 'produsul se scoate din coș; apare mesajul „Coșul tău e gol”');
 	ok(p.jsErrors.length === 0, 'fără erori JS ' + p.jsErrors.join(' | '));
 	await p.context().close();
 }
@@ -85,16 +125,23 @@ async function testCheckout(b) {
 }
 
 async function testForms(b) {
-	section('Formular contact, căutare, magazin, cont');
+	section('Pagina de contact, căutare, magazin, cont');
 	const p = await newPage(b);
+	await p.context().grantPermissions(['clipboard-read', 'clipboard-write'], { origin: BASE });
 	await p.goto(BASE + '/contact/', { waitUntil: 'networkidle' });
-	await p.fill('input[name="your-name"]', 'Test E2E');
-	await p.fill('input[name="your-email"]', 'e2e-contact@example.com');
-	await p.fill('textarea[name="your-message"]', 'Mesaj de test automat.');
-	await p.check('input[name="consent"]');
-	await p.click('input[type="submit"]');
-	await p.waitForSelector('.wpcf7-response-output:not(:empty)', { timeout: 20000 });
-	ok(/trimis/i.test(await p.innerText('.wpcf7-response-output')), 'formularul de contact trimite mesajul');
+	ok(!(await p.$('.entry-content form')), 'pagina de contact nu are formular');
+	ok(await p.isVisible('.nt-cb--phone a.nt-cb__phone[href^="tel:"]'), 'telefonul e afișat ca link de apel');
+	ok(await p.isVisible('.nt-cb--mail a[href^="mailto:"]') && await p.isVisible('.nt-cb--chat a[href*="m.me"]'), 'e-mailul și Messenger sunt afișate');
+	await p.click('.nt-cb--phone [data-nt-copy]');
+	await p.waitForSelector('.nt-cb--phone [data-nt-copy].is-copied', { timeout: 5000 }).catch(() => {});
+	const copied = await p.evaluate(() => navigator.clipboard.readText().catch(() => ''));
+	ok(copied === await p.getAttribute('.nt-cb--phone [data-nt-copy]', 'data-nt-copy') && /Copiat/.test(await p.innerText('.nt-cb--phone [data-nt-copy]')), `„Copiază numărul” copiază telefonul (${copied})`);
+	ok(await p.isVisible('.nt-map'), 'harta livrărilor e afișată');
+	const faq = await p.$$('.nt-faq details');
+	await p.click('.nt-faq details:first-of-type summary');
+	await p.waitForSelector('.nt-faq details[open] p', { state: 'visible', timeout: 3000 }).catch(() => {}); // deschidere animată
+	ok(faq.length >= 5 && await p.isVisible('.nt-faq details[open] p'), `întrebările frecvente se deschid (${faq.length})`);
+	ok(!(await p.$('.nt-help')), 'fără banda „Preferi să comanzi la telefon?” pe pagina de contact');
 
 	await p.goto(BASE + '/?s=prepeli&post_type=product', { waitUntil: 'networkidle' });
 	ok((await p.$$('ul.products li.product')).length > 0, 'căutarea găsește produse');
@@ -150,8 +197,8 @@ async function testMobile(b) {
 		ok(overflow <= 0, `${path}: fără derulare orizontală`);
 	}
 	await p.goto(BASE + '/', { waitUntil: 'networkidle' });
-	await p.click('.menu-toggle');
-	ok(await p.isVisible('.ast-mobile-header-content .menu-link >> text=Magazin'), 'meniul mobil se deschide');
+	await p.click('.nt-burger');
+	ok(await p.isVisible('#nt-menu .nt-mnav >> text=Magazin'), 'meniul mobil se deschide');
 	ok(p.jsErrors.length === 0, 'fără erori JS ' + p.jsErrors.join(' | '));
 	await p.context().close();
 }
@@ -191,6 +238,7 @@ async function testAdmin(b) {
 	const b = await launch();
 	try {
 		await testHome(b);
+		await testTheme(b);
 		await testProductMedia(b, false);
 		await testProductMedia(b, true);
 		await testCheckout(b);

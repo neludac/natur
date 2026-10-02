@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Natur.MD – ajustări site
- * Description: Simbol monedă „lei”, redirecționări 301 de pe vechiul site PrestaShop, reguli de livrare și mici ajustări WooCommerce.
+ * Description: Simbol monedă „lei”, redirecționări 301 de pe vechiul site PrestaShop, reguli de livrare și mici ajustări WooCommerce. Aspectul vizual e în tema „natur”.
  * Version: 1.0.0
  */
 
@@ -89,37 +89,6 @@ add_action(
 	}
 );
 
-/* Ajustări vizuale peste tema Astra. */
-add_action(
-	'wp_enqueue_scripts',
-	static function () {
-		$css = '
-.site-footer .site-primary-footer-wrap, .site-footer .site-primary-footer-wrap p, .site-footer .ast-builder-html-element { color: #C9D3BC; }
-.site-footer a, .site-footer .ast-builder-html-element a { color: #fff; }
-.site-footer a:hover { color: #8DC732; }
-.site-footer .widget-title, .site-footer h4 { color: #fff; font-size: 16px; margin-bottom: .8em; }
-.site-footer .wp-block-list { list-style: none; margin: 0; padding: 0; }
-.site-footer .wp-block-list li { margin: 0 0 .45em; }
-.site-footer .footer-widget-area .wp-block-list a, .site-footer .menu-link { color: #C9D3BC; }
-.site-footer .footer-widget-area .wp-block-list a:hover, .site-footer .menu-link:hover { color: #fff; }
-.site-below-footer-wrap .ast-footer-copyright { color: #9AA88A; }
-.ast-above-header-bar .ast-builder-html-element p { margin: 0; }
-.ast-mobile-header-content .ast-header-html-1 .ast-builder-html-element, .ast-mobile-header-content .ast-header-html-1 a { color: var(--ast-global-color-3) !important; }
-.ast-mobile-header-content .ast-header-html-1 .ast-builder-html-element { padding: 12px 20px 20px; font-size: 15px; }
-.single-product div.product .product_title { font-size: clamp(26px, 3vw, 36px); line-height: 1.2; margin-bottom: .3em; }
-.single-product div.product p.price { font-size: 26px; font-weight: 800; color: var(--ast-global-color-0); }
-.woocommerce ul.products li.product .woocommerce-loop-product__title { font-size: 16px; }
-.site-primary-footer-wrap .ast-builder-html-element, .site-primary-footer-wrap .ast-builder-html-element p, .site-primary-footer-wrap .footer-widget-area { text-align: left !important; }
-.site-primary-footer-wrap .ast-builder-grid-row > div { justify-content: flex-start !important; align-items: flex-start !important; }
-.site-primary-footer-wrap .footer-nav-wrap .ast-nav-menu { align-items: flex-start !important; }
-.site-primary-footer-wrap .footer-nav-wrap .menu-link { padding: 0 0 .45em !important; }
-.site-primary-footer-wrap .footer-nav-wrap::before { content: "Informații"; display: block; color: #fff; font-weight: 800; font-size: 16px; margin-bottom: .8em; }
-';
-		wp_add_inline_style( 'astra-theme-css', $css );
-	},
-	20
-);
-
 /* Traduceri lipsă din tema Astra (nu are pachet ro_RO). */
 add_filter(
 	'gettext_astra',
@@ -188,3 +157,9 @@ add_filter(
 	10,
 	4
 );
+
+/*
+ * Elementor AI (serviciu cloud cu abonament, nefolosit aici): pe „Adaugă produs” apelează
+ * ai_get_product_image_unification pentru o ciornă și produce o eroare fatală PHP (500).
+ */
+add_filter( 'get_user_option_elementor_enable_ai', static fn() => '0' );

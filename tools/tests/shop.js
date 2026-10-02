@@ -28,6 +28,8 @@ let ADMIN_USER = process.env.ADMIN_USER || 'admin';
 let ADMIN_PASS = process.env.ADMIN_PASS || '';
 
 const lei = (n) => n.toFixed(2).replace('.', ',') + ' lei';
+/* Vitrina (card, pagina produsului) afișează prețurile fără zecimale nule: „200 lei”; coșul și comenzile — „200,00 lei”. */
+const leiV = (n) => (Number.isInteger(n) ? String(n) : n.toFixed(2).replace('.', ',')) + ' lei';
 const text = (s) => (s || '').replace(/\s+/g, ' ').trim(); // \s include și &nbsp;
 const BADGE = '.onsale, .ast-onsale-card';
 const num = (s) => parseFloat(String(s).replace(/[^\d,.-]/g, '').replace(/\.(?=\d{3})/g, '').replace(',', '.'));
@@ -42,7 +44,7 @@ const P = {
 	oos: { title: `E2E Ulei de cânepă ${RUN}`, price: 90, stock: 'outofstock' },
 	soon: { title: `E2E Dulceață de gutui ${RUN}`, price: 70, stock: 'comingsoon', date: soonISO },
 };
-const cat = { name: `E2E Cămara bunicii ${RUN}`, slug: `e2e-camara-${RUN}` };
+const cat = { name: `E2E Rafturile bunicii ${RUN}`, slug: `e2e-rafturi-${RUN}` };
 const customer = { email: `e2e-client-${RUN}@example.com`, pass: 'Nt!' + crypto.randomBytes(9).toString('base64url'), first: 'Maria', last: 'Testescu' };
 
 /* ------------------------------------------------------------------ utilitare */
@@ -176,7 +178,7 @@ async function testDiscount(admin, shopper) {
 	section('Reducere: preț vechi / preț nou');
 	const s = P.sale;
 	await shopper.goto(s.url, { waitUntil: 'networkidle' });
-	ok(text(await shopper.innerText('.summary .price')) === lei(s.price) && !(await shopper.locator(BADGE).count()), `înainte de reducere: ${lei(s.price)}, fără insignă`);
+	ok(text(await shopper.innerText('.summary .price')) === leiV(s.price) && !(await shopper.locator(BADGE).count()), `înainte de reducere: ${leiV(s.price)}, fără insignă`);
 
 	await admin.goto(`${BASE}/wp-admin/post.php?post=${s.id}&action=edit`, { waitUntil: 'networkidle' });
 	await admin.fill('#_sale_price', String(s.sale));
@@ -186,15 +188,15 @@ async function testDiscount(admin, shopper) {
 	await shopper.goto(s.url, { waitUntil: 'networkidle' });
 	const del = text(await shopper.innerText('.summary .price del'));
 	const ins = text(await shopper.innerText('.summary .price ins'));
-	ok(del === lei(s.price), `preț vechi tăiat: ${del}`);
-	ok(ins === lei(s.sale), `preț nou: ${ins}`);
+	ok(del === leiV(s.price), `preț vechi tăiat: ${del}`);
+	ok(ins === leiV(s.sale), `preț nou: ${ins}`);
 	ok(await shopper.$eval('.summary .price del', (e) => getComputedStyle(e).textDecorationLine.includes('line-through')), 'prețul vechi e vizual tăiat');
 	const badge = text(await shopper.locator(BADGE).first().innerText());
 	ok(badge === '-25%' && (await shopper.locator(BADGE).first().isVisible()), `insigna de reducere pe pagina produsului: ${badge}`);
 
 	await shopper.goto(`${BASE}/categorie/${cat.slug}/`, { waitUntil: 'networkidle' });
 	const card = shopper.locator('li.product', { hasText: s.title });
-	ok(text(await card.locator('.price del').innerText()) === lei(s.price) && text(await card.locator('.price ins').innerText()) === lei(s.sale), 'pe cardul din categorie: preț vechi + preț nou');
+	ok(text(await card.locator('.price del').innerText()) === leiV(s.price) && text(await card.locator('.price ins').innerText()) === leiV(s.sale), 'pe cardul din categorie: preț vechi + preț nou');
 	ok(text(await card.locator(BADGE).first().innerText()) === '-25%', 'insigna „-25%” pe cardul din categorie');
 	await shopper.goto(`${BASE}/magazin/?orderby=date`, { waitUntil: 'networkidle' });
 	ok(text(await shopper.locator('li.product', { hasText: s.title }).locator(BADGE).first().innerText()) === '-25%', 'insigna apare și în magazin');
@@ -215,7 +217,7 @@ async function testUnavailable(shopper) {
 		await shopper.goto(prod.url, { waitUntil: 'networkidle' });
 		ok(text(await shopper.innerText(`.summary .stock.${cls}`).catch(() => '')) === label, `${prod.title}: „${label}”`);
 		ok(!(await shopper.isVisible('form.cart button[name="add-to-cart"], .single_add_to_cart_button')), 'fără buton „Adaugă în coș”');
-		ok(text(await shopper.innerText('.summary .price')) === lei(prod.price), `prețul rămâne vizibil (${lei(prod.price)})`);
+		ok(text(await shopper.innerText('.summary .price')) === leiV(prod.price), `prețul rămâne vizibil (${leiV(prod.price)})`);
 		const ld = await shopper.evaluate(() => [...document.querySelectorAll('script[type="application/ld+json"]')].map((s) => s.textContent).join(''));
 		const schema = prod === P.soon ? 'PreOrder' : 'OutOfStock';
 		ok(ld.includes(`schema.org/${schema}`), `date structurate Google: ${schema}`);
@@ -230,7 +232,7 @@ async function testUnavailable(shopper) {
 	await shopper.goto(`${BASE}/categorie/${cat.slug}/`, { waitUntil: 'networkidle' });
 	const cards = shopper.locator('ul.products li.product');
 	ok((await cards.count()) === 4, 'categoria listează toate cele 4 produse (inclusiv cele indisponibile)');
-	ok(text(await cards.filter({ hasText: P.oos.title }).locator('.ast-shop-product-out-of-stock').textContent()) === 'Stoc epuizat', 'card: insigna „Stoc epuizat”');
+	ok(text(await cards.filter({ hasText: P.oos.title }).locator('.nt-badge--oos').textContent()) === 'Stoc epuizat', 'card: insigna „Stoc epuizat”');
 	ok(text(await cards.filter({ hasText: P.soon.title }).locator('.natur-soon-badge').textContent()) === 'În curând', 'card: insigna „În curând”');
 	ok(!(await cards.filter({ hasText: P.soon.title }).locator('.add_to_cart_button').count()), 'card „În curând”: fără adăugare rapidă în coș');
 	ok(shopper.jsErrors.length === 0, 'fără erori JS ' + shopper.jsErrors.join(' | '));
@@ -386,7 +388,7 @@ async function testAdminOrders(admin, customerPage) {
 	ok(/Finalizat/.test(rows) && /Anulat/.test(rows), 'clientul vede statusurile „Finalizată” și „Anulată” în cont');
 	await customerPage.goto(`${BASE}/contul-meu/view-order/${o.id}/`, { waitUntil: 'networkidle' });
 	const view = text(await customerPage.innerText('.woocommerce-order-details, main'));
-	ok(/Rambursat|rambursare/i.test(view), 'clientul vede rambursarea în detaliile comenzii') || console.log('    ' + view.slice(0, 500));
+	ok(view.includes('Rambursare: -150,00 lei'), 'clientul vede rambursarea în detaliile comenzii') || console.log('    ' + view.slice(0, 500));
 	const errs = p.jsErrors.filter((e) => !/ResizeObserver/.test(e));
 	ok(errs.length === 0, 'fără erori JS în admin ' + errs.join(' | '));
 }
@@ -480,7 +482,12 @@ async function report(rest) {
 	const cust = (await rest(`wc-analytics/reports/customers/stats?${RANGE}`)).totals;
 	const stock = (await rest('wc-analytics/reports/stock/stats')).totals;
 	const all = await rest(`wc-analytics/reports/orders?per_page=100&${RANGE}`);
-	const byStatus = all.reduce((a, o) => ((a[o.net_total < 0 ? 'rambursări' : o.status] = (a[o.net_total < 0 ? 'rambursări' : o.status] || 0) + 1), a), {});
+	const ro = { completed: 'finalizate', processing: 'în procesare', 'on-hold': 'în așteptare', refunded: 'rambursate integral' };
+	const byStatus = all.reduce((a, o) => {
+		const k = o.net_total < 0 ? 'rambursări' : ro[o.status] || o.status;
+		a[k] = (a[k] || 0) + 1;
+		return a;
+	}, {});
 	const f = (n) => lei(Number(n || 0));
 	console.log(`    Comenzi: ${t.orders_count} (${Object.entries(byStatus).map(([k, v]) => `${k}: ${v}`).join(', ')}) · articole vândute: ${os.num_items_sold}`);
 	console.log(`    Vânzări brute ${f(t.gross_sales)} · rambursări ${f(t.refunds)} · reduceri cupon ${f(t.coupons)} · venit net ${f(t.net_revenue)} · livrare ${f(t.shipping)} · total ${f(t.total_sales)}`);

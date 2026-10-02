@@ -5,8 +5,11 @@
  * Rulare: ddev wp eval-file tools/tests/cleanup.php
  */
 $n = 0;
-foreach ( wc_get_orders( array( 'limit' => -1, 'billing_email' => '' ) ) as $order ) {
+foreach ( wc_get_orders( array( 'limit' => -1, 'type' => 'shop_order' ) ) as $order ) {
 	if ( preg_match( '/^(e2e-|test-)[^@]*@example\.com$/', $order->get_billing_email() ) ) {
+		foreach ( $order->get_refunds() as $refund ) {
+			$refund->delete( true );
+		}
 		$order->delete( true );
 		$n++;
 	}
