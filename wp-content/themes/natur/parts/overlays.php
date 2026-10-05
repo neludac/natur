@@ -9,7 +9,7 @@ $has_wc  = class_exists( 'WooCommerce' );
 $shop_id = $has_wc ? (int) wc_get_page_id( 'shop' ) : 0;
 $mtree   = nt_menu_tree( 'mobile_menu' );
 $mtree   = $mtree ? $mtree : nt_menu_tree( 'primary' );
-$popular = array( 'Ouă de prepeliță', 'Unt GHEE', 'Brânză', 'Carne de prepeliță', 'Semințe pentru germinare', 'Ciuperci' );
+$popular = nt_opt_lines( 'search_popular' );
 ?>
 <div class="nt-search" id="nt-search" role="dialog" aria-modal="true" aria-label="Căutare produse" hidden>
 	<div class="nt-scrim" data-nt-close></div>
@@ -18,18 +18,20 @@ $popular = array( 'Ouă de prepeliță', 'Unt GHEE', 'Brânză', 'Carne de prepe
 			<form class="nt-search__form" role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 				<?php echo nt_icon( 'search', 24 ); // phpcs:ignore ?>
 				<label class="screen-reader-text" for="nt-search-input">Caută produse</label>
-				<input id="nt-search-input" class="nt-search__input" type="search" name="s" placeholder="Ce cauți azi? Ouă, brânză, ghee…" autocomplete="off" spellcheck="false" aria-controls="nt-search-results" aria-describedby="nt-search-hint" />
+				<input id="nt-search-input" class="nt-search__input" type="search" name="s" placeholder="<?php echo esc_attr( nt_txt_plain( 'search_placeholder' ) ); ?>" autocomplete="off" spellcheck="false" aria-controls="nt-search-results" aria-describedby="nt-search-hint" />
 				<input type="hidden" name="post_type" value="product" />
 				<button type="button" class="nt-iconbtn nt-search__close" data-nt-close aria-label="Închide căutarea"><?php echo nt_icon( 'close', 22 ); // phpcs:ignore ?></button>
 			</form>
 			<div class="nt-search__body">
 				<div class="nt-search__popular" data-nt-popular>
-					<p id="nt-search-hint" class="nt-search__label">Căutări populare</p>
-					<div class="nt-chips">
-						<?php foreach ( $popular as $q ) : ?>
-							<a class="nt-chip" href="<?php echo esc_url( add_query_arg( array( 's' => $q, 'post_type' => 'product' ), home_url( '/' ) ) ); ?>" data-nt-q="<?php echo esc_attr( $q ); ?>"><?php echo esc_html( $q ); ?></a>
-						<?php endforeach; ?>
-					</div>
+					<?php if ( $popular ) : ?>
+						<p id="nt-search-hint" class="nt-search__label"><?php echo nt_txt( 'search_popular_lbl' ); // phpcs:ignore ?></p>
+						<div class="nt-chips">
+							<?php foreach ( $popular as $q ) : ?>
+								<a class="nt-chip" href="<?php echo esc_url( add_query_arg( array( 's' => $q, 'post_type' => 'product' ), home_url( '/' ) ) ); ?>" data-nt-q="<?php echo esc_attr( $q ); ?>"><?php echo esc_html( $q ); ?></a>
+							<?php endforeach; ?>
+						</div>
+					<?php endif; ?>
 				</div>
 				<div class="nt-search__results" id="nt-search-results" aria-live="polite"></div>
 			</div>
@@ -48,7 +50,7 @@ $popular = array( 'Ouă de prepeliță', 'Unt GHEE', 'Brânză', 'Carne de prepe
 			<form class="nt-msearch" role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 				<?php echo nt_icon( 'search', 19 ); // phpcs:ignore ?>
 				<label class="screen-reader-text" for="nt-msearch-input">Caută produse</label>
-				<input id="nt-msearch-input" type="search" name="s" placeholder="Caută produse…" />
+				<input id="nt-msearch-input" type="search" name="s" placeholder="<?php echo esc_attr( nt_txt_plain( 'search_label' ) ); ?>" />
 				<input type="hidden" name="post_type" value="product" />
 			</form>
 			<nav class="nt-mnav" aria-label="Meniu mobil">
@@ -63,7 +65,7 @@ $popular = array( 'Ouă de prepeliță', 'Unt GHEE', 'Brânză', 'Carne de prepe
 								<details<?php echo 'page' === $item->object && (int) $item->object_id === $shop_id ? ' open' : ''; ?>>
 									<summary class="<?php echo $current ? 'is-current' : ''; ?>"><?php echo esc_html( $item->title ); ?><?php echo nt_icon( 'chevron', 18 ); // phpcs:ignore ?></summary>
 									<ul class="nt-mnav__sub">
-										<li><a class="nt-mnav__all" href="<?php echo esc_url( $item->url ); ?>"><span class="nt-mnav__thumb nt-tint--sage"><?php echo nt_icon( 'grid', 18 ); // phpcs:ignore ?></span>Toate produsele</a></li>
+										<li><a class="nt-mnav__all" href="<?php echo esc_url( $item->url ); ?>"><span class="nt-mnav__thumb nt-tint--sage"><?php echo nt_icon( 'grid', 18 ); // phpcs:ignore ?></span><?php echo nt_txt( 'mega_all' ); // phpcs:ignore ?></a></li>
 										<?php
 										foreach ( $node['children'] as $child ) :
 											$c    = $child['item'];
@@ -85,10 +87,19 @@ $popular = array( 'Ouă de prepeliță', 'Unt GHEE', 'Brânză', 'Carne de prepe
 			</nav>
 		</div>
 		<div class="nt-drawer__foot">
-			<a class="nt-btn nt-btn--dark nt-btn--block" href="tel:<?php echo esc_attr( nt_contact( 'phone_raw' ) ); ?>"><?php echo nt_icon( 'phone', 18 ); // phpcs:ignore ?> Sună: <?php echo esc_html( nt_contact( 'phone' ) ); ?></a>
+			<?php if ( nt_contact( 'phone' ) ) : ?>
+				<a class="nt-btn nt-btn--dark nt-btn--block" href="tel:<?php echo esc_attr( nt_contact( 'phone_raw' ) ); ?>"><?php echo nt_icon( 'phone', 18 ); // phpcs:ignore ?> Sună: <?php echo esc_html( nt_contact( 'phone' ) ); ?></a>
+			<?php endif; ?>
 			<div class="nt-drawer__links">
-				<a href="mailto:<?php echo esc_attr( nt_contact( 'email' ) ); ?>"><?php echo nt_icon( 'mail', 16 ); // phpcs:ignore ?><?php echo esc_html( nt_contact( 'email' ) ); ?></a>
-				<a href="<?php echo esc_url( nt_contact( 'facebook' ) ); ?>" target="_blank" rel="noopener"><?php echo nt_icon( 'facebook', 16 ); // phpcs:ignore ?>Facebook</a>
+				<?php if ( nt_contact( 'email' ) ) : ?>
+					<a href="mailto:<?php echo esc_attr( nt_contact( 'email' ) ); ?>"><?php echo nt_icon( 'mail', 16 ); // phpcs:ignore ?><?php echo esc_html( nt_contact( 'email' ) ); ?></a>
+				<?php endif; ?>
+				<?php if ( nt_contact( 'facebook' ) ) : ?>
+					<a href="<?php echo esc_url( nt_contact( 'facebook' ) ); ?>" target="_blank" rel="noopener"><?php echo nt_icon( 'facebook', 16 ); // phpcs:ignore ?>Facebook</a>
+				<?php endif; ?>
+				<?php if ( nt_contact( 'instagram' ) ) : ?>
+					<a href="<?php echo esc_url( nt_contact( 'instagram' ) ); ?>" target="_blank" rel="noopener"><?php echo nt_icon( 'instagram', 16 ); // phpcs:ignore ?>Instagram</a>
+				<?php endif; ?>
 			</div>
 		</div>
 	</div>

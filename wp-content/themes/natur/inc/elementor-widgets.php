@@ -137,7 +137,7 @@ class NT_Widget_Hero_Art extends NT_Elementor_Widget {
 		$this->ctl( $this, 'sticker', 'Textul insignei rotative', 'text' );
 		$this->end_controls_section();
 
-		$this->section( 'pick', 'Produsul evidențiat' );
+		$this->section( 'pick_sec', 'Produsul evidențiat' );
 		$this->ctl( $this, 'pick', 'Produs', 'select2', array( 'options' => nt_el_product_options( '— fără produs —' ), 'description' => 'Apare doar dacă e în stoc.' ) );
 		$this->ctl( $this, 'pick_tag', 'Eticheta', 'text' );
 		$this->end_controls_section();

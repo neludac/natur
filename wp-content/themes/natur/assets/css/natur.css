@@ -327,6 +327,9 @@ body.nt::before {
 .nt-header.is-scrolled .nt-header__in { height: 70px; }
 
 .nt-logo { display: inline-flex; flex: none; line-height: 0; transition: transform .35s var(--nt-spring); }
+/* Fără logo încărcat: numele site-ului. */
+.nt-logo__text { font: 600 26px/1 var(--nt-serif); letter-spacing: -.02em; color: var(--nt-ink); }
+.nt-footer .nt-logo__text { color: #fff; }
 .nt-logo:hover { transform: rotate(-2deg) scale(1.03); }
 .nt-logo img { display: block; width: 150px; height: auto; }
 .nt-header.is-scrolled .nt-logo img { width: 136px; }
@@ -846,7 +849,11 @@ body.nt::before {
 .nt-footer__bottom { position: relative; border-top: 1px solid rgba(255, 255, 255, .08); background: rgba(0, 0, 0, .12); }
 .nt-footer__bottom-in { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 16px; font-size: 13.5px; color: #93A68E; }
 .nt-footer__bottom p { margin: 0; }
-.nt-footer__love { display: inline-flex; align-items: center; gap: 6px; }
+.nt-footer__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 18px; flex: 1 1 auto; min-width: 0; }
+.nt-footer__legal ul { display: flex; flex-wrap: wrap; gap: 4px 18px; margin: 0; padding: 0; list-style: none; }
+.nt .nt-footer__legal a { display: inline-block; padding-block: 4px; color: #DCE5D4 !important; text-decoration: underline; text-decoration-color: rgba(255, 255, 255, .28); text-underline-offset: 3px; transition: color .2s, text-decoration-color .2s; }
+.nt .nt-footer__legal a:hover { color: #fff !important; text-decoration-color: currentColor; }
+.nt-footer__love { display: inline-flex; flex: none; align-items: center; gap: 6px; white-space: nowrap; }
 .nt-footer__love svg { color: var(--nt-tomato); fill: var(--nt-tomato); animation: nt-beat 1.6s ease-in-out infinite; }
 .nt .nt-totop { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .18); background: transparent; color: #fff; cursor: pointer; transition: background .2s, color .2s, transform .3s var(--nt-spring); }
 .nt .nt-totop:hover { background: var(--nt-leaf); color: var(--nt-ink); transform: translateY(-3px); }
@@ -1877,7 +1884,8 @@ body.nt ul.products li.product.nt-card .price ins, body.nt .nt-card .price ins {
 .nt.page .entry-content > p:last-child strong:only-child { display: inline-block; padding: 12px 20px; border-radius: 16px; background: #DDF0D6; color: #2D5A20; font-family: var(--nt-serif); font-size: 21px; font-weight: 600; }
 
 /* Contact: carduri (shortcode [natur_contact]) + întrebări frecvente (blocuri „Detalii”) */
-.nt.page:not(.home) .entry-content:has(> .nt-contact) { max-width: none; }
+/* Cardurile pot sta direct în pagină (shortcode) sau într-un widget Elementor. */
+.nt.page:not(.home) .entry-content:has(.nt-contact) { max-width: none; }
 .nt-contact { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 18px; }
 .nt-contact p { margin: 0; }
 .nt .nt-contact a { text-decoration: none; }
@@ -2043,6 +2051,8 @@ body.nt ul.products li.product.nt-card .price ins, body.nt .nt-card .price ins {
 }
 .nt-faq details[open] > summary::after { transform: rotate(135deg); background-color: var(--nt-leaf); }
 .nt.page .entry-content .nt-faq details > :not(summary) { margin: 0; padding: 0 24px 22px 66px; font-size: 16.5px; line-height: 1.7; }
+.nt-faq__a p { margin: 0 0 .8em; }
+.nt-faq__a > :last-child { margin-bottom: 0; }
 @supports (interpolate-size: allow-keywords) {
 	.nt-faq { interpolate-size: allow-keywords; }
 	.nt-faq details::details-content { height: 0; overflow: clip; transition: height .45s var(--nt-ease), content-visibility .45s allow-discrete; }
@@ -2072,21 +2082,10 @@ body.nt ul.products li.product.nt-card .price ins, body.nt .nt-card .price ins {
 	.nt.page .entry-content .nt-faq details > :not(summary) { padding: 0 18px 20px 60px; font-size: 16px; }
 }
 
-/* Coș + finalizare (blocuri WooCommerce) */
+/* Coș (blocul WooCommerce; cu produse duce direct la comandă) + stiluri pentru blocul de finalizare */
 .nt.woocommerce-cart .entry-content, .nt.woocommerce-checkout .entry-content, .nt.woocommerce-account .entry-content { max-width: none !important; font-size: 16px; }
 .nt.woocommerce-cart .ast-article-single .entry-header, .nt.woocommerce-checkout .ast-article-single .entry-header, .nt.woocommerce-account .ast-article-single .entry-header { padding: 36px 24px 30px; margin-bottom: 32px; }
 .nt.woocommerce-cart .ast-article-single .entry-title, .nt.woocommerce-checkout .ast-article-single .entry-title, .nt.woocommerce-account .ast-article-single .entry-title { font-size: clamp(34px, 4.4vw, 52px); }
-.nt-progress { display: flex; justify-content: center; gap: 6px; margin: 18px 0 0; padding: 0; list-style: none; counter-reset: s; }
-.nt-progress li { display: flex; align-items: center; gap: 8px; color: var(--nt-ink-3); font-size: 14px; font-weight: 800; counter-increment: s; }
-.nt-progress li + li::before { content: ""; width: 34px; height: 2px; margin-right: 4px; border-radius: 2px; background: var(--nt-line-2); }
-.nt-progress span { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #fff; box-shadow: inset 0 0 0 1.5px var(--nt-line-2); font-size: 12.5px; }
-.nt-progress span::before { content: counter(s); }
-.nt-progress .is-done { color: var(--nt-moss); }
-.nt-progress .is-done span { background: var(--nt-leaf); color: var(--nt-ink); box-shadow: none; }
-.nt-progress .is-done span::before { content: "✓"; }
-.nt-progress .is-done + li::before { background: var(--nt-leaf); }
-.nt-progress .is-current { color: var(--nt-ink); }
-.nt-progress .is-current span { background: var(--nt-ink); color: #fff; box-shadow: none; }
 
 .nt .wc-block-components-button:not(.is-link) { min-height: 54px; border-radius: 999px !important; background: var(--nt-forest) !important; color: #fff !important; font-family: var(--nt-font); font-weight: 800 !important; font-size: 16.5px; box-shadow: 0 14px 28px -16px rgba(31, 61, 43, .8); transition: background .2s, transform .3s var(--nt-spring); }
 .nt .wc-block-components-button:not(.is-link):hover { background: var(--nt-forest-2) !important; transform: translateY(-1px); }
@@ -2137,6 +2136,107 @@ body.nt ul.products li.product.nt-card .price ins, body.nt .nt-card .price ins {
 .nt ul.woocommerce-thankyou-order-details li strong { margin-top: 6px; font-size: 16px; text-transform: none; letter-spacing: 0; color: var(--nt-ink); }
 .nt .woocommerce-table--order-details, .nt .woocommerce-orders-table, .nt table.shop_table { border-radius: 22px; overflow: hidden; border: 0 !important; background: #fff; box-shadow: inset 0 0 0 1px var(--nt-line); border-collapse: separate; }
 .nt table.shop_table th, .nt table.shop_table td { border-color: var(--nt-line) !important; padding: 14px 18px !important; }
+
+/* Comanda într-un singur pas (inc/checkout.php, woocommerce/checkout/*) */
+.nt-ck-intro { max-width: 46ch; margin: 14px auto 0; color: var(--nt-ink-2); font-size: 17px; line-height: 1.5; text-align: center; }
+.nt form.nt-ck { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 420px); gap: 20px 28px; align-items: start; max-width: 1060px; margin: 0 auto; }
+.nt-ck > * { grid-column: 1 / -1; min-width: 0; }
+.nt-ck > .nt-ck__main { grid-column: 1; display: grid; gap: 20px; min-width: 0; }
+.nt-ck > .nt-ck__sum { grid-column: 2; position: sticky; top: 100px; }
+.nt-ck > .woocommerce-NoticeGroup ul { margin: 0; }
+.nt-ck__card { padding: clamp(20px, 3vw, 32px); border-radius: 28px; background: #fff; box-shadow: inset 0 0 0 1px var(--nt-line); }
+/* Astra: lățimi, borduri și umpluturi pentru formularul clasic, anulate */
+.nt form.nt-ck #customer_details { margin: 0; border-radius: 28px; }
+.nt form.nt-ck #order_review, .nt form.nt-ck #order_review_heading { width: auto !important; float: none !important; margin: 0 !important; padding: 0 !important; border: 0 !important; }
+.nt form.nt-ck #order_review_heading { margin-bottom: 16px !important; }
+.nt.page .entry-content .nt-ck__title { margin: 0 0 18px; font-family: var(--nt-serif); font-size: 25px; font-weight: 600; line-height: 1.2; letter-spacing: -.015em; color: var(--nt-ink); }
+.nt-ck .form-row { width: auto; float: none; margin: 0 0 16px; padding: 0; }
+.nt-ck .form-row > label, .nt-zone__label { display: block; margin: 0 0 7px; color: var(--nt-ink); font-size: 14.5px; font-weight: 800; line-height: 1.3; }
+.nt-ck .form-row label .required { display: none; }
+.nt-ck .form-row label .optional { color: var(--nt-ink-3); font-weight: 600; }
+.nt-ck .woocommerce-input-wrapper { display: block; }
+.nt .nt-ck input.input-text { min-height: 56px; padding: 14px 18px; font-size: 17px; }
+.nt .nt-ck textarea.input-text { min-height: 96px; }
+.nt-ck .nt-ck-phone { position: relative; }
+.nt-ck-phone__prefix { position: absolute; top: 50%; left: 18px; transform: translateY(-50%); padding-right: 12px; border-right: 1.5px solid var(--nt-line-2); color: var(--nt-ink); font-size: 17px; font-weight: 700; line-height: 1.4; pointer-events: none; }
+.nt .nt-ck .nt-ck-phone input.input-text { padding-left: calc(46px + var(--nt-pfx, 4) * 1ch); }
+.nt .nt-ck .woocommerce-invalid input.input-text { border-color: var(--nt-tomato); }
+.nt-ck .checkout-inline-error-message { margin: 6px 0 0; color: #B3361C; font-size: 13.5px; font-weight: 700; }
+.nt-ck .nt-ck__hidden { display: none; }
+/* Câmpul-capcană anti-bot (inc/checkout-guard.php): în afara ecranului, nu „display:none”, ca roboții să-l completeze. */
+.nt-ck .nt-hp { position: absolute !important; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+
+/* „Unde livrăm?” */
+.nt-zone__opts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.nt form.nt-ck label.nt-zone__opt { display: flex; align-items: center; gap: 12px; margin: 0; padding: 14px 16px; line-height: 1.3; border-radius: 16px; background: #fff; box-shadow: inset 0 0 0 1.5px var(--nt-line-2); cursor: pointer; transition: background .2s, box-shadow .2s; }
+.nt form.nt-ck label.nt-zone__opt:hover { box-shadow: inset 0 0 0 1.5px var(--nt-ink-3); }
+.nt form.nt-ck label.nt-zone__opt:has(input:checked) { background: #F2F8EA; box-shadow: inset 0 0 0 2px var(--nt-moss); }
+.nt form.nt-ck label.nt-zone__opt:has(input:focus-visible) { outline: 3px solid rgba(141, 198, 63, .5); outline-offset: 2px; }
+.nt form.nt-ck label.nt-zone__opt input { flex: none; margin: 0; }
+.nt-zone__txt strong { display: block; font-size: 15.5px; font-weight: 800; color: var(--nt-ink); }
+.nt-zone__txt small { display: block; margin-top: 2px; color: var(--nt-ink-3); font-size: 13px; font-weight: 600; }
+
+/* „Adaugă un comentariu sau e-mail” */
+.nt-ck__more { margin: 2px 0 0; }
+.nt-ck__more summary { display: inline-flex; align-items: center; gap: 8px; padding: 6px 0; list-style: none; color: var(--nt-moss); font-size: 15px; font-weight: 800; cursor: pointer; }
+.nt-ck__more summary::-webkit-details-marker { display: none; }
+.nt-ck__more summary .nt-i { transition: transform .25s var(--nt-ease); }
+.nt-ck__more[open] summary .nt-i { transform: rotate(45deg); }
+.nt-ck__more-in { padding-top: 12px; }
+.nt-ck__more-in .form-row:last-child { margin-bottom: 0; }
+
+/* Comanda ta: produse, livrare, total */
+.nt.page .entry-content .nt-ck-sum__items { margin: 0; padding: 0; list-style: none; }
+.nt.page .entry-content .nt-ck-item { position: relative; display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 14px; margin: 0; padding: 14px 36px 14px 0; border-bottom: 1px dashed var(--nt-line); transition: opacity .2s; }
+.nt.page .entry-content .nt-ck-item:first-child { padding-top: 0; }
+.nt-ck-item.is-busy { opacity: .45; pointer-events: none; }
+.nt-ck-item__img img { display: block; width: 64px; height: 64px; border-radius: 16px; object-fit: cover; background: var(--nt-bg-2); }
+.nt-ck-item__name { display: block; color: var(--nt-ink); font-size: 15px; font-weight: 700; line-height: 1.3; }
+.nt-ck-item__meta { display: block; margin-top: 2px; color: var(--nt-ink-3); font-size: 13px; font-weight: 600; }
+.nt-ck-item__meta del { margin-right: 3px; color: var(--nt-ink-3); font-weight: 500; }
+.nt-ck-item .variation { margin: 4px 0 0; font-size: 13px; }
+.nt-ck-item__row { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 8px; }
+.nt-ck-item__qty { font-weight: 800; color: var(--nt-ink-2); }
+.nt-ck-item__sum { color: var(--nt-ink); font-family: var(--nt-serif); font-size: 17px; font-weight: 600; white-space: nowrap; }
+.nt.page .entry-content a.nt-ck-item__remove { position: absolute; top: 8px; right: 0; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; color: var(--nt-ink-3) !important; text-decoration: none !important; transition: background .2s, color .2s; }
+.nt.page .entry-content .nt-ck-item:first-child a.nt-ck-item__remove { top: -6px; }
+.nt.page .entry-content a.nt-ck-item__remove:hover { background: #FCE1E3; color: #8C2E3B !important; }
+.nt-ck-sum__totals { margin: 12px 0 0; }
+.nt-ck-sum__totals > div { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 5px 0; }
+.nt-ck-sum__totals dt { margin: 0; color: var(--nt-ink-2); font-size: 15px; font-weight: 600; }
+.nt-ck-sum__totals dt small { display: block; color: var(--nt-ink-3); font-size: 12.5px; font-weight: 600; }
+.nt-ck-sum__totals dd { margin: 0; color: var(--nt-ink); font-size: 15px; font-weight: 800; text-align: right; white-space: nowrap; }
+.nt-ck-sum__totals > .nt-ck-sum__total { margin-top: 8px; padding-top: 14px; border-top: 1px solid var(--nt-line); }
+.nt-ck-sum__total dt, .nt-ck-sum__total dd { color: var(--nt-ink); font-family: var(--nt-serif); font-size: 24px; font-weight: 600; }
+.nt-ck-sum__total dd strong { font-weight: 600; }
+.nt-ck-ship__list { margin: 0; padding: 0; list-style: none; text-align: left; }
+.nt-ck-ship__list label { display: flex; gap: 8px; font-size: 14px; }
+
+/* Plata și trimiterea */
+.nt .nt-ck__pay #payment { padding: 0; border-radius: 0; background: none; }
+.nt .nt-ck__pay ul.wc_payment_methods { margin: 0 0 14px; padding: 0; border: 0; list-style: none; }
+.nt .nt-ck__pay li.wc_payment_method { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 10px; margin: 0; padding: 16px 20px; border-radius: 20px; background: #F2F8EA; box-shadow: inset 0 0 0 1px #DDEBCB; }
+.nt .nt-ck__pay #payment li.wc_payment_method::before, .nt .nt-ck__pay #payment li.wc_payment_method::after { display: none !important; } /* clearfix Astra = element flex în plus */
+.nt .nt-ck__pay #payment li.wc_payment_method > label { margin: 0; padding: 0; line-height: 1.3; font-size: 15.5px; font-weight: 800; }
+.nt .nt-ck__pay #payment div.payment_box { width: 100%; margin: 0; padding: 0; border-radius: 0; background: none; color: var(--nt-ink-2); font-size: 14px; }
+.nt .nt-ck__pay #payment div.payment_box::before { display: none; }
+.nt .nt-ck__pay #payment div.payment_box p { margin: 0; }
+.nt .nt-ck__pay .form-row.place-order { margin: 0; padding: 0; }
+.nt .nt-ck__pay .nt-ck__submit { height: 64px; font-size: 17.5px; white-space: normal; text-align: center; line-height: 1.2; }
+.nt .nt-ck__pay #payment .woocommerce-privacy-policy-text p { margin: 14px 0 0; color: var(--nt-ink-3); font-size: 13px; line-height: 1.5; text-align: center; }
+.nt .nt-ck__pay #payment .woocommerce-privacy-policy-text a { color: var(--nt-ink-2); }
+.nt .nt-ck.processing .nt-ck__submit { opacity: .7; }
+
+/* Comanda primită */
+.nt .nt-ty { max-width: 760px; }
+.nt-ty__card { margin: 0 0 28px; padding: clamp(28px, 4vw, 44px); border-radius: 32px; background: #fff; box-shadow: inset 0 0 0 1px var(--nt-line); text-align: center; }
+.nt-ty__check { display: inline-grid; place-items: center; width: 76px; height: 76px; border-radius: 50%; background: var(--nt-leaf); color: var(--nt-ink); animation: nt-pop .5s var(--nt-spring) both; }
+.nt.page .entry-content .nt-ty__title { margin: 16px 0 8px; font-size: clamp(30px, 4vw, 40px); }
+.nt .nt-ty .woocommerce-thankyou-order-received { max-width: 46ch; margin: 0 auto; padding: 0; border-radius: 0; background: none; color: var(--nt-ink-2); font-family: var(--nt-font); font-size: 18px; font-weight: 500; line-height: 1.55; }
+.nt .nt-ty__card .nt-btn { margin-top: 24px; }
+
+/* Pagina produsului: „Comandă acum” pe rândul de sub „Adaugă în coș” */
+.nt.single-product form.cart .nt-buynow { flex: 1 1 100%; height: 56px; font-size: 16.5px; }
 
 /* Contul meu */
 .nt.woocommerce-account .woocommerce { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 28px; align-items: start; }
@@ -2243,6 +2343,18 @@ body.nt ul.products li.product.nt-card .price ins, body.nt .nt-card .price ins {
 	.nt-ahero__copy { position: relative; z-index: 1; }
 	.nt-ahero__title { padding-right: 120px; }
 	.nt.woocommerce-account .u-columns.col2-set { grid-template-columns: 1fr; }
+	/* Telefon: datele, apoi produsele cu totalul, apoi butonul */
+	.nt form.nt-ck { grid-template-columns: minmax(0, 1fr); gap: 16px; max-width: 620px; }
+	.nt-ck > .nt-ck__main { display: contents; }
+	.nt-ck .nt-ck__fields { order: 1; }
+	.nt-ck > .nt-ck__sum { grid-column: 1; order: 2; position: static; }
+	.nt-ck .nt-ck__pay { order: 3; }
+}
+@media (max-width: 420px) {
+	.nt-zone__opts { gap: 8px; }
+	.nt form.nt-ck label.nt-zone__opt { padding: 12px 10px; gap: 8px; }
+	.nt-zone__txt small { font-size: 12.5px; }
+	.nt-zone__txt strong { font-size: 15px; }
 }
 
 @media (max-width: 767px) {
@@ -2375,6 +2487,8 @@ body.nt ul.products li.product.nt-card .price ins, body.nt .nt-card .price ins {
 	.nt-footer.no-help .nt-footer__body { padding-top: 48px; }
 	.nt-footer__grid { grid-template-columns: 1fr; gap: 32px; }
 	.nt-footer__bottom-in { flex-wrap: wrap; justify-content: center; text-align: center; }
+	.nt-footer__meta { flex-basis: 100%; flex-direction: column; gap: 10px; }
+	.nt-footer__legal ul { justify-content: center; }
 	.nt-totop { display: none !important; }
 
 	.nt-toolbar { flex-wrap: wrap; }
@@ -2396,6 +2510,7 @@ body.nt ul.products li.product.nt-card .price ins, body.nt .nt-card .price ins {
 	.nt.single-product .woocommerce-product-gallery .flex-control-thumbs li img { border-radius: 14px; }
 	.nt.single-product .summary p.price { font-size: 30px; }
 	.nt.single-product form.cart { flex-wrap: nowrap; }
+	.nt.single-product form.cart:has(.nt-buynow) { flex-wrap: wrap; }
 	.nt.single-product .single_add_to_cart_button { min-width: 0; padding: 0 18px !important; font-size: 16px !important; }
 	.nt.single-product .woocommerce-tabs ul.tabs { display: flex; flex-wrap: nowrap; overflow-x: auto; width: 100%; scrollbar-width: none; }
 	.nt.single-product .woocommerce-tabs ul.tabs li a { white-space: nowrap; padding: 10px 14px !important; font-size: 14px; }
@@ -2406,9 +2521,6 @@ body.nt ul.products li.product.nt-card .price ins, body.nt .nt-card .price ins {
 	.nt.page:not(.home) .ast-article-single .entry-header::after { width: 56px; height: 56px; right: 4%; top: 12%; }
 	.nt.page:not(.home) .entry-content { font-size: 17px; }
 	.nt.page .entry-content .wp-block-quote { padding: 70px 24px 24px; }
-	.nt-progress li { font-size: 0; gap: 0; }
-	.nt-progress li.is-current { font-size: 13px; gap: 8px; }
-	.nt-progress li + li::before { width: 18px; }
 }
 
 @media (max-width: 380px) {

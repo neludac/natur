@@ -11,11 +11,12 @@ require_once ABSPATH . 'wp-admin/includes/file.php';
 require_once ABSPATH . 'wp-admin/includes/media.php';
 
 $data_dir = __DIR__ . '/data';
-$phone    = '060 89 30 00';
-$phone_l  = '+37360893000';
-$email    = 'contact@natur.md';
-$fb       = 'https://www.facebook.com/natur.md';
-$ig       = 'https://www.instagram.com/natur.md/';
+// Datele de contact de pornire; după instalare se schimbă în Aspect → Personalizare → Natur.MD → Date de contact.
+$phone     = '060 89 30 00';
+$email     = 'contact@natur.md';
+$fb        = 'https://www.facebook.com/natur.md';
+$ig        = 'https://www.instagram.com/natur.md/';
+$messenger = 'https://m.me/natur.md';
 
 /* ================================================================ Helpers */
 
@@ -157,17 +158,20 @@ foreach ( get_posts( array( 'post_type' => 'page', 'title' => 'Pagină exemplu',
 	wp_delete_post( $sample_id, true );
 }
 
-// Datele de contact folosite de temă (antet, subsol, pagina produsului)
+// Datele de contact folosite de temă (antet, subsol, pagina produsului, Contact, shortcode-urile [natur_telefon] / [natur_email]).
+// Se păstrează ce s-a schimbat deja din Personalizare; se completează doar câmpurile lipsă.
 update_option(
 	'natur_contact',
-	array(
-		'phone'     => $phone,
-		'phone_raw' => $phone_l,
-		'email'     => $email,
-		'facebook'  => $fb,
-		'messenger' => 'https://m.me/natur.md',
-		'instagram' => $ig,
-		'area'      => 'mun. Chișinău, Republica Moldova',
+	array_merge(
+		array(
+			'phone'     => $phone,
+			'email'     => $email,
+			'facebook'  => $fb,
+			'messenger' => $messenger,
+			'instagram' => $ig,
+			'area'      => 'mun. Chișinău, Republica Moldova',
+		),
+		array_filter( array_diff_key( (array) get_option( 'natur_contact', array() ), array( 'phone_raw' => 1 ) ) )
 	)
 );
 
@@ -181,6 +185,10 @@ $logo_id = natur_upload_once( "$data_dir/logo.png", 'Natur.MD logo' );
 $icon_id = natur_upload_once( "$data_dir/site-icon.png", 'Natur.MD iconiță' );
 set_theme_mod( 'custom_logo', $logo_id );
 update_option( 'site_icon', $icon_id );
+// Logo pentru fundal închis (subsol): Personalizare → Identitatea site-ului → „Logo pentru fundal închis”.
+if ( ! get_theme_mod( 'nt_logo_light' ) ) {
+	set_theme_mod( 'nt_logo_light', natur_upload_once( WP_CONTENT_DIR . '/themes/natur/assets/img/logo-light.png', 'Natur.MD logo (fundal închis)' ) );
+}
 
 /* ============================================================ WooCommerce */
 
@@ -210,14 +218,15 @@ $wc = array(
 	'woocommerce_manage_stock'            => 'no',
 	'woocommerce_hide_out_of_stock_items' => 'no',
 	'woocommerce_enable_guest_checkout'   => 'yes',
-	'woocommerce_enable_checkout_login_reminder' => 'yes',
-	'woocommerce_enable_signup_and_login_from_checkout' => 'yes',
+	// Comanda într-un singur pas (tema: inc/checkout.php): fără autentificare sau cont la comandă.
+	'woocommerce_enable_checkout_login_reminder' => 'no',
+	'woocommerce_enable_signup_and_login_from_checkout' => 'no',
 	'woocommerce_enable_myaccount_registration' => 'yes',
 	'woocommerce_registration_generate_password' => 'yes',
 	'woocommerce_checkout_phone_field'    => 'required',
 	'woocommerce_checkout_company_field'  => 'hidden',
 	'woocommerce_checkout_address_2_field' => 'optional',
-	'woocommerce_ship_to_destination'     => 'billing',
+	'woocommerce_ship_to_destination'     => 'billing_only', // livrare la adresa din formular, fără „altă adresă de livrare”
 	'woocommerce_cart_redirect_after_add' => 'no',
 	'woocommerce_enable_ajax_add_to_cart' => 'yes',
 	'woocommerce_email_from_name'         => 'Natur.MD',
@@ -268,6 +277,14 @@ wp_update_post(
 	)
 );
 
+// Pagina de comandă: formularul simplu al temei (șablonul clasic WooCommerce, nu blocul „Finalizare comandă”).
+wp_update_post(
+	array(
+		'ID'           => wc_get_page_id( 'checkout' ),
+		'post_content' => '<!-- wp:shortcode -->[woocommerce_checkout]<!-- /wp:shortcode -->',
+	)
+);
+
 // URL-uri în română: /produs/…, /categorie/…
 update_option( 'woocommerce_permalinks', array( 'product_base' => '/produs', 'category_base' => 'categorie', 'tag_base' => 'eticheta', 'attribute_base' => '', 'use_verbose_page_rules' => false ) );
 
@@ -280,8 +297,8 @@ update_option(
 		array(
 			'enabled'            => 'yes',
 			'title'              => 'Plata la livrare',
-			'description'        => 'Achitați comanda în numerar la primirea coletului de la curier sau producător.',
-			'instructions'       => 'Veți achita comanda la livrare. Vă vom suna pentru confirmarea comenzii.',
+			'description'        => 'Plătești în numerar, când primești comanda de la curier sau producător.',
+			'instructions'       => '', // pagina „Comandă primită” spune deja suma și că plata e la primire
 			'enable_for_methods' => array(),
 			'enable_for_virtual' => 'yes',
 		)
@@ -369,8 +386,8 @@ $delivery = $p( 'Natur.MD este o prezentare de produse NATURALE, selectate de la
 	. $h( 'Costul livrării' )
 	. $ul(
 		array(
-			'<strong>Gratuit</strong> pentru comenzile de la 500 lei.',
-			'<strong>50 lei</strong> pentru comenzile sub 500 lei.',
+			'<strong>Gratuit</strong> pentru comenzile de la [natur_livrare_gratuita].',
+			'<strong>[natur_cost_livrare]</strong> pentru comenzile sub [natur_livrare_gratuita].',
 		)
 	)
 	. $h( 'Plata' )
@@ -385,11 +402,11 @@ $delivery = $p( 'Natur.MD este o prezentare de produse NATURALE, selectate de la
 	. $ul(
 		array(
 			'Online, pe site — adăugați produsele în coș și finalizați comanda (nu este obligatoriu să vă creați cont).',
-			"La telefon: <a href=\"tel:$phone_l\">$phone</a>.",
-			"Pe <a href=\"https://m.me/natur.md\">Facebook Messenger</a>.",
+			"La telefon: [natur_telefon].",
+			"Pe <a href=\"$messenger\">Facebook Messenger</a>.",
 		)
 	)
-	. $p( "Pentru întrebări ne puteți scrie la <a href=\"mailto:$email\">$email</a> sau suna la <a href=\"tel:$phone_l\">$phone</a>." );
+	. $p( "Pentru întrebări ne puteți scrie la [natur_email] sau suna la [natur_telefon]." );
 
 // Pagina Contact fără formular: formularul Contact Form 7 creat anterior se șterge, iar modulul se dezactivează.
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
@@ -402,25 +419,22 @@ if ( is_plugin_active( 'contact-form-7/wp-contact-form-7.php' ) ) {
 	deactivate_plugins( 'contact-form-7/wp-contact-form-7.php' );
 }
 
-// Contact: cardurile temei ([natur_contact]) + întrebări frecvente (blocuri „Detalii”, editabile din pagină).
-$faq = static fn( $q, $a ) => "<!-- wp:details -->\n<details class=\"wp-block-details\"><summary>$q</summary>" . trim( $p( $a ) ) . "</details>\n<!-- /wp:details -->\n\n";
-
-$contact = "<!-- wp:shortcode -->\n[natur_contact]\n<!-- /wp:shortcode -->\n\n"
-	. "<!-- wp:group {\"className\":\"nt-faq\"} -->\n<div class=\"wp-block-group nt-faq\">"
-	. "<!-- wp:group {\"className\":\"nt-faq__intro\"} -->\n<div class=\"wp-block-group nt-faq__intro\">"
-	. "<!-- wp:paragraph {\"className\":\"nt-eyebrow\"} -->\n<p class=\"nt-eyebrow\">Răspunsuri rapide</p>\n<!-- /wp:paragraph -->\n\n"
-	. $h( 'Întrebări pe care le auzim des' )
-	. trim( $p( 'Poate răspunsul e deja aici. Dacă nu — sună-ne sau scrie-ne, ne bucurăm de fiecare întrebare.' ) )
-	. "</div>\n<!-- /wp:group -->\n\n"
-	. "<!-- wp:group {\"className\":\"nt-faq__list\"} -->\n<div class=\"wp-block-group nt-faq__list\">"
-	. $faq( 'Cât costă livrarea?', '<strong>Gratuit</strong> pentru comenzile de la 500 lei și <strong>50 lei</strong> pentru cele sub 500 lei — atât în Chișinău, cât și prin Poșta Moldovei.' )
-	. $faq( 'În cât timp ajunge comanda?', 'În 1–48 de ore, în funcție de produs, din momentul în care confirmăm comanda la telefon.' )
-	. $faq( 'Livrați și în afara Chișinăului?', 'Da, prin Poșta Moldovei, pentru produsele neperisabile. Produsele perisabile — carne, lactate, ouă — le livrăm doar în Chișinău.' )
-	. $faq( 'Cum plătesc?', 'La primirea coletului, în numerar. Nu plătești nimic în avans.' )
-	. $faq( 'Trebuie să-mi fac cont ca să comand?', 'Nu. Adaugi produsele în coș și finalizezi comanda. Contul e opțional — îți păstrează istoricul comenzilor și adresele.' )
-	. $faq( 'Pot comanda la telefon sau pe Messenger?', "Da. Sună la <a href=\"tel:$phone_l\">$phone</a> sau scrie-ne pe <a href=\"https://m.me/natur.md\">Messenger</a> — notăm comanda și stabilim împreună ora livrării." )
-	. $faq( 'Ce fac dacă un produs nu e în regulă?', 'Verifică coletul în prezența curierului: dacă produsele nu corespund comenzii, le poți refuza pe loc, fără costuri. O problemă de calitate descoperită mai târziu ne-o semnalezi în cel mult 24 de ore, cu o fotografie. Detalii în <a href="/politica-de-retur/">Politica de retur</a>.' )
-	. "</div>\n<!-- /wp:group --></div>\n<!-- /wp:group -->\n";
+// Contact: widgeturile Elementor „Natur: Carduri de contact” și „Natur: Întrebări frecvente” (textele se editează în Elementor).
+$faq_items = array();
+foreach (
+	array(
+		array( 'Cât costă livrarea?', '<strong>Gratuit</strong> pentru comenzile de la [natur_livrare_gratuita] și <strong>[natur_cost_livrare]</strong> pentru cele mai mici — atât în Chișinău, cât și prin Poșta Moldovei.' ),
+		array( 'În cât timp ajunge comanda?', 'În 1–48 de ore, în funcție de produs, din momentul în care confirmăm comanda la telefon.' ),
+		array( 'Livrați și în afara Chișinăului?', 'Da, prin Poșta Moldovei, pentru produsele neperisabile. Produsele perisabile — carne, lactate, ouă — le livrăm doar în Chișinău.' ),
+		array( 'Cum plătesc?', 'La primirea coletului, în numerar. Nu plătești nimic în avans.' ),
+		array( 'Trebuie să-mi fac cont ca să comand?', 'Nu. Adaugi produsele în coș și finalizezi comanda. Contul e opțional — îți păstrează istoricul comenzilor și adresele.' ),
+		array( 'Pot comanda la telefon sau pe Messenger?', "Da. Sună la [natur_telefon] sau scrie-ne pe <a href=\"$messenger\">Messenger</a> — notăm comanda și stabilim împreună ora livrării." ),
+		array( 'Ce fac dacă un produs nu e în regulă?', 'Verifică coletul în prezența curierului: dacă produsele nu corespund comenzii, le poți refuza pe loc, fără costuri. O problemă de calitate descoperită mai târziu ne-o semnalezi în cel mult 24 de ore, cu o fotografie. Detalii în <a href="/politica-de-retur/">Politica de retur</a>.' ),
+	) as [ $q, $a ]
+) {
+	$faq_items[] = array( '_id' => natur_eid(), 'question' => $q, 'answer' => "<p>$a</p>" );
+}
+$contact = '';
 
 $terms = $p( 'Prezentele condiții reglementează utilizarea site-ului natur.md și plasarea comenzilor prin intermediul acestuia. Prin plasarea unei comenzi confirmați că ați citit și acceptați aceste condiții.' )
 	. $h( '1. Comenzi' )
@@ -434,7 +448,7 @@ $terms = $p( 'Prezentele condiții reglementează utilizarea site-ului natur.md 
 	. $h( '5. Date personale' )
 	. $p( 'Datele personale sunt prelucrate conform <a href="/politica-de-confidentialitate/">Politicii de confidențialitate</a>.' )
 	. $h( '6. Contact' )
-	. $p( "Pentru orice întrebare: <a href=\"tel:$phone_l\">$phone</a>, <a href=\"mailto:$email\">$email</a>." );
+	. $p( "Pentru orice întrebare: [natur_telefon], [natur_email]." );
 
 $returns = $p( 'Ne dorim ca fiecare comandă să vă aducă bucurie. Dacă ceva nu este în regulă, suntem aici să rezolvăm.' )
 	. $h( 'La recepție' )
@@ -448,7 +462,7 @@ $returns = $p( 'Ne dorim ca fiecare comandă să vă aducă bucurie. Dacă ceva 
 	)
 	. $h( 'Rambursarea' )
 	. $p( 'Rambursăm contravaloarea produselor returnate în cel mult 14 zile de la acceptarea returului, în numerar sau prin transfer bancar.' )
-	. $p( "Pentru un retur, sunați la <a href=\"tel:$phone_l\">$phone</a> sau scrieți la <a href=\"mailto:$email\">$email</a>." );
+	. $p( "Pentru un retur, sunați la [natur_telefon] sau scrieți la [natur_email]." );
 
 $privacy = $p( 'Natur.MD respectă confidențialitatea datelor dumneavoastră și le prelucrează în conformitate cu Legea nr. 133/2011 privind protecția datelor cu caracter personal.' )
 	. $h( 'Ce date colectăm' )
@@ -457,7 +471,7 @@ $privacy = $p( 'Natur.MD respectă confidențialitatea datelor dumneavoastră ș
 			'Datele din comandă: nume, telefon, e-mail, adresa de livrare.',
 			'Datele contului (dacă vă creați cont): istoricul comenzilor și adresele salvate.',
 			'Mesajele pe care ni le trimiteți prin e-mail sau Messenger.',
-			'Date tehnice: cookie-uri necesare funcționării coșului și sesiunii.',
+			'Date tehnice: cookie-uri necesare funcționării coșului și a contului, precum și sursa vizitei (de exemplu, o căutare Google sau Facebook), salvată împreună cu comanda. Detalii în <a href="/politica-de-cookies/">Politica de cookies</a>.',
 		)
 	)
 	. $h( 'De ce le folosim' )
@@ -465,12 +479,47 @@ $privacy = $p( 'Natur.MD respectă confidențialitatea datelor dumneavoastră ș
 	. $h( 'Cât timp le păstrăm' )
 	. $p( 'Datele comenzilor se păstrează pe durata impusă de legislația contabilă; datele contului — până la ștergerea acestuia.' )
 	. $h( 'Drepturile dumneavoastră' )
-	. $p( "Aveți dreptul de acces, rectificare, ștergere și opoziție. Scrieți-ne la <a href=\"mailto:$email\">$email</a> și vom răspunde în cel mult 15 zile." );
+	. $p( "Aveți dreptul de acces, rectificare, ștergere și opoziție. Scrieți-ne la [natur_email] și vom răspunde în cel mult 15 zile." );
+
+// Cookie-urile listate sunt cele setate efectiv de site (WordPress, WooCommerce cu „Order attribution”); actualizați lista la orice serviciu nou.
+$cookies = $p( 'Cookie-urile sunt fișiere mici pe care site-ul le salvează în browserul dumneavoastră, ca să țină minte, de exemplu, ce ați pus în coș. Natur.MD folosește doar cookie-uri proprii, strict pentru funcționarea magazinului.' )
+	. $h( 'Cookie-uri necesare' )
+	. $p( 'Fără ele, coșul și contul nu pot funcționa.' )
+	. $ul(
+		array(
+			'<strong>wp_woocommerce_session_…</strong> — păstrează coșul de cumpărături de la o pagină la alta. Durată: 2 zile.',
+			'<strong>woocommerce_cart_hash</strong>, <strong>woocommerce_items_in_cart</strong> — arată site-ului când s-a schimbat conținutul coșului. Durată: până la închiderea browserului.',
+			'<strong>wordpress_logged_in_…</strong>, <strong>wordpress_sec_…</strong> — vă țin autentificat în „Contul meu”. Durată: până la închiderea browserului sau 14 zile, dacă bifați „Ține-mă minte”.',
+			'<strong>wordpress_test_cookie</strong> — verifică, la autentificare, dacă browserul acceptă cookie-uri. Durată: până la închiderea browserului.',
+		)
+	)
+	. $h( 'Sursa comenzilor' )
+	. $ul(
+		array(
+			'<strong>sbjs_…</strong> (sbjs_first, sbjs_current, sbjs_session și altele) — notează de unde ați ajuns pe site (o căutare Google, Facebook, un link direct) și tipul dispozitivului, ca să știm ce canal ne-a adus o comandă. Informația se salvează doar împreună cu comanda, pe site-ul nostru, și nu este transmisă altor companii. Durată: sbjs_session — 30 de minute, celelalte — până la închiderea browserului.',
+		)
+	)
+	. $h( 'Recenzii' )
+	. $ul(
+		array(
+			'<strong>comment_author_…</strong>, <strong>comment_author_email_…</strong> — doar dacă lăsați o recenzie și alegeți să vă salvăm numele și e-mailul pentru data viitoare. Durată: aproximativ 1 an.',
+		)
+	)
+	. $h( 'Memoria browserului' )
+	. $p( 'Pe lângă cookie-uri, site-ul păstrează în memoria browserului (localStorage și sessionStorage) o copie a coșului mic din antet (<strong>wc_cart_hash_…</strong>, <strong>wc_fragments_…</strong>), ca să se afișeze rapid pe fiecare pagină.' )
+	. $h( 'Ce nu folosim' )
+	. $p( 'Nu folosim cookie-uri de publicitate și nici instrumente de analiză ale altor companii (de exemplu, Google Analytics sau Facebook Pixel).' )
+	. $h( 'Conținut de pe alte site-uri' )
+	. $p( 'Videoclipurile cu rețete se încarcă de pe Instagram sau YouTube doar după ce apăsați pe ele. Din acel moment, platforma respectivă poate folosi propriile cookie-uri, conform politicii ei; YouTube se încarcă în modul cu confidențialitate sporită (youtube-nocookie.com). Butoanele Facebook, Instagram și Messenger sunt simple linkuri și nu încarcă nimic până nu le accesați.' )
+	. $h( 'Cum controlați cookie-urile' )
+	. $p( 'Puteți vedea, bloca sau șterge cookie-urile din setările browserului, de regulă în secțiunea „Confidențialitate” sau „Securitate”. Dacă blocați cookie-urile necesare, coșul și autentificarea în cont nu vor funcționa.' )
+	. $h( 'Mai multe informații' )
+	. $p( 'Cum prelucrăm datele personale citiți în <a href="/politica-de-confidentialitate/">Politica de confidențialitate</a>. Pentru întrebări: [natur_telefon], [natur_email].' );
 
 $pages = array();
 $pages['home']     = natur_page( 'acasa', 'Acasă', '' );
 $pages['about']    = natur_page( 'despre-noi', 'Despre noi', $about, array( 'post_excerpt' => 'Cum a început Natur.MD și de ce alegem doar mâncare adevărată' ) );
-$pages['delivery'] = natur_page( 'livrare-si-plata', 'Livrare și plată', $delivery, array( 'post_excerpt' => 'Livrare în 1–48 de ore, gratuită de la 500 lei. Plătești la primire.' ) );
+$pages['delivery'] = natur_page( 'livrare-si-plata', 'Livrare și plată', $delivery, array( 'post_excerpt' => 'Livrare în 1–48 de ore, gratuită de la [natur_livrare_gratuita]. Plătești la primire.' ) );
 $pages['contact']  = natur_page( 'contact', 'Contact', $contact, array( 'post_excerpt' => 'Sună-ne sau scrie-ne — îți răspundem cu drag, ca unui prieten' ) );
 $pages['terms']    = natur_page( 'termeni-si-conditii', 'Termeni și condiții', $terms );
 
@@ -480,10 +529,12 @@ $pages['returns'] = natur_page( 'politica-de-retur', 'Politica de retur', $retur
 $privacy_id = (int) get_option( 'wp_page_for_privacy_policy' );
 $pages['privacy'] = natur_page( 'politica-de-confidentialitate', 'Politica de confidențialitate', $privacy, $privacy_id ? array( 'ID' => $privacy_id ) : array() );
 update_option( 'wp_page_for_privacy_policy', $pages['privacy'] );
+$pages['cookies'] = natur_page( 'politica-de-cookies', 'Politica de cookies', $cookies );
 update_option( 'woocommerce_terms_page_id', $pages['terms'] );
-update_option( 'woocommerce_checkout_terms_and_conditions_checkbox_text', 'Am citit și sunt de acord cu [terms]' );
+// Fără bifă de termeni la comandă: acordul e în textul de sub buton (Personalizare → WooCommerce → Finalizare comandă).
+update_option( 'woocommerce_checkout_terms_and_conditions_checkbox_text', '' );
 update_option( 'woocommerce_registration_privacy_policy_text', 'Datele tale personale sunt folosite pentru a-ți gestiona contul și comenzile, conform [privacy_policy].' );
-update_option( 'woocommerce_checkout_privacy_policy_text', 'Datele tale personale sunt folosite doar pentru procesarea și livrarea comenzii, conform [privacy_policy].' );
+update_option( 'woocommerce_checkout_privacy_policy_text', 'Trimițând comanda, ești de acord cu [terms] și cu [privacy_policy].' );
 
 update_option( 'show_on_front', 'page' );
 update_option( 'page_on_front', $pages['home'] );
@@ -494,15 +545,21 @@ $link = static fn( $sku ) => get_permalink( wc_get_product_id_by_sku( $sku ) );
 $shop = wc_get_page_permalink( 'shop' );
 
 /*
- * Secțiunile au clase CSS (nt-*) stilizate de tema „natur”; textele, titlurile și butoanele se editează în Elementor,
- * iar blocurile dinamice (colaj, categorii, produse, recenzii, cifre) vin din shortcode-urile temei (inc/shortcodes.php).
+ * Secțiunile au clase CSS (nt-*) stilizate de tema „natur”. Totul se editează în Elementor: titlurile, textele și butoanele
+ * în widgeturile standard, iar colajele, categoriile, pașii, produsele, cifrele și recenziile în widgeturile temei
+ * (categoria „Natur.MD”, inc/elementor-widgets.php). Mai jos se dau doar valorile care diferă de cele implicite ale widgetului.
  */
+$media = static function ( $sku ) {
+	$id = (int) get_post_thumbnail_id( wc_get_product_id_by_sku( $sku ) );
+	return array( 'id' => $id, 'url' => (string) wp_get_attachment_url( $id ) );
+};
+$cat_ids = static fn( array $slugs ) => array_values( array_filter( array_map( static fn( $slug ) => (string) ( get_term_by( 'slug', $slug, 'product_cat' )->term_id ?? '' ), $slugs ) ) );
+$rows    = static fn( array $items ) => array_map( static fn( $item ) => array( '_id' => natur_eid() ) + $item, $items );
 $el_x = static function ( $classes, array $elements, $inner = true, array $extra = array() ) {
 	return el_c( array_merge( array( 'content_width' => 'full', 'css_classes' => trim( 'nt-x ' . $classes ) ), $extra ), $elements, $inner );
 };
 $el_h = static fn( $text, $tag, $class ) => el_w( 'heading', array( 'title' => $text, 'header_size' => $tag, '_css_classes' => $class ) );
 $el_t = static fn( $html, $class = 'nt-lead' ) => el_w( 'text-editor', array( 'editor' => $html, '_css_classes' => $class ) );
-$el_sc = static fn( $code, $class = '' ) => el_w( 'shortcode', array( 'shortcode' => $code, '_css_classes' => $class ) );
 $el_btn = static fn( $text, $url, $style ) => el_w( 'button', array( 'text' => $text, 'link' => array( 'url' => $url, 'is_external' => '', 'nofollow' => '' ), '_css_classes' => 'nt-ebtn ' . $style ) );
 $el_head = static function ( $eyebrow, $title, $link = null, $center = false ) use ( $el_x, $el_h, $el_btn ) {
 	$els = array( $el_x( 'nt-sec__titles', array( $el_h( $eyebrow, 'p', 'nt-eyebrow' ), $el_h( $title, 'h2', 'nt-h2' ) ) ) );
@@ -525,10 +582,19 @@ $hero = $el_x(
 						$el_h( 'Mâncare adevărată, <em>direct de la țară</em>', 'h1', 'nt-hero__title' ),
 						$el_t( '<p>Ouă de casă, lactate de fermă, carne de pasăre crescută liber și conserve ca la bunica — fără aditivi, fără E-uri. Livrăm în Chișinău în 1–48 de ore, iar plata o faci la primire.</p>', 'nt-hero__lead' ),
 						$el_x( 'nt-hero__btns', array( $el_btn( 'Alege produsele', $shop, 'nt-ebtn--dark nt-ebtn--arrow' ), $el_btn( 'Cum funcționează', '#cum-functioneaza', 'nt-ebtn--ghost' ) ) ),
-						$el_sc( '[natur_hero_proof]' ),
+						el_w( 'natur_hero_proof', array() ),
 					)
 				),
-				$el_sc( '[natur_hero_art main="NM-57" second="NM-998" third="NM-58" pick="NM-58"]', 'nt-hero__art' ),
+				el_w(
+					'natur_hero_art',
+					array(
+						'main'         => $media( 'NM-57' ),
+						'second'       => $media( 'NM-998' ),
+						'third'        => $media( 'NM-58' ),
+						'pick'         => (string) wc_get_product_id_by_sku( 'NM-58' ),
+						'_css_classes' => 'nt-hero__art',
+					)
+				),
 			)
 		),
 	),
@@ -539,7 +605,7 @@ $sec_cats = $el_x(
 	'nt-sec',
 	array(
 		$el_head( 'Ce găsești la noi', 'Bunătăți din Moldova, <em>pe categorii</em>', array( 'Toate produsele', $shop ) ),
-		$el_sc( '[natur_categories number="8"]' ),
+		el_w( 'natur_categories', array( 'number' => 8 ) ),
 	),
 	false
 );
@@ -551,7 +617,7 @@ $sec_how = $el_x(
 			'nt-how',
 			array(
 				$el_head( 'Simplu, ca la piață', 'Cum comanzi <em>de la noi</em>', null, true ),
-				$el_sc( '[natur_steps]' ),
+				el_w( 'natur_steps', array() ),
 			)
 		),
 	),
@@ -563,7 +629,20 @@ $sec_products = $el_x(
 	'nt-sec',
 	array(
 		$el_head( 'Alese pentru tine', 'Proaspete <em>pe rafturile noastre</em>', array( 'Tot magazinul', $shop ) ),
-		$el_sc( '[natur_product_tabs limit="8"]' ),
+		el_w(
+			'natur_product_tabs',
+			array(
+				'limit' => 8,
+				'tabs'  => $rows(
+					array(
+						array( 'label' => 'Preferatele clienților', 'source' => 'featured', 'orderby' => 'rand' ),
+						array( 'label' => 'Proaspăt adăugate', 'source' => 'new', 'orderby' => 'date' ),
+						array( 'label' => 'Conserve și paste', 'source' => 'cats', 'cats' => $cat_ids( array( 'conserve', 'paste-fainoase' ) ), 'orderby' => 'rand' ),
+						array( 'label' => 'Pentru sănătate', 'source' => 'cats', 'cats' => $cat_ids( array( 'ayurvedice', 'suplimente-alimentare', 'adaosuri-biologic-active' ) ), 'orderby' => 'rand' ),
+					)
+				),
+			)
+		),
 	),
 	false
 );
@@ -633,14 +712,21 @@ $sec_recipes = $el_x(
 $sec_story = $el_x(
 	'nt-sec nt-story',
 	array(
-		$el_sc( '[natur_story_art main="NM-170" second="NM-98" third="NM-1004"]' ),
+		el_w(
+			'natur_story_art',
+			array(
+				'main'   => $media( 'NM-170' ),
+				'second' => $media( 'NM-98' ),
+				'third'  => $media( 'NM-1004' ),
+			)
+		),
 		$el_x(
 			'nt-story__copy',
 			array(
 				$el_h( 'Povestea noastră', 'p', 'nt-eyebrow' ),
 				$el_h( 'Am început cu grija <em>pentru propria familie</em>', 'h2', 'nt-h2' ),
 				$el_t( '<p>Când am aflat din ce se produc lactatele ieftine și carnea „frumoasă”, am hotărât: gata, doar mâncare adevărată. Așa s-a născut Natur.MD — produse de la gospodari și mici producători, pe care îi vizităm personal ca să vedem cu ochii noștri cum sunt crescute animalele și păsările.</p>' ),
-				$el_sc( '[natur_stats]' ),
+				el_w( 'natur_stats', array() ),
 				$el_btn( 'Citește povestea', get_permalink( $pages['about'] ), 'nt-ebtn--dark nt-ebtn--arrow' ),
 			)
 		),
@@ -652,7 +738,7 @@ $sec_reviews = $el_x(
 	'nt-sec',
 	array(
 		$el_head( 'Vorbesc clienții', 'Ce spun cei care <em>au gustat</em>' ),
-		$el_sc( '[natur_reviews number="10"]' ),
+		el_w( 'natur_reviews', array( 'number' => 10 ) ),
 	),
 	false
 );
@@ -670,6 +756,30 @@ update_post_meta( $pages['home'], 'ast-site-content-layout', 'full-width-contain
 update_post_meta( $pages['home'], 'site-content-style', 'unboxed' );
 update_post_meta( $pages['home'], 'site-sidebar-layout', 'no-sidebar' );
 
+// Pagina Contact (Elementor; titlul și subtitlul paginii rămân ale temei)
+$contact_data = array(
+	$el_x(
+		'nt-contact-page',
+		array(
+			el_w( 'natur_contact', array( 'zone_link' => array( 'url' => get_permalink( $pages['delivery'] ), 'is_external' => '', 'nofollow' => '' ) ) ),
+			el_w( 'natur_faq', array( 'items' => $faq_items ) ),
+		),
+		false,
+		array( 'flex_direction' => 'column' )
+	),
+);
+update_post_meta( $pages['contact'], '_elementor_edit_mode', 'builder' );
+update_post_meta( $pages['contact'], '_elementor_template_type', 'wp-page' );
+update_post_meta( $pages['contact'], '_elementor_version', ELEMENTOR_VERSION );
+update_post_meta( $pages['contact'], '_wp_page_template', 'default' );
+update_post_meta( $pages['contact'], '_elementor_data', wp_slash( wp_json_encode( $contact_data ) ) );
+
+// Setările temei legate de datele acestui magazin (Aspect → Personalizare → Natur.MD)
+set_theme_mod( 'mega_promo_page', $pages['delivery'] );
+set_theme_mod( 'cookie_page', $pages['cookies'] );
+set_theme_mod( 'card_pack_attr', 'pa_ambalare' );
+set_theme_mod( 'card_cat_skip', (int) ( get_term_by( 'slug', 'horeca', 'product_cat' )->term_id ?? 0 ) );
+
 // Elementor: culorile și fonturile vin din temă; setări globale ale kitului
 update_option( 'elementor_disable_color_schemes', 'yes' );
 update_option( 'elementor_disable_typography_schemes', 'yes' );
@@ -680,12 +790,26 @@ update_option( 'elementor_allow_tracking', 'no' );
 $kit_id = (int) get_option( 'elementor_active_kit' );
 if ( $kit_id ) {
 	$kit = (array) get_post_meta( $kit_id, '_elementor_page_settings', true );
-	$kit['system_colors'] = array(
-		array( '_id' => 'primary', 'title' => 'Pădure', 'color' => '#1F3D2B' ),
-		array( '_id' => 'secondary', 'title' => 'Frunză', 'color' => '#8DC63F' ),
-		array( '_id' => 'text', 'title' => 'Text', 'color' => '#4E5C52' ),
-		array( '_id' => 'accent', 'title' => 'Gălbenuș', 'color' => '#FFC94A' ),
-	);
+	// Culorile globale Elementor colorează și tema (inc/options.php → nt_palette_map()); se schimbă în Elementor → Setări site.
+	// Se scriu o singură dată, ca să nu se piardă culorile alese ulterior în Elementor.
+	if ( ! get_option( 'natur_kit_colors' ) ) {
+		update_option( 'natur_kit_colors', 1 );
+		$kit['system_colors'] = array(
+			array( '_id' => 'primary', 'title' => 'Pădure', 'color' => '#1F3D2B' ),
+			array( '_id' => 'secondary', 'title' => 'Frunză', 'color' => '#8DC63F' ),
+			array( '_id' => 'text', 'title' => 'Text', 'color' => '#4E5C52' ),
+			array( '_id' => 'accent', 'title' => 'Gălbenuș', 'color' => '#FFC94A' ),
+		);
+		$custom               = array_filter( (array) ( $kit['custom_colors'] ?? array() ), static fn( $c ) => ! in_array( $c['_id'] ?? '', array( 'ntbg', 'ntink', 'ntmoss' ), true ) );
+		$kit['custom_colors'] = array_merge(
+			array(
+				array( '_id' => 'ntbg', 'title' => 'Fundal', 'color' => '#FBF7EF' ),
+				array( '_id' => 'ntink', 'title' => 'Titluri', 'color' => '#1E2B22' ),
+				array( '_id' => 'ntmoss', 'title' => 'Linkuri', 'color' => '#3C6B27' ),
+			),
+			array_values( $custom )
+		);
+	}
 	$kit['container_width'] = array( 'unit' => 'px', 'size' => 1240 );
 	$kit['viewport_md']     = 768;
 	$kit['viewport_lg']     = 1025;
@@ -723,8 +847,9 @@ $add_page( $primary, $pages['about'] );
 $add_page( $primary, $pages['delivery'] );
 $add_page( $primary, $pages['contact'] );
 
+// Confidențialitatea și cookie-urile au rândul lor în bara de jos a subsolului, pe toate paginile.
 $footer_menu = $make_menu( 'Meniu subsol' );
-foreach ( array( $pages['delivery'], $pages['returns'], $pages['terms'], $pages['privacy'], wc_get_page_id( 'myaccount' ) ) as $pid ) {
+foreach ( array( $pages['about'], $pages['delivery'], $pages['returns'], $pages['terms'], $pages['contact'], wc_get_page_id( 'myaccount' ) ) as $pid ) {
 	$add_page( $footer_menu, $pid );
 }
 
@@ -771,7 +896,7 @@ $astra = array_merge(
 			'primary' => array( 'primary_left' => array( 'logo' ), 'primary_center' => array(), 'primary_right' => array( 'woo-cart', 'mobile-trigger' ) ),
 			'below'   => array( 'below_left' => array(), 'below_center' => array(), 'below_right' => array() ),
 		),
-		'header-html-1'               => "<p>☎ <a href=\"tel:$phone_l\">$phone</a> &nbsp;·&nbsp; ✉ <a href=\"mailto:$email\">$email</a></p>",
+		'header-html-1'               => "<p>☎ [natur_telefon] &nbsp;·&nbsp; ✉ [natur_email]</p>",
 		'header-html-2'               => '<p>🚚 Livrare gratuită în Chișinău pentru comenzi de la 500 lei</p>',
 		'hba-header-height'           => array( 'desktop' => 38, 'tablet' => 34, 'mobile' => 34 ),
 		'hba-header-bg-obj-responsive' => array(
@@ -821,7 +946,7 @@ $astra = array_merge(
 		'hbb-footer-top-border-color' => '#161E0E',
 		'hb-footer-vertical-alignment' => 'flex-start',
 		'footer-html-1'               => '<p><strong style="color:#fff;font-size:20px">natur<span style="color:#8DC732">.md</span></strong></p><p>Produse naturale selectate de la gospodari și mici producători din Moldova. Fără aditivi, fără E-uri — mâncare adevărată, ca pentru propria familie.</p>',
-		'footer-html-2'               => "<p><strong style=\"color:#fff\">Contact</strong></p><p>☎ <a href=\"tel:$phone_l\">$phone</a><br>✉ <a href=\"mailto:$email\">$email</a><br>mun. Chișinău, Republica Moldova</p>",
+		'footer-html-2'               => "<p><strong style=\"color:#fff\">Contact</strong></p><p>☎ [natur_telefon]<br>✉ [natur_email]<br>mun. Chișinău, Republica Moldova</p>",
 		'footer-html-1color'         => array( 'desktop' => '#C9D3BC', 'tablet' => '#C9D3BC', 'mobile' => '#C9D3BC' ),
 		'footer-html-2color'         => array( 'desktop' => '#C9D3BC', 'tablet' => '#C9D3BC', 'mobile' => '#C9D3BC' ),
 		'footer-html-1link-color'    => array( 'desktop' => '#FFFFFF', 'tablet' => '#FFFFFF', 'mobile' => '#FFFFFF' ),

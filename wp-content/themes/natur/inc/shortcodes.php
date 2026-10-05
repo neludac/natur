@@ -161,6 +161,16 @@ function nt_section( $section, $args = array() ) {
 	return function_exists( $fn ) ? $fn( nt_section_args( $section, $args ) ) : '';
 }
 
+/** Pagina curentă conține secțiunea dată (widgetul Elementor sau shortcode-ul)? */
+function nt_page_has_section( $section ) {
+	if ( ! is_singular() ) {
+		return false;
+	}
+	$id = get_queried_object_id();
+	return has_shortcode( (string) get_post_field( 'post_content', $id ), 'natur_' . $section )
+		|| false !== strpos( (string) get_post_meta( $id, '_elementor_data', true ), '"widgetType":"natur_' . $section . '"' );
+}
+
 /** Textul afișat ca text simplu (insigne rotative, atribute). */
 function nt_plain( $html ) {
 	return trim( html_entity_decode( wp_strip_all_tags( (string) $html ), ENT_QUOTES, 'UTF-8' ) );

@@ -1,0 +1,18 @@
+# Natur.MD — reguli pentru serverul de producție (Apache în Plesk). Local, DDEV rulează nginx și ignoră fișierul.
+
+# Scripturile de migrare, datele extrase și configurația DDEV nu se servesc public.
+# Fișierele statice din aceste foldere le servește direct nginx: blocați-le și în Plesk → Apache & nginx → directive nginx.
+RedirectMatch 404 ^/(tools|\.ddev)(/|$)
+RedirectMatch 404 ^/(README\.md|wp-config-ddev\.php)$
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+# END WordPress

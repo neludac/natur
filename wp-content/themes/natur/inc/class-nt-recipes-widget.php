@@ -24,7 +24,7 @@ class NT_Recipes_Widget extends \Elementor\Widget_Base {
 	}
 
 	public function get_categories() {
-		return array( 'general' );
+		return array( 'natur' );
 	}
 
 	public function get_keywords() {

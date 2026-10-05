@@ -1,6 +1,6 @@
 <?php
 /**
- * Coșul lateral: produse cu cantitate − / +, subtotal, butoane; stare goală ilustrată.
+ * Coșul lateral: produse cu cantitate − / +, subtotal, butonul spre comandă; stare goală ilustrată.
  *
  * @package natur
  * @version 11.0.0
@@ -78,9 +78,10 @@ if ( WC()->cart && ! WC()->cart->is_empty() ) : ?>
 			<span>Subtotal</span>
 			<strong><?php echo esc_html( nt_money( WC()->cart->get_displayed_subtotal() ) ); ?></strong>
 		</div>
-		<p class="nt-mc__note">Livrarea se calculează la finalizare. Plătești la primirea comenzii.</p>
-		<a class="nt-btn nt-btn--dark nt-btn--lg nt-btn--block checkout" href="<?php echo esc_url( wc_get_checkout_url() ); ?>">Finalizează comanda <?php echo nt_icon( 'arrow-right', 18 ); // phpcs:ignore ?></a>
-		<a class="nt-btn nt-btn--ghost nt-btn--block" href="<?php echo esc_url( wc_get_cart_url() ); ?>">Vezi coșul</a>
+		<?php if ( nt_txt( 'mc_note' ) ) : ?>
+			<p class="nt-mc__note"><?php echo nt_txt( 'mc_note' ); // phpcs:ignore ?></p>
+		<?php endif; ?>
+		<a class="nt-btn nt-btn--dark nt-btn--lg nt-btn--block checkout" href="<?php echo esc_url( wc_get_checkout_url() ); ?>"><?php echo nt_txt( 'mc_checkout' ); // phpcs:ignore ?> <?php echo nt_icon( 'arrow-right', 18 ); // phpcs:ignore ?></a>
 	</div>
 
 <?php else : ?>
@@ -95,9 +96,11 @@ if ( WC()->cart && ! WC()->cart->is_empty() ) : ?>
 			<g class="nt-mc__leaf"><path d="M96 40c10-18 26-22 36-20-2 12-14 26-36 20z" fill="#8DC63F"/><path d="M98 39c9-7 18-12 28-15" stroke="#5E9128" stroke-width="2" fill="none" stroke-linecap="round"/></g>
 			<circle cx="70" cy="40" r="11" fill="#FFF6E6" stroke="#EADFC9" stroke-width="2"/>
 		</svg>
-		<p class="nt-mc__empty-title">Coșul tău e gol</p>
-		<p>Hai să-l umplem cu ceva bun — ouă de casă, brânză proaspătă sau o conservă ca la bunica.</p>
-		<a class="nt-btn nt-btn--dark" href="<?php echo esc_url( wc_get_page_permalink( 'shop' ) ); ?>">Descoperă produsele <?php echo nt_icon( 'arrow-right', 18 ); // phpcs:ignore ?></a>
+		<p class="nt-mc__empty-title"><?php echo nt_txt( 'mc_empty_title' ); // phpcs:ignore ?></p>
+		<?php if ( nt_txt( 'mc_empty_text' ) ) : ?>
+			<p><?php echo nt_txt( 'mc_empty_text' ); // phpcs:ignore ?></p>
+		<?php endif; ?>
+		<a class="nt-btn nt-btn--dark" href="<?php echo esc_url( wc_get_page_permalink( 'shop' ) ); ?>"><?php echo nt_txt( 'mc_empty_btn' ); // phpcs:ignore ?> <?php echo nt_icon( 'arrow-right', 18 ); // phpcs:ignore ?></a>
 	</div>
 
 <?php endif; ?>

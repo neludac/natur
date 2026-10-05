@@ -7,14 +7,36 @@
 
 defined( 'ABSPATH' ) || exit;
 
-/* Moneda: „35,00 lei” în loc de „35,00 MDL”. */
+/* Simbolul monedei magazinului („35,00 lei” în loc de „35,00 MDL”): WooCommerce → Setări → General → „Simbolul afișat”. */
 add_filter(
 	'woocommerce_currency_symbol',
 	static function ( $symbol, $currency ) {
-		return 'MDL' === $currency ? 'lei' : $symbol;
+		$custom = trim( (string) get_option( 'natur_currency_symbol', 'lei' ) );
+		return $custom && get_option( 'woocommerce_currency' ) === $currency ? $custom : $symbol;
 	},
 	10,
 	2
+);
+add_filter(
+	'woocommerce_general_settings',
+	static function ( $settings ) {
+		$out = array();
+		foreach ( $settings as $field ) {
+			$out[] = $field;
+			if ( 'woocommerce_currency' === ( $field['id'] ?? '' ) ) {
+				$out[] = array(
+					'title'    => 'Simbolul afișat',
+					'desc'     => 'Cum apare moneda lângă prețuri (ex. „lei”). Gol = simbolul standard WooCommerce.',
+					'id'       => 'natur_currency_symbol',
+					'default'  => 'lei',
+					'type'     => 'text',
+					'css'      => 'width: 80px;',
+					'desc_tip' => true,
+				);
+			}
+		}
+		return $out;
+	}
 );
 
 /* Când livrarea gratuită e disponibilă, ascunde livrarea contra cost. */

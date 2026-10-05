@@ -114,7 +114,10 @@ function nt_settings() {
 				'search_placeholder' => array( 'Textul din câmpul de căutare', 'text', 'Ce cauți azi? Ouă, brânză, ghee…' ),
 				'search_popular_lbl' => array( 'Titlul căutărilor populare', 'text', 'Căutări populare' ),
 				'search_popular'     => array( 'Căutări populare', 'textarea', "Ouă de prepeliță\nUnt GHEE\nBrânză\nCarne de prepeliță\nSemințe pentru germinare\nCiuperci", 'Câte una pe rând.' ),
+				'search_none'        => array( 'Niciun rezultat — titlu', 'text', 'Nimic pentru „{cautare}”', '{cautare} = cuvintele căutate.' ),
 				'search_empty'       => array( 'Niciun rezultat — sfat', 'text', 'Încearcă un cuvânt mai scurt sau una dintre căutările populare.' ),
+				'search_found_1'     => array( 'Numărul de rezultate — la singular', 'text', 'produs găsit' ),
+				'search_found_n'     => array( 'Numărul de rezultate — la plural', 'text', 'produse găsite' ),
 				'search_all'         => array( 'Linkul spre toate rezultatele', 'text', 'Vezi toate rezultatele' ),
 			),
 		),
@@ -146,6 +149,7 @@ function nt_settings() {
 			'title'  => 'Pagina produsului',
 			'fields' => array(
 				'prod_avail'        => array( 'Disponibilitate', 'text', 'În stoc · gata de livrare' ),
+				'prod_buy_now'      => array( 'Butonul „Comandă acum”', 'text', 'Comandă acum', 'Lângă „Adaugă în coș”: adaugă produsul și deschide direct pagina de comandă. Gol = butonul nu apare.' ),
 				'perk_1_icon'       => array( 'Avantajul 1 — iconiță', 'icon', 'truck' ),
 				'perk_1_title'      => array( 'Avantajul 1 — titlu', 'text', 'Livrare în 1–48 de ore' ),
 				'perk_1_text'       => array( 'Avantajul 1 — text', 'text', 'în Chișinău; în restul țării — prin Poșta Moldovei' ),
@@ -178,14 +182,39 @@ function nt_settings() {
 				'mc_empty_title'   => array( 'Coș gol — titlu', 'text', 'Coșul tău e gol' ),
 				'mc_empty_text'    => array( 'Coș gol — text', 'textarea', 'Hai să-l umplem cu ceva bun — ouă de casă, brânză proaspătă sau o conservă ca la bunica.' ),
 				'mc_empty_btn'     => array( 'Coș gol — buton', 'text', 'Descoperă produsele' ),
-				'step_1'           => array( 'Pașii comenzii — 1', 'text', 'Coș' ),
-				'step_2'           => array( 'Pașii comenzii — 2', 'text', 'Livrare și plată' ),
-				'step_3'           => array( 'Pașii comenzii — 3', 'text', 'Confirmare' ),
+				// Pagina de comandă (un singur pas): nume, telefon, unde livrăm, adresă.
+				'ck_intro'           => array( 'Comanda — text sub titlu', 'text', 'Doar nume, telefon și adresă. Te sunăm să confirmăm, plătești la livrare.' ),
+				'ck_fields_title'    => array( 'Comanda — titlul datelor', 'text', 'Unde trimitem comanda?' ),
+				'ck_name'            => array( 'Câmpul „Nume”', 'text', 'Nume și prenume' ),
+				'ck_name_ph'         => array( 'Câmpul „Nume” — exemplu', 'text', 'Ana Popescu' ),
+				'ck_phone'           => array( 'Câmpul „Telefon”', 'text', 'Telefon' ),
+				'ck_phone_prefix'    => array( 'Câmpul „Telefon” — prefixul țării', 'text', '+373', 'Afișat în fața câmpului și adăugat automat la număr (clientul scrie doar „69 123 456”). Gol = fără prefix.' ),
+				'ck_phone_ph'        => array( 'Câmpul „Telefon” — exemplu', 'text', '69 123 456' ),
+				'ck_phone_bad'       => array( 'Telefon incomplet — mesaj', 'text', 'Verifică numărul de telefon — pare incomplet.' ),
+				'ck_zone'            => array( '„Unde livrăm?” — titlu', 'text', 'Unde livrăm?', 'Prima variantă e orașul magazinului (WooCommerce → Setări → Adresa magazinului); alegerea stabilește zona și costul livrării.' ),
+				'ck_zone_city_note'  => array( 'Orașul magazinului — detalii', 'text', 'curier, 1–48 ore' ),
+				'ck_zone_other'      => array( 'Altă localitate — titlu', 'text', 'Altă localitate' ),
+				'ck_zone_other_note' => array( 'Altă localitate — detalii', 'text', 'prin Poșta Moldovei' ),
+				'ck_address'         => array( 'Câmpul „Adresa”', 'text', 'Adresa' ),
+				'ck_address_ph'      => array( 'Adresa — exemplu (orașul magazinului)', 'text', 'Strada, nr. casei, apartamentul' ),
+				'ck_address_ph_other' => array( 'Adresa — exemplu (altă localitate)', 'text', 'Localitatea, strada, nr. casei' ),
+				'ck_more'            => array( 'Linkul spre câmpurile opționale', 'text', 'Adaugă un comentariu sau e-mail' ),
+				'ck_email'           => array( 'Câmpul „E-mail”', 'text', 'E-mail' ),
+				'ck_email_ph'        => array( 'Câmpul „E-mail” — exemplu', 'text', 'pentru confirmarea pe e-mail' ),
+				'ck_note'            => array( 'Câmpul „Comentariu”', 'text', 'Comentariu' ),
+				'ck_note_ph'         => array( 'Câmpul „Comentariu” — exemplu', 'text', 'Ex.: sunați după ora 18' ),
+				'ck_sum_title'       => array( 'Comanda — titlul listei de produse', 'text', 'Comanda ta' ),
+				'ck_ship_free'       => array( 'Livrare gratuită — în total', 'text', 'gratuit' ),
+				'ck_btn'             => array( 'Butonul de trimitere', 'text', 'Trimite comanda', 'Totalul comenzii se adaugă automat: „Trimite comanda · 560 lei”.' ),
+				'ck_guard_error'     => array( 'Comanda refuzată de protecția anti-bot — mesaj', 'text', 'Nu am putut trimite comanda. Reîncarcă pagina și încearcă din nou sau sună-ne la [natur_telefon].', 'Protecția ascunsă blochează comenzile trimise de roboți. Un om îl vede doar dacă a trimis formularul în primele 3 secunde, fără JavaScript sau după 2 zile cu pagina deschisă.' ),
+				'ty_title'           => array( 'Comandă primită — titlu', 'text', 'Mulțumim, {nume}!', '{nume} = prenumele clientului.' ),
+				'ty_text'            => array( 'Comandă primită — text', 'textarea', 'Comanda <strong>nr. {numar}</strong> a ajuns la noi. Te sunăm în curând la <strong>{telefon}</strong> ca să confirmăm livrarea. La primire plătești <strong>{total}</strong>.', '{numar} = numărul comenzii, {telefon} = telefonul clientului, {total} = totalul.' ),
+				'ty_btn'             => array( 'Comandă primită — buton', 'text', 'Înapoi la magazin' ),
 			),
 		),
 		'footer'   => array(
 			'title'       => 'Subsol',
-			'description' => 'Linkurile coloanei „Informații” se aleg în Aspect → Meniuri → „Meniu subsol”; coloana „Magazin” folosește meniul din locația „Subsol — Magazin” sau, dacă nu e setat, categoriile cu cele mai multe produse.',
+			'description' => 'Linkurile coloanei „Informații” se aleg în Aspect → Meniuri → „Meniu subsol”; coloana „Magazin” folosește meniul din locația „Subsol — Magazin” sau, dacă nu e setat, categoriile cu cele mai multe produse. Politica de confidențialitate și Politica de cookies apar mereu în bara de jos, pe toate paginile (inclusiv coșul și finalizarea comenzii); paginile lor se aleg la sfârșitul acestei secțiuni.',
 			'fields'      => array(
 				'help_show'        => array( 'Afișează banda „Comandă la telefon”', 'checkbox', true ),
 				'help_eyebrow'     => array( 'Banda — supratitlu', 'text', 'Suntem aici pentru tine' ),
@@ -204,6 +233,7 @@ function nt_settings() {
 				'footer_word'      => array( 'Textul mare decorativ', 'text', 'natur.md', 'Partea de după ultimul punct apare în verde.' ),
 				'footer_copy'      => array( 'Drepturi de autor', 'text', '© [natur_an] Natur.MD — produse naturale din Moldova.' ),
 				'footer_love'      => array( 'Mesajul din dreapta jos', 'text', 'Făcut cu {inima} în Moldova', '{inima} = iconița inimă.' ),
+				'cookie_page'      => array( 'Pagina „Politica de cookies”', 'page', 0, 'Linkul apare în bara de jos, cu titlul paginii.' ),
 			),
 		),
 		'notfound' => array(
@@ -278,8 +308,8 @@ function nt_render_text( $text, array $tokens = array() ) {
 	foreach ( $tokens as $k => $v ) {
 		$map[ '{' . $k . '}' ] = $v;
 	}
-	$text = strtr( wp_kses( $text, nt_kses_tags() ), $map );
-	return do_shortcode( $text );
+	// Shortcode-urile rulează doar pe textul din setări, înainte de valorile introduse ({cautare} etc.).
+	return strtr( do_shortcode( wp_kses( $text, nt_kses_tags() ) ), $map );
 }
 
 /** Textul unei setări, gata de afișat. Gol dacă textul cere pragul livrării gratuite și acesta nu există. */
@@ -426,6 +456,25 @@ add_action(
 				$wp->add_control( $id, $control );
 			}
 		}
+
+		// Pagina de confidențialitate e setarea WordPress (Setări → Confidențialitate), aleasă aici lângă cea de cookies.
+		$wp->add_setting(
+			'wp_page_for_privacy_policy',
+			array(
+				'type'              => 'option',
+				'capability'        => 'manage_privacy_options',
+				'sanitize_callback' => 'absint',
+			)
+		);
+		$wp->add_control(
+			'wp_page_for_privacy_policy',
+			array(
+				'label'       => 'Pagina „Politica de confidențialitate”',
+				'description' => 'Linkul apare în bara de jos și în formularele de comandă și de cont.',
+				'section'     => 'nt_footer',
+				'type'        => 'dropdown-pages',
+			)
+		);
 
 		// Logo pentru fundal închis (subsol), lângă logo-ul principal din „Identitatea site-ului”.
 		$wp->add_setting( 'nt_logo_light', array( 'default' => 0, 'sanitize_callback' => 'absint' ) );

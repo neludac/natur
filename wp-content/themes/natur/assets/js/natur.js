@@ -23,11 +23,14 @@
 		t.innerHTML = html;
 		return t.value;
 	}
-	/* 460 → „460 lei”, 47.5 → „47,50 lei”, 1200 → „1 200 lei” */
-	function money(v) {
-		var n = Number(v);
-		var s = (Number.isInteger(n) ? String(n) : n.toFixed(2).replace('.', ','));
-		return s.replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' lei';
+	var T = NT.t || {};
+	/* Prețul din Store API în formatul magazinului (WooCommerce → Setări → General), fără zecimale nule: „460 lei”, „47,50 lei”. */
+	function money(prices) {
+		var minor = Number(prices.currency_minor_unit || 0);
+		var n = Number(prices.price) / Math.pow(10, minor);
+		var s = Number.isInteger(n) ? String(n) : n.toFixed(minor).replace('.', prices.currency_decimal_separator || '.');
+		s = s.replace(/\B(?=(\d{3})+(?!\d))/g, prices.currency_thousand_separator || '');
+		return ((prices.currency_prefix || '') + s + (prices.currency_suffix || '')).replace(/ /g, '\u00a0');
 	}
 
 	/* ------------------------------------------------------------ Antet: stare la derulare, bara mobilă */
@@ -200,7 +203,7 @@
 		var render = function (items, total, q) {
 			active = -1;
 			if (!items.length) {
-				out.innerHTML = '<div class="nt-sres__empty"><strong>Nimic pentru „' + esc(q) + '”</strong>Încearcă un cuvânt mai scurt sau una dintre căutările populare.</div>';
+				out.innerHTML = '<div class="nt-sres__empty"><strong>' + esc((T.searchNone || '').replace('{cautare}', q)) + '</strong>' + esc(T.searchEmpty || '') + '</div>';
 				popular.hidden = false;
 				return;
 			}
@@ -208,13 +211,12 @@
 			var html = '<ul class="nt-sres">';
 			items.forEach(function (p) {
 				var img = p.images && p.images[0] ? (p.images[0].thumbnail || p.images[0].src) : '';
-				var minor = p.prices ? Number(p.prices.currency_minor_unit || 0) : 0;
-				var price = p.prices && p.prices.price ? money(Number(p.prices.price) / Math.pow(10, minor)) : '';
+				var price = p.prices && p.prices.price ? esc(money(p.prices)) : '';
 				html += '<li><a href="' + esc(p.permalink) + '">' + (img ? '<img src="' + esc(img) + '" alt="" loading="lazy">' : '<img alt="">') +
 					'<span><span class="nt-sres__name">' + highlight(decode(p.name), q) + '</span><span class="nt-sres__price">' + price + '</span></span></a></li>';
 			});
-			html += '</ul><div class="nt-sres__foot"><span>' + total + (total === 1 ? ' produs găsit' : ' produse găsite') + '</span>' +
-				'<a class="nt-link-arrow" href="' + esc(NT.home + '?s=' + encodeURIComponent(q) + '&post_type=product') + '">Vezi toate rezultatele <svg class="nt-i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>';
+			html += '</ul><div class="nt-sres__foot"><span>' + total + ' ' + esc(total === 1 ? T.found1 : T.foundN) + '</span>' +
+				'<a class="nt-link-arrow" href="' + esc(NT.home + '?s=' + encodeURIComponent(q) + '&post_type=product') + '">' + esc(T.searchAll || '') + ' <svg class="nt-i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>';
 			out.innerHTML = html;
 		};
 		var search = function (q) {
@@ -480,8 +482,8 @@
 		t.className = 'nt-toast';
 		t.setAttribute('role', 'status');
 		t.innerHTML = (img ? '<img src="' + esc(img) + '" alt="">' : '<span class="nt-toast__ico">✓</span>') +
-			'<span class="nt-toast__txt"><strong>Adăugat în coș</strong><span>' + esc(name || '') + '</span></span>' +
-			'<a class="nt-btn nt-btn--leaf nt-btn--sm" href="' + esc(NT.cartUrl || '#') + '" data-nt-open="cart" aria-controls="nt-cart">Vezi coșul</a>';
+			'<span class="nt-toast__txt"><strong>' + esc(T.toast || '') + '</strong><span>' + esc(name || '') + '</span></span>' +
+			'<a class="nt-btn nt-btn--leaf nt-btn--sm" href="' + esc(NT.cartUrl || '#') + '" data-nt-open="cart" aria-controls="nt-cart">' + esc(T.toastBtn || '') + '</a>';
 		toasts.appendChild(t);
 		while (toasts.children.length > 2) toasts.removeChild(toasts.firstChild);
 		setTimeout(function () {
@@ -503,13 +505,31 @@
 			toast(b ? b.getAttribute('data-nt-name') : '', b ? b.getAttribute('data-nt-img') : '');
 			setTimeout(bump, 60);
 			var label = b && b.querySelector('.nt-add__label');
-			if (label) label.textContent = 'Adăugat';
-			if (b) setTimeout(function () { b.classList.remove('added'); if (label) label.textContent = 'Adaugă'; }, 2400);
+			if (label) label.textContent = T.added || '';
+			if (b) setTimeout(function () { b.classList.remove('added'); if (label) label.textContent = T.add || ''; }, 2400);
 		});
 		jq(doc.body).on('removed_from_cart', bump);
 	}
 
-	/* Cantitate − / + în coșul lateral (Store API; nonce-ul se ia proaspăt din răspunsul GET /cart) */
+	/* Schimbă cantitatea unui produs din coș (0 = îl scoate) prin Store API; nonce-ul se ia proaspăt din GET /cart. */
+	function cartSet(key, qty) {
+		return fetch(NT.storeApi + 'cart', { credentials: 'same-origin' })
+			.then(function (r) { return r.headers.get('Nonce'); })
+			.then(function (nonce) {
+				return fetch(NT.storeApi + (qty > 0 ? 'cart/update-item' : 'cart/remove-item'), {
+					method: 'POST',
+					credentials: 'same-origin',
+					headers: { 'Content-Type': 'application/json', Nonce: nonce || '' },
+					body: JSON.stringify(qty > 0 ? { key: key, quantity: qty } : { key: key })
+				});
+			})
+			.then(function (r) {
+				if (!r.ok) throw new Error(r.status);
+				return r.json();
+			});
+	}
+
+	/* Cantitate − / + în coșul lateral */
 	doc.addEventListener('click', function (e) {
 		var btn = e.target.closest('[data-nt-mc-qty] button');
 		if (!btn) return;
@@ -518,22 +538,91 @@
 		var qty = Math.max(1, (parseInt(val.textContent, 10) || 1) + Number(btn.getAttribute('data-step')));
 		item.classList.add('is-busy');
 		val.textContent = qty;
-		fetch(NT.storeApi + 'cart', { credentials: 'same-origin' })
-			.then(function (r) { return r.headers.get('Nonce'); })
-			.then(function (nonce) {
-				return fetch(NT.storeApi + 'cart/update-item', {
-					method: 'POST',
-					credentials: 'same-origin',
-					headers: { 'Content-Type': 'application/json', Nonce: nonce || '' },
-					body: JSON.stringify({ key: item.getAttribute('data-key'), quantity: qty })
-				});
-			})
+		cartSet(item.getAttribute('data-key'), qty)
 			.then(function () {
 				if (jq) jq(doc.body).trigger('wc_fragment_refresh');
 				bump();
 			})
 			.catch(function () { item.classList.remove('is-busy'); });
 	});
+
+	/* ------------------------------------------------------------ Comanda (un singur pas): localitate, cantități */
+	var ck = $('form.woocommerce-checkout.nt-ck');
+	if (ck && jq) {
+		// „Unde livrăm?”: butoanele radio → câmpul ascuns #billing_state, citit de WooCommerce la recalcularea livrării.
+		var syncZone = function () {
+			var r = $('input[name="billing_state"]:checked', ck);
+			var hidden = $('#billing_state', ck);
+			var addr = $('#billing_address_1', ck);
+			if (!r || !hidden) return;
+			hidden.value = r.value;
+			if (addr) addr.placeholder = addr.getAttribute(r.value ? 'data-ph-city' : 'data-ph-other') || addr.placeholder;
+		};
+		ck.addEventListener('change', function (e) {
+			if (e.target.name === 'billing_state') syncZone();
+		});
+		syncZone();
+
+		// Cantitate − / + și ștergere în lista produselor; lista și totalul se reîncarcă de WooCommerce.
+		ck.addEventListener('click', function (e) {
+			var btn = e.target.closest('[data-nt-ck-qty] button, .nt-ck-item__remove');
+			if (!btn) return;
+			e.preventDefault();
+			var item = btn.closest('.nt-ck-item');
+			var val = $('.nt-qty__val', item);
+			var qty = btn.classList.contains('nt-ck-item__remove') ? 0 : Math.max(1, (parseInt(val.textContent, 10) || 1) + Number(btn.getAttribute('data-step')));
+			item.classList.add('is-busy');
+			if (val && qty) val.textContent = qty;
+			cartSet(item.getAttribute('data-key'), qty)
+				.then(function (cart) {
+					if (!cart.items_count) { window.location.reload(); return; } // coș gol → pagina „Coș”
+					jq(doc.body).trigger('wc_fragment_refresh');
+					bump();
+				})
+				.catch(function () { window.location.reload(); });
+		});
+
+		// Orice schimbare a coșului (și din coșul lateral) reîncarcă lista și totalul comenzii.
+		jq(doc.body).on('wc_fragments_refreshed removed_from_cart', function () {
+			var count = $('.nt-cart-count');
+			if (count && count.getAttribute('data-count') === '0') { window.location.reload(); return; }
+			jq(doc.body).trigger('update_checkout');
+		});
+
+		// Eroare la un câmp opțional (ex. e-mail greșit): deschide „Adaugă un comentariu sau e-mail”.
+		jq(doc.body).on('checkout_error', function () {
+			var more = $('.nt-ck__more', ck);
+			if (more && $('.woocommerce-invalid, [aria-invalid="true"]', more)) more.open = true;
+		});
+	}
+
+	/* ------------------------------------------------------------ Comanda: dovada ascunsă că formularul e completat de un om (inc/checkout-guard.php) */
+	var hc = ck && $('input[data-nt-hc]', ck);
+	if (hc) {
+		var t0 = Date.now();
+		var first = 0;
+		var n = { keys: 0, taps: 0, moves: 0 };
+		var seen = function (kind) {
+			return function (e) {
+				if (!e.isTrusted) return; // evenimentele create de scripturi nu contează
+				if (!first && kind !== 'moves') first = Date.now();
+				if (n[kind] < 9999) n[kind]++;
+			};
+		};
+		[['keydown', 'keys'], ['input', 'keys'], ['pointerdown', 'taps'], ['touchstart', 'taps'], ['mousedown', 'taps'],
+			['pointermove', 'moves'], ['touchmove', 'moves'], ['scroll', 'moves'], ['wheel', 'moves']].forEach(function (ev) {
+			doc.addEventListener(ev[0], seen(ev[1]), { capture: true, passive: true });
+		});
+		var prove = function () {
+			var now = Date.now();
+			hc.value = ['v1', hc.getAttribute('data-nt-hc'), n.keys, n.taps, n.moves,
+				('ontouchstart' in window || navigator.maxTouchPoints > 0) ? 1 : 0,
+				navigator.webdriver ? 1 : 0, now - t0, first ? now - first : 0].join('.');
+		};
+		// Înainte ca WooCommerce să citească formularul (trimitere obișnuită sau prin scriptul lui).
+		doc.addEventListener('submit', function (e) { if (e.target === ck) prove(); }, true);
+		if (jq) jq(ck).on('checkout_place_order', function () { prove(); });
+	}
 
 	/* ------------------------------------------------------------ Contact: „Copiază” telefonul / e-mailul */
 	function copyText(text) {

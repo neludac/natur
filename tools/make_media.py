@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Pregătește media pentru import:
 
-1. optimizează fotografiile extrase (max 1200px, JPEG q82) -> data/opt/
+1. optimizează fotografiile extrase, inclusiv cele din descrieri (max 1200px, JPEG q82) -> data/opt/
 2. generează cadre 360° DEMONSTRATIVE (rotație cilindrică a corpului borcanului) -> data/360/<id>/
 3. generează clipuri video DEMONSTRATIVE din fotografiile produsului (ffmpeg) -> data/video/<id>.mp4
 
@@ -35,7 +35,7 @@ def optimize():
     out = D / "opt"
     out.mkdir(exist_ok=True)
     for p in data["products"]:
-        for fn in p["local_images"]:
+        for fn in p["local_images"] + list(p.get("desc_images", {}).values()):
             dest = out / fn
             if dest.exists():
                 continue

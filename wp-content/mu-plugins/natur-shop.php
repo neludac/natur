@@ -210,3 +210,47 @@ add_filter(
 		return $rows;
 	}
 );
+
+/* ------------------------------------------------------------------
+ * IP-ul clientului (salvat de WooCommerce la plasarea comenzii): coloană în lista de comenzi
+ * și rând în e-mailul „Comandă nouă” către administrator. Pagina comenzii îl arată deja în antet („IP client: …”).
+ * ------------------------------------------------------------------ */
+function natur_orders_ip_column( $columns ) {
+	$out = array();
+	foreach ( $columns as $key => $label ) {
+		$out[ $key ] = $label;
+		if ( 'order_status' === $key ) {
+			$out['natur_ip'] = __( 'IP address', 'woocommerce' );
+		}
+	}
+	return isset( $out['natur_ip'] ) ? $out : $out + array( 'natur_ip' => __( 'IP address', 'woocommerce' ) );
+}
+
+function natur_orders_ip_cell( $column, $order ) {
+	if ( 'natur_ip' !== $column ) {
+		return;
+	}
+	$order = wc_get_order( $order );
+	$ip    = $order ? $order->get_customer_ip_address() : '';
+	echo $ip ? '<code>' . esc_html( $ip ) . '</code>' : '–';
+}
+
+add_filter( 'manage_woocommerce_page_wc-orders_columns', 'natur_orders_ip_column', 20 ); // HPOS
+add_action( 'manage_woocommerce_page_wc-orders_custom_column', 'natur_orders_ip_cell', 10, 2 );
+add_filter( 'manage_edit-shop_order_columns', 'natur_orders_ip_column', 20 ); // tabel clasic (posts)
+add_action( 'manage_shop_order_posts_custom_column', 'natur_orders_ip_cell', 10, 2 );
+
+add_action(
+	'woocommerce_email_customer_details',
+	static function ( $order, $sent_to_admin, $plain_text ) {
+		$ip = $sent_to_admin && $order instanceof WC_Order ? $order->get_customer_ip_address() : '';
+		if ( ! $ip ) {
+			return;
+		}
+		/* translators: %s: IP-ul clientului */
+		$line = sprintf( __( 'Customer IP: %s', 'woocommerce' ), $ip );
+		echo $plain_text ? "\n" . esc_html( $line ) . "\n" : '<p style="margin:0 0 16px">' . esc_html( $line ) . '</p>';
+	},
+	30,
+	3
+);

@@ -7,21 +7,32 @@ defined( 'ABSPATH' ) || exit;
 
 $has_wc   = class_exists( 'WooCommerce' );
 $shop_id  = $has_wc ? (int) wc_get_page_id( 'shop' ) : 0;
-$free_min = nt_free_shipping_min();
 $tree     = nt_menu_tree( 'primary' );
 ?>
 <div class="nt-topbar">
 	<div class="nt-wrap nt-topbar__in">
 		<div class="nt-topbar__rotator" data-nt-rotator>
-			<?php if ( $free_min ) : ?>
-				<p class="is-active"><?php echo nt_icon( 'gift', 16 ); // phpcs:ignore ?><span>Livrare gratuită în Chișinău de la <strong><?php echo esc_html( nt_money( $free_min ) ); ?></strong></span></p>
-			<?php endif; ?>
-			<p<?php echo $free_min ? '' : ' class="is-active"'; ?>><?php echo nt_icon( 'clock', 16 ); // phpcs:ignore ?><span>Livrăm în <strong>1–48 de ore</strong> de la confirmare</span></p>
-			<p><?php echo nt_icon( 'coins', 16 ); // phpcs:ignore ?><span>Plătești <strong>la primire</strong>, fără avans</span></p>
+			<?php
+			$first = true;
+			for ( $i = 1; $i <= 4; $i++ ) :
+				$msg = nt_txt( "topbar_{$i}_text" );
+				if ( '' === $msg ) {
+					continue;
+				}
+				?>
+				<p<?php echo $first ? ' class="is-active"' : ''; ?>><?php echo nt_icon( nt_opt( "topbar_{$i}_icon" ), 16 ); // phpcs:ignore ?><span><?php echo $msg; // phpcs:ignore ?></span></p>
+				<?php
+				$first = false;
+			endfor;
+			?>
 		</div>
 		<div class="nt-topbar__links">
-			<a href="tel:<?php echo esc_attr( nt_contact( 'phone_raw' ) ); ?>"><?php echo nt_icon( 'phone', 15 ); // phpcs:ignore ?><?php echo esc_html( nt_contact( 'phone' ) ); ?></a>
-			<a href="mailto:<?php echo esc_attr( nt_contact( 'email' ) ); ?>"><?php echo nt_icon( 'mail', 15 ); // phpcs:ignore ?><?php echo esc_html( nt_contact( 'email' ) ); ?></a>
+			<?php if ( nt_contact( 'phone' ) ) : ?>
+				<a href="tel:<?php echo esc_attr( nt_contact( 'phone_raw' ) ); ?>"><?php echo nt_icon( 'phone', 15 ); // phpcs:ignore ?><?php echo esc_html( nt_contact( 'phone' ) ); ?></a>
+			<?php endif; ?>
+			<?php if ( nt_contact( 'email' ) ) : ?>
+				<a href="mailto:<?php echo esc_attr( nt_contact( 'email' ) ); ?>"><?php echo nt_icon( 'mail', 15 ); // phpcs:ignore ?><?php echo esc_html( nt_contact( 'email' ) ); ?></a>
+			<?php endif; ?>
 		</div>
 	</div>
 </div>
@@ -54,8 +65,10 @@ $tree     = nt_menu_tree( 'primary' );
 									<div class="nt-mega__in">
 										<div class="nt-mega__main">
 											<div class="nt-mega__head">
-												<span class="nt-eyebrow">Ce găsești la noi</span>
-												<a class="nt-link-arrow" href="<?php echo esc_url( $item->url ); ?>">Toate produsele <?php echo nt_icon( 'arrow-right', 16 ); // phpcs:ignore ?></a>
+												<?php if ( nt_txt( 'mega_eyebrow' ) ) : ?>
+													<span class="nt-eyebrow"><?php echo nt_txt( 'mega_eyebrow' ); // phpcs:ignore ?></span>
+												<?php endif; ?>
+												<a class="nt-link-arrow" href="<?php echo esc_url( $item->url ); ?>"><?php echo nt_txt( 'mega_all' ); // phpcs:ignore ?> <?php echo nt_icon( 'arrow-right', 16 ); // phpcs:ignore ?></a>
 											</div>
 											<ul class="nt-mega__grid">
 												<?php
@@ -78,14 +91,17 @@ $tree     = nt_menu_tree( 'primary' );
 											</ul>
 										</div>
 										<aside class="nt-mega__promo">
-											<span class="nt-mega__promo-ico"><?php echo nt_icon( 'truck', 28 ); // phpcs:ignore ?></span>
-											<?php if ( $free_min ) : ?>
-												<p class="nt-mega__promo-title">Livrare gratuită de la <?php echo esc_html( nt_money( $free_min ) ); ?></p>
-											<?php else : ?>
-												<p class="nt-mega__promo-title">Livrare rapidă în Chișinău</p>
+											<span class="nt-mega__promo-ico"><?php echo nt_icon( nt_opt( 'mega_promo_icon' ), 28 ); // phpcs:ignore ?></span>
+											<?php $promo_title = nt_txt( 'mega_promo_title' ) ? nt_txt( 'mega_promo_title' ) : nt_txt( 'mega_promo_title_no' ); ?>
+											<?php if ( $promo_title ) : ?>
+												<p class="nt-mega__promo-title"><?php echo $promo_title; // phpcs:ignore ?></p>
 											<?php endif; ?>
-											<p>În Chișinău în 1–48 de ore. Restul țării — prin Poșta Moldovei. Plătești la primire.</p>
-											<a class="nt-btn nt-btn--leaf nt-btn--sm" href="<?php echo esc_url( get_permalink( get_page_by_path( 'livrare-si-plata' ) ) ); ?>">Cum livrăm <?php echo nt_icon( 'arrow-right', 16 ); // phpcs:ignore ?></a>
+											<?php if ( nt_txt( 'mega_promo_text' ) ) : ?>
+												<p><?php echo nt_txt( 'mega_promo_text' ); // phpcs:ignore ?></p>
+											<?php endif; ?>
+											<?php if ( nt_opt( 'mega_promo_page' ) && get_post_status( (int) nt_opt( 'mega_promo_page' ) ) && nt_txt( 'mega_promo_btn' ) ) : ?>
+												<a class="nt-btn nt-btn--leaf nt-btn--sm" href="<?php echo esc_url( get_permalink( (int) nt_opt( 'mega_promo_page' ) ) ); ?>"><?php echo nt_txt( 'mega_promo_btn' ); // phpcs:ignore ?> <?php echo nt_icon( 'arrow-right', 16 ); // phpcs:ignore ?></a>
+											<?php endif; ?>
 										</aside>
 									</div>
 								</div>
@@ -105,7 +121,7 @@ $tree     = nt_menu_tree( 'primary' );
 		<div class="nt-actions">
 			<a class="nt-searchbtn" href="<?php echo esc_url( home_url( '/?s=&post_type=product' ) ); ?>" data-nt-open="search" aria-controls="nt-search" aria-expanded="false">
 				<?php echo nt_icon( 'search', 19 ); // phpcs:ignore ?>
-				<span class="nt-searchbtn__label">Caută produse…</span>
+				<span class="nt-searchbtn__label"><?php echo esc_html( nt_txt_plain( 'search_label' ) ); ?></span>
 				<kbd class="nt-searchbtn__kbd" aria-hidden="true">/</kbd>
 			</a>
 			<?php if ( $has_wc ) : ?>

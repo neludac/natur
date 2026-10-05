@@ -45,11 +45,11 @@ function nt_freeship_html() {
 	$empty = 0 === nt_cart_count();
 	$p     = $empty ? 0 : min( 1, 1 - $left / $min );
 	if ( $empty ) {
-		$msg = 'Livrare <strong>gratuită</strong> pentru comenzile de la <strong>' . esc_html( nt_money( $min ) ) . '</strong>';
+		$msg = nt_txt( 'fs_empty' );
 	} elseif ( $left > 0 ) {
-		$msg = 'Mai adaugă <strong>' . esc_html( nt_money( $left ) ) . '</strong> pentru livrare <strong>gratuită</strong>';
+		$msg = nt_txt( 'fs_left', array( 'suma' => esc_html( nt_money( $left ) ) ) );
 	} else {
-		$msg = 'Super! Ai livrare <strong>gratuită</strong> în Chișinău';
+		$msg = nt_txt( 'fs_done' );
 	}
 	return sprintf(
 		'<div class="nt-freeship%1$s" style="--p:%2$s"><p>%3$s<span>%4$s</span></p><div class="nt-freeship__bar" aria-hidden="true"><span></span></div></div>',
@@ -68,13 +68,13 @@ function nt_freeship_note() {
 		return '<span class="nt-freeship-note"></span>';
 	}
 	if ( 0 === nt_cart_count() ) {
-		$txt = 'Comenzile de la ' . nt_money( $min ) . ' se livrează gratuit';
+		$txt = nt_txt( 'note_empty' );
 	} elseif ( $left > 0 ) {
-		$txt = 'Îți mai lipsesc ' . nt_money( $left ) . ' până la livrarea gratuită';
+		$txt = nt_txt( 'note_left', array( 'suma' => esc_html( nt_money( $left ) ) ) );
 	} else {
-		$txt = 'Comanda ta are deja livrare gratuită';
+		$txt = nt_txt( 'note_done' );
 	}
-	return '<span class="nt-freeship-note">' . esc_html( $txt ) . '</span>';
+	return '<span class="nt-freeship-note">' . $txt . '</span>';
 }
 
 /** Coș gol, pe pagina produsului: cât lipsește până la livrarea gratuită cu acest produs. */
@@ -82,11 +82,11 @@ function nt_freeship_product_note() {
 	global $product;
 	$min   = nt_free_shipping_min();
 	$price = $product ? (float) wc_get_price_to_display( $product ) : 0;
-	if ( ! $price ) {
+	if ( ! $price || ! $min ) {
 		return '';
 	}
-	$txt = $price >= $min ? 'Doar cu acest produs ai deja livrare gratuită' : 'Cu acest produs îți mai lipsesc ' . nt_money( $min - $price ) . ' până la livrarea gratuită';
-	return '<span class="nt-freeship-note--product">' . esc_html( $txt ) . '</span>';
+	$txt = $price >= $min ? nt_txt( 'note_prod_done' ) : nt_txt( 'note_prod_left', array( 'suma' => esc_html( nt_money( $min - $price ) ) ) );
+	return '<span class="nt-freeship-note--product">' . $txt . '</span>';
 }
 
 add_filter(
@@ -108,14 +108,28 @@ add_filter(
 		if ( is_admin() && ! wp_doing_ajax() ) {
 			return $html;
 		}
-		return preg_replace( '/(\d),00(?=&nbsp;|\x{00A0}|\s*<)/u', '$1', $html );
+		return nt_trim_zero_decimals( $html );
 	},
 	20
 );
 
-/** Ambalajul produsului (atributul „Ambalare”): „720 ml”, „/ kg”. */
+/** „460,00 lei” → „460 lei” (separatorul zecimal și numărul de zecimale din WooCommerce → Setări → General). */
+function nt_trim_zero_decimals( $html ) {
+	$dec = wc_get_price_decimals();
+	if ( $dec < 1 ) {
+		return $html;
+	}
+	$sep = preg_quote( wc_get_price_decimal_separator(), '/' );
+	return preg_replace( '/(\d)' . $sep . str_repeat( '0', $dec ) . '(?=&nbsp;|\x{00A0}|\s*<|\s|$)/u', '$1', $html );
+}
+
+/**
+ * Ambalajul produsului, afișat pe card („720 ml”, „per kg”): atributul ales în
+ * Personalizare → Natur.MD → Magazin și categorii.
+ */
 function nt_pack_label( WC_Product $product ) {
-	$raw = trim( (string) $product->get_attribute( 'pa_ambalare' ) );
+	$attr = (string) nt_opt( 'card_pack_attr' );
+	$raw  = $attr ? trim( (string) $product->get_attribute( $attr ) ) : '';
 	if ( '' === $raw ) {
 		return '';
 	}
@@ -134,8 +148,9 @@ function nt_product_cat( WC_Product $product ) {
 		return null;
 	}
 	usort( $terms, static fn( $a, $b ) => ( $b->parent > 0 ) <=> ( $a->parent > 0 ) );
+	$skip = (int) nt_opt( 'card_cat_skip' );
 	foreach ( $terms as $t ) {
-		if ( 'horeca' !== $t->slug ) {
+		if ( $t->term_id !== $skip && $t->parent !== $skip ) {
 			return $t;
 		}
 	}
@@ -181,7 +196,7 @@ function nt_card_button( WC_Product $product ) {
 	$name = $product->get_name();
 	if ( $product->is_purchasable() && $product->is_in_stock() && $product->is_type( 'simple' ) ) {
 		return sprintf(
-			'<a href="%1$s" data-quantity="1" data-product_id="%2$d" data-product_sku="%3$s" class="button add_to_cart_button ajax_add_to_cart nt-add" aria-label="%4$s" rel="nofollow" data-nt-name="%5$s" data-nt-img="%6$s">%7$s%8$s<span class="nt-add__label">Adaugă</span></a>',
+			'<a href="%1$s" data-quantity="1" data-product_id="%2$d" data-product_sku="%3$s" class="button add_to_cart_button ajax_add_to_cart nt-add" aria-label="%4$s" rel="nofollow" data-nt-name="%5$s" data-nt-img="%6$s">%7$s%8$s<span class="nt-add__label">%9$s</span></a>',
 			esc_url( $product->add_to_cart_url() ),
 			$product->get_id(),
 			esc_attr( $product->get_sku() ),
@@ -189,7 +204,8 @@ function nt_card_button( WC_Product $product ) {
 			esc_attr( $name ),
 			esc_url( (string) wp_get_attachment_image_url( $product->get_image_id(), 'thumbnail' ) ),
 			nt_icon( 'plus', 20, 'nt-add__plus' ),
-			nt_icon( 'check', 20, 'nt-add__check' )
+			nt_icon( 'check', 20, 'nt-add__check' ),
+			esc_html( nt_txt_plain( 'card_btn' ) )
 		);
 	}
 	$label = $product->is_type( 'variable' ) && $product->is_in_stock() ? 'Alege' : 'Detalii';
@@ -230,15 +246,24 @@ function nt_archive_hero() {
 	$search = is_search() ? get_search_query() : '';
 	$found  = (int) $GLOBALS['wp_query']->found_posts;
 
+	$para = static fn( $html ) => '' !== $html ? '<p>' . $html . '</p>' : '';
 	if ( $search ) {
-		$title = 'Rezultate pentru „' . $search . '”';
-		$desc  = $found ? '<p>Am găsit ' . esc_html( nt_count_label( $found ) ) . '. Nu e ce căutai? Încearcă un cuvânt mai scurt, de exemplu „prepeli”.</p>' : '';
+		$title = nt_txt_plain( 'search_title', array( 'cautare' => esc_html( $search ) ) );
+		$desc  = $found ? $para( nt_txt( 'search_desc', array( 'numar' => esc_html( nt_count_label( $found ) ) ) ) ) : '';
 	} elseif ( $term ) {
 		$title = $term->name;
-		$desc  = $term->description ? wc_format_content( wp_kses_post( $term->description ) ) : '<p>' . esc_html( nt_count_label( nt_term_count( $term ) ) ) . ' din categoria „' . esc_html( $term->name ) . '”, de la gospodari și mici producători verificați de noi.</p>';
+		$desc  = $term->description ? wc_format_content( do_shortcode( wp_kses_post( $term->description ) ) ) : $para(
+			nt_txt(
+				'cat_desc',
+				array(
+					'numar'     => esc_html( nt_count_label( nt_term_count( $term ) ) ),
+					'categorie' => esc_html( $term->name ),
+				)
+			)
+		);
 	} else {
 		$title = woocommerce_page_title( false );
-		$desc  = '<p>' . esc_html( nt_count_label( (int) wp_count_posts( 'product' )->publish ) ) . ' naturale, de la gospodari și mici producători din Moldova. Fără aditivi, fără E-uri.</p>';
+		$desc  = $para( nt_txt( 'shop_desc', array( 'numar' => esc_html( nt_count_label( (int) wp_count_posts( 'product' )->publish ) ) ) ) );
 	}
 	$tint = nt_tint( $term ? $term->term_id : 'shop' );
 	?>
@@ -256,9 +281,11 @@ function nt_archive_hero() {
 			<h1 class="page-title nt-ahero__title"><?php echo esc_html( $title ); ?></h1>
 			<div class="nt-ahero__desc term-description"><?php echo $desc; // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
 			<ul class="nt-ahero__facts">
-				<li><?php echo nt_icon( 'leaf', 16 ); // phpcs:ignore ?>100% natural</li>
-				<li><?php echo nt_icon( 'clock', 16 ); // phpcs:ignore ?>Livrare 1–48 ore</li>
-				<li><?php echo nt_icon( 'coins', 16 ); // phpcs:ignore ?>Plata la primire</li>
+				<?php for ( $i = 1; $i <= 3; $i++ ) : ?>
+					<?php if ( nt_txt( "shop_fact_$i" ) ) : ?>
+						<li><?php echo nt_icon( nt_opt( "shop_fact_{$i}_icon" ), 16 ); // phpcs:ignore ?><?php echo nt_txt( "shop_fact_$i" ); // phpcs:ignore ?></li>
+					<?php endif; ?>
+				<?php endfor; ?>
 			</ul>
 		</div>
 		<div class="nt-ahero__art" aria-hidden="true">
@@ -271,7 +298,9 @@ function nt_archive_hero() {
 					echo '<span class="nt-ahero__photo nt-ahero__photo--' . ( ++$i ) . '">' . nt_term_image( $t, 'woocommerce_thumbnail', array( 'loading' => 'eager' ) ) . '</span>'; // phpcs:ignore
 				}
 			}
-			echo nt_sticker( 'natural · fără E-uri · de la gospodari · ' ); // phpcs:ignore
+			if ( nt_txt_plain( 'shop_sticker' ) ) {
+				echo nt_sticker( nt_txt_plain( 'shop_sticker' ) ); // phpcs:ignore
+			}
 			?>
 		</div>
 	</section>
@@ -357,7 +386,9 @@ add_action(
 	static function () {
 		global $product;
 		if ( $product && $product->is_in_stock() && $product->is_purchasable() ) {
-			echo '<p class="nt-avail"><span class="nt-avail__dot" aria-hidden="true"></span>În stoc · gata de livrare</p>';
+			if ( nt_txt( 'prod_avail' ) ) {
+				echo '<p class="nt-avail"><span class="nt-avail__dot" aria-hidden="true"></span>' . nt_txt( 'prod_avail' ) . '</p>'; // phpcs:ignore
+			}
 		}
 	}
 );
@@ -367,13 +398,22 @@ add_action(
 	static function () {
 		?>
 		<ul class="nt-perks">
-			<li><span class="nt-perks__ico nt-tint--mint"><?php echo nt_icon( 'truck', 20 ); // phpcs:ignore ?></span><span><strong>Livrare în 1–48 de ore</strong> în Chișinău; în restul țării — prin Poșta Moldovei</span></li>
-			<?php if ( nt_free_shipping_min() ) : ?>
-				<li><span class="nt-perks__ico nt-tint--butter"><?php echo nt_icon( 'gift', 20 ); // phpcs:ignore ?></span><span><strong>Livrare gratuită de la <?php echo esc_html( nt_money( nt_free_shipping_min() ) ); ?></strong> <?php echo nt_cart_count() ? nt_freeship_note() : nt_freeship_product_note(); // phpcs:ignore ?></span></li>
-			<?php endif; ?>
-			<li><span class="nt-perks__ico nt-tint--peach"><?php echo nt_icon( 'coins', 20 ); // phpcs:ignore ?></span><span><strong>Plătești la primire</strong> în numerar, după ce verifici produsele</span></li>
+			<?php
+			$tints = array( 1 => 'mint', 2 => 'butter', 3 => 'peach' );
+			foreach ( $tints as $i => $tint ) :
+				$title = nt_txt( "perk_{$i}_title" );
+				if ( '' === $title ) {
+					continue;
+				}
+				// Avantajul 2 (livrarea gratuită) e urmat de cât mai lipsește până la prag.
+				$text = 2 === $i ? ( nt_cart_count() ? nt_freeship_note() : nt_freeship_product_note() ) : nt_txt( "perk_{$i}_text" );
+				?>
+				<li><span class="nt-perks__ico nt-tint--<?php echo esc_attr( $tint ); ?>"><?php echo nt_icon( nt_opt( "perk_{$i}_icon" ), 20 ); // phpcs:ignore ?></span><span><strong><?php echo $title; // phpcs:ignore ?></strong> <?php echo $text; // phpcs:ignore ?></span></li>
+			<?php endforeach; ?>
 		</ul>
-		<p class="nt-askus"><?php echo nt_icon( 'phone', 16 ); // phpcs:ignore ?> Ai întrebări despre produs? Sună-ne: <a href="tel:<?php echo esc_attr( nt_contact( 'phone_raw' ) ); ?>"><?php echo esc_html( nt_contact( 'phone' ) ); ?></a></p>
+		<?php if ( nt_contact( 'phone' ) && nt_txt( 'prod_ask' ) ) : ?>
+			<p class="nt-askus"><?php echo nt_icon( 'phone', 16 ); // phpcs:ignore ?> <?php echo nt_txt( 'prod_ask' ); // phpcs:ignore ?></p>
+		<?php endif; ?>
 		<?php
 	}
 );
@@ -385,8 +425,8 @@ add_filter(
 	},
 	20
 );
-add_filter( 'woocommerce_product_related_products_heading', static fn() => 'Te-ar mai putea interesa' );
-add_filter( 'woocommerce_product_upsells_products_heading', static fn() => 'Îți recomandăm și' );
+add_filter( 'woocommerce_product_related_products_heading', static fn() => nt_txt_plain( 'related_title' ) );
+add_filter( 'woocommerce_product_upsells_products_heading', static fn() => nt_txt_plain( 'upsells_title' ) );
 
 /* Câmpul de cantitate: butoane − / + (adăugate de natur.js; aici doar clasa pentru stil). */
 add_filter( 'woocommerce_quantity_input_classes', static fn( $c ) => array_merge( $c, array( 'nt-qty__input' ) ) );
@@ -405,35 +445,14 @@ function nt_sticky_add_to_cart() {
 		<?php echo wp_get_attachment_image( $product->get_image_id(), 'thumbnail', false, array( 'class' => 'nt-satc__img', 'alt' => '' ) ); ?>
 		<div class="nt-satc__txt">
 			<strong><?php echo esc_html( $product->get_name() ); ?></strong>
-			<span class="nt-satc__price"><?php echo wp_kses_post( preg_replace( '/,00(?=&nbsp;)/', '', wc_price( wc_get_price_to_display( $product ) ) ) ); ?></span>
+			<span class="nt-satc__price"><?php echo wp_kses_post( nt_trim_zero_decimals( wc_price( wc_get_price_to_display( $product ) ) ) ); ?></span>
 		</div>
-		<button type="button" class="nt-btn nt-btn--dark" data-nt-satc-btn tabindex="-1"><?php echo nt_icon( 'bag', 18 ); // phpcs:ignore ?> Adaugă</button>
+		<button type="button" class="nt-btn nt-btn--dark" data-nt-satc-btn tabindex="-1"><?php echo nt_icon( 'bag', 18 ); // phpcs:ignore ?> <?php echo esc_html( nt_txt_plain( 'card_btn' ) ); ?></button>
 	</div>
 	<?php
 }
 
-/* ================================================================== Coș / finalizare: pașii comenzii sub titlu */
-
-add_action(
-	'nt_page_header_bottom',
-	static function () {
-		if ( ! is_cart() && ! is_checkout() ) {
-			return;
-		}
-		$step = is_cart() ? 1 : ( is_wc_endpoint_url( 'order-received' ) ? 3 : 2 );
-		echo '<ol class="nt-progress" aria-label="Pașii comenzii">';
-		foreach ( array( 'Coș', 'Livrare și plată', 'Confirmare' ) as $i => $label ) {
-			$n = $i + 1;
-			printf(
-				'<li class="%s"%s><span aria-hidden="true"></span>%s</li>',
-				$n < $step ? 'is-done' : ( $n === $step ? 'is-current' : '' ),
-				$n === $step ? ' aria-current="step"' : '',
-				esc_html( $label )
-			);
-		}
-		echo '</ol>';
-	}
-);
+/* Coșul și pagina de comandă (într-un singur pas): inc/checkout.php. */
 
 /* ================================================================== Diverse */
 

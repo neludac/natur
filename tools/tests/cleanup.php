@@ -1,12 +1,13 @@
 <?php
 /**
- * Șterge datele create de testele e2e: comenzi și clienți (e-mail e2e-*@example.com),
- * produse „E2E …” și categorii „E2E …”.
+ * Șterge datele create de testele e2e: comenzi (e-mail e2e-*@example.com sau numele „Test E2E”), clienți,
+ * produse „E2E …”, categorii „E2E …” și limita anti-bot de comenzi pe IP.
  * Rulare: ddev wp eval-file tools/tests/cleanup.php
  */
 $n = 0;
 foreach ( wc_get_orders( array( 'limit' => -1, 'type' => 'shop_order' ) ) as $order ) {
-	if ( preg_match( '/^(e2e-|test-)[^@]*@example\.com$/', $order->get_billing_email() ) ) {
+	// Comenzile de test: e-mail e2e-*@example.com sau, fără e-mail (doar nume și telefon), numele „Test E2E”.
+	if ( preg_match( '/^(e2e-|test-)[^@]*@example\.com$/', $order->get_billing_email() ) || 'E2E' === $order->get_billing_last_name() ) {
 		foreach ( $order->get_refunds() as $refund ) {
 			$refund->delete( true );
 		}
@@ -36,4 +37,7 @@ foreach ( get_users( array( 'search' => '*@example.com', 'search_columns' => arr
 		$u++;
 	}
 }
+// Limita de comenzi pe IP a protecției anti-bot (inc/checkout-guard.php): testele comandă mereu de pe același IP.
+global $wpdb;
+$wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE '\\_transient\\_nt\\_ck\\_rate\\_%' OR option_name LIKE '\\_transient\\_timeout\\_nt\\_ck\\_rate\\_%'" ); // phpcs:ignore WordPress.DB
 WP_CLI::success( "Șterse: $n comenzi, $p produse, $c categorii, $u utilizatori de test." );

@@ -280,21 +280,18 @@ async function addToCart(p, prod, qty) {
 	await Promise.all([p.waitForNavigation({ waitUntil: 'networkidle' }), p.click('button[name="add-to-cart"]')]);
 }
 
+/* Comanda într-un singur pas: nume, telefon, adresă (clientul autentificat primește confirmarea pe e-mailul contului). */
 async function checkout(p) {
 	await p.goto(`${BASE}/finalizare-comanda/`, { waitUntil: 'networkidle' });
-	if (await p.isEditable('#email').catch(() => false)) await p.fill('#email', customer.email);
-	const fields = { 'first_name': customer.first, 'last_name': customer.last, 'address_1': 'bd. Dacia 27, ap. 5', 'city': 'Chișinău', 'phone': '069123456' };
-	const same = p.locator('.wc-block-checkout__use-address-for-billing input[type="checkbox"]');
-	if ((await same.count()) && !(await same.isChecked())) await same.check(); // ca un client real: facturare = livrare
-	for (const [k, v] of Object.entries(fields)) {
-		const sel = (await p.isVisible(`#shipping-${k}`)) ? `#shipping-${k}` : `#billing-${k}`;
-		if (await p.isVisible(sel)) await p.fill(sel, v);
-	}
+	await p.fill('#billing_first_name', `${customer.first} ${customer.last}`);
+	await p.fill('#billing_phone', '069123456');
+	await p.check('#billing_state_city');
+	await p.fill('#billing_address_1', 'bd. Dacia 27, ap. 5');
 	await p.waitForTimeout(2500);
-	const pay = text(await p.innerText('.wp-block-woocommerce-checkout-payment-block'));
+	const pay = text(await p.innerText('#payment .wc_payment_methods'));
 	ok(/Plata la livrare/.test(pay), `metoda de plată: „${pay.slice(0, 60)}”`);
-	const total = text(await p.innerText('.wc-block-components-totals-footer-item .wc-block-components-totals-item__value'));
-	await p.click('.wc-block-components-checkout-place-order-button');
+	const total = text(await p.innerText('.nt-ck-sum__total dd'));
+	await p.click('#place_order');
 	await p.waitForURL(/order-received|comanda-primita/, { timeout: 30000 });
 	await p.waitForLoadState('networkidle');
 	const id = Number((p.url().match(/(?:order-received|comanda-primita)\/(\d+)/) || [])[1]);
@@ -307,17 +304,17 @@ async function testCustomerOrder(p) {
 	await addToCart(p, P.std, 1);
 	await addToCart(p, P.sale, 2);
 	await p.goto(`${BASE}/cos/`, { waitUntil: 'networkidle' });
-	await p.waitForSelector('.wc-block-cart-items .wc-block-components-product-name, .woocommerce-cart-form', { timeout: 20000 });
-	const cartTxt = text(await p.innerText('main'));
-	ok(cartTxt.includes(P.std.title) && cartTxt.includes(P.sale.title), 'ambele produse în coș');
-	ok(cartTxt.includes(lei(P.sale.sale)) && cartTxt.includes(lei(P.sale.price)), 'coșul arată prețul redus (și pe cel vechi tăiat)');
+	ok(/\/finalizare-comanda\/$/.test(p.url()), 'coșul duce direct la pagina de comandă');
+	const cartTxt = text(await p.innerText('.nt-ck-sum'));
+	ok(cartTxt.includes(P.std.title) && cartTxt.includes(P.sale.title), 'ambele produse în comandă');
+	ok(cartTxt.includes(leiV(P.sale.sale)) && text(await p.innerText('.nt-ck-item del')).includes(leiV(P.sale.price)), 'comanda arată prețul redus (și pe cel vechi tăiat)');
 	const { cart } = await storeCart(p);
 	ok(cart.items_count === 3 && Number(cart.totals.total_items) / 100 === 400, `subtotal coș: ${Number(cart.totals.total_items) / 100} lei (100 + 2 × 150)`);
 
 	const o = await checkout(p);
 	P.order = o;
 	ok(o.id > 0, `comanda plasată: #${o.id}`);
-	ok(o.total.includes(lei(450)), `total cu livrare 50 lei: ${o.total}`);
+	ok(o.total === leiV(450), `total cu livrare 50 lei: ${o.total}`);
 	const conf = text(await p.innerText('main'));
 	ok(/Mulțumim|Mulţumim/i.test(conf) && conf.includes(String(o.id)), 'pagina de confirmare cu numărul comenzii');
 	ok(/Plata la livrare/.test(conf), 'confirmarea menționează plata la livrare');
@@ -334,7 +331,7 @@ async function testCustomerOrder(p) {
 	section('Client: a doua comandă (va fi anulată de magazin)');
 	await addToCart(p, P.std, 1);
 	P.order2 = await checkout(p);
-	ok(P.order2.id > 0 && P.order2.total.includes(lei(150)), `comanda #${P.order2.id}: ${P.order2.total}`);
+	ok(P.order2.id > 0 && P.order2.total === leiV(150), `comanda #${P.order2.id}: ${P.order2.total}`);
 	ok(p.jsErrors.length === 0, 'fără erori JS ' + p.jsErrors.join(' | '));
 }
 

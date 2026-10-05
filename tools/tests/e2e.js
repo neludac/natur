@@ -4,7 +4,7 @@
  *
  *   cd tools/tests && npm install && BASE=https://natur.ddev ADMIN_PASS='…' npm test
  *
- * Creează 2 comenzi de test (e-mail e2e-*@example.com) și un client de test;
+ * Creează 3 comenzi de test (nume „Test E2E”) și un client de test;
  * se șterg cu `npm run cleanup` (rulează ddev wp).
  */
 const { BASE, ok, section, failures, launch, newPage } = require('./lib');
@@ -23,6 +23,24 @@ async function testHome(b) {
 	ok((await p.$$('ul.products li.product')).length >= 8, 'produse recomandate afișate');
 	ok((await p.$$('.nt-cat')).length >= 4, 'categorii afișate');
 	ok(await p.isVisible('.natur-embed .natur-spin'), 'widget 360° pe prima pagină');
+	ok((await p.$$('.nt-recipe .nt-recipe__img')).length >= 4 && (await p.$$('.nt-recipe__prod .nt-add')).length >= 4, 'rețete video afișate, cu produsul din rețetă');
+	// Linkurile demo duc la profil; un reel încorporat trebuie să se deschidă în fereastră.
+	await p.$eval('.nt-recipe__link', (a) => a.setAttribute('data-nt-embed', 'about:blank'));
+	await p.click('.nt-recipe__link');
+	ok(await p.evaluate(() => document.querySelector('.nt-reel').open && !!document.querySelector('.nt-reel iframe') && !!document.querySelector('.nt-reel .nt-recipe__prod')), 'rețeta video se deschide în fereastră, cu produsul');
+	await p.keyboard.press('Escape');
+	const closed = await p.waitForFunction(() => !document.querySelector('.nt-reel').open && !document.querySelector('[data-nt-reel-player]').children.length, null, { timeout: 5000 }).catch(() => null);
+	ok(!!closed, 'Esc închide fereastra și oprește clipul');
+	// Subsol: contact, linkurile principale, rețelele sociale și, obligatoriu, politicile de confidențialitate și cookies.
+	const foot = await p.$eval('footer.nt-footer', (f) => ({
+		contact: !!f.querySelector('.nt-footer__contact a[href^="tel:"]') && !!f.querySelector('.nt-footer__contact a[href^="mailto:"]'),
+		social: f.querySelectorAll('.nt-social a[target="_blank"]').length,
+		links: f.querySelectorAll('.nt-footer__col li a').length,
+		legal: [...f.querySelectorAll('.nt-footer__legal a')].map((a) => new URL(a.href).pathname),
+	}));
+	ok(foot.contact && foot.social >= 2 && foot.links >= 6, `subsol: telefon, e-mail, ${foot.social} rețele sociale, ${foot.links} linkuri`);
+	ok(foot.legal.includes('/politica-de-confidentialitate/') && foot.legal.includes('/politica-de-cookies/'), 'subsol: Politica de confidențialitate și Politica de cookies');
+	for (const path of foot.legal) ok((await p.request.get(BASE + path)).status() === 200, `${path} răspunde 200`);
 	ok(p.jsErrors.length === 0, 'fără erori JS ' + p.jsErrors.join(' | '));
 	await p.context().close();
 }
@@ -93,35 +111,103 @@ async function testProductMedia(b, mobile) {
 	await p.context().close();
 }
 
-async function placeOrder(b, items, expect, tag) {
+/**
+ * Comanda într-un singur pas: coșul duce direct la comandă, câmpurile vizibile: telefon, „Unde livrăm?”,
+ * nume, adresă. `email` (opțional) se completează în „Adaugă un comentariu sau e-mail”.
+ */
+async function placeOrder(b, items, expect, { email = '', other = false } = {}) {
 	const p = await newPage(b);
 	for (const [slug, qty] of items) {
 		await p.goto(`${BASE}/produs/${slug}/`, { waitUntil: 'networkidle' });
 		await p.fill('input.qty', String(qty));
 		await Promise.all([p.waitForNavigation({ waitUntil: 'networkidle' }), p.click('button[name="add-to-cart"]')]);
 	}
-	await p.goto(`${BASE}/finalizare-comanda/`, { waitUntil: 'networkidle' });
-	await p.fill('#email', `e2e-${tag}-${Date.now()}@example.com`);
-	await p.fill('#shipping-first_name', 'Test');
-	await p.fill('#shipping-last_name', 'E2E');
-	await p.fill('#shipping-address_1', 'str. Ștefan cel Mare 1');
-	await p.fill('#shipping-city', 'Chișinău');
-	await p.fill('#shipping-phone', '069123456');
+	await p.goto(`${BASE}/cos/`, { waitUntil: 'networkidle' });
+	ok(/\/finalizare-comanda\/$/.test(p.url()), 'coșul cu produse duce direct la comandă');
+	const fields = await p.$$eval('form.checkout input:not([type="hidden"]):not([type="radio"]), form.checkout textarea, form.checkout select', (els) => els.filter((e) => e.checkVisibility() && !e.closest('.nt-hp')).map((e) => e.name));
+	ok(fields.join() === 'billing_phone,billing_first_name,billing_address_1', `doar 3 câmpuri de completat: ${fields.join(', ')}`);
+	ok(!(await p.$('input[name="terms"], #createaccount, .woocommerce-form-login-toggle')), 'fără bifă de termeni, cont sau autentificare');
+	await p.fill('#billing_first_name', 'Test E2E');
+	await p.fill('#billing_phone', '069123456');
+	if (other) await p.click('label[for="billing_state_other"]');
+	await p.fill('#billing_address_1', other ? 's. Bubuieci, str. Livezilor 3' : 'str. Ștefan cel Mare 1');
+	if (email) {
+		await p.click('.nt-ck__more summary');
+		await p.fill('#billing_email', email);
+	}
 	await p.waitForTimeout(2500);
-	const rates = await p.innerText('.wp-block-woocommerce-checkout-shipping-methods-block');
-	ok(expect.test(rates), `livrare corectă (${rates.replace(/\s+/g, ' ').trim().slice(0, 70)})`);
-	await p.click('.wc-block-components-checkout-place-order-button');
+	const rates = text(await p.innerText('.nt-ck-ship'));
+	ok(expect.test(rates), `livrare corectă (${rates.slice(0, 80)})`);
+	const total = text(await p.innerText('.nt-ck-sum__total dd'));
+	ok(text(await p.innerText('#place_order')).endsWith(total), `butonul arată totalul: „${text(await p.innerText('#place_order'))}”`);
+	await p.click('#place_order');
 	await p.waitForURL(/order-received|comanda-primita/, { timeout: 30000 });
-	ok(/Mulțumim|Mulţumim|primit/i.test(await p.innerText('main')), 'pagina de confirmare a comenzii');
+	const thanks = text(await p.innerText('main'));
+	ok(/Mulțumim, Test!/.test(thanks) && thanks.includes('069123456') && thanks.includes(total), 'confirmare: nume, telefonul la care sunăm și suma de plată');
 	ok(p.jsErrors.length === 0, 'fără erori JS ' + p.jsErrors.join(' | '));
 	await p.context().close();
 }
 
+/*
+ * Protecția ascunsă anti-bot (inc/checkout-guard.php): aceleași date trimise direct (fără browser), cu capcana completată,
+ * prea repede sau prin Store API sunt refuzate; formularul completat de un om (testele de mai sus) trece.
+ */
+async function testGuard(p) {
+	const trap = await p.$eval('.nt-hp input', (i) => ({ name: i.name, tab: i.tabIndex, hidden: i.closest('[aria-hidden="true"]') !== null, x: i.getBoundingClientRect().right }));
+	ok(trap.tab === -1 && trap.hidden && trap.x < 0, 'câmpul-capcană e ascuns (în afara ecranului, fără Tab, ascuns cititoarelor de ecran)');
+	const form = async (patch) =>
+		p.evaluate(async (patch) => {
+			const fd = new FormData(document.querySelector('form.checkout'));
+			fd.set('billing_first_name', 'Bot E2E');
+			fd.set('billing_phone', '069123456');
+			for (const [k, v] of Object.entries(patch)) fd.set(k, v);
+			const r = await fetch('/?wc-ajax=checkout', { method: 'POST', body: new URLSearchParams(fd), credentials: 'same-origin' });
+			return r.json();
+		}, patch);
+	const msg = (r) => text(r.messages || '').replace(/<[^>]+>/g, ' ');
+	const token = await p.$eval('input[data-nt-hc]', (i) => i.dataset.ntHc);
+	let r = await form({ nt_hc: '' });
+	ok(r.result === 'failure' && /Reîncarcă/.test(msg(r)), `fără dovada din browser → refuzată: „${msg(r).slice(0, 70)}”`);
+	r = await form({ nt_hc: `v1.${token}.5.3.20.0.0.9000.6000`, nt_website: 'https://spam.example' });
+	ok(r.result === 'failure' && /Reîncarcă/.test(msg(r)), 'capcana completată → refuzată');
+	r = await form({ nt_hc: `v1.${token.replace(/^\d+/, (t) => t - 1)}.5.3.20.0.0.9000.6000` });
+	ok(r.result === 'failure', 'semnătura falsificată → refuzată');
+	const now = Math.floor(Date.now() / 1000);
+	r = await form({ nt_hc: `v1.${now}.${token.split('.')[1]}.5.3.20.0.0.900.600` });
+	ok(r.result === 'failure', 'jeton reconstruit cu ora curentă → refuzat');
+	const api = await p.request.post(`${BASE}/wp-json/wc/store/v1/checkout`, { data: {}, failOnStatusCode: false });
+	ok(api.status() === 403, `comanda prin Store API → ${api.status()}`);
+}
+
 async function testCheckout(b) {
-	section('Comandă sub 500 lei (livrare 50 lei)');
-	await placeOrder(b, [['oua-de-prepelita', 2]], /50,00/, 'mic');
-	section('Comandă peste 500 lei (livrare gratuită)');
-	await placeOrder(b, [['unt-topit-ghee', 1], ['oua-de-prepelita', 2]], /gratuit/i, 'mare');
+	section('Comandă sub 500 lei, doar cu nume și telefon (livrare 50 lei)');
+	await placeOrder(b, [['oua-de-prepelita', 2]], /curier.*50 lei/i);
+	section('Comandă peste 500 lei, cu e-mail (livrare gratuită)');
+	await placeOrder(b, [['unt-topit-ghee', 1], ['oua-de-prepelita', 2]], /gratuit/i, { email: `e2e-mare-${Date.now()}@example.com` });
+	section('Comandă în altă localitate (Poșta Moldovei)');
+	await placeOrder(b, [['oua-de-prepelita', 1]], /Poșta Moldovei.*50 lei/i, { other: true, email: `e2e-posta-${Date.now()}@example.com` });
+
+	section('„Comandă acum” și validarea formularului');
+	const p = await newPage(b);
+	await p.goto(`${BASE}/produs/unt-topit-ghee/`, { waitUntil: 'networkidle' });
+	await Promise.all([p.waitForNavigation({ waitUntil: 'networkidle' }), p.click('.nt-buynow')]);
+	ok(/\/finalizare-comanda\/$/.test(p.url()) && (await p.$$('.nt-ck-item')).length === 1, '„Comandă acum” deschide comanda cu produsul');
+	ok(!(await p.$('.woocommerce-message')), 'fără mesajul „adăugat în coș” deasupra formularului');
+	await p.click('[data-nt-ck-qty] button[data-step="1"]');
+	await p.waitForFunction(() => /2/.test(document.querySelector('.nt-cart-count').getAttribute('data-count')), null, { timeout: 15000 }).catch(() => null);
+	await p.waitForFunction(() => /920/.test(document.querySelector('.nt-ck-sum__total dd').textContent), null, { timeout: 15000 }).catch(() => null);
+	ok(text(await p.innerText('.nt-ck-sum__total dd')) === '920 lei', `„+” pe pagina comenzii: total ${text(await p.innerText('.nt-ck-sum__total dd'))}`);
+	await p.fill('#billing_first_name', 'Test');
+	await p.fill('#billing_phone', '0691');
+	await p.fill('#billing_address_1', 'str. Test 1');
+	await p.click('#place_order');
+	await p.waitForSelector('.woocommerce-NoticeGroup-checkout', { timeout: 15000 }).catch(() => null);
+	ok(/telefon/i.test(text(await p.innerText('.woocommerce-NoticeGroup-checkout').catch(() => ''))), 'telefonul incomplet e refuzat');
+	await testGuard(p);
+	await Promise.all([p.waitForNavigation({ waitUntil: 'networkidle', timeout: 20000 }), p.click('.nt-ck-item__remove')]);
+	ok(/\/cos\/$/.test(p.url()) && /gol/i.test(text(await p.innerText('main'))), 'după ștergerea ultimului produs: „Coșul e gol”');
+	ok(p.jsErrors.length === 0, 'fără erori JS ' + p.jsErrors.join(' | '));
+	await p.context().close();
 }
 
 async function testForms(b) {
