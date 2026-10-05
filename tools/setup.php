@@ -773,6 +773,11 @@ update_post_meta( $pages['contact'], '_elementor_template_type', 'wp-page' );
 update_post_meta( $pages['contact'], '_elementor_version', ELEMENTOR_VERSION );
 update_post_meta( $pages['contact'], '_wp_page_template', 'default' );
 update_post_meta( $pages['contact'], '_elementor_data', wp_slash( wp_json_encode( $contact_data ) ) );
+// Astra pune la prima editare în Elementor lățime completă (fără margini) și ascunde titlul; pagina rămâne în containerul temei.
+update_post_meta( $pages['contact'], '_astra_content_layout_flag', 'disabled' );
+foreach ( array( 'site-post-title', 'ast-title-bar-display', 'ast-featured-img', 'ast-site-content-layout', 'site-content-layout', 'site-sidebar-layout' ) as $astra_meta ) {
+	delete_post_meta( $pages['contact'], $astra_meta );
+}
 
 // Setările temei legate de datele acestui magazin (Aspect → Personalizare → Natur.MD)
 set_theme_mod( 'mega_promo_page', $pages['delivery'] );

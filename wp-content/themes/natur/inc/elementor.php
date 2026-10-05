@@ -13,6 +13,12 @@ add_action(
 	}
 );
 
+/*
+ * La prima editare a unei pagini în Elementor, Astra o trece pe lățime completă (conținut lipit de marginile ecranului)
+ * și îi ascunde titlul. Paginile temei au antetul și containerul lor, deci păstrăm setările obișnuite.
+ */
+add_filter( 'astra_elementor_use_default_settings', '__return_true' );
+
 add_action(
 	'elementor/widgets/register',
 	static function ( $widgets ) {

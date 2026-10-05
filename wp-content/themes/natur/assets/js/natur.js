@@ -264,6 +264,7 @@
 		'.woocommerce-tabs', 'section.related', '.nt.page:not(.home) .entry-content > *', '.nt-cb', '.nt-faq details'
 	].join(',');
 	if ('IntersectionObserver' in window && !reduced) {
+		// Prag 0: un element foarte înalt (o descriere lungă de produs) nu ajunge niciodată la 8% vizibil și ar rămâne ascuns.
 		var io = new IntersectionObserver(function (entries) {
 			entries.forEach(function (en) {
 				if (en.isIntersecting) {
@@ -272,11 +273,15 @@
 					if (en.target.querySelector('[data-nt-count]')) countUp(en.target);
 				}
 			});
-		}, { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+		}, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
 		var vh = window.innerHeight;
 		var groups = new Map();
 		$$(revealSel).forEach(function (el) {
-			if (el.getBoundingClientRect().top < vh * .92) return; // vizibil deja: fără animație
+			// Vizibil deja: fără animație (și fără data-reveal pus din HTML, ca la banda din subsol, altfel rămâne ascuns)
+			if (el.getBoundingClientRect().top < vh * .92) {
+				el.removeAttribute('data-reveal');
+				return;
+			}
 			var parent = el.parentElement;
 			var idx = groups.get(parent) || 0;
 			groups.set(parent, idx + 1);
@@ -284,6 +289,8 @@
 			el.setAttribute('data-reveal', '');
 			io.observe(el);
 		});
+	} else {
+		$$('[data-reveal]').forEach(function (el) { el.removeAttribute('data-reveal'); });
 	}
 	/* Cifrele din „Povestea noastră” cresc de la 0 */
 	function countUp(scope) {
