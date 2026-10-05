@@ -2334,6 +2334,8 @@ body.nt ul.products li.product.nt-card .price ins, body.nt .nt-card .price ins {
 
 @media (max-width: 900px) {
 	.nt .elementor .e-con.nt-hero__in, .nt .elementor .e-con.nt-story, .nt .elementor .e-con.nt-spot { grid-template-columns: 1fr; }
+	/* Telefon: colajul foto primul, textul sub el */
+	.nt .elementor .nt-hero__in > .nt-hero__art { order: -1; }
 	.nt-hart { max-width: 520px; margin: 0 auto; }
 	.nt .elementor .e-con.nt-story .nt-sart { margin: 0 auto; }
 	.nt-ahero { grid-template-columns: 1fr; min-height: 0; }
