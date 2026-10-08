@@ -16,6 +16,15 @@ require_once ABSPATH . 'wp-admin/includes/media.php';
 $dir  = __DIR__ . '/data';
 $data = json_decode( file_get_contents( $dir . '/natur.json' ), true );
 
+// Catalogul = lista de prețuri (data/catalog.json): doar produsele de acolo, cu titlul de acolo.
+// Categoriile fără produse din listă nu se mai creează (vezi „Păstrăm doar categoriile care au produse”).
+$catalog_title    = array_column( json_decode( file_get_contents( $dir . '/catalog.json' ), true )['products'], 'title', 'old_id' );
+$data['products'] = array_values( array_filter( $data['products'], static fn( $p ) => isset( $catalog_title[ $p['id'] ] ) ) );
+foreach ( $data['products'] as &$p ) {
+	$p['name'] = $catalog_title[ $p['id'] ];
+}
+unset( $p );
+
 wp_defer_term_counting( true );
 wp_defer_comment_counting( true );
 

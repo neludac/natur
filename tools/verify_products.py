@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Verifică dacă toate produsele de pe natur.md există pe site-ul nou, cu toate detaliile.
+"""Verifică dacă produsele de pe natur.md din lista de prețuri (tools/data/catalog.json) există pe
+site-ul nou, cu toate detaliile (numele așteptat = titlul din listă).
 
     python3 tools/verify_products.py            # citește natur.md acum (~4 minute)
     python3 tools/verify_products.py --offline  # compară cu tools/data/natur.json (ultima extragere)
     WP="wp --path=/cale/site" python3 tools/verify_products.py   # alt site decât DDEV
 
-Compară, pentru fiecare produs: nume, preț (și reducere), stoc, ambalare, descrierea scurtă,
+Compară, pentru fiecare produs: nume, preț (și reducere), stoc, descrierea scurtă,
 descrierea lungă (text + număr de imagini), fotografii, categorii, recenzii și produsele
 recomandate; pentru fiecare categorie: existența, părintele și numărul de produse.
 Iese cu codul 1 dacă găsește diferențe.
@@ -69,10 +70,6 @@ def norm(s):
     return re.sub(r"\s+", " ", s).strip()
 
 
-def unit_of(u):
-    return re.sub(r"^pentru\s+", "", u or "", flags=re.I).strip()
-
-
 def export_new():
     cmd = shlex.split(os.environ.get("WP", "ddev wp")) + ["eval-file", "-"]
     r = subprocess.run(cmd, input=EXPORT_PHP, capture_output=True, text=True, cwd=ROOT)
@@ -91,6 +88,12 @@ def main():
         print("Citesc natur.md…", flush=True)
         cats, products = scrape_natur.scrape_catalog(0, log=lambda *_: None)
         print(f"natur.md acum: {len(products)} produse, {len(cats)} categorii")
+
+    # Catalogul = lista de prețuri (tools/data/catalog.json): doar produsele de acolo, cu titlul de acolo.
+    catalog = {c["old_id"]: c["title"] for c in json.loads((ROOT / "tools/data/catalog.json").read_text())["products"]}
+    products = {pid: {**o, "name": catalog[pid], "accessories": [a for a in o.get("accessories", []) if a in catalog]}
+                for pid, o in products.items() if pid in catalog}
+    print(f"din lista de prețuri: {len(products)} produse")
 
     site = export_new()
     new = {p["old_id"]: p for p in site["products"] if p["old_id"]}
@@ -117,8 +120,7 @@ def main():
             bad(key, "preț", f"{o['price']} (fără reducere {regular}) ≠ {n['price']} (regular {n['regular']})")
         if (n["stock"] == "instock") != o["in_stock"]:
             bad(key, "stoc", f"{'în stoc' if o['in_stock'] else o.get('availability') or 'stoc epuizat'} ≠ {n['stock']}")
-        if norm(unit_of(o["unit"])).lower() != norm(n["unit"]).lower():
-            bad(key, "ambalare", f"{unit_of(o['unit'])!r} ≠ {n['unit']!r}")
+        # Ambalarea (pa_ambalare) vine acum din lista de prețuri, nu de pe natur.md.
         if norm(o["short"]) != norm(n["short"]):
             bad(key, "descriere scurtă", f"{norm(o['short'])[:120]!r} ≠ {norm(n['short'])[:120]!r}")
         if norm(o["description"]) and norm(o["description"]) not in norm(n["desc"]):
@@ -173,7 +175,7 @@ def main():
     if fields:
         print("Diferențe:", ", ".join(f"{f}: {k}" for f, k in fields.most_common()))
         sys.exit(1)
-    print("Toate produsele și categoriile de pe natur.md sunt pe site, cu toate detaliile.")
+    print("Toate produsele din lista de prețuri și categoriile lor sunt pe site, cu toate detaliile.")
 
 
 if __name__ == "__main__":

@@ -133,7 +133,7 @@ function nt_pack_label( WC_Product $product ) {
 	if ( '' === $raw ) {
 		return '';
 	}
-	if ( preg_match( '/^kg$/i', $raw ) ) {
+	if ( preg_match( '/^kg(\b|$)/iu', $raw ) ) { // „Kg”, „kg/vrac/vacuum”, „kg vacuum/bucată”
 		return 'per kg';
 	}
 	$raw = preg_replace( '/(\d)\s*(gr?|ml|l|kg|caps|buc)\b/iu', '$1 $2', $raw );
@@ -361,6 +361,11 @@ function nt_sticker( $text, $icon = 'leaf' ) {
 }
 
 /* ================================================================== Pagina produsului */
+
+/* Galerie + rezumat într-un wrapper propriu: galeria sticky se oprește la finalul lui,
+   nu mai alunecă peste tab-uri și produsele similare (care sunt tot în div.product). */
+add_action( 'woocommerce_before_single_product_summary', static fn() => print '<div class="nt-product-top">', 1 );
+add_action( 'woocommerce_after_single_product_summary', static fn() => print '</div>', 1 );
 
 /* Insigna „-25%” lângă preț (nu peste galerie, unde sunt butoanele Foto / Video / 360°). */
 remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10 );

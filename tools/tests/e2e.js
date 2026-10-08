@@ -271,7 +271,7 @@ async function testCrawl() {
 	for (const m of (await html(BASE + '/')).matchAll(/href="(https?:\/\/[^"]+\/(?:despre-noi|livrare-si-plata|contact|termeni-si-conditii|politica-de-retur|politica-de-confidentialitate)\/)"/g)) seen.add(m[1]);
 	const bad = [];
 	await Promise.all([...seen].map(async (u) => { const r = await fetch(u); if (r.status !== 200) bad.push(`${r.status} ${u}`); }));
-	ok(seen.size > 50 && bad.length === 0, `${seen.size} URL-uri verificate ${bad.join(', ')}`);
+	ok(seen.size > 30 && bad.length === 0, `${seen.size} URL-uri verificate ${bad.join(', ')}`);
 }
 
 async function testMobile(b) {

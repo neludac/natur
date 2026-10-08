@@ -1696,18 +1696,20 @@ body.nt ul.products li.product.nt-card .price ins, body.nt .nt-card .price ins {
 
 /* ---------------------------------------------------------------- 7. Pagina produsului */
 
-.nt.single-product div.product {
+/* Grila stă pe .nt-product-top (doar galerie + rezumat): galeria sticky e limitată la containerul ei,
+   deci nu mai trece peste tab-uri / produse similare. */
+.nt.single-product div.product { position: relative; }
+.nt.single-product .nt-product-top {
 	display: grid;
 	grid-template-columns: minmax(0, 1.06fr) minmax(0, 1fr);
 	column-gap: clamp(32px, 5vw, 72px);
 	align-items: start;
-	position: relative;
 }
-.nt.single-product div.product > * { grid-column: 1 / -1; }
+.nt.single-product .nt-product-top > * { grid-column: 1 / -1; }
 /* div.images.… bate „.woocommerce-js div.product div.images.woocommerce-product-gallery { position: relative }” din Astra (altfel top: 100px o împinge în jos) */
-.nt.single-product div.product > .natur-media,
-.nt.single-product div.product > div.images.woocommerce-product-gallery { grid-column: 1; grid-row: 1; width: auto !important; float: none !important; margin: 0 !important; position: sticky; top: 100px; }
-.nt.single-product div.product > .summary { grid-column: 2; grid-row: 1; width: auto !important; float: none !important; margin: 0 !important; padding-top: 4px; }
+.nt.single-product .nt-product-top > .natur-media,
+.nt.single-product .nt-product-top > div.images.woocommerce-product-gallery { grid-column: 1; grid-row: 1; width: auto !important; float: none !important; margin: 0 !important; position: sticky; top: 100px; }
+.nt.single-product .nt-product-top > .summary { grid-column: 2; grid-row: 1; width: auto !important; float: none !important; margin: 0 !important; padding-top: 4px; }
 
 .nt.single-product .natur-media__stage, .nt.single-product .woocommerce-product-gallery .flex-viewport, .nt.single-product .woocommerce-product-gallery__wrapper > .woocommerce-product-gallery__image:only-child { border-radius: 32px; overflow: hidden; background: var(--nt-bg-2); }
 .nt.single-product .woocommerce-product-gallery__image img { border-radius: 0; }
@@ -1716,6 +1718,9 @@ body.nt ul.products li.product.nt-card .price ins, body.nt .nt-card .price ins {
 .nt.single-product .woocommerce-product-gallery .flex-control-thumbs li img { border-radius: 18px; opacity: .55; box-shadow: inset 0 0 0 2px transparent; outline: 2px solid transparent; outline-offset: 2px; transition: opacity .2s, outline-color .2s; }
 .nt.single-product .woocommerce-product-gallery .flex-control-thumbs li img.flex-active, .nt.single-product .woocommerce-product-gallery .flex-control-thumbs li img:hover { opacity: 1; outline-color: var(--nt-ink); }
 .nt.single-product .woocommerce-product-gallery__trigger { top: 18px !important; right: 18px !important; width: 44px !important; height: 44px !important; border-radius: 50% !important; background: rgba(255, 255, 255, .92) !important; box-shadow: 0 6px 14px -8px rgba(0, 0, 0, .4); }
+/* WooCommerce desenează lupa cu offset-uri fixe pentru un cerc de 36px — o raportăm la centru */
+.nt.single-product .woocommerce-product-gallery__trigger::before { top: calc(50% - 9px); left: calc(50% - 9px); }
+.nt.single-product .woocommerce-product-gallery__trigger::after { top: calc(50% + 1px); left: calc(50% + 4px); }
 
 .nt .natur-media { --npm-accent: var(--nt-forest); --npm-ink: var(--nt-ink); }
 .nt .natur-media__switch { top: 16px; left: 16px; gap: 4px; padding: 4px; border-radius: 999px; background: rgba(255, 255, 255, .9); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); box-shadow: 0 8px 20px -12px rgba(0, 0, 0, .4); }
@@ -2366,10 +2371,10 @@ body.nt ul.products li.product.nt-card .price ins, body.nt .nt-card .price ins {
 	.nt-help__card { grid-template-columns: 1fr; }
 	.nt-help__art { display: none; }
 
-	.nt.single-product div.product { grid-template-columns: minmax(0, 1fr); }
-	.nt.single-product div.product > .natur-media,
-	.nt.single-product div.product > div.images.woocommerce-product-gallery { position: static; top: auto; grid-row: auto; }
-	.nt.single-product div.product > .summary { grid-column: 1; grid-row: auto; margin-top: 28px !important; }
+	.nt.single-product .nt-product-top { grid-template-columns: minmax(0, 1fr); }
+	.nt.single-product .nt-product-top > .natur-media,
+	.nt.single-product .nt-product-top > div.images.woocommerce-product-gallery { position: static; top: auto; grid-row: auto; }
+	.nt.single-product .nt-product-top > .summary { grid-column: 1; grid-row: auto; margin-top: 28px !important; }
 	.nt.woocommerce-account .woocommerce { grid-template-columns: 1fr; }
 }
 
