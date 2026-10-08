@@ -211,7 +211,7 @@ async function testCheckout(b) {
 }
 
 async function testForms(b) {
-	section('Pagina de contact, căutare, magazin, cont');
+	section('Pagina de contact, căutare, magazin, fără cont de client');
 	const p = await newPage(b);
 	await p.context().grantPermissions(['clipboard-read', 'clipboard-write'], { origin: BASE });
 	await p.goto(BASE + '/contact/', { waitUntil: 'networkidle' });
@@ -236,10 +236,10 @@ async function testForms(b) {
 	await p.goto(BASE + '/categorie/carne/', { waitUntil: 'networkidle' });
 	ok((await p.$$('ul.products li.product')).length > 0, 'pagina de categorie listează produse');
 
+	// Magazinul nu are „Contul meu”: se comandă fără cont, iar /contul-meu/ duce la prima pagină.
+	ok(!(await p.$('a[href*="contul-meu"], .nt-account')), 'fără link spre „Contul meu” în antet, meniu sau subsol');
 	await p.goto(BASE + '/contul-meu/', { waitUntil: 'networkidle' });
-	await p.fill('#reg_email', `e2e-client-${Date.now()}@example.com`);
-	await Promise.all([p.waitForNavigation({ waitUntil: 'networkidle' }), p.click('button[name="register"]')]);
-	ok(await p.isVisible('.woocommerce-MyAccount-navigation'), 'înregistrare cont nou și autentificare');
+	ok(new URL(p.url()).pathname === '/', `/contul-meu/ redirecționează spre prima pagină (${new URL(p.url()).pathname})`);
 	ok(p.jsErrors.length === 0, 'fără erori JS ' + p.jsErrors.join(' | '));
 	await p.context().close();
 }
@@ -252,10 +252,12 @@ async function testRedirects() {
 		'/content/1-conditii': '/livrare-si-plata/',
 		'/content/2-povestea-noastra': '/despre-noi/',
 		'/quick-order': '/finalizare-comanda/',
+		'/my-account': '/',
+		'/authentication': '/',
 	};
 	for (const [from, to] of Object.entries(cases)) {
 		const r = await fetch(BASE + from, { redirect: 'manual' });
-		ok(r.status === 301 && (r.headers.get('location') || '').endsWith(to), `${from} → ${to} (${r.status})`);
+		ok(r.status === 301 && new URL(r.headers.get('location') || '/x', BASE).pathname === to, `${from} → ${to} (${r.status})`);
 	}
 }
 

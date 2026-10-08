@@ -125,10 +125,6 @@ $tree     = nt_menu_tree( 'primary' );
 				<kbd class="nt-searchbtn__kbd" aria-hidden="true">/</kbd>
 			</a>
 			<?php if ( $has_wc ) : ?>
-				<a class="nt-iconbtn nt-account" href="<?php echo esc_url( wc_get_page_permalink( 'myaccount' ) ); ?>" aria-label="<?php echo is_user_logged_in() ? 'Contul meu' : 'Autentificare'; ?>" data-tip="<?php echo is_user_logged_in() ? 'Contul meu' : 'Autentificare'; ?>">
-					<?php echo nt_icon( 'user', 21 ); // phpcs:ignore ?>
-					<?php if ( is_user_logged_in() ) : ?><span class="nt-account__dot" aria-hidden="true"></span><?php endif; ?>
-				</a>
 				<a class="nt-cartbtn" href="<?php echo esc_url( wc_get_cart_url() ); ?>" data-nt-open="cart" aria-controls="nt-cart" aria-expanded="false">
 					<span class="nt-cartbtn__ico"><?php echo nt_icon( 'bag', 21 ); // phpcs:ignore ?><?php echo nt_cart_count_html(); // phpcs:ignore ?></span>
 					<?php echo nt_cart_total_html(); // phpcs:ignore ?>

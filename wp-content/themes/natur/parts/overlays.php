@@ -80,9 +80,6 @@ $popular = nt_opt_lines( 'search_popular' );
 							<li><a class="nt-mnav__link<?php echo $current ? ' is-current' : ''; ?>" href="<?php echo esc_url( $item->url ); ?>"><?php echo esc_html( $item->title ); ?></a></li>
 						<?php endif; ?>
 					<?php endforeach; ?>
-					<?php if ( $has_wc ) : ?>
-						<li><a class="nt-mnav__link" href="<?php echo esc_url( wc_get_page_permalink( 'myaccount' ) ); ?>"><?php echo is_user_logged_in() ? 'Contul meu' : 'Autentificare / cont nou'; ?></a></li>
-					<?php endif; ?>
 				</ul>
 			</nav>
 		</div>
@@ -124,7 +121,6 @@ $popular = nt_opt_lines( 'search_popular' );
 			<a href="<?php echo esc_url( wc_get_page_permalink( 'shop' ) ); ?>" data-nt-open="menu" aria-controls="nt-menu"<?php echo is_shop() || is_product_taxonomy() ? ' aria-current="page"' : ''; ?>><?php echo nt_icon( 'grid', 22 ); // phpcs:ignore ?><span>Categorii</span></a>
 			<a href="<?php echo esc_url( home_url( '/?s=&post_type=product' ) ); ?>" data-nt-open="search" aria-controls="nt-search"><?php echo nt_icon( 'search', 22 ); // phpcs:ignore ?><span>Caută</span></a>
 			<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" data-nt-open="cart" aria-controls="nt-cart"><span class="nt-tabbar__ico"><?php echo nt_icon( 'bag', 22 ); // phpcs:ignore ?><?php echo nt_cart_count_html(); // phpcs:ignore ?></span><span>Coș</span></a>
-			<a href="<?php echo esc_url( wc_get_page_permalink( 'myaccount' ) ); ?>"<?php echo is_account_page() ? ' aria-current="page"' : ''; ?>><?php echo nt_icon( 'user', 22 ); // phpcs:ignore ?><span>Cont</span></a>
 		</nav>
 	<?php endif; ?>
 

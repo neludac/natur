@@ -76,9 +76,11 @@ add_action(
 			'/quick-order'                 => wc_get_checkout_url(),
 			'/order'                       => wc_get_checkout_url(),
 			'/cart'                        => wc_get_cart_url(),
-			'/my-account'                  => wc_get_page_permalink( 'myaccount' ),
-			'/authentication'              => wc_get_page_permalink( 'myaccount' ),
-			'/login'                       => wc_get_page_permalink( 'myaccount' ),
+			// Magazinul nu are conturi de client (comanda se face fără cont).
+			'/my-account'                  => home_url( '/' ),
+			'/authentication'              => home_url( '/' ),
+			'/login'                       => home_url( '/' ),
+			'/contul-meu'                  => home_url( '/' ),
 			'/search'                      => home_url( '/?post_type=product&s=' . rawurlencode( sanitize_text_field( wp_unslash( $_GET['search_query'] ?? '' ) ) ) ), // phpcs:ignore WordPress.Security.NonceVerification
 			'/new-products'                => wc_get_page_permalink( 'shop' ),
 			'/prices-drop'                 => wc_get_page_permalink( 'shop' ),

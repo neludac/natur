@@ -5,8 +5,8 @@
  *   1. Admin: categorie nouă (creare / citire / editare), apoi 4 produse adăugate din editor:
  *      standard, cu reducere (preț vechi / preț nou, „-25%”), fără stoc, „În curând”.
  *   2. Vitrina: prețuri, insigne, produsele indisponibile nu pot fi puse în coș (nici prin URL / Store API).
- *   3. Client real: înregistrare → e-mail cu link de parolă (Mailpit) → setare parolă → autentificare
- *      → coș → comandă cu plata la livrare → „Contul meu” → e-mailuri de confirmare.
+ *   3. Client real, fără cont (magazinul nu are „Contul meu”): coș → comandă cu plata la livrare,
+ *      cu e-mail opțional → e-mailuri de confirmare (Mailpit).
  *   4. Admin: comanda e procesată și finalizată, o rambursare parțială, o comandă anulată.
  *   5. Statistici (WooCommerce Analytics): venituri, comenzi, produse, categorii, clienți, stoc
  *      — diferențele față de înainte de test trebuie să corespundă exact activității de mai sus.
@@ -15,7 +15,7 @@
  *   cd tools/tests && npm install && npm run test:shop
  *
  * Fără ADMIN_PASS, testul creează (prin ddev wp) administratorul temporar e2e-admin.
- * Datele de test (produse/categorie „E2E …”, clienți și comenzi e2e-*@example.com)
+ * Datele de test (produse/categorie „E2E …”, comenzi e2e-*@example.com)
  * se șterg cu `npm run cleanup`.
  */
 const { execSync } = require('child_process');
@@ -45,7 +45,7 @@ const P = {
 	soon: { title: `E2E Dulceață de gutui ${RUN}`, price: 70, stock: 'comingsoon', date: soonISO },
 };
 const cat = { name: `E2E Rafturile bunicii ${RUN}`, slug: `e2e-rafturi-${RUN}` };
-const customer = { email: `e2e-client-${RUN}@example.com`, pass: 'Nt!' + crypto.randomBytes(9).toString('base64url'), first: 'Maria', last: 'Testescu' };
+const customer = { email: `e2e-client-${RUN}@example.com`, first: 'Maria', last: 'Testescu' };
 
 /* ------------------------------------------------------------------ utilitare */
 
@@ -61,18 +61,11 @@ function ensureAdmin() {
 	}
 }
 
-async function login(p, user, pass, admin = true) {
-	if (admin) {
-		await p.goto(BASE + '/wp-login.php');
-		await p.fill('#user_login', user);
-		await p.fill('#user_pass', pass);
-		await Promise.all([p.waitForNavigation(), p.click('#wp-submit')]);
-	} else {
-		await p.goto(BASE + '/contul-meu/', { waitUntil: 'networkidle' });
-		await p.fill('#username', user);
-		await p.fill('#password', pass);
-		await Promise.all([p.waitForNavigation({ waitUntil: 'networkidle' }), p.click('button[name="login"]')]);
-	}
+async function login(p, user, pass) {
+	await p.goto(BASE + '/wp-login.php');
+	await p.fill('#user_login', user);
+	await p.fill('#user_pass', pass);
+	await Promise.all([p.waitForNavigation(), p.click('#wp-submit')]);
 }
 
 /** Caută în Mailpit ultimul e-mail către `to` cu subiectul potrivit. */
@@ -240,53 +233,21 @@ async function testUnavailable(shopper) {
 
 /* ------------------------------------------------------------------ 3. Client real */
 
-async function testCustomerAccount(b) {
-	section('Client nou: înregistrare, e-mail, parolă, autentificare');
-	const p = await newPage(b);
-	await p.goto(BASE + '/contul-meu/', { waitUntil: 'networkidle' });
-	await p.fill('#reg_email', customer.email);
-	await Promise.all([p.waitForNavigation({ waitUntil: 'networkidle' }), p.click('button[name="register"]')]);
-	ok(await p.isVisible('.woocommerce-MyAccount-navigation'), 'cont creat, clientul e autentificat');
-
-	const mail = await waitMail(customer.email, /cont/i);
-	if (!MAILPIT) console.log('  – e-mailurile nu se verifică (setați MAILPIT)');
-	else ok(!!mail, `e-mail de bun venit primit: „${mail && mail.Subject}”`);
-	const link = mail && (mail.HTML.match(/href="([^"]+action=newaccount[^"]+)"/) || mail.HTML.match(/href="([^"]+lost-password[^"]+)"/) || [])[1];
-	if (link) {
-		await p.goto(link.replace(/&amp;/g, '&'), { waitUntil: 'networkidle' });
-		await p.fill('#password_1', customer.pass);
-		await p.fill('#password_2', customer.pass);
-		await Promise.all([p.waitForNavigation({ waitUntil: 'networkidle' }), p.click('form.woocommerce-ResetPassword button[type="submit"]')]);
-		ok(/parol/i.test(await p.innerText('.woocommerce-message, .woocommerce-notices-wrapper').catch(() => '')), 'parola setată din linkul primit pe e-mail');
-	} else {
-		ok(!MAILPIT, 'linkul de setare a parolei găsit în e-mail');
-		return p;
-	}
-	await p.context().clearCookies();
-	await login(p, customer.email, customer.pass, false);
-	ok(await p.isVisible('.woocommerce-MyAccount-navigation'), 'autentificare cu e-mail și parolă');
-	await p.goto(BASE + '/contul-meu/edit-account/', { waitUntil: 'networkidle' });
-	await p.fill('#account_first_name', customer.first);
-	await p.fill('#account_last_name', customer.last);
-	await p.fill('#account_display_name', customer.first);
-	await Promise.all([p.waitForNavigation({ waitUntil: 'networkidle' }), p.click('button[name="save_account_details"]')]);
-	ok(await p.isVisible('.woocommerce-message'), 'datele contului salvate (nume, prenume)');
-	return p;
-}
-
 async function addToCart(p, prod, qty) {
 	await p.goto(prod.url, { waitUntil: 'networkidle' });
 	await p.fill('input.qty', String(qty));
 	await Promise.all([p.waitForNavigation({ waitUntil: 'networkidle' }), p.click('button[name="add-to-cart"]')]);
 }
 
-/* Comanda într-un singur pas: nume, telefon, adresă (clientul autentificat primește confirmarea pe e-mailul contului). */
+/* Comanda într-un singur pas, fără cont: nume, telefon, adresă și e-mailul opțional (pentru confirmări). */
 async function checkout(p) {
 	await p.goto(`${BASE}/finalizare-comanda/`, { waitUntil: 'networkidle' });
 	await p.fill('#billing_first_name', `${customer.first} ${customer.last}`);
 	await p.fill('#billing_phone', '069123456');
 	await p.check('#billing_state_city');
 	await p.fill('#billing_address_1', 'bd. Dacia 27, ap. 5');
+	if (!(await p.isVisible('#billing_email'))) await p.click('.nt-ck__more summary');
+	await p.fill('#billing_email', customer.email);
 	await p.waitForTimeout(2500);
 	const pay = text(await p.innerText('#payment .wc_payment_methods'));
 	ok(/Plata la livrare/.test(pay), `metoda de plată: „${pay.slice(0, 60)}”`);
@@ -299,7 +260,7 @@ async function checkout(p) {
 }
 
 async function testCustomerOrder(p) {
-	section('Client: coș și comandă cu plata la livrare');
+	section('Client fără cont: coș și comandă cu plata la livrare');
 	await p.goto(`${BASE}/categorie/${cat.slug}/`, { waitUntil: 'networkidle' });
 	await addToCart(p, P.std, 1);
 	await addToCart(p, P.sale, 2);
@@ -318,10 +279,6 @@ async function testCustomerOrder(p) {
 	const conf = text(await p.innerText('main'));
 	ok(/Mulțumim|Mulţumim/i.test(conf) && conf.includes(String(o.id)), 'pagina de confirmare cu numărul comenzii');
 	ok(/Plata la livrare/.test(conf), 'confirmarea menționează plata la livrare');
-
-	await p.goto(`${BASE}/contul-meu/orders/`, { waitUntil: 'networkidle' });
-	const row = text(await p.innerText(`tr:has(a[href*="/${o.id}/"])`).catch(() => ''));
-	ok(/Procesare|În procesare/i.test(row) && row.includes(lei(450)), `„Contul meu → Comenzi”: ${row.slice(0, 80)}`);
 
 	const mail = await waitMail(customer.email, /primit/i);
 	if (MAILPIT) ok(!!mail && mail.Text.includes(String(o.id)), `e-mail de confirmare către client: „${mail && mail.Subject}”`);
@@ -343,7 +300,7 @@ async function setOrderStatus(p, id, status) {
 	await Promise.all([p.waitForNavigation({ waitUntil: 'networkidle' }), p.click('button[name="save"].save_order')]);
 }
 
-async function testAdminOrders(admin, customerPage) {
+async function testAdminOrders(admin) {
 	section('Magazin: procesarea comenzii');
 	const p = admin;
 	const o = P.order;
@@ -380,12 +337,6 @@ async function testAdminOrders(admin, customerPage) {
 	await setOrderStatus(p, P.order2.id, 'wc-cancelled');
 	ok((await p.$eval('#order_status', (s) => s.value)) === 'wc-cancelled', `comanda #${P.order2.id} anulată`);
 
-	await customerPage.goto(`${BASE}/contul-meu/orders/`, { waitUntil: 'networkidle' });
-	const rows = text(await customerPage.innerText('.woocommerce-orders-table'));
-	ok(/Finalizat/.test(rows) && /Anulat/.test(rows), 'clientul vede statusurile „Finalizată” și „Anulată” în cont');
-	await customerPage.goto(`${BASE}/contul-meu/view-order/${o.id}/`, { waitUntil: 'networkidle' });
-	const view = text(await customerPage.innerText('.woocommerce-order-details, main'));
-	ok(view.includes('Rambursare: -150,00 lei'), 'clientul vede rambursarea în detaliile comenzii') || console.log('    ' + view.slice(0, 500));
 	const errs = p.jsErrors.filter((e) => !/ResizeObserver/.test(e));
 	ok(errs.length === 0, 'fără erori JS în admin ' + errs.join(' | '));
 }
@@ -436,7 +387,7 @@ async function testAnalytics(admin, before) {
 
 	const custs = await rest(`wc-analytics/reports/customers?per_page=100&search=${encodeURIComponent(customer.last)}&${RANGE}`);
 	const c = custs.find((x) => x.email === customer.email);
-	ok(c && c.orders_count === 1 && c.total_spend === 300 && c.user_id > 0, `Clienți: ${c && c.name} — ${c && c.orders_count} comandă, ${c && c.total_spend} lei cheltuiți (450 − 150 rambursat), cont înregistrat`);
+	ok(c && c.orders_count === 1 && c.total_spend === 300 && !c.user_id, `Clienți: ${c && c.name} — ${c && c.orders_count} comandă, ${c && c.total_spend} lei cheltuiți (450 − 150 rambursat), fără cont`);
 
 	const stock = await rest(`wc-analytics/reports/stock?type=outofstock&per_page=100`);
 	ok(stock.some((x) => x.id === P.oos.id), 'Stoc: produsul epuizat apare în raportul „Stoc epuizat”');
@@ -501,7 +452,6 @@ async function report(rest) {
 	console.log(`Testare ${BASE} (rulare ${RUN})`);
 	ensureAdmin();
 	const b = await launch();
-	let customerPage;
 	try {
 		const admin = await newPage(b, { viewport: { width: 1440, height: 900 } });
 		await login(admin, ADMIN_USER, ADMIN_PASS);
@@ -513,9 +463,8 @@ async function report(rest) {
 		await testAddProducts(admin);
 		await testDiscount(admin, shopper);
 		await testUnavailable(shopper);
-		customerPage = await testCustomerAccount(b);
-		await testCustomerOrder(customerPage);
-		await testAdminOrders(admin, customerPage);
+		await testCustomerOrder(await newPage(b));
+		await testAdminOrders(admin);
 		const rest = await testAnalytics(admin, before);
 		await testCategoryDelete(admin);
 		await report(rest);

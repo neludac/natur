@@ -486,7 +486,6 @@ body.nt::before {
 .nt-searchbtn svg { color: var(--nt-ink); }
 .nt-searchbtn:hover { box-shadow: inset 0 0 0 1.5px var(--nt-ink); }
 .nt-searchbtn__kbd { margin-left: auto; padding: 4px 9px; border-radius: 9px; background: var(--nt-bg); box-shadow: inset 0 -1px 0 var(--nt-line-2), inset 0 0 0 1px var(--nt-line); font: 800 12px/1 var(--nt-font); color: var(--nt-ink-2); }
-.nt-account__dot { position: absolute; top: 10px; right: 10px; width: 9px; height: 9px; border-radius: 50%; background: var(--nt-leaf); box-shadow: 0 0 0 2px var(--nt-bg); }
 .nt [data-tip] { position: relative; }
 .nt [data-tip]::after {
 	content: attr(data-tip);
@@ -1877,8 +1876,8 @@ body.nt ul.products li.product.nt-card .price ins, body.nt .nt-card .price ins {
 .nt.page:not(.home) .entry-content > p:first-child { font-family: var(--nt-serif); font-size: clamp(20px, 2.2vw, 24px); line-height: 1.55; color: var(--nt-ink); }
 .nt.page .entry-content h2 { margin: 1.9em 0 .55em; font-size: clamp(28px, 3vw, 36px); letter-spacing: -.025em; }
 .nt.page .entry-content h3 { margin: 1.5em 0 .5em; font-size: 24px; }
-.nt.page .entry-content a:not(.nt-btn):not(.button):not(.wc-block-components-button):not(.wp-block-button__link):not(.wc-block-grid__product-link):not(.nt-contact a):not(.woocommerce-MyAccount-navigation a):not(.woocommerce-error a) { color: var(--nt-moss); font-weight: 700; text-decoration: underline; text-decoration-color: rgba(141, 198, 63, .7); text-decoration-thickness: 2px; }
-.nt.page .entry-content a:not(.nt-btn):not(.button):not(.wc-block-components-button):not(.wp-block-button__link):not(.wc-block-grid__product-link):not(.nt-contact a):not(.woocommerce-MyAccount-navigation a):not(.woocommerce-error a):hover { color: var(--nt-forest); text-decoration-color: currentColor; }
+.nt.page .entry-content a:not(.nt-btn):not(.button):not(.wc-block-components-button):not(.wp-block-button__link):not(.wc-block-grid__product-link):not(.nt-contact a):not(.woocommerce-error a) { color: var(--nt-moss); font-weight: 700; text-decoration: underline; text-decoration-color: rgba(141, 198, 63, .7); text-decoration-thickness: 2px; }
+.nt.page .entry-content a:not(.nt-btn):not(.button):not(.wc-block-components-button):not(.wp-block-button__link):not(.wc-block-grid__product-link):not(.nt-contact a):not(.woocommerce-error a):hover { color: var(--nt-forest); text-decoration-color: currentColor; }
 .nt.page .entry-content ul.wp-block-list { padding: 0; margin: 0 0 1.4em; list-style: none; }
 .nt.page .entry-content ul.wp-block-list li { position: relative; margin: .55em 0; padding-left: 36px; }
 .nt.page .entry-content ul.wp-block-list li::before {
@@ -2111,9 +2110,9 @@ body.nt ul.products li.product.nt-card .price ins, body.nt .nt-card .price ins {
 }
 
 /* Coș (blocul WooCommerce; cu produse duce direct la comandă) + stiluri pentru blocul de finalizare */
-.nt.woocommerce-cart .entry-content, .nt.woocommerce-checkout .entry-content, .nt.woocommerce-account .entry-content { max-width: none !important; font-size: 16px; }
-.nt.woocommerce-cart .ast-article-single .entry-header, .nt.woocommerce-checkout .ast-article-single .entry-header, .nt.woocommerce-account .ast-article-single .entry-header { padding: 36px 24px 30px; margin-bottom: 32px; }
-.nt.woocommerce-cart .ast-article-single .entry-title, .nt.woocommerce-checkout .ast-article-single .entry-title, .nt.woocommerce-account .ast-article-single .entry-title { font-size: clamp(34px, 4.4vw, 52px); }
+.nt.woocommerce-cart .entry-content, .nt.woocommerce-checkout .entry-content { max-width: none !important; font-size: 16px; }
+.nt.woocommerce-cart .ast-article-single .entry-header, .nt.woocommerce-checkout .ast-article-single .entry-header { padding: 36px 24px 30px; margin-bottom: 32px; }
+.nt.woocommerce-cart .ast-article-single .entry-title, .nt.woocommerce-checkout .ast-article-single .entry-title { font-size: clamp(34px, 4.4vw, 52px); }
 
 .nt .wc-block-components-button:not(.is-link) { min-height: 54px; border-radius: 999px !important; background: var(--nt-forest) !important; color: #fff !important; font-family: var(--nt-font); font-weight: 800 !important; font-size: 16.5px; box-shadow: 0 14px 28px -16px rgba(31, 61, 43, .8); transition: background .2s, transform .3s var(--nt-spring); }
 .nt .wc-block-components-button:not(.is-link):hover { background: var(--nt-forest-2) !important; transform: translateY(-1px); }
@@ -2282,22 +2281,6 @@ body.nt ul.products li.product.nt-card .price ins, body.nt .nt-card .price ins {
 /* Pagina produsului: „Comandă acum” pe rândul de sub „Adaugă în coș” */
 .nt.single-product form.cart .nt-buynow { flex: 1 1 100%; height: 56px; font-size: 16.5px; }
 
-/* Contul meu */
-.nt.woocommerce-account .woocommerce { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 28px; align-items: start; }
-.nt.woocommerce-account .woocommerce > .woocommerce-notices-wrapper { grid-column: 1 / -1; }
-.nt.woocommerce-account .woocommerce-MyAccount-navigation, .nt.woocommerce-account .woocommerce-MyAccount-content { width: auto; float: none; margin: 0; }
-.nt .woocommerce-MyAccount-navigation ul { margin: 0; padding: 8px; border-radius: 26px; background: #fff; box-shadow: inset 0 0 0 1px var(--nt-line); list-style: none; }
-.nt .woocommerce-MyAccount-navigation ul li { margin: 0; border: 0 !important; }
-.nt .woocommerce-MyAccount-navigation ul li a { display: block; padding: 12px 16px; border-radius: 16px; color: var(--nt-ink-2) !important; font-weight: 700; text-decoration: none; transition: background .2s; }
-.nt .woocommerce-MyAccount-navigation ul li a:hover { background: var(--nt-bg); color: var(--nt-ink) !important; }
-.nt .woocommerce-MyAccount-navigation ul li.is-active a { background: var(--nt-ink); color: #fff !important; }
-.nt .woocommerce-MyAccount-content { padding: clamp(22px, 3vw, 36px); border-radius: 30px; background: #fff; box-shadow: inset 0 0 0 1px var(--nt-line); }
-.nt.woocommerce-account:not(.logged-in) .woocommerce { display: block; }
-.nt.woocommerce-account .u-columns.col2-set { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-.nt.woocommerce-account .u-columns.col2-set::before, .nt.woocommerce-account .u-columns.col2-set::after { display: none; }
-.nt.woocommerce-account .u-columns .u-column1, .nt.woocommerce-account .u-columns .u-column2 { width: auto; float: none; padding: clamp(24px, 3vw, 40px); border-radius: 32px; background: #fff; box-shadow: inset 0 0 0 1px var(--nt-line); }
-.nt.woocommerce-account .u-columns .u-column2 { background: #DDF0D6; box-shadow: none; }
-.nt.woocommerce-account .u-columns h2 { margin-top: 0; font-size: 30px; }
 .nt form.login, .nt form.register { margin: 0 !important; padding: 0 !important; border: 0 !important; }
 
 /* 404 */
@@ -2375,7 +2358,6 @@ body.nt ul.products li.product.nt-card .price ins, body.nt .nt-card .price ins {
 	.nt.single-product .nt-product-top > .natur-media,
 	.nt.single-product .nt-product-top > div.images.woocommerce-product-gallery { position: static; top: auto; grid-row: auto; }
 	.nt.single-product .nt-product-top > .summary { grid-column: 1; grid-row: auto; margin-top: 28px !important; }
-	.nt.woocommerce-account .woocommerce { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 900px) {
@@ -2395,7 +2377,6 @@ body.nt ul.products li.product.nt-card .price ins, body.nt .nt-card .price ins {
 	.nt-ahero__art { grid-area: art; position: relative; width: 132px; height: 132px; min-height: 0; }
 	.nt-ahero__art .nt-sticker, .nt-ahero__photo--2, .nt-ahero__photo--3 { display: none; }
 	.nt-ahero__photo { inset: 0; width: 100%; transform: rotate(-5deg); }
-	.nt.woocommerce-account .u-columns.col2-set { grid-template-columns: 1fr; }
 	/* Telefon: datele, apoi produsele cu totalul, apoi butonul */
 	.nt form.nt-ck { grid-template-columns: minmax(0, 1fr); gap: 16px; max-width: 620px; }
 	.nt-ck > .nt-ck__main { display: contents; }
@@ -2415,7 +2396,7 @@ body.nt ul.products li.product.nt-card .price ins, body.nt .nt-card .price ins {
 	/* Loc pentru bara de jos, în subsol: când bara se ascunde la derulare nu rămâne o fâșie deschisă sub subsol */
 	body.nt:has(.nt-tabbar) .nt-footer__bottom { padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
 	body.nt.single-product:has(.nt-satc) .nt-footer__bottom { padding-bottom: calc(92px + env(safe-area-inset-bottom)); }
-	.nt-searchbtn, .nt-account { display: none; }
+	.nt-searchbtn { display: none; }
 	.nt-cart-total { display: none; }
 	.nt-cartbtn { width: 46px; padding: 0; justify-content: center; }
 	.nt-header__in { justify-content: space-between; }
@@ -2434,7 +2415,7 @@ body.nt ul.products li.product.nt-card .price ins, body.nt .nt-card .price ins {
 		bottom: calc(10px + env(safe-area-inset-bottom));
 		z-index: 90;
 		display: grid;
-		grid-template-columns: repeat(5, 1fr);
+		grid-template-columns: repeat(4, 1fr);
 		padding: 6px;
 		border-radius: 24px;
 		background: rgba(31, 61, 43, .95);

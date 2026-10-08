@@ -218,10 +218,10 @@ $wc = array(
 	'woocommerce_manage_stock'            => 'no',
 	'woocommerce_hide_out_of_stock_items' => 'no',
 	'woocommerce_enable_guest_checkout'   => 'yes',
-	// Comanda într-un singur pas (tema: inc/checkout.php): fără autentificare sau cont la comandă.
+	// Comanda într-un singur pas (tema: inc/checkout.php): fără autentificare sau cont — magazinul nu are „Contul meu”.
 	'woocommerce_enable_checkout_login_reminder' => 'no',
 	'woocommerce_enable_signup_and_login_from_checkout' => 'no',
-	'woocommerce_enable_myaccount_registration' => 'yes',
+	'woocommerce_enable_myaccount_registration' => 'no',
 	'woocommerce_registration_generate_password' => 'yes',
 	'woocommerce_checkout_phone_field'    => 'required',
 	'woocommerce_checkout_company_field'  => 'hidden',
@@ -262,11 +262,18 @@ $wc_pages = array(
 	'shop'      => array( 'magazin', 'Magazin' ),
 	'cart'      => array( 'cos', 'Coș' ),
 	'checkout'  => array( 'finalizare-comanda', 'Finalizare comandă' ),
-	'myaccount' => array( 'contul-meu', 'Contul meu' ),
 );
 foreach ( $wc_pages as $key => [ $slug, $title ] ) {
 	wp_update_post( array( 'ID' => wc_get_page_id( $key ), 'post_name' => $slug, 'post_title' => $title ) );
 }
+
+// Fără „Contul meu”: clienții comandă fără cont, doar cu nume, telefon și adresă. Pagina ajunge la gunoi
+// (se poate restaura din Pagini → Gunoi), iar /contul-meu/ redirecționează spre prima pagină (mu-plugin natur-site.php).
+$account_page = (int) get_option( 'woocommerce_myaccount_page_id' );
+if ( $account_page > 0 && 'trash' !== get_post_status( $account_page ) ) {
+	wp_trash_post( $account_page );
+}
+update_option( 'woocommerce_myaccount_page_id', '' );
 
 // Textele statice din blocul Coș (pagina a fost creată înainte de activarea limbii române)
 $cart_page = get_post( wc_get_page_id( 'cart' ) );
@@ -401,7 +408,7 @@ $delivery = $p( 'Natur.MD este o prezentare de produse NATURALE, selectate de la
 	. $h( 'Cum comand?' )
 	. $ul(
 		array(
-			'Online, pe site — adăugați produsele în coș și finalizați comanda (nu este obligatoriu să vă creați cont).',
+			'Online, pe site — adăugați produsele în coș și finalizați comanda; nu aveți nevoie de cont, doar de nume, telefon și adresă.',
 			"La telefon: [natur_telefon].",
 			"Pe <a href=\"$messenger\">Facebook Messenger</a>.",
 		)
@@ -427,7 +434,7 @@ foreach (
 		array( 'În cât timp ajunge comanda?', 'În 1–48 de ore, în funcție de produs, din momentul în care confirmăm comanda la telefon.' ),
 		array( 'Livrați și în afara Chișinăului?', 'Da, prin Poșta Moldovei, pentru produsele neperisabile. Produsele perisabile — carne, lactate, ouă — le livrăm doar în Chișinău.' ),
 		array( 'Cum plătesc?', 'La primirea coletului, în numerar. Nu plătești nimic în avans.' ),
-		array( 'Trebuie să-mi fac cont ca să comand?', 'Nu. Adaugi produsele în coș și finalizezi comanda. Contul e opțional — îți păstrează istoricul comenzilor și adresele.' ),
+		array( 'Trebuie să-mi fac cont ca să comand?', 'Nu. Adaugi produsele în coș și finalizezi comanda — îți trebuie doar numele, telefonul și adresa.' ),
 		array( 'Pot comanda la telefon sau pe Messenger?', "Da. Sună la [natur_telefon] sau scrie-ne pe <a href=\"$messenger\">Messenger</a> — notăm comanda și stabilim împreună ora livrării." ),
 		array( 'Ce fac dacă un produs nu e în regulă?', 'Verifică coletul în prezența curierului: dacă produsele nu corespund comenzii, le poți refuza pe loc, fără costuri. O problemă de calitate descoperită mai târziu ne-o semnalezi în cel mult 24 de ore, cu o fotografie. Detalii în <a href="/politica-de-retur/">Politica de retur</a>.' ),
 	) as [ $q, $a ]
@@ -469,28 +476,26 @@ $privacy = $p( 'Natur.MD respectă confidențialitatea datelor dumneavoastră ș
 	. $ul(
 		array(
 			'Datele din comandă: nume, telefon, e-mail, adresa de livrare.',
-			'Datele contului (dacă vă creați cont): istoricul comenzilor și adresele salvate.',
 			'Mesajele pe care ni le trimiteți prin e-mail sau Messenger.',
-			'Date tehnice: cookie-uri necesare funcționării coșului și a contului, precum și sursa vizitei (de exemplu, o căutare Google sau Facebook), salvată împreună cu comanda. Detalii în <a href="/politica-de-cookies/">Politica de cookies</a>.',
+			'Date tehnice: cookie-uri necesare funcționării coșului, precum și sursa vizitei (de exemplu, o căutare Google sau Facebook), salvată împreună cu comanda. Detalii în <a href="/politica-de-cookies/">Politica de cookies</a>.',
 		)
 	)
 	. $h( 'De ce le folosim' )
 	. $p( 'Exclusiv pentru procesarea și livrarea comenzilor, comunicarea cu dumneavoastră și îndeplinirea obligațiilor legale. Nu vindem și nu transmitem datele altor persoane, cu excepția curierului sau a Poștei Moldovei, strict pentru livrare.' )
 	. $h( 'Cât timp le păstrăm' )
-	. $p( 'Datele comenzilor se păstrează pe durata impusă de legislația contabilă; datele contului — până la ștergerea acestuia.' )
+	. $p( 'Datele comenzilor se păstrează pe durata impusă de legislația contabilă.' )
 	. $h( 'Drepturile dumneavoastră' )
 	. $p( "Aveți dreptul de acces, rectificare, ștergere și opoziție. Scrieți-ne la [natur_email] și vom răspunde în cel mult 15 zile." );
 
 // Cookie-urile listate sunt cele setate efectiv de site (WordPress, WooCommerce cu „Order attribution”); actualizați lista la orice serviciu nou.
 $cookies = $p( 'Cookie-urile sunt fișiere mici pe care site-ul le salvează în browserul dumneavoastră, ca să țină minte, de exemplu, ce ați pus în coș. Natur.MD folosește doar cookie-uri proprii, strict pentru funcționarea magazinului.' )
 	. $h( 'Cookie-uri necesare' )
-	. $p( 'Fără ele, coșul și contul nu pot funcționa.' )
+	. $p( 'Fără ele, coșul nu poate funcționa.' )
 	. $ul(
 		array(
 			'<strong>wp_woocommerce_session_…</strong> — păstrează coșul de cumpărături de la o pagină la alta. Durată: 2 zile.',
 			'<strong>woocommerce_cart_hash</strong>, <strong>woocommerce_items_in_cart</strong> — arată site-ului când s-a schimbat conținutul coșului. Durată: până la închiderea browserului.',
-			'<strong>wordpress_logged_in_…</strong>, <strong>wordpress_sec_…</strong> — vă țin autentificat în „Contul meu”. Durată: până la închiderea browserului sau 14 zile, dacă bifați „Ține-mă minte”.',
-			'<strong>wordpress_test_cookie</strong> — verifică, la autentificare, dacă browserul acceptă cookie-uri. Durată: până la închiderea browserului.',
+			'<strong>wordpress_logged_in_…</strong>, <strong>wordpress_sec_…</strong>, <strong>wordpress_test_cookie</strong> — doar pentru administratorii magazinului, la autentificarea în panoul de administrare; cumpărătorii nu au cont și nu primesc aceste cookie-uri.',
 		)
 	)
 	. $h( 'Sursa comenzilor' )
@@ -512,7 +517,7 @@ $cookies = $p( 'Cookie-urile sunt fișiere mici pe care site-ul le salvează în
 	. $h( 'Conținut de pe alte site-uri' )
 	. $p( 'Videoclipurile cu rețete se încarcă de pe Instagram sau YouTube doar după ce apăsați pe ele. Din acel moment, platforma respectivă poate folosi propriile cookie-uri, conform politicii ei; YouTube se încarcă în modul cu confidențialitate sporită (youtube-nocookie.com). Butoanele Facebook, Instagram și Messenger sunt simple linkuri și nu încarcă nimic până nu le accesați.' )
 	. $h( 'Cum controlați cookie-urile' )
-	. $p( 'Puteți vedea, bloca sau șterge cookie-urile din setările browserului, de regulă în secțiunea „Confidențialitate” sau „Securitate”. Dacă blocați cookie-urile necesare, coșul și autentificarea în cont nu vor funcționa.' )
+	. $p( 'Puteți vedea, bloca sau șterge cookie-urile din setările browserului, de regulă în secțiunea „Confidențialitate” sau „Securitate”. Dacă blocați cookie-urile necesare, coșul nu va funcționa.' )
 	. $h( 'Mai multe informații' )
 	. $p( 'Cum prelucrăm datele personale citiți în <a href="/politica-de-confidentialitate/">Politica de confidențialitate</a>. Pentru întrebări: [natur_telefon], [natur_email].' );
 
@@ -854,7 +859,7 @@ $add_page( $primary, $pages['contact'] );
 
 // Confidențialitatea și cookie-urile au rândul lor în bara de jos a subsolului, pe toate paginile.
 $footer_menu = $make_menu( 'Meniu subsol' );
-foreach ( array( $pages['about'], $pages['delivery'], $pages['returns'], $pages['terms'], $pages['contact'], wc_get_page_id( 'myaccount' ) ) as $pid ) {
+foreach ( array( $pages['about'], $pages['delivery'], $pages['returns'], $pages['terms'], $pages['contact'] ) as $pid ) {
 	$add_page( $footer_menu, $pid );
 }
 
