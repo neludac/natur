@@ -1716,7 +1716,7 @@ body.nt ul.products li.product.nt-card .price ins, body.nt .nt-card .price ins {
 .nt.single-product .woocommerce-product-gallery .flex-control-thumbs li { width: 78px !important; margin: 0 !important; float: none !important; }
 .nt.single-product .woocommerce-product-gallery .flex-control-thumbs li img { border-radius: 18px; opacity: .55; box-shadow: inset 0 0 0 2px transparent; outline: 2px solid transparent; outline-offset: 2px; transition: opacity .2s, outline-color .2s; }
 .nt.single-product .woocommerce-product-gallery .flex-control-thumbs li img.flex-active, .nt.single-product .woocommerce-product-gallery .flex-control-thumbs li img:hover { opacity: 1; outline-color: var(--nt-ink); }
-.nt.single-product .woocommerce-product-gallery__trigger { top: 18px !important; right: 18px !important; width: 44px !important; height: 44px !important; border-radius: 50% !important; background: rgba(255, 255, 255, .92) !important; box-shadow: 0 6px 14px -8px rgba(0, 0, 0, .4); }
+.nt.single-product .woocommerce-product-gallery__trigger { top: 18px !important; right: 18px !important; width: 35px !important; height: 35px !important; border-radius: 50% !important; background: rgba(255, 255, 255, .92) !important; box-shadow: 0 6px 14px -8px rgba(0, 0, 0, .4); }
 /* WooCommerce desenează lupa cu offset-uri fixe pentru un cerc de 36px — o raportăm la centru */
 .nt.single-product .woocommerce-product-gallery__trigger::before { top: calc(50% - 9px); left: calc(50% - 9px); }
 .nt.single-product .woocommerce-product-gallery__trigger::after { top: calc(50% + 1px); left: calc(50% + 4px); }

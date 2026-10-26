@@ -9,6 +9,7 @@
 /wp-content/uploads/wpcf7_uploads/
 /wp-content/uploads/woocommerce_uploads/
 /wp-content/debug.log
+/wp-content/uploads/
 
 # Unelte
 node_modules/
@@ -16,6 +17,8 @@ __pycache__/
 *.pyc
 /tools/tests/screenshots/
 /tools/tests/*.log
+/tools/data/
+
 
 # Sistem
 .DS_Store

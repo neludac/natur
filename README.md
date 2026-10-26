@@ -40,6 +40,8 @@ ddev launch wp-admin
 | `tools/scrape_natur.py` | Extrage categorii, produse, imagini și recenzii de pe natur.md |
 | `tools/make_media.py` | Optimizează imaginile; generează cadre 360° și clipuri **demonstrative** |
 | `tools/import.php` | Importă datele extrase în WooCommerce (idempotent) |
+| `tools/product_media.py` | Pregătește fotografiile și filmările reale ale produselor (redimensionare, clipuri tăiate și comprimate) → `tools/data/media/` |
+| `tools/product_media.php` | Pune fotografiile și clipurile reale pe produse; creează produsele din lista de prețuri care lipseau (idempotent) |
 | `tools/verify_products.py` | Verifică dacă toate produsele de pe natur.md sunt pe site, cu toate detaliile |
 | `tools/setup.php` | Configurează tot site-ul (setări, livrare, pagini, meniuri, temă, prima pagină) |
 | `tools/tests/` | Teste end-to-end automate |
@@ -94,7 +96,14 @@ Folosire în alte pagini:
 - shortcode `[natur_360 id="123"]` și `[natur_video id="123"]`;
 - în Elementor, widgetul **„Produs: Video / 360°”**.
 
-> Cadrele 360° (Unt topit GHEE, Pate de prepeliță, Ulei de cocos) și clipurile video (6 produse) existente sunt **generate automat din fotografiile vechi, doar ca demonstrație**. Înlocuiți-le cu fotografii 360° și filmări reale.
+**Fotografii și filmări reale** (octombrie 2026): 24 de produse au ca imagine principală fotografia nouă de studio (fotografia veche a trecut prima în galerie), iar 18 au clipul real de pe platoul rotativ, cu fotografia ca poster. Șapte produse din lista de prețuri, care nu existau pe natur.md, au fost create odată cu media lor: Bulion cu perișoare, Bulion cu piept, CONFIT în unt GHEE, Piept asezonat, Chifteluțe în sos Velouté, Paste Romanița și Tagliatelle 1 kg (fără SKU și cu descrierea scurtă după etichetă — completați-le în admin). Pentru un lot nou de fișiere:
+
+```bash
+python3 tools/product_media.py ~/Downloads/Poze_Video_Final_site_nou   # → tools/data/media/
+ddev wp eval-file tools/product_media.php                              # legarea fișier → produs e în lista $items
+```
+
+> Rămân **demonstrative** (generate automat din fotografiile vechi): cadrele 360° de la Unt topit GHEE 640 g și Pate de prepeliță și clipurile de la Ouă de prepeliță și Carne de prepeliță afumată. Înlocuiți-le cu fotografii 360° și filmări reale.
 
 ## Conținut importat
 
